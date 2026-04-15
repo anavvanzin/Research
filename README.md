@@ -35,6 +35,11 @@ Raiz canônica do ecossistema de pesquisa em `/Users/ana/Research`.
 | `iurisvision-home-duplicate` | `/Users/ana/Research/archive/iurisvision-home-duplicate` | Archive | Duplicata antiga do checkout `iurisvision` | archived | antigo `/Users/ana/iurisvision` |
 | `iurisvision-projects-duplicate` | `/Users/ana/Research/archive/iurisvision-projects-duplicate` | Archive | Duplicata antiga do checkout `Projects/iurisvision` | archived | antigo `/Users/ana/Projects/iurisvision` |
 | `root-vault-legacy` | `/Users/ana/Research/archive/root-vault-legacy` | Archive | Vault legado fora da estrutura canônica | archived | `/Users/ana/vault` |
+| `mnemosyne-scout` | `/Users/ana/Research/hub/mnemosyne-scout` | Hub criativo | Exploração conceitual, mapas, sessões e handoffs da tese | active | — |
+| `the-book-of-secret-knowledge` | `/Users/ana/Research/shared/the-book-of-secret-knowledge` | Shared data | Base de referência externa (curadoria de ferramentas e recursos) | reference | — |
+| `docs/imported` | `/Users/ana/Research/docs/imported` | Docs | Documentação importada de sessões anteriores (arquitetura, roadmap, auditorias) | reference | — |
+| `docs/self-improving-agent-summary.md` | `/Users/ana/Research/docs/self-improving-agent-summary.md` | Docs | Resumo do sistema de auto-aprimoramento do agente | reference | — |
+| `docs/superpowers` | `/Users/ana/Research/docs/superpowers` | Docs | Documentação de superpowers (plans, specs) | reference | — |
 
 ## Regras de migração
 
