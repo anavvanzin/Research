@@ -1,0 +1,26 @@
+# ~/Research/ is a meta-workspace, not a monorepo.
+# Sub-repos (hub/, apps/*, pipelines/*, labs/*) have their own .git and
+# MUST NOT be nested-tracked here. This repo only versions workspace-level
+# meta files: README, CLAUDE.md, docs/.
+
+# --- Ignore every bucket entirely ---
+/hub/
+/apps/
+/pipelines/
+/labs/
+/vaults/
+/shared/
+/archive/
+
+# --- Also ignore typical noise ---
+.DS_Store
+*.swp
+*.swo
+.remember/
+**/.DS_Store
+**/node_modules/
+**/__pycache__/
+**/.venv/
+**/*.pyc
+**/.pytest_cache/
+**/*.log
