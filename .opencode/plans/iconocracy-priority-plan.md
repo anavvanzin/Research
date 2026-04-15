@@ -198,3 +198,89 @@ A meta de qualificação é atingível até **meados de 2026** só com material 
 | `vault/tese/references.bib` | **Commit urgente** (+368 linhas) |
 | `data/processed/irr_sample.json` | Executar `compute_irr.py` |
 | `notebooks/01_exploratory.ipynb` → `04_correspondence.ipynb` | Narrar em Cap. 6 |
+
+---
+
+## Mapeamento Visual da Arquitetura
+
+```mermaid
+graph TD
+    %% Cores e Estilos
+    classDef artigo fill:#f9f0ff,stroke:#d0bfff,stroke-width:2px;
+    classDef capDone fill:#e6ffed,stroke:#b3ffc4,stroke-width:2px;
+    classDef capDraft fill:#fff8c4,stroke:#ffe270,stroke-width:2px;
+    classDef capEmpty fill:#ffe6e6,stroke:#ffb3b3,stroke-width:2px;
+    
+    %% Artigos Fonte
+    subgraph Artigos["Material de Reciclagem (~39.5k palavras)"]
+        A1["Imagens da Nação"]:::artigo
+        A2["Maria, Marianne"]:::artigo
+        A3["O contrato visual"]:::artigo
+        A4["Vrouwe Justitia"]:::artigo
+        A5["A Materialidade"]:::artigo
+        A6["Iconocracia Tropical"]:::artigo
+        A7["O Silêncio da Justiça"]:::artigo
+    end
+
+    %% Capítulos
+    subgraph Parte1["Parte I: Teoria (Caps 1-3)"]
+        C1["Cap 1: Genealogia (~3.3k)"]:::capDraft
+        C2["Cap 2: Iconocracia (~620p)"]:::capDraft
+        C3["Cap 3: Colonialidade do Ver (Gargalo - 0p)"]:::capEmpty
+    end
+
+    subgraph Parte2["Parte II: Empiria (Caps 4-6)"]
+        C4["Cap 4: O Panteão"]:::capDraft
+        C5["Cap 5: A República"]:::capDraft
+        C6["Cap 6: A Toga (Notebooks executados)"]:::capDraft
+    end
+    
+    %% Material Antigo (Metodologia)
+    M1["Capitulo2_metodologia.md (~3.5k)"]:::capDraft
+
+    %% Relacionamentos
+    A3 --> C1
+    A3 --> C2
+    A5 --> C2
+    A7 --> C2
+    A1 --> C2
+    A6 --> C3
+    
+    A4 --> C4
+    A4 --> C5
+    A6 --> C4
+    A1 --> C4
+    A2 --> C5
+    
+    A4 --> C6
+    
+    M1 -. "Refatorar para" .-> C4
+    M1 -. "Refatorar para" .-> C5
+
+```
+
+```mermaid
+gantt
+    title Cronograma Tese - ICONOCRACIA (Até Nov/2027)
+    dateFormat  YYYY-MM-DD
+    axisFormat  %m/%y
+    
+    section Horizonte 0 (Imediato)
+    Desbloqueios Técnicos (Concluído)       :done, h0, 2026-04-14, 2026-04-16
+    
+    section Horizonte 1 (Abr-Jul 2026)
+    Cap 6: Narrar Notebooks (12k pal)      :active, h1_c6, 2026-04-16, 2026-05-30
+    Caps 4-5: Refatorar Metodologia (20k pal):active, h1_c45, 2026-05-01, 2026-06-30
+    Cap 2: Expandir Iconocracia (15k pal)  :h1_c2, 2026-06-01, 2026-07-31
+    
+    section Horizonte 2 (Ago-Dez 2026)
+    Submissões: Maria/Marianne e Materialidade :h2_sub, 2026-08-01, 2026-09-30
+    Cap 3: Pesquisa (Lélia, McClintock)    :h2_c3_pesq, 2026-08-01, 2026-09-30
+    Cap 3: Escrita Colonialidade do Ver    :h2_c3_esc, 2026-10-01, 2026-12-15
+    
+    section Horizonte 3 (2027)
+    Cap 1: Expansão Final                  :h3_c1, 2027-01-10, 2027-03-31
+    Cap 7: Esboço Casos Selecionados       :h3_c7, 2027-07-01, 2027-08-31
+    Projeto de Tese Atualizado             :h3_proj, 2027-09-01, 2027-10-31
+    Banca de Qualificação                  :milestone, h3_milestone, 2027-11-01, 1d
+```
