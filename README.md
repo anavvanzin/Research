@@ -19,7 +19,6 @@ Raiz canônica do ecossistema de pesquisa em `/Users/ana/Research`.
 | `iconocracy-corpus` | `/Users/ana/Research/hub/iconocracy-corpus` | Hub da tese | Monorepo canônico da pesquisa ICONOCRACIA | canonical | `/Users/ana/iconocracy-corpus` |
 | `iconocracia-companion` | `/Users/ana/Research/apps/iconocracia-companion` | App | Interface pública/operacional do corpus | experimental | `/Users/ana/iconocracia-companion` |
 | `iconocracia-space` | `/Users/ana/Research/apps/iconocracia-space` | App | Space/Hugging Face para exploração do corpus | experimental | `/Users/ana/iconocracia-space` |
-| `webiconocracy` | `/Users/ana/Research/apps/webiconocracy` | App | Interface experimental em AI Studio/Gemini | experimental | `/Users/ana/iconocracy-corpus/webiconocracy` |
 | `iconocracy-ingest` | `/Users/ana/Research/pipelines/iconocracy-ingest` | Pipeline | Ingestão, OCR e normalização de lotes | derived | symlink externo para o diretório rastreado no hub |
 | `indexing` | `/Users/ana/Research/pipelines/indexing` | Pipeline | Indexação, agentes de busca e Gallica MCP | derived | `/Users/ana/iconocracy-corpus/indexing` |
 | `Atlas` | `/Users/ana/Research/pipelines/Atlas` | Pipeline/toolkit | Toolkit iconográfico e analítico da tese | experimental | `/Users/ana/iconocracy-corpus/Atlas` |
