@@ -45,7 +45,7 @@ vaults/         │
 apps/           │  read corpus-data.json / companion-data.json
 ├── iconocracia-companion    operational/public interface
 ├── iconocracia-space        Hugging Face Space (exploration)
-└── webiconocracy            React+Vite+Firebase explorer (AI Studio/Gemini variant)
+└── webiconocracy            RETIRED — see apps/webiconocracy if needed
                 │
 labs/           │  exploratory, not on the canonical path
 ├── iurisvision             legal-vision experiments
@@ -62,7 +62,7 @@ shared/         │  reference data
 
 ## Working across multiple sub-repos
 
-- Every major sub-repo (`hub/iconocracy-corpus`, `apps/iconocracia-companion`, `apps/webiconocracy`, `pipelines/Atlas`) is its own Git repository with its own `AGENTS.md`, `package.json`, or `environment.yml`. Run commands **inside the specific sub-repo**, not at `~/Research/` root.
+- Every major sub-repo (`hub/iconocracy-corpus`, `apps/iconocracia-companion`, `pipelines/Atlas`) is its own Git repository with its own `AGENTS.md`, `package.json`, or `environment.yml`. Run commands **inside the specific sub-repo**, not at `~/Research/` root.
 - Before creating a new project, decide the bucket (`apps` | `pipelines` | `labs` | `vaults` | `shared`) and add a row to the README Workspace Index. New research repos enter **only** under `~/Research/`.
 - When a user request spans sub-repos, treat each as an isolated working directory (separate git status, separate env). Don't cross-commit.
 
