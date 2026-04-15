@@ -24,3 +24,9 @@
 **/*.pyc
 **/.pytest_cache/
 **/*.log
+
+# Repo-local self-improving-agent runtime state
+/.claude/self-improving-agent/memory/episodic/**/*.json
+/.claude/self-improving-agent/memory/working/*.json
+!/.claude/self-improving-agent/memory/episodic/.gitkeep
+!/.claude/self-improving-agent/memory/working/.gitkeep

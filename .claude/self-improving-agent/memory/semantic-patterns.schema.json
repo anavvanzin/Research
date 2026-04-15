@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "semantic-patterns.schema.json",
+  "title": "Semantic Memory — Self-Improving Agent",
+  "description": "Schema for the semantic-patterns.json file used by the repo-local self-improving-agent.",
+  "version": "1.1",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "repo", "patterns"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.1",
+      "description": "Schema version. Must be 1.1."
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of last generation."
+    },
+    "repo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nameWithOwner": {
+          "type": ["string", "null"],
+          "examples": ["anavvanzin/Research"]
+        },
+        "url": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "examples": ["https://github.com/anavvanzin/Research"]
+        },
+        "defaultBranch": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "patterns": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/pattern"
+      }
+    }
+  },
+  "definitions": {
+    "pattern": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "source",
+        "confidence",
+        "applications",
+        "created",
+        "last_seen",
+        "category",
+        "pattern",
+        "problem",
+        "solution",
+        "target_skills"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier for the pattern."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable name."
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "user_feedback",
+            "implementation_review",
+            "retrospective",
+            "hook_error",
+            "comparison_analysis",
+            "bug_analysis",
+            "prd_correction"
+          ],
+          "description": "How this pattern was derived."
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Confidence score between 0 and 1."
+        },
+        "applications": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of times this pattern has been triggered."
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of creation."
+        },
+        "last_seen": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of last occurrence."
+        },
+        "category": {
+          "type": "string",
+          "description": "Pattern category (e.g. bash_failure, prd_structure)."
+        },
+        "pattern": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One-line summary of the pattern."
+        },
+        "problem": {
+          "type": "string",
+          "description": "What problem this pattern solves."
+        },
+        "solution": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Object solution with any structure."
+            },
+            {
+              "type": "string",
+              "description": "Text solution."
+            }
+          ]
+        },
+        "target_skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Skills this pattern is relevant to."
+        },
+        "github_issue": {
+          "type": ["integer", "null"],
+          "description": "GitHub issue number created for this pattern."
+        },
+        "contradicts": {
+          "type": ["string", "null"],
+          "description": "ID of a pattern this one contradicts."
+        },
+        "supersedes": {
+          "type": ["string", "null"],
+          "description": "ID of the pattern this one supersedes."
+        },
+        "quality_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recovery_hints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
