@@ -84,6 +84,7 @@ Curated skills Codex should prefer when cwd is under `~/Research/`. Sub-repos ad
 | --- | --- |
 | `iconocracy-agent` | Default umbrella for thesis research — orchestrates corpus, coding, compile, progress |
 | `find-skill` | Fuzzy-search installed skills by intent |
+| `researchclaw` | Fully autonomous 23-stage pipeline: topic → conference-ready paper (live-symlinked from `~/Documents/GitHub/AutoResearchClaw`) |
 | `academic-research-skills` | 13-agent deep-research suite (lit review, writing, peer review) |
 | `literature-review` | Systematic literature reviews across multiple sources |
 | `compilar-tese` | Compile thesis chapters to DOCX/PDF via Pandoc |
