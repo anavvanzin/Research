@@ -34,8 +34,8 @@ hub/iconocracy-corpus/          canonical source of truth (corpus, thesis, schem
                 │
 pipelines/      │
 ├── iconocracy-ingest   symlink → hub tracked dir; OCR + batch normalization
-├── indexing            symlink → hub/indexing; search agents + Gallica MCP server
-└── Atlas               symlink → hub/Atlas; iconographic analytic toolkit
+├── indexing            real dir; hub/indexing symlinks here (search agents + Gallica MCP)
+└── Atlas               real dir; hub/Atlas symlinks here (iconographic analytic toolkit)
                 │
 vaults/         │
 ├── iconocracy-vault    symlink → hub vault (Obsidian surface for thesis notes)
@@ -56,7 +56,11 @@ shared/         │  reference data
 └── iconclass-data-avmadrj  Iconclass variant (avmadrj)
 ```
 
-**Git-safe phase rule**: tracked thesis content lives inside the hub. `pipelines/` and `vaults/` entries that look like directories are **symlinks into the hub**, not duplicates. Editing the symlinked path edits the hub. Don't try to initialize a separate Git repo inside a symlinked pipeline/vault.
+**Git-safe phase rule**: tracked thesis content lives inside the hub. Some entries under `pipelines/` and `vaults/` are **symlinks** tying hub and Research together — editing the symlinked path edits the real file on the other side:
+- `pipelines/iconocracy-ingest`, `vaults/iconocracy-vault`, `vaults/dir410346-vault`, `vaults/dir410340-vault` — symlinks **into the hub** (real content lives in hub).
+- `pipelines/Atlas`, `pipelines/indexing` — real content lives **in `pipelines/`**; the hub has reverse symlinks `hub/iconocracy-corpus/{Atlas,indexing}` pointing here.
+
+Don't initialize a separate Git repo inside a symlinked pipeline/vault.
 
 **Archive rule**: `archive/` holds aged duplicates and retired checkouts. Read-only by convention — check the hub before reviving anything.
 
