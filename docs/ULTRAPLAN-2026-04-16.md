@@ -40,7 +40,7 @@ O hub tem 64 arquivos/pastas não rastreados, incluindo:
 | Escala de indicadores ambígua (0–4 vs 0–3) | **Corrigido hoje** |
 | `ICONOCRACY_MASTER_PROMPT.md` — referenciado mas pode estar desatualizado | hub/ — verificar |
 | `docs/OPERATING_MODEL.md` — referenciado no hub CLAUDE.md | existência e atualidade? |
-| Notion databases (4 IDs) — sincronização inexistente | `notion_sync.py` nunca foi criado |
+| Notion databases (4 IDs) — sincronização inexistente | LEGADO — Obsidian é workspace ativo; Notion mantido como referência |
 | Google Doc "Mapa de Coerência" — última atualização? | ID: `1PpxzlHLBDPX8...` |
 | `.learnings/LEARNINGS.md` vs hub docs vs Research docs | sobreposição, sem curadoria |
 
@@ -142,11 +142,7 @@ O hub tem 64 arquivos/pastas não rastreados, incluindo:
 
 **Objetivo:** resolver os elos de infraestrutura que bloqueiam o trabalho.
 
-- [ ] **3.1** `notion_sync.py` — criar script mínimo:
-  ```
-  records.jsonl → Notion DB1 (id: 68ba778cec304d11bc9ce369612a7e67)
-  ```
-  Usar Notion MCP disponível. Não precisa ser bidirerecional — push only é suficiente por agora.
+- [x] ~~**3.1** `notion_sync.py`~~ — LEGADO: Notion não é mais workspace ativo (migrado para Obsidian). Material existente mantido como referência sob demanda.
 
 - [ ] **3.2** Resolver DM-001 (chave API):
   - Rotacionar a chave comprometida

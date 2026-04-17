@@ -39,11 +39,11 @@ O hub tem `mcpServers: {}` no settings.json. Os MCPs que você já usa no Cowork
 }
 ```
 
-#### 1.2 Notion MCP
+#### 1.2 Notion MCP *(LEGADO — não é mais workspace ativo)*
 
-**Por quê:** 4 databases Notion (Corpus, Glossário, Decisões Metodológicas) são referenciadas mas não há sync. Com MCP, o futuro `notion_sync.py` pode usar tools nativos.
+**Status:** Notion contém material de referência anterior mas **não é mais o workspace ativo** (migrado para Obsidian). Manter acesso para consulta sob demanda, mas não priorizar integração.
 
-**Instalar:** `claude mcp add notion` (requer integration token)
+~~**Instalar:** `claude mcp add notion` (requer integration token)~~
 
 ---
 
@@ -146,6 +146,6 @@ Os plugins necessários já estão no Cowork (ECC, Gallica, data, productivity).
 | 2 | Adicionar hook ADR-001 (bloquear binários) | Médio — previne erros no CI | 10 min |
 | 3 | Adicionar hook ou script de auto-push | Alto — resolve gap de 49 commits | 10 min |
 | 4 | Limpar skills redundantes (3 candidatos) | Baixo — reduz ruído | 15 min |
-| 5 | Configurar Notion MCP (quando notion_sync.py for criado) | Médio — unifica dados | 30 min |
+| ~~5~~ | ~~Configurar Notion MCP~~ | LEGADO — Obsidian é workspace ativo | — |
 
 **Quer mais recomendações para alguma categoria específica?** Posso detalhar hooks, skills, ou MCP servers individualmente.

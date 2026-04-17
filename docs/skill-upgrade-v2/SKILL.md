@@ -492,7 +492,7 @@ ou a Seção F do hub `CLAUDE.md`.
 |-----|-------|
 | **Gallica** | `gallica_search`, `gallica_get_metadata`, `gallica_get_iiif_manifest`, `gallica_get_image_url` |
 | **HF Hub** | `paper_search`, `hub_repo_search`, `space_search`, `hf_hub_query` |
-| **Notion** | `notion-search`, `notion-fetch`, `notion-update-page` |
+| **Notion** *(legado — referência apenas, não é workspace ativo)* | `notion-search`, `notion-fetch`, `notion-update-page` |
 | **WebSearch / WebFetch** | Buscas gerais e verificação de URLs |
 
 ---
