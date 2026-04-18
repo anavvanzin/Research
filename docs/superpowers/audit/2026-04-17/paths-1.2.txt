@@ -1,0 +1,54 @@
+# apps/iconocracia-companion
+/Users/ana/Research/apps/iconocracia-companion/scripts/seed-kv.js
+/Users/ana/Research/apps/iconocracia-companion/scripts/upload-r2.js
+/Users/ana/Research/apps/iconocracia-companion/src/app/editorial-search.js
+/Users/ana/Research/apps/iconocracia-companion/src/app/main.jsx
+/Users/ana/Research/apps/iconocracia-companion/src/index.js
+
+# apps/iconocracia-space
+/Users/ana/Research/apps/iconocracia-space/app.py
+/Users/ana/Research/apps/iconocracia-space/requirements.txt
+
+# pipelines/Atlas
+/Users/ana/Research/pipelines/Atlas/atlas-iconometrico.html
+/Users/ana/Research/pipelines/Atlas/atlas_iconocratico/__init__.py
+/Users/ana/Research/pipelines/Atlas/atlas_iconocratico/codificacao.py
+/Users/ana/Research/pipelines/Atlas/atlas_iconocratico/corpus.py
+/Users/ana/Research/pipelines/Atlas/atlas_iconocratico/estatistica.py
+/Users/ana/Research/pipelines/Atlas/atlas_iconocratico/iconclass_.py
+/Users/ana/Research/pipelines/Atlas/atlas_iconocratico/kappa.py
+/Users/ana/Research/pipelines/Atlas/atlas_iconocratico/matriz.py
+/Users/ana/Research/pipelines/Atlas/create_apendice.js
+/Users/ana/Research/pipelines/Atlas/main.py
+
+# pipelines/indexing/corpus-scout-agent
+/Users/ana/Research/pipelines/indexing/corpus-scout-agent/src/index.ts
+
+# pipelines/indexing/gallica-mcp-server
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/package.json
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/src/constants.ts
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/src/index.ts
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/src/services/client.ts
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/src/services/iiif.ts
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/src/services/oai.ts
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/src/services/sru.ts
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/src/tools/image.ts
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/src/tools/metadata.ts
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/src/tools/search.ts
+/Users/ana/Research/pipelines/indexing/gallica-mcp-server/src/types.ts
+
+# labs/iurisvision
+/Users/ana/Research/labs/iurisvision/src/App.tsx
+/Users/ana/Research/labs/iurisvision/src/components/AIAssistant.tsx
+/Users/ana/Research/labs/iurisvision/src/components/ConnectionMap.tsx
+/Users/ana/Research/labs/iurisvision/src/components/CorpusExplorer.tsx
+/Users/ana/Research/labs/iurisvision/src/components/Dashboard.tsx
+/Users/ana/Research/labs/iurisvision/src/components/KnowledgeBase.tsx
+/Users/ana/Research/labs/iurisvision/src/components/Sidebar.tsx
+/Users/ana/Research/labs/iurisvision/src/components/ThesisDashboard.tsx
+/Users/ana/Research/labs/iurisvision/src/components/VirtualPlant.tsx
+/Users/ana/Research/labs/iurisvision/src/data/roadmap.ts
+/Users/ana/Research/labs/iurisvision/src/lib/AuthContext.tsx
+/Users/ana/Research/labs/iurisvision/src/lib/firebase.ts
+/Users/ana/Research/labs/iurisvision/src/lib/utils.ts
+/Users/ana/Research/labs/iurisvision/src/main.tsx
