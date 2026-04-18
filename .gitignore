@@ -12,6 +12,12 @@
 /shared/
 /archive/
 
+# --- Untracked research material (PDFs, admin docs, legacy outputs) ---
+/Books/
+/Cotutela/
+/rotinas/
+/dashboard.html
+
 # --- Also ignore typical noise ---
 .DS_Store
 *.swp
@@ -30,3 +36,9 @@
 /.claude/self-improving-agent/memory/working/*.json
 !/.claude/self-improving-agent/memory/episodic/.gitkeep
 !/.claude/self-improving-agent/memory/working/.gitkeep
+
+# Session dumps (Hermes conversation exports)
+/hermes_conversation_*.json
+
+# Git worktrees
+/.worktrees/

@@ -2,6 +2,25 @@
 
 Raiz canônica do ecossistema de pesquisa em `/Users/ana/Research`.
 
+## Produção intelectual — acesso direto
+
+O trabalho principal vive dentro do hub, mas estes são os caminhos de acesso rápido:
+
+| O quê | Caminho |
+| --- | --- |
+| **Capítulos da tese** | `hub/iconocracy-corpus/vault/tese/` (introdução → conclusão) |
+| **Manuscrito & revisões** | `hub/iconocracy-corpus/tese/manuscrito/` · `tese/revisoes/` |
+| **Entrega mais recente** | `hub/iconocracy-corpus/tese/Entrega_Orientador_Mar2026_FINAL/` |
+| **Rascunhos de artigos** | `hub/iconocracy-corpus/vault/tese/rascunhos-artigos/` (6 drafts) |
+| **Artigo publicável** | `hub/iconocracy-corpus/tese/artigos/dessexualization-threshold-draft-v1.md` |
+| **Notebooks estatísticos** | `hub/iconocracy-corpus/notebooks/` (01–04: exploratória → correspondência) |
+| **Notebooks Atlas** | `pipelines/Atlas/notebooks/` (corpus, estatística, kappa) |
+| **Corpus canônico** | `hub/iconocracy-corpus/corpus/corpus-data.json` (145 itens) |
+| **Propostas de projeto** | `hub/iconocracy-corpus/vault/tese/drafts/` (Max Planck, Justice Vandalized) |
+| **Biblioteca de referência** | `Books/` (24 PDFs — Ginzburg, Beccaria, Sbriccoli, Broedel, etc.) |
+| **Cotutela** | `Cotutela/` (checklist + resumo) |
+| **Runbook conceitual** | `docs/deep-research-runbook-iconocracia.md` |
+
 ## Contrato de organização
 
 - `hub/`: hub canônico da tese
@@ -39,6 +58,10 @@ Raiz canônica do ecossistema de pesquisa em `/Users/ana/Research`.
 | `docs/imported` | `/Users/ana/Research/docs/imported` | Docs | Documentação importada de sessões anteriores (arquitetura, roadmap, auditorias) | reference | — |
 | `docs/self-improving-agent-summary.md` | `/Users/ana/Research/docs/self-improving-agent-summary.md` | Docs | Resumo do sistema de auto-aprimoramento do agente | reference | — |
 | `docs/superpowers` | `/Users/ana/Research/docs/superpowers` | Docs | Documentação de superpowers (plans, specs) | reference | — |
+| `Books` | `/Users/ana/Research/Books` | Biblioteca | PDFs de referência (Ginzburg, Beccaria, Sbriccoli, Broedel, grammars, etc.) | active | — |
+| `Cotutela` | `/Users/ana/Research/Cotutela` | Admin | Checklist e resumo para cotutela | active | — |
+| `scispace-old-outputs` | `/Users/ana/Research/archive/scispace-old-outputs` | Archive | Outputs antigos do SciSpace (CSVs, PNGs, relatórios, iconclass) | archived | antigo `~/Research/Scispace old outputs/` |
+| `deep-research-runbook` | `/Users/ana/Research/docs/deep-research-runbook-iconocracia.md` | Docs | Runbook conceitual — conceitos originais (recipiente vazio, substituição simbólica) | reference | antigo arquivo solto na raiz |
 
 ## Regras de migração
 
