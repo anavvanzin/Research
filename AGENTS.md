@@ -44,8 +44,7 @@ vaults/         │
                 │
 apps/           │  read corpus-data.json / companion-data.json
 ├── iconocracia-companion    operational/public interface
-├── iconocracia-space        Hugging Face Space (exploration)
-└── webiconocracy            RETIRED — see apps/webiconocracy if needed
+└── iconocracia-space        Hugging Face Space (exploration)
                 │
 labs/           │  exploratory, not on the canonical path
 ├── iurisvision             legal-vision experiments
