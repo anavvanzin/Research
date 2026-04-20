@@ -13,11 +13,11 @@ Old flat paths (`~/iconocracy-corpus`, `~/iurisvision`, `~/iconclass-data`, etc.
 Almost all thesis work lives here. It has its own detailed `AGENTS.md` — **always read it first when working inside the hub**. Cross-workspace facts:
 
 - Python env: **conda `iconocracy` on Python 3.12** (`/Users/ana/.venvs/iconocracy/bin/python3.12`). Never use system Python.
-- Canonical data contract: `records.jsonl` → `corpus/corpus-data.json` (145 items) → public releases. Validate after any edit:
+- Canonical data contract: `records.jsonl` → `corpus/corpus-data.json` (165 items) → public releases. Validate after any edit:
   ```bash
   conda run -n iconocracy python tools/scripts/validate_schemas.py
   ```
-- Dual-Agent Pipeline: **WebScout** (archive researcher) → **IconoCode** (visual coder, 4-stage Panofsky + purification indicators).
+- Dual-Agent Pipeline: **WebScout** (archive researcher) → **IconoCode** (visual coder, 3-level Panofsky + 10 endurecimento indicators).
 - Thesis compile: `make -C vault/tese/` (Pandoc) or the `compilar-tese` skill.
 - Binary images belong in Google Drive, **never** in `data/raw/` — a PreToolUse hook blocks writes that try.
 

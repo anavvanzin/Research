@@ -15,7 +15,7 @@ O trabalho principal vive dentro do hub, mas estes são os caminhos de acesso r�
 | **Artigo publicável** | `hub/iconocracy-corpus/tese/artigos/dessexualization-threshold-draft-v1.md` |
 | **Notebooks estatísticos** | `hub/iconocracy-corpus/notebooks/` (01–04: exploratória → correspondência) |
 | **Notebooks Atlas** | `pipelines/Atlas/notebooks/` (corpus, estatística, kappa) |
-| **Corpus canônico** | `hub/iconocracy-corpus/corpus/corpus-data.json` (145 itens) |
+| **Corpus canônico** | `hub/iconocracy-corpus/corpus/corpus-data.json` (165 itens) |
 | **Propostas de projeto** | `hub/iconocracy-corpus/vault/tese/drafts/` (Max Planck, Justice Vandalized) |
 | **Biblioteca de referência** | `Books/` (24 PDFs — Ginzburg, Beccaria, Sbriccoli, Broedel, etc.) |
 | **Cotutela** | `Cotutela/` (checklist + resumo) |
@@ -58,6 +58,7 @@ O trabalho principal vive dentro do hub, mas estes são os caminhos de acesso r�
 | `docs/imported` | `/Users/ana/Research/docs/imported` | Docs | Documentação importada de sessões anteriores (arquitetura, roadmap, auditorias) | reference | — |
 | `docs/self-improving-agent-summary.md` | `/Users/ana/Research/docs/self-improving-agent-summary.md` | Docs | Resumo do sistema de auto-aprimoramento do agente | reference | — |
 | `docs/superpowers` | `/Users/ana/Research/docs/superpowers` | Docs | Documentação de superpowers (plans, specs) | reference | — |
+| `cowork` | `/Users/ana/Research/cowork` | Tooling | Área de agentes, integrações e tooling Node/OpenCode associado | active | antigo tooling solto na raiz |
 | `Books` | `/Users/ana/Research/Books` | Biblioteca | PDFs de referência (Ginzburg, Beccaria, Sbriccoli, Broedel, grammars, etc.) | active | — |
 | `Cotutela` | `/Users/ana/Research/Cotutela` | Admin | Checklist e resumo para cotutela | active | — |
 | `scispace-old-outputs` | `/Users/ana/Research/archive/scispace-old-outputs` | Archive | Outputs antigos do SciSpace (CSVs, PNGs, relatórios, iconclass) | archived | antigo `~/Research/Scispace old outputs/` |
@@ -69,4 +70,5 @@ O trabalho principal vive dentro do hub, mas estes são os caminhos de acesso r�
 - Caminhos antigos permanecem como symlinks de compatibilidade enquanto scripts e documentos são atualizados.
 - Na fase git-safe, conteúdo rastreado da tese continua versionado dentro do hub; os paths em `Research/pipelines` e `Research/vaults` podem apontar para ele via symlink.
 - Exceção: o nested repo legado `iconocracy-corpus/iconocracy-corpus` foi arquivado sem symlink local porque o gitlink antigo quebrava `git status` no hub.
+- Tooling Node/OpenCode de apoio vive em `cowork/`; a raiz do meta-workspace não deve funcionar como projeto npm.
 - O contrato canônico da tese permanece: `records.jsonl` -> `corpus-data.json` -> releases públicos.

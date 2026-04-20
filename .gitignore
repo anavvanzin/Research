@@ -39,6 +39,13 @@
 
 # Session dumps (Hermes conversation exports)
 /hermes_conversation_*.json
+**/hermes_conversation_*.json
+/hermes-agent/
 
 # Git worktrees
 /.worktrees/
+/Research/
+
+# Accidental shell artifacts
+/python"
+/python3"
