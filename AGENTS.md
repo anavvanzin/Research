@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents (Claude Code, Codex, Cursor, etc.) when working with code in this repository. `CLAUDE.md` is a symlink to this file — keep this one canonical.
 
 ## Workspace purpose
 
@@ -10,7 +10,7 @@ Old flat paths (`~/iconocracy-corpus`, `~/iurisvision`, `~/iconclass-data`, etc.
 
 ## Primary repo: `hub/iconocracy-corpus`
 
-Almost all thesis work lives here. It has its own detailed `AGENTS.md` — **always read it first when working inside the hub**. Cross-workspace facts:
+Almost all thesis work lives here. It has its own detailed `AGENTS.md`/`CLAUDE.md` — **always read it first when working inside the hub**. Cross-workspace facts:
 
 - Python env: **conda `iconocracy` on Python 3.12** (`/Users/ana/.venvs/iconocracy/bin/python3.12`). Never use system Python.
 - Canonical data contract: `records.jsonl` → `corpus/corpus-data.json` (165 items) → public releases. Validate after any edit:
@@ -65,7 +65,7 @@ Don't initialize a separate Git repo inside a symlinked pipeline/vault.
 
 ## Working across multiple sub-repos
 
-- Every major sub-repo (`hub/iconocracy-corpus`, `apps/iconocracia-companion`, `pipelines/Atlas`) is its own Git repository with its own `AGENTS.md`, `package.json`, or `environment.yml`. Run commands **inside the specific sub-repo**, not at `~/Research/` root.
+- Every major sub-repo (`hub/iconocracy-corpus`, `apps/iconocracia-companion`, `pipelines/Atlas`) is its own Git repository with its own `AGENTS.md`/`CLAUDE.md`, `package.json`, or `environment.yml`. Run commands **inside the specific sub-repo**, not at `~/Research/` root.
 - Before creating a new project, decide the bucket (`apps` | `pipelines` | `labs` | `vaults` | `shared`) and add a row to the README Workspace Index. New research repos enter **only** under `~/Research/`.
 - When a user request spans sub-repos, treat each as an isolated working directory (separate git status, separate env). Don't cross-commit.
 
@@ -80,7 +80,7 @@ Don't initialize a separate Git repo inside a symlinked pipeline/vault.
 
 ## Skills for this workspace
 
-Curated skills Codex should prefer when cwd is under `~/Research/`. Sub-repos add their own catalogs; this one covers the meta-workspace.
+Curated skills the agent should prefer when cwd is under `~/Research/`. Sub-repos add their own catalogs; this one covers the meta-workspace.
 
 ### Primary entry points
 | Skill ID | When to use |

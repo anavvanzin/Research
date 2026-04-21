@@ -45,7 +45,3 @@
 # Git worktrees
 /.worktrees/
 /Research/
-
-# Accidental shell artifacts
-/python"
-/python3"
