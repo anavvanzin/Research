@@ -20,6 +20,7 @@ O trabalho principal vive dentro do hub, mas estes são os caminhos de acesso r�
 | **Biblioteca de referência** | `Books/` (24 PDFs — Ginzburg, Beccaria, Sbriccoli, Broedel, etc.) |
 | **Cotutela** | `Cotutela/` (checklist + resumo) |
 | **Runbook conceitual** | `docs/deep-research-runbook-iconocracia.md` |
+| **Roteamento pipelines** | `docs/academic-pipeline-routing-iconocracia.md` |
 
 ## Contrato de organização
 
