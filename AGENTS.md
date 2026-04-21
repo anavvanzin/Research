@@ -26,11 +26,14 @@ Almost all thesis work lives here. It has its own detailed `AGENTS.md`/`CLAUDE.m
 Pieces share state through symlinks and the canonical JSON contract, not a single build system:
 
 ```
-hub/iconocracy-corpus/          canonical source of truth (corpus, thesis, schemas)
-        │
-        ├── corpus/corpus-data.json     ─┐
-        ├── vault/tese/                  │  consumed downstream
-        └── records.jsonl               ─┘
+hub/
+├── iconocracy-corpus/     canonical source of truth (corpus, thesis, schemas)
+│       │
+│       ├── corpus/corpus-data.json     ─┐
+│       ├── vault/tese/                  │  consumed downstream
+│       └── records.jsonl               ─┘
+│               │
+└── mnemosyne-scout/       creative hub — maps, sessions, handoffs (active)
                 │
 pipelines/      │
 ├── iconocracy-ingest   symlink → hub tracked dir; OCR + batch normalization
@@ -51,8 +54,9 @@ labs/           │  exploratory, not on the canonical path
 └── iuris-visio-roadmap     planning for above
                 │
 shared/         │  reference data
-├── iconclass-data          Iconclass ontology fork (anavvanzin)
-└── iconclass-data-avmadrj  Iconclass variant (avmadrj)
+├── iconclass-data                Iconclass ontology fork (anavvanzin)
+├── iconclass-data-avmadrj        Iconclass variant (avmadrj)
+└── the-book-of-secret-knowledge  external reference curation (tools/resources)
 ```
 
 **Git-safe phase rule**: tracked thesis content lives inside the hub. Some entries under `pipelines/` and `vaults/` are **symlinks** tying hub and Research together — editing the symlinked path edits the real file on the other side:

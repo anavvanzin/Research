@@ -1,0 +1,7 @@
+interface:
+  display_name: "ICONOCRACIA Pipeline Router"
+  short_description: "Roteia pipelines academicas da tese."
+  default_prompt: "Use $iconocracia-pipeline-router para escolher a rota academica correta antes de pesquisar, escrever, revisar ou fechar integridade."
+
+policy:
+  allow_implicit_invocation: true
