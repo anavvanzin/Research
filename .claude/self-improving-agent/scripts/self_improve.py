@@ -9,6 +9,7 @@ import shlex
 import shutil
 import subprocess
 import sys
+import tempfile
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -60,10 +61,24 @@ def read_json(path: Path, default: Any) -> Any:
 
 
 def write_json(path: Path, data: Any) -> None:
+    # Atomic write: serialize to a same-directory tempfile, then os.replace.
+    # Prevents partial files if the process is interrupted and serializes
+    # concurrent writers on POSIX (replace is atomic within a filesystem).
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(data, indent=2, ensure_ascii=True) + "\n", encoding="utf-8"
+    fd, tmp = tempfile.mkstemp(
+        dir=str(path.parent), prefix=path.name + ".", suffix=".tmp"
     )
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(json.dumps(data, indent=2, ensure_ascii=True))
+            handle.write("\n")
+        os.replace(tmp, path)
+    except BaseException:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
 
 
 def run_command(args: list[str], timeout: int = 8) -> tuple[int, str, str]:
@@ -587,6 +602,59 @@ def handle_validate() -> None:
         )
 
 
+def _read_hook_payload() -> dict[str, Any]:
+    # Claude Code invokes hooks with a JSON object on stdin. Silently tolerate
+    # empty/malformed input so a broken hook never blocks the parent tool call.
+    try:
+        raw = sys.stdin.read()
+    except (OSError, ValueError):
+        return {}
+    if not raw.strip():
+        return {}
+    try:
+        parsed = json.loads(raw)
+    except (json.JSONDecodeError, ValueError):
+        return {}
+    return parsed if isinstance(parsed, dict) else {}
+
+
+def handle_pre_tool_hook() -> None:
+    payload = _read_hook_payload()
+    tool_name = payload.get("tool_name") or "unknown"
+    tool_input = payload.get("tool_input")
+    if isinstance(tool_input, dict):
+        # Bash carries the command under .command; other tools vary, so fall
+        # back to a compact JSON dump for anything we don't specifically model.
+        tool_input_str = tool_input.get("command") or json.dumps(
+            tool_input, ensure_ascii=True, sort_keys=True
+        )
+    elif tool_input is None:
+        tool_input_str = ""
+    else:
+        tool_input_str = str(tool_input)
+    handle_pre_tool(str(tool_name), tool_input_str)
+
+
+def handle_post_bash_hook() -> None:
+    payload = _read_hook_payload()
+    if (payload.get("tool_name") or "") != "Bash":
+        return
+    response = payload.get("tool_response") or {}
+    if not isinstance(response, dict):
+        response = {}
+    stdout = response.get("stdout") or ""
+    stderr = response.get("stderr") or ""
+    combined = stdout
+    if stderr:
+        combined = f"{combined}\n[stderr] {stderr}" if combined else stderr
+    # Claude Code surfaces success/failure via isError/interrupted, not a real
+    # exit code. Map either signal to a non-zero code for the existing handler.
+    is_error = bool(response.get("isError"))
+    interrupted = bool(response.get("interrupted"))
+    exit_code = 1 if (is_error or interrupted) else 0
+    handle_post_bash(combined, exit_code)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Repo-local self-improvement automation"
@@ -601,6 +669,8 @@ def build_parser() -> argparse.ArgumentParser:
     post_bash.add_argument("--tool-output", default="")
     post_bash.add_argument("--exit-code", type=int, default=0)
 
+    subparsers.add_parser("pre-tool-hook")
+    subparsers.add_parser("post-bash-hook")
     subparsers.add_parser("session-end")
 
     subparsers.add_parser("validate")
@@ -615,6 +685,10 @@ def main() -> int:
         handle_pre_tool(args.tool_name, args.tool_input)
     elif args.command == "post-bash":
         handle_post_bash(args.tool_output, args.exit_code)
+    elif args.command == "pre-tool-hook":
+        handle_pre_tool_hook()
+    elif args.command == "post-bash-hook":
+        handle_post_bash_hook()
     elif args.command == "session-end":
         handle_session_end()
     elif args.command == "validate":
