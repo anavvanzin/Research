@@ -29,7 +29,7 @@
 - [x] Sprint 3.1: notion_sync.py — marked legacy (Notion → Obsidian migration)
 - [x] Sprint 3.2: DM-001 API key audit — no exposed keys in current workflows (all use `secrets.*`)
 - [x] Sprint 3.3: DM-002 feminist_network — actively used by `extract_feminist_network.py` and documented
-- [ ] Sprint 3.4: apps/iconocracia-space origin — NOT A SEPARATE REPO (subdir of Research); no action unless user wants to extract it
+- [x] Sprint 3.4: apps/iconocracia-space — extracted to `anavvanzin/iconocracia-space.git` (force-pushed clean app content)
 - [ ] Sprint 3.5: Weekly backup automation — not configured yet
 
 ## Courses (concurrent)
