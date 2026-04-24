@@ -39,21 +39,18 @@ O trabalho principal vive dentro do hub, mas estes são os caminhos de acesso r�
 | `iconocracy-corpus` | `/Users/ana/Research/hub/iconocracy-corpus` | Hub da tese | Monorepo canônico da pesquisa ICONOCRACIA | canonical | `/Users/ana/iconocracy-corpus` |
 | `iconocracia-companion` | `/Users/ana/Research/apps/iconocracia-companion` | App | Interface pública/operacional do corpus | experimental | `/Users/ana/iconocracia-companion` |
 | `iconocracia-space` | `/Users/ana/Research/apps/iconocracia-space` | App | Space/Hugging Face para exploração do corpus | experimental | `/Users/ana/iconocracia-space` |
+| `iconocracia-db` | `/Users/ana/Research/apps/iconocracia-db` | App | Banco/interface experimental associado ao ecossistema ICONOCRACY | experimental | — |
 | `iconocracy-ingest` | `/Users/ana/Research/pipelines/iconocracy-ingest` | Pipeline | Ingestão, OCR e normalização de lotes | derived | symlink externo para o diretório rastreado no hub |
 | `indexing` | `/Users/ana/Research/pipelines/indexing` | Pipeline | Indexação, agentes de busca e Gallica MCP | derived | `/Users/ana/iconocracy-corpus/indexing` |
 | `Atlas` | `/Users/ana/Research/pipelines/Atlas` | Pipeline/toolkit | Toolkit iconográfico e analítico da tese | experimental | `/Users/ana/iconocracy-corpus/Atlas` |
 | `iurisvision` | `/Users/ana/Research/labs/iurisvision` | Lab | Laboratório exploratório em visão jurídica | experimental | symlinks legados em home, `Projects/` e hub |
 | `iuris-visio-roadmap` | `/Users/ana/Research/labs/iuris-visio-roadmap` | Lab | Roadmap e planejamento do laboratório iurisvision | experimental | `/Users/ana/iuris-visio-roadmap` |
+| `browser-harness` | `/Users/ana/Research/labs/browser-harness` | Lab | Harness experimental de automação/browser para pesquisa e QA | experimental | — |
 | `iconocracy-vault` | `/Users/ana/Research/vaults/iconocracy-vault` | Vault | Superfície canônica de notas da tese | canonical | symlink externo para o vault rastreado no hub |
 | `dir410346-vault` | `/Users/ana/Research/vaults/dir410346-vault` | Vault | Materiais da disciplina DIR410346 | experimental | symlink externo para o subdiretório rastreado no vault do hub |
 | `dir410340-vault` | `/Users/ana/Research/vaults/dir410340-vault` | Vault | Materiais de disciplina separados do vault da tese | experimental | symlink externo para o subdiretório rastreado no vault do hub |
 | `iconclass-data` | `/Users/ana/Research/shared/iconclass-data` | Shared data | Base de referência Iconclass | canonical | `/Users/ana/iconclass-data` |
 | `iconclass-data-avmadrj` | `/Users/ana/Research/shared/iconclass-data-avmadrj` | Shared data | Variante local da base Iconclass | canonical | `/Users/ana/iconclass-data-avmadrj` |
-| `js-genai` | `/Users/ana/Research/archive/js-genai` | Archive | Checkout externo mantido apenas por compatibilidade | archived | `/Users/ana/iconocracy-corpus/js-genai` |
-| `iconocracy-corpus-legacy` | `/Users/ana/Research/archive/iconocracy-corpus-legacy` | Archive | Repo duplicado legado extraído do hub | archived | antigo nested repo em `iconocracy-corpus/iconocracy-corpus` |
-| `iurisvision-home-duplicate` | `/Users/ana/Research/archive/iurisvision-home-duplicate` | Archive | Duplicata antiga do checkout `iurisvision` | archived | antigo `/Users/ana/iurisvision` |
-| `iurisvision-projects-duplicate` | `/Users/ana/Research/archive/iurisvision-projects-duplicate` | Archive | Duplicata antiga do checkout `Projects/iurisvision` | archived | antigo `/Users/ana/Projects/iurisvision` |
-| `root-vault-legacy` | `/Users/ana/Research/archive/root-vault-legacy` | Archive | Vault legado fora da estrutura canônica | archived | `/Users/ana/vault` |
 | `mnemosyne-scout` | `/Users/ana/Research/hub/mnemosyne-scout` | Hub criativo | Exploração conceitual, mapas, sessões e handoffs da tese | active | — |
 | `the-book-of-secret-knowledge` | `/Users/ana/Research/shared/the-book-of-secret-knowledge` | Shared data | Base de referência externa (curadoria de ferramentas e recursos) | reference | — |
 | `docs/imported` | `/Users/ana/Research/docs/imported` | Docs | Documentação importada de sessões anteriores (arquitetura, roadmap, auditorias) | reference | — |
@@ -62,8 +59,11 @@ O trabalho principal vive dentro do hub, mas estes são os caminhos de acesso r�
 | `cowork` | `/Users/ana/Research/cowork` | Tooling | Área de agentes, integrações e tooling Node/OpenCode associado | active | antigo tooling solto na raiz |
 | `Books` | `/Users/ana/Research/Books` | Biblioteca | PDFs de referência (Ginzburg, Beccaria, Sbriccoli, Broedel, grammars, etc.) | active | — |
 | `Cotutela` | `/Users/ana/Research/Cotutela` | Admin | Checklist e resumo para cotutela | active | — |
-| `scispace-old-outputs` | `/Users/ana/Research/archive/scispace-old-outputs` | Archive | Outputs antigos do SciSpace (CSVs, PNGs, relatórios, iconclass) | archived | antigo `~/Research/Scispace old outputs/` |
 | `deep-research-runbook` | `/Users/ana/Research/docs/deep-research-runbook-iconocracia.md` | Docs | Runbook conceitual — conceitos originais (recipiente vazio, substituição simbólica) | reference | antigo arquivo solto na raiz |
+
+### Entradas arquivadas removidas do índice ativo
+
+Checkouts aposentados que não existem mais em disco não aparecem como linhas ativas do Workspace Index. Se uma entrada arquivada precisar ser restaurada, recrie primeiro o diretório sob `/Users/ana/Research/archive/` e então reintroduza a linha no índice.
 
 ## Regras de migração
 
