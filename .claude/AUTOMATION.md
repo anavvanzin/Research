@@ -75,7 +75,7 @@ Verify cadence in each task's `*.json`/`*.yaml` before relying on this table.
 
 | Path | Scope |
 |---|---|
-| `/Users/ana/Research/CLAUDE.md` | (To be (re)created in Sprint 4 — currently absent.) Workspace root index. |
+| `/Users/ana/Research/CLAUDE.md` | Workspace root index for Claude Code sessions; defers to `hub/iconocracy-corpus/CLAUDE.md` for thesis work. |
 | `hub/iconocracy-corpus/CLAUDE.md` | **Authoritative** for thesis monorepo. Dual-agent pipeline, thesis compile, webiconocracy app, Gallica MCP. |
 | `apps/iconocracia-companion/CLAUDE.md` | Companion app conventions. |
 | `vaults/CLAUDE.md` | Obsidian vault conventions. |

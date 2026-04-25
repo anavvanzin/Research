@@ -74,7 +74,7 @@ Single index of every hook, skill, agent, scheduled task, per-project `CLAUDE.md
 
 → **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)**
 
-Read it before adding anything to `.claude/`. It also flags current tech debt (e.g. duplicate self-improving-agent wiring across `settings.json`/`settings.local.json`).
+Read it before adding anything to `.claude/`. It also flags current tech debt (e.g. assumed-but-unverified cron cadences in the scheduled-tasks table).
 
 ## Conventions (workspace-specific)
 
