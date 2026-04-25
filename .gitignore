@@ -44,4 +44,43 @@
 
 # Git worktrees
 /.worktrees/
+/.claude/worktrees/
 /Research/
+.claude/settings.json
+
+# --- Untracked sub-repos at root (own .git, not part of meta-workspace) ---
+/agency-agents/
+/agent-personal/
+/agent-thesis/
+/alignment-for-honesty/
+/deep-memory/
+/hermes-agent-camel/
+/hermes-agent-*.bak-*/
+/hermes-workspace/
+/ml-intern/
+/openclaw/
+/united-by-marriage/
+/cowork/
+
+# --- Untracked symlinks to bucket sub-repos (resolved via /apps/, /hub/) ---
+/iconocracia-companion
+/iconocracy-corpus
+
+# --- Top-level note/working dirs (intentionally local, not for git) ---
+/Code/
+/Do/
+/Iconocracia/
+/Ideas/
+/Imported/
+/LLM Skills/
+/Other/
+/Paths/
+/Plans/
+/Specs/
+/Text/
+/Tools/
+
+# --- Stray root files ---
+/Symlink - com~apple~CloudDocs
+/ICONOCRACIA — *.pdf
+
