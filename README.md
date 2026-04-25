@@ -16,11 +16,12 @@ O trabalho principal vive dentro do hub, mas estes são os caminhos de acesso r�
 | **Notebooks estatísticos** | `hub/iconocracy-corpus/notebooks/` (01–04: exploratória → correspondência) |
 | **Notebooks Atlas** | `pipelines/Atlas/notebooks/` (corpus, estatística, kappa) |
 | **Corpus canônico** | `hub/iconocracy-corpus/corpus/corpus-data.json` (165 itens) |
+| **Método Atlas, não Score** | `hub/iconocracy-corpus/docs/methodology.md` |
 | **Propostas de projeto** | `hub/iconocracy-corpus/vault/tese/drafts/` (Max Planck, Justice Vandalized) |
 | **Biblioteca de referência** | `Books/` (24 PDFs — Ginzburg, Beccaria, Sbriccoli, Broedel, etc.) |
 | **Cotutela** | `Cotutela/` (checklist + resumo) |
-| **Runbook conceitual** | `docs/deep-research-runbook-iconocracia.md` |
-| **Roteamento pipelines** | `docs/academic-pipeline-routing-iconocracia.md` |
+| **Automação** | `.claude/AUTOMATION.md` (hooks, skills, agents, scheduled tasks) |
+| **Conformidade Claude Code** | `CLAUDE.md` (mapa do meta-workspace para sessões) |
 
 ## Contrato de organização
 
@@ -53,13 +54,10 @@ O trabalho principal vive dentro do hub, mas estes são os caminhos de acesso r�
 | `iconclass-data-avmadrj` | `/Users/ana/Research/shared/iconclass-data-avmadrj` | Shared data | Variante local da base Iconclass | canonical | `/Users/ana/iconclass-data-avmadrj` |
 | `mnemosyne-scout` | `/Users/ana/Research/hub/mnemosyne-scout` | Hub criativo | Exploração conceitual, mapas, sessões e handoffs da tese | active | — |
 | `the-book-of-secret-knowledge` | `/Users/ana/Research/shared/the-book-of-secret-knowledge` | Shared data | Base de referência externa (curadoria de ferramentas e recursos) | reference | — |
-| `docs/imported` | `/Users/ana/Research/docs/imported` | Docs | Documentação importada de sessões anteriores (arquitetura, roadmap, auditorias) | reference | — |
-| `docs/self-improving-agent-summary.md` | `/Users/ana/Research/docs/self-improving-agent-summary.md` | Docs | Resumo do sistema de auto-aprimoramento do agente | reference | — |
-| `docs/superpowers` | `/Users/ana/Research/docs/superpowers` | Docs | Documentação de superpowers (plans, specs) | reference | — |
 | `cowork` | `/Users/ana/Research/cowork` | Tooling | Área de agentes, integrações e tooling Node/OpenCode associado | active | antigo tooling solto na raiz |
 | `Books` | `/Users/ana/Research/Books` | Biblioteca | PDFs de referência (Ginzburg, Beccaria, Sbriccoli, Broedel, grammars, etc.) | active | — |
 | `Cotutela` | `/Users/ana/Research/Cotutela` | Admin | Checklist e resumo para cotutela | active | — |
-| `deep-research-runbook` | `/Users/ana/Research/docs/deep-research-runbook-iconocracia.md` | Docs | Runbook conceitual — conceitos originais (recipiente vazio, substituição simbólica) | reference | antigo arquivo solto na raiz |
+| `.claude/AUTOMATION.md` | `/Users/ana/Research/.claude/AUTOMATION.md` | Automação | Índice único de hooks, skills, agents, scheduled tasks, worktrees | canonical | superseded `docs/AUTOMATION-RECOMMENDATIONS.md`, `docs/self-improving-agent-summary.md` |
 
 ### Entradas arquivadas removidas do índice ativo
 
