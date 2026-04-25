@@ -116,9 +116,7 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 | `Tools/remote-kernel/` | Remote Jupyter kernel config | Standalone. |
 | `pipelines/Atlas/` | Sub-repo (own `.git`) | Active research pipeline. |
 | `pipelines/indexing/` | Sub-repo (own `.git`) | Indexing pipeline. |
-| `rotinas/` | Only `(2)` duplicate stragglers (`SEMANTIC-MODEL`, `config.yml`, `daily.sh`, `weekly-synthesis.md`) | **Stale.** Originals moved to scheduled-tasks; archive in a follow-up cleanup pass. |
-
-`rotinas/` should be archived to `archive/2026-04-25-stale/rotinas/` once references are confirmed nil.
+| `rotinas/` | (removed) | **Archived 2026-04-25** to `archive/2026-04-25-stale/rotinas/`. Held only `(2)` duplicate stragglers; originals had been moved earlier and no in-tree references remained. |
 
 ---
 
