@@ -60,10 +60,18 @@ def read_json(path: Path, default: Any) -> Any:
 
 
 def write_json(path: Path, data: Any) -> None:
+    """Write JSON atomically via tempfile + os.replace.
+
+    Avoids the read-modify-write race flagged in the 2026-04-21 security review:
+    pre-tool and post-bash hooks can fire concurrently and a plain write_text
+    would let the second writer overwrite the first's changes mid-cycle.
+    os.replace is atomic on POSIX.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(data, indent=2, ensure_ascii=True) + "\n", encoding="utf-8"
-    )
+    payload = json.dumps(data, indent=2, ensure_ascii=True) + "\n"
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(payload, encoding="utf-8")
+    os.replace(tmp, path)
 
 
 def run_command(args: list[str], timeout: int = 8) -> tuple[int, str, str]:
