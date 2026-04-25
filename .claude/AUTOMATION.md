@@ -10,8 +10,7 @@ Last reviewed: 2026-04-25.
 
 | Surface | Config file | Trigger | Purpose |
 |---|---|---|---|
-| Self-improving-agent (project) | `.claude/settings.json` | PreToolUse Bash, PostToolUse Bash, SessionEnd | Captures shell tool I/O + session summaries into `.claude/self-improving-agent/memory/`. |
-| Self-improving-agent (local override) | `.claude/settings.local.json` | PreToolUse Bash\|Write\|Edit, PostToolUse Bash, **Stop** | **DUPLICATES** the project hook with broader matchers + uses `Stop` event instead of `SessionEnd`. Conflict to resolve in Sprint 3 — keep one canonical wiring. |
+| Self-improving-agent (project) | `.claude/settings.json` | PreToolUse Bash\|Write\|Edit, PostToolUse Bash, SessionEnd `.*` | Captures tool I/O (Bash + Write/Edit pre, Bash post) + session summaries into `.claude/self-improving-agent/memory/`. Stdin-JSON invocation; hooks scripts at `.claude/self-improving-agent/hooks/{pre-tool,post-bash,session-end}.sh`. Canonical wiring as of 2026-04-25 (`settings.local.json` `hooks` block stripped). |
 | Corpus protection (global) | `~/.claude/settings.json` | PreToolUse Write, PostToolUse Edit\|Write | Blocks binary image writes into `iconocracy-corpus/data/raw/`; warns on `corpus-data.json` edits; runs `tools/scripts/validate_schemas.py` on corpus JSONL changes. Owned by global config — do not duplicate at project level. |
 
 **Disabled via env:** `ECC_DISABLED_HOOKS=pre:bash:gateguard-fact-force,pre:edit-write:gateguard-fact-force` (set in shell, turns off ECC plugin's fact gate).
@@ -104,7 +103,7 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 | Analysis script | `scripts/self_improve.py` |
 | Memory store | `memory/{episodic/,working/,semantic-patterns.json}` (gitignored runtime data) |
 
-**Status (2026-04-25):** 4 uncommitted improvements on `main`. Two settings files redundantly wire the hooks (project `settings.json` uses `SessionEnd`; local `settings.local.json` uses `Stop` + adds `Write|Edit` matchers). Pick one canonical wiring in Sprint 3.
+**Status (2026-04-25):** Canonical wiring lives in `.claude/settings.json` (PreToolUse `Bash|Write|Edit`, PostToolUse `Bash`, SessionEnd `.*`, stdin-JSON invocation). The duplicate `hooks` block in `.claude/settings.local.json` was stripped in Sprint 3 (Task A) so each event fires exactly once per tool call. `SessionEnd` (not `Stop`) is correct for end-of-session summary semantics.
 
 ---
 
