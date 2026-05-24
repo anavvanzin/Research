@@ -1,20 +1,12 @@
-# ~/Research/ is a meta-workspace, not a monorepo.
-# Sub-repos (hub/, apps/*, pipelines/*, labs/*) have their own .git and
-# MUST NOT be nested-tracked here. This repo only versions workspace-level
-# meta files: README, CLAUDE.md, docs/.
+# ~/Documents/projetos/research/ is a meta-workspace, not a monorepo.
+# Sub-repos have their own .git and MUST NOT be nested-tracked here.
+# This repo only versions workspace-level meta files: README, CLAUDE.md, docs/, cowork/.
 
-# --- Ignore every bucket entirely ---
+# --- Ignore bucket dirs (populated or not) ---
 /hub/
-/apps/
-/pipelines/
 /labs/
-/vaults/
-/shared/
-/archive/
 
 # --- Untracked research material (PDFs, admin docs, legacy outputs) ---
-/Books/
-/Cotutela/
 /rotinas/
 /dashboard.html
 
@@ -48,6 +40,9 @@
 /Research/
 .claude/settings.json
 
+# OpenCode superpowers cache
+.superpowers/
+
 # --- Untracked sub-repos at root (own .git, not part of meta-workspace) ---
 /agency-agents/
 /agent-personal/
@@ -60,14 +55,14 @@
 /ml-intern/
 /openclaw/
 /united-by-marriage/
-/cowork/
 
-# --- Untracked symlinks to bucket sub-repos (resolved via /apps/, /hub/) ---
+# --- Untracked symlinks to bucket sub-repos (resolved via parent dirs) ---
 /iconocracia-companion
 /iconocracy-corpus
 
-# --- Top-level note/working dirs (intentionally local, not for git) ---
-/Code/
+# --- Sibling dirs (own .git or local, not tracked) ---
+/capture/
+/scripts/
 /Do/
 /Iconocracia/
 /Ideas/
@@ -83,4 +78,3 @@
 # --- Stray root files ---
 /Symlink - com~apple~CloudDocs
 /ICONOCRACIA — *.pdf
-

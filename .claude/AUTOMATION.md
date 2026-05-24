@@ -1,4 +1,4 @@
-# Automation Surfaces — `/Users/ana/Research`
+# Automation Surfaces — `/home/ana/Documents/projetos/research`
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
@@ -75,7 +75,7 @@ Verify cadence in each task's `*.json`/`*.yaml` before relying on this table.
 
 | Path | Scope |
 |---|---|
-| `/Users/ana/Research/CLAUDE.md` | Workspace root index for Claude Code sessions; defers to `hub/iconocracy-corpus/CLAUDE.md` for thesis work. |
+| `/home/ana/Documents/projetos/research/CLAUDE.md` | Workspace root index for Claude Code sessions; defers to `hub/iconocracy-corpus/CLAUDE.md` for thesis work. |
 | `hub/iconocracy-corpus/CLAUDE.md` | **Authoritative** for thesis monorepo. Dual-agent pipeline, thesis compile, webiconocracy app, Gallica MCP. |
 | `apps/iconocracia-companion/CLAUDE.md` | Companion app conventions. |
 | `vaults/CLAUDE.md` | Obsidian vault conventions. |
@@ -91,7 +91,7 @@ Convention: per-worktree `CLAUDE.md` inherits from main; cleanup is manual when 
 
 ---
 
-## Self-improving-agent (`/Users/ana/Research/.claude/self-improving-agent/`)
+## Self-improving-agent (`/home/ana/Documents/projetos/research/.claude/self-improving-agent/`)
 
 Captures tool I/O + session events into `memory/{episodic,working,semantic-patterns.json}`, looks for recurring issues, suggests learnings.
 
