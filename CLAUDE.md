@@ -1,4 +1,4 @@
-# CLAUDE.md — `/home/ana/Documents/projetos/research`
+# CLAUDE.md — `/Users/ana/Research`
 
 Meta-workspace root for Ana Vanzin's ICONOCRACIA doctoral research.
 This file is for Claude Code sessions; the human-readable counterpart is
@@ -15,13 +15,18 @@ This is a **meta-workspace, not a monorepo.** Only versions meta files
 siblings with their own `.git`.
 
 ```
-/home/ana/Documents/projetos/research/  ← THIS REPO (git: anavvanzin/Research)
+/Users/ana/Research/      ← THIS REPO (git: anavvanzin/Research)
 ├── cowork/               ← 85 agentes + 12 integrações + opencode.json
 ├── docs/                 ← seminários, protótipos
 ├── .claude/              ← AUTOMATION.md + self-improving-agent + skills
 ├── .opencode/            ← plans/iconocracy-priority-plan.md
 ├── hub/
-│   └── iconocracy-corpus/ ← thesis monorepo (git: anavvanzin/iconocracy-corpus)
+│   ├── iconocracy-corpus/ ← thesis monorepo (git: anavvanzin/iconocracy-corpus)
+│   └── mnemosyne-scout/   ← scout staging area (no .git)
+├── apps/                  ← iconocracia-companion, iconocracia-db, iconocracia-space
+├── pipelines/             ← Atlas, indexing (sibling sub-repos)
+├── vaults/                ← Obsidian vaults (dir410340/346, iconocracy)
+├── shared/                ← iconclass-data, the-book-of-secret-knowledge
 ├── deep-memory/           ← own .git
 ├── hermes-workspace/      ← own .git
 └── labs/                  ← experimental sub-repos
@@ -47,10 +52,28 @@ Quick paths (from `hub/iconocracy-corpus/`):
 
 - `deep-memory/` — Persistent-memory agent (own `.git`)
 - `hermes-workspace/` — Hermes experimental workspace (own `.git`)
+- `apps/iconocracia-companion/` · `apps/iconocracia-db/` · `apps/iconocracia-space/`
+- `pipelines/Atlas/` · `pipelines/indexing/`
+- `vaults/` — Obsidian vaults (see `vaults/CLAUDE.md`)
+- `shared/` — shared datasets and reference libraries
 
 ## Automation
 
 Single index: → **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)**
+
+## Workflow Specifications
+
+ICONOCRACY pipeline workflows (W1–W6 + S1–S5) are documented in `Specs/WORKFLOW-*.md`:
+
+| File | Content |
+| --- | --- |
+| `Specs/WORKFLOW-REGISTRY.md` | Master index: all workflows, item lifecycle, gate checklist |
+| `Specs/WORKFLOW-iconocracy-corpus-acquisition.md` | W1: Gallica → vault → ledger |
+| `Specs/WORKFLOW-iconocracy-visual-analysis.md` | W2: Panofsky + ENDURECIMENTO scoring |
+| `Specs/WORKFLOW-iconocracy-synchronization.md` | W3: records.jsonl → vault → corpus-data.json → HF |
+| `Specs/ZOTERO-MCP-SETUP-STATUS.md` | Zotero MCP troubleshooting (setup broken, use Web API fallback) |
+
+These are the authoritative process docs — update them when the pipeline changes.
 
 ## Conventions (workspace-specific)
 

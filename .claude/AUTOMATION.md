@@ -1,8 +1,8 @@
-# Automation Surfaces — `/home/ana/Documents/projetos/research`
+# Automation Surfaces — `/Users/ana/Research`
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
-Last reviewed: 2026-04-28.
+Last reviewed: 2026-06-01.
 
 ---
 
@@ -78,15 +78,16 @@ Verify cadence in each task's `*.json`/`*.yaml` before relying on this table.
 
 | Path | Scope |
 |---|---|
-| `/home/ana/Documents/projetos/research/CLAUDE.md` | Workspace root index for Claude Code sessions; defers to `hub/iconocracy-corpus/CLAUDE.md` for thesis work. |
+| `/Users/ana/Research/CLAUDE.md` | Workspace root index for Claude Code sessions; defers to `hub/iconocracy-corpus/CLAUDE.md` for thesis work. |
 | `hub/iconocracy-corpus/CLAUDE.md` | **Authoritative** for thesis monorepo. Dual-agent pipeline, thesis compile, webiconocracy app, Gallica MCP. |
 | `apps/iconocracia-companion/CLAUDE.md` | Companion app conventions. |
 | `vaults/CLAUDE.md` | Obsidian vault conventions. |
 | `united-by-marriage/CLAUDE.md` | (Personal project, unrelated.) |
 | `LLM Skills/Text/CLAUDE.md` | Notes-style; non-active. |
-| `.worktrees/iconocracy-corpus-hub-consistency/CLAUDE.md` | Per-worktree (inherited from corpus). |
-| `.worktrees/iconocracy-pr-33-sync/CLAUDE.md` | Per-worktree. |
-| `.worktrees/iconocracy-main-crda-fix/CLAUDE.md` | Per-worktree. |
+| `scitex-python/CLAUDE.md` | Sibling repo (own `.git`). TODO: confirm scope on next review. |
+| `llm-council/CLAUDE.md` | Sibling repo (own `.git`). TODO: confirm scope on next review. |
+| `agi-in-md/CLAUDE.md` | Sibling repo (own `.git`). TODO: confirm scope on next review. |
+| `.claude/worktrees/<name>/CLAUDE.md` | Per-worktree (inherited from main). Cleanup when worktree merges. |
 
 Convention: per-worktree `CLAUDE.md` inherits from main; cleanup is manual when the worktree merges.
 
@@ -94,7 +95,7 @@ Convention: per-worktree `CLAUDE.md` inherits from main; cleanup is manual when 
 
 ---
 
-## Self-improving-agent (`/home/ana/Documents/projetos/research/.claude/self-improving-agent/`)
+## Self-improving-agent (`/Users/ana/Research/.claude/self-improving-agent/`)
 
 Captures tool I/O + session events into `memory/{episodic,working,semantic-patterns.json}`, looks for recurring issues, suggests learnings.
 
@@ -125,14 +126,12 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 
 ## Worktrees (`.claude/worktrees/`)
 
-4 active worktrees (gitignored as of Sprint 0):
+2 active worktrees (gitignored as of Sprint 0; verified 2026-06-01):
 
-- `confident-taussig-b0dac5/`
-- `elastic-rhodes-65e8b5/`
-- `gifted-antonelli-6d4405/`
-- `tender-wozniak-7ffa31/`
+- `bold-kapitsa-1b2598/`
+- `quirky-meitner-9fce80/`
 
-Plus 3 older worktrees under `.worktrees/` (with their own CLAUDE.md, see table above).
+The legacy `.worktrees/` directory is empty.
 
 **Policy:** worktrees inherit `CLAUDE.md` from their source branch; deletion is manual after merge; orphaned worktrees should be removed via `git worktree remove`, not `rm -rf`.
 
