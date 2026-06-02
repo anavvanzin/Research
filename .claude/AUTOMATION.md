@@ -2,7 +2,7 @@
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
-Last reviewed: 2026-04-25.
+Last reviewed: 2026-04-28.
 
 ---
 
@@ -51,7 +51,7 @@ Thesis-relevant defaults: `iconocracia-agent`, `corpus-scout`, `corpus-scout-wor
 
 ## Scheduled tasks (`~/.claude/scheduled-tasks/`)
 
-9 entries. All cron-style.
+12 entries. Mixed cadence (cron + session triggers).
 
 | Task | Cadence (assumed) | Purpose |
 |---|---|---|
@@ -64,6 +64,9 @@ Thesis-relevant defaults: `iconocracia-agent`, `corpus-scout`, `corpus-scout-wor
 | `iconocode-backfill` | weekly | Run iconocode on un-analyzed corpus items |
 | `thesis-progress-daily` | daily | Thesis chapter progress digest |
 | `vault-backup` | daily | Backup Obsidian vaults |
+| `daily-corpus-context` | session-start | Inject corpus status line at session start |
+| `weekly-goal-prompt` | Mon session-start | Weekly writing goal adjustment prompt |
+| `researchclaw-summary` | after C5 | Prompt to review ResearchClaw candidates |
 
 Verify cadence in each task's `*.json`/`*.yaml` before relying on this table.
 
