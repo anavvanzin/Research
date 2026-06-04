@@ -41,12 +41,12 @@ Quick paths (from `hub/iconocracy-corpus/`):
 
 | What | Path |
 | --- | --- |
-| Capítulos da tese | `vault/tese/` |
+| Capítulos da tese | `tese/manuscrito/` (lar canônico; era `vault/tese/`) |
 | Manuscrito + revisões | `tese/{manuscrito,revisoes}/` |
 | Entrega mais recente | `tese/Entrega_Orientador_Mar2026_FINAL/` |
-| Corpus canônico | `corpus/corpus-data.json` (264 itens) |
+| Corpus canônico | `corpus/corpus-data.json` (265 itens, pós-reconciliação 2026-06-04) |
 | Notebooks | `notebooks/` (01–08) |
-| Compilação | `make -C vault/tese/` |
+| Compilação | `make -C tese/manuscrito/` (ou `cd tese/manuscrito && make docx`) |
 
 ## Sibling repos
 
