@@ -83,6 +83,12 @@ These are the authoritative process docs — update them when the pipeline chang
 - **ABNT NBR 6023:2025** for Portuguese drafts; Chicago for English.
 - **Caveman mode** active by default (`~/.caveman-active`); `stop caveman` per session.
 - Always confirm path before creating new files.
+- **macOS session header.** When starting a session on macOS (primary host), open with
+  `> ⚠️ macOS session` so agents avoid Linux-only skills (e.g. `ssd-health`) and use
+  `/opt/homebrew/…` paths rather than `/home/ana/…`.
+- **Checkpoints in long sessions.** For sessions longer than ~15 tool calls or spanning
+  multiple pipeline stages, call `/checkpoint "<label>"` at each stage boundary so
+  Code Review and resume have a clean diff story.
 
 ## What this file does *not* cover
 
