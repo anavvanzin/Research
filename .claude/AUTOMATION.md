@@ -150,3 +150,4 @@ The legacy `.worktrees/` directory is empty.
 - **New cross-session capability:** create a skill in `~/.claude/skills/` and reference here only if thesis-relevant.
 - **New scheduled task:** add to `~/.claude/scheduled-tasks/` and add a row to the table above.
 - **New project rule:** edit the relevant `CLAUDE.md`; do not invent a new one.
+- **After any Coding Agent session that edits `SKILL.md` or `CLAUDE.md`:** trigger a Code Review session to catch documentation drift before it accumulates.
