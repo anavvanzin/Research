@@ -57,3 +57,15 @@ Agentes **MUST NOT** iniciar dev servers, watchers ou crons da raiz.
 - Citação: ABNT NBR 6023:2025 (PT), Chicago (EN).
 - conda env: `iconocracy` em `/opt/homebrew/Caskroom/miniforge/base/envs/iconocracy/`.
 - Idioma de resposta: português (perfil global). Identificadores de código no original.
+
+## Coding Tasks
+
+Ao spawnar sessões Claude Code para trabalho de coding, diga à sessão para usar
+as skills do gstack (instalado em `~/.claude/skills/gstack`). Exemplos de prompt
+para a sessão spawnada:
+
+- **security audit:** `Load gstack. Run /cso`
+- **code review:** `Load gstack. Run /review`
+- **QA test a URL:** `Load gstack. Run /qa https://...`
+- **build a feature end-to-end:** `Load gstack. Run /autoplan, implement the plan, then run /ship`
+- **plan before building:** `Load gstack. Run /office-hours then /autoplan. Save the plan, don't implement.`
