@@ -1,39 +1,59 @@
-# AGENTS.md — Research Meta-Workspace
+# AGENTS.md — `/Users/ana/Research`
 
-Meta-workspace da pesquisa de doutorado ICONOCRACIA (Ana Vanzin).
-Guia compacto para agentes **OpenCode**.
+Meta-workspace de pesquisa de doutorado (ICONOCRACIA, Ana Vanzin). Este arquivo
+orienta agentes de IA; humano: [`README.md`](README.md); Claude Code:
+[`CLAUDE.md`](CLAUDE.md); global: `~/.claude/CLAUDE.md`.
 
 ## Natureza
 
-**Meta-workspace, não uma codebase.** Versiona apenas arquivos de configuração
-(README, CLAUDE.md, .gitignore, docs/). O trabalho real da tese vive em
-sub-repos com seu próprio `.git`.
+**Meta-workspace, NÃO codebase.** A raiz versiona apenas `cowork/`, `docs/`,
+`.claude/AUTOMATION.md`, `.gitignore`. Trabalho real vive em sub-repos com
+`.git` próprio.
 
-## Superfície primária
+## Constraints de acesso (read-only / proibições)
 
-**`hub/iconocracy-corpus/`** — monorepo canônico da tese ICONOCRACIA
-(dados, código, notebooks, manuscrito, vault). Possui `CLAUDE.md`
-autoritativo próprio — consulte-o para qualquer trabalho na tese.
+- Agentes **MUST NOT** rodar `git add` fora de `cowork/` ou `docs/`. Sub-repos
+  (`hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`,
+  `hermes-workspace/`) têm `.git` próprio — operar dentro deles.
+- Agentes **MUST NOT** executar `build`, `test`, `lint`, `typecheck` na raiz:
+  não há `package.json`/`pyproject.toml` aqui. Desça ao sub-repo.
+- Agentes **MUST NOT** modificar `.claude/AUTOMATION.md` sem ler integralmente
+  antes — é índice canônico de hooks/skills/agents/scheduled tasks.
+- Agentes **MUST NOT** criar arquivos novos sem confirmar caminho-alvo (regra
+  global `~/.claude/CLAUDE.md` — Project Paths).
+- `tese/`, `corpus/`, `vault/` em `hub/iconocracy-corpus/` têm denies globais
+  contra `rm -rf` e `git reset --hard` — não tentar contornar.
 
-## Planos
+## Verificação one-shot (quando aplicável)
 
-**`.opencode/plans/`** — planos de prioridade e cronograma da tese:
-- `iconocracy-priority-plan.md` — horizontes, desbloqueios e projeções
+Não há comandos one-shot **na raiz**. Por sub-repo:
 
-## Agentes
+| Tarefa | Comando | Diretório |
+|---|---|---|
+| Compilar tese | `make -C vault/tese/` (Makefile canônico; chapters foram migrados para `tese/manuscrito/` em 2026-06-04, pipeline ainda não) | `hub/iconocracy-corpus/` |
+| Validar corpus | `python tools/scripts/validate_schemas.py` | `hub/iconocracy-corpus/` |
+| Build site | `bundle exec jekyll build` | `~/Projects/anavvanzin.github.io/` |
+| Agente Hermes | ver `hermes-agent/AGENTS.md` se existir | `hermes-agent/` |
 
-**`cowork/agents/`** — 85 agentes (The Agency) em `academic/`, `design/`,
-`engineering/`, `specialized/`. **`cowork/integrations/`** — tools.
+Agentes **MUST NOT** iniciar dev servers, watchers ou crons da raiz.
 
-## Automação
+## Roteamento de tarefas
 
-**`.claude/AUTOMATION.md`** — índice canônico de hooks, skills, agents,
-scheduled tasks e worktrees. Leia antes de modificar qualquer automação.
+| Intent | Destino | Notas |
+|---|---|---|
+| Qualquer trabalho de tese | `hub/iconocracy-corpus/` | Tem `CLAUDE.md` autoritativo — leia-o primeiro |
+| Editar capítulos | `hub/iconocracy-corpus/tese/manuscrito/` | Lar canônico de chapters desde 2026-06-04 |
+| Compilar tese | `hub/iconocracy-corpus/vault/tese/` | `make docx`/`make pdf` — Makefile permanece aqui (migração pendente) |
+| Corpus / dados | `hub/iconocracy-corpus/corpus/corpus-data.json` | Hook protege contra binários crus em `data/raw/` |
+| Notebooks análise | `hub/iconocracy-corpus/notebooks/` | conda env `iconocracy` (Python 3.12) |
+| Workflows W1–W6 / S1–S5 | `hub/iconocracy-corpus/Specs/WORKFLOW-*.md` | Docs autoritativos de pipeline |
+| Agentes / integrações cowork | `cowork/agents/` · `cowork/integrations/` | 85 agentes The Agency; tracked nesta raiz |
+| Plano de prioridade | `.opencode/plans/iconocracy-priority-plan.md` | Horizontes + desbloqueios |
+| Hooks / automação inventário | `.claude/AUTOMATION.md` | Índice único; atualize ao adicionar |
+| Descobrir skill | Invocar skill `find-skill` | NÃO enumerar skills manualmente |
 
-## Regras
+## Convenções herdadas
 
-- Sub-repos (`hub/`, `apps/`, `pipelines/`, `labs/`, `vaults/`, `shared/`)
-  têm `.git` próprio e NÃO devem ser rastreados neste repositório.
-- Para a tese, abra `hub/iconocracy-corpus/` como workspace separado.
-- Tooling em `cowork/`; a raiz não é um projeto npm.
-- Docs: [`README.md`](README.md) (humano), [`CLAUDE.md`](CLAUDE.md) (Claude Code).
+- Citação: ABNT NBR 6023:2025 (PT), Chicago (EN).
+- conda env: `iconocracy` em `/opt/homebrew/Caskroom/miniforge/base/envs/iconocracy/`.
+- Idioma de resposta: português (perfil global). Identificadores de código no original.

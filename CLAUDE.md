@@ -44,9 +44,9 @@ Quick paths (from `hub/iconocracy-corpus/`):
 | Capítulos da tese | `tese/manuscrito/` (lar canônico; era `vault/tese/`) |
 | Manuscrito + revisões | `tese/{manuscrito,revisoes}/` |
 | Entrega mais recente | `tese/Entrega_Orientador_Mar2026_FINAL/` |
-| Corpus canônico | `corpus/corpus-data.json` (265 itens, pós-reconciliação 2026-06-04) |
+| Corpus canônico | `corpus/corpus-data.json` (264 itens; `records.jsonl` = 265, drift 1 item — ver *Known Data Issues* em `hub/iconocracy-corpus/CLAUDE.md`) |
 | Notebooks | `notebooks/` (01–08) |
-| Compilação | `make -C tese/manuscrito/` (ou `cd tese/manuscrito && make docx`) |
+| Compilação | `make -C vault/tese/` (Makefile permanece em `vault/tese/`; migração de chapters → `tese/manuscrito/` em 2026-06-04 não moveu o pipeline) |
 
 ## Sibling repos
 
@@ -93,6 +93,5 @@ These are the authoritative process docs — update them when the pipeline chang
 ## What this file does *not* cover
 
 - User profile, plan tier → `~/.claude/CLAUDE.md`
-- Workspace-level layout → `~/Documents/CLAUDE.md`
 - Thesis pipeline internals → `hub/iconocracy-corpus/CLAUDE.md`
 - Skill catalog → `find-skill` skill
