@@ -58,6 +58,53 @@ Agentes **MUST NOT** iniciar dev servers, watchers ou crons da raiz.
 - conda env: `iconocracy` em `/opt/homebrew/Caskroom/miniforge/base/envs/iconocracy/`.
 - Idioma de resposta: português (perfil global). Identificadores de código no original.
 
+## Drift protocol (anti-classe-de-bug)
+
+A classe de bug dominante em jun-2026 foi **config apontando para uma
+realidade que mudou**: `python3.12` hardcoded vs 3.11 real, vault Obsidian
+em path inexistente, corpus N=314 vs 265 reais, validação ajv em draft-07
+mascarando schema 2020-12, email `warholana@msn.com` em commit local
+rejeitado pelo GitHub. Cada fix foi one-off; este protocolo torna a classe
+detectável.
+
+### Antes de qualquer commit que mencione path / env / N / schema
+
+```bash
+# 1. Rodar o detector (skill drift-detector)
+python3 ~/.hermes/skills/research/drift-detector/scripts/detect_drift.py --quiet
+# exit 1 = HIGH drift detectado → PARE e atualize o doc primeiro
+# exit 0 = OK prossiga
+
+# 2. Conferências manuais para os pontos quentes
+ls -d ~/Research/hub/iconocracy-corpus                  # canonical repo
+ls -d ~/Obsidian/vida-os                                # vault real
+ls -d /opt/homebrew/Caskroom/miniforge/base/envs/iconocracy   # conda env
+ls ~/Research/hub/iconocracy-corpus/vault/candidatos/SCOUT-*.md 2>/dev/null \
+  | grep -v SCOUT-ZW- | grep -v SCOUT-SESSION- | grep -v SCOUT-NC- | wc -l   # N regular
+/opt/homebrew/Caskroom/miniforge/base/envs/iconocracy/bin/python --version   # python real
+```
+
+### Se drift detectado
+
+1. **Atualize o doc com o valor real, NÃO o valor declarado.** O doc é
+   o que está errado. "Fix" silencioso em código sem atualizar doc só
+   esconde a classe de bug.
+2. Commite o doc no mesmo commit do fix (atomicidade).
+3. Memory `~/.hermes/memories/MEMORY.md` ganha entrada curta descrevendo
+   o drift detectado e onde o fix foi aplicado.
+
+### Quando o doc é a verdade e o sistema precisa ser corrigido
+
+(Ex.: path mudou e o doc ainda aponta pro antigo mas você quer preservar
+a nomenclatura do doc.) Marque o trecho do doc com data:
+
+```markdown
+Python 3.12 <!-- drift-pin: 2026-06-23 real=3.11.15, fix tracked in commit X -->
+```
+
+O detector não tem heurística para ler HTML comments ainda, mas isso
+impede o próximo leitor de propagar o número errado.
+
 ## Coding Tasks
 
 Ao spawnar sessões Claude Code para trabalho de coding, diga à sessão para usar
