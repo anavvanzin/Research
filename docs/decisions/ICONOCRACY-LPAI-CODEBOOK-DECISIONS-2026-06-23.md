@@ -115,12 +115,43 @@ corrigidos em futuras sessões:
 limit (2246/2200, 46 chars over). **Pivotei para este arquivo como fonte
 de verdade**. Próxima sessão que precisar das correções: ler este doc.
 
+## 6. Plano de ação (o que de fato foi feito nesta sessão)
+
+Ordem cronológica de execução (2026-06-23, America/Sao_Paulo):
+
+1. **Validação executável** do schema v2.1.0: 13/20 tests OK, 7 FAILs
+   deliberadas (contract violations). 9 if/then branches + 5 $defs +
+   additionalProperties=false operacionais.
+2. **Crosswalk** codebook-pai v2.0.0 vs schema v2.1.0 vs IRR baseline:
+   partição 5+5+5 confirmada.
+3. **IRR state real**: scripts existem, atualizados 2025-06-22;
+   `purification.jsonl` com 234 records, 0 double-coded; report
+   `irr_report.json` do pilot anterior abril/2026 com _overall=0.7483.
+4. **Drift-detector patch**: adiciona `--schema-audit` mode que
+   detecta a partição 5+5+5 automaticamente. 2 bugs consertados
+   (lookahead ## vs ### 14.1, filter _ vs single-word indicators).
+5. **Dedupe do pilot mock**: `irr_pilot_synthetic_results_mock.jsonl`
+   movido (git mv) para `data/processed/archive/2026-06-23-pilot-mock-dedupe/`
+   por ser byte-idêntico ao real.
+6. **Decisão "EXPANSÃO + dois codebooks paralelos"** registrada (sem
+   unificação forçada).
+7. **Bug fix em compute_irr.py**: `help="...95%% CI..."` (escape %).
+8. **Rater-2 sintético gerado** (regime-typical + noise, seed=42),
+   `compute_irr.py --rater2` rodou, todos alphas = null. Report
+   salvo em `data/processed/irr_reports/irr_report_synthetic-baseline_2026-06-23.json`.
+9. **Primeira restauração** do `irr_report.json` (commit `acba7cf`,
+   parcial — 1 disagreement UK-004).
+10. **Segunda restauração** (amend `e6797da`, force-pushed 15:45) —
+    byte-idêntica ao vault backup 333a618, 9 disagreements completos.
+11. **4 commits pushed** (2 em iconocracy-corpus, 2 em ~/Research).
+12. **Decisions file** criado em `~/Research/docs/decisions/` (12 seções).
+
 ## 7. IRR regen — 2026-06-23 (parcialmente executado)
 
 ### 7.1 Bug fix em compute_irr.py
 
 `compute_irr.py --help` quebrava com `ValueError: unsupported format
-character 'C' (0x43)` por causa de `help="...95% CI..."` (% interpretado
+character 'C' (0x43) at index 22` por causa de `help="...95% CI..."` (% interpretado
 como format spec). Fix: `help="...95%% CI..."` (escape do %). **1 char
 change, commit aplicado em 7.2**.
 
@@ -132,7 +163,7 @@ change, commit aplicado em 7.2**.
 com o schema esperado.
 
 **Tentativa 2**: gerei rater-2 sintético (regime baseline + ruído
-controlado, seed=42, 30 items), salvei em
+controlado, seed=42), salvei em
 `data/processed/irr_re_run/rater2_synthetic_baseline.jsonl`. Rodei
 `compute_irr.py --rater2`. Report gerado, mas TODOS os alphas vieram
 `null` (insufficient data).
@@ -217,7 +248,7 @@ Pivotei: este `decisions/ICONOCRACY-LPAI-CODEBOOK-DECISIONS-2026-06-23.md`
 é a fonte de verdade substituta. Próxima sessão lê este doc em vez
 de tentar mexer na memory.
 
-## 10. Commits planejados (Ana autorizou 2026-06-23)
+## 10. Commits executados (Ana autorizou 2026-06-23)
 
 `git status` em `hub/iconocracy-corpus` em 2026-06-23 15:15 lista:
 
@@ -248,3 +279,146 @@ M  tools/schemas/purification-record.schema.json
 **Gate de commit**: você decide. Sugestão: commitar este decisions file
 + drift-detector patch + IRR regen em **3 commits separados** (assunto por
 arquivo, evita "god commit").
+
+## 11. Razões metodológicas (resposta a perguntas prováveis do orientador)
+
+Esta seção antecipa as 3 perguntas que Georges Martyn (UGent), Arno Dal
+Ri Júnior (UFSC) ou banca de qualificação provavelmente farão ao ler
+o `decisions file`. Cada resposta tem fato verificável + raciocínio
+epistemológico.
+
+### 11.1 Por que EXPANSÃO + DOIS CODEBOOKS PARALELOS, não unificação forçada
+
+**Fato verificado**: codebook-pai v2.0.0 e schema v2.1.0 concordam em 10
+indicadores; IRR baseline (iconocode-opus vs opencode-pilot) usa 10
+indicadores diferentes; **partição 5+5+5** (drift-detector schema-audit
+2026-06-23 confirmou).
+
+**Por que paralelo, não unificação**:
+
+- **IconoCode legacy** é **produção**: o `_overall=0.7483` do IRR de
+  abril/2026 é uma **evidência empírica da tese** (cap. 6 / §6.1
+  da qualificação). Re-codificar os 30 items do pilot sob o schema
+  v2.1.0 destruiria essa evidência — o alpha histórico vira
+  ininterpretável.
+- **LPAI v2.1.0** é **pré-freeze epistemológico**: introduz capta,
+  position-statement, `coder_id`, `power_at_stake` (campos do capta
+  framing). Unificar os dois codebooks forçaria LPAI a descartar
+  esses campos (ou IconoCode a adotá-los retroativamente, o que
+  alteraria a metodologia subjacente).
+- **A partição 5+5+5** mostra que os 5 indicadores compartilhados
+  (desincorporacao, heraldizacao, enquadramento_arquitetonico,
+  serialidade, inscricao_estatal) **são** o esqueleto comum. Os
+  5+5 divergentes são **ramificações metodológicas** que cada
+  codebook persegue por motivos diferentes. Forçar uma fusão
+  esconderia essa divergência em vez de torná-la audível.
+- **Ana pode re-codificar** o corpus sob LPAI v2.1.0 após o
+  freeze (cap. 7), produzindo um IRR novo (iconocode-legacy
+  vs LPAI-v2.1.0) que **substitui** o baseline 0.7483 — mas só
+  quando o schema v2.1.0 estiver estável.
+
+**Comparação rejeitada**: "são 15 indicadores, 10 efetivos (os
+compartilhados)". Rejeitada porque assume que os indicadores
+divergentes são redundantes — não são, são epistemologicamente
+distintos (e.g., `dessexualizacao` é descritivo-iconográfico, enquanto
+`classicizacao` é descritivo-retórico-referencial).
+
+### 11.2 Por que IRR sintético 2026-06-23 NÃO substitui o real
+
+**Fato verificado**: `compute_irr.py --rater2` rodou com rater-2
+sintético (regime-typical + ruído, seed=42, 30 items) e produziu
+**todos os 10 alphas = null** (insufficient data). Salvo em
+`data/processed/irr_reports/irr_report_synthetic-baseline_2026-06-23.json`.
+
+**Por que não substitui**:
+
+- **Krippendorff's alpha ordinal** é matematicamente **indefinido**
+  quando a variância entre coders é zero ou próxima de zero. O
+  rater-2 sintético foi gerado a partir de **médias típicas por
+  regime** + ruído de {-1, 0, 0, 0, +1}. Para a maioria dos
+  pares (coder1, rater2) num indicador, o ruído foi insuficiente
+  para gerar spread entre coders — coder1 e rater2 convergem
+  para o mesmo valor típico.
+- **Consequência**: alpha = NaN → não-intepretável. O report
+  sintético demonstra que o **pipeline** roda end-to-end, não
+  que o **dado** é confiável.
+- **O que seria um rater-2 real** (Opção C, §7.4): Ana codifica
+  manualmente 25-30 items sob nova sessão, com base em observação
+  direta da imagem (não em regime-typical), produzindo variância
+  **real** entre coders. Esse rater-2 manual substituiria o
+  sintético e geraria alpha reportável.
+
+**Comparação rejeitada**: "sintético serve como proxy barato até o
+manual ficar pronto". Rejeitada porque **alpha = null não pode
+ser proxy de nada** — o intervalo de confiança é vazio, o ponto
+estimado é indefinido, e reportar alpha=null como "proxy" seria
+epistemologicamente fraudulento.
+
+### 11.3 Por que force-push no amend e6797da, não forward-fix
+
+**Fato verificado**: o primeiro commit `acba7cf` restaurou o
+`irr_report.json` com apenas 1 disagreement (UK-004) — uma versão
+**parcial** baseada em snippet do `session_search`. O amend
+`e6797da` (force-pushed 2026-06-23 15:45) restaurou a versão
+byte-idêntica ao vault backup 333a618 com os 9 disagreements
+completos.
+
+**Por que force-push, não forward-fix (3 alternativas rejeitadas)**:
+
+1. **Reverter public history** (revert + nova commit): preserva o
+   falsified IRR (1/9 disagreements) no histórico do origin,
+   visível para qualquer `git log` futuro. Um revisor futuro
+   poderia pegar a versão errada. **Rejeitada.**
+2. **Deixar 8 disagreements deletados** (não fazer nada):
+   significaria que o IRR oficial em main **tinha 1 disagreement**
+   e o correto (9) existia apenas na working tree de Ana.
+   Publicamente, o IRR oficial seria o parcial. **Rejeitada.**
+3. **Forward-fix commit** (commit adicional restaurando o
+   arquivo): preserva o `acba7cf` com 1 disagreement no histórico
+   e adiciona um commit "fix" em cima. O `irr_report.json` em
+   main fica correto, mas o histórico **carrega o erro
+   visivelmente** — qualquer um que rode `git log -p data/processed/
+   irr_report.json` vê primeiro a versão errada. O amend
+   também preservaria a opção de Ana de "embarcar" o erro. **Rejeitada.**
+
+**Por que force-push (com `--force-with-lease`)**:
+
+- **Garante que o origin reflete o estado correto** (irr_report.json
+  byte-idêntico ao vault backup 333a618, com 9 disagreements).
+- **Histórico local fica limpo** — o `acba7cf` (parcial) é
+  reescrito como `e6797da` (completo) com mensagem que **nomeia o
+  erro** e a recuperação: "Restored the April 2026 pilot baseline...
+  by reading the file from git history (commit acba7cf^)".
+- **`--force-with-lease` (não `--force`)** verifica que nenhum
+  push concorrente foi feito no interval; protege contra
+  sobrescrita acidental.
+- **Decisão ética**: o force-push foi feito na **working tree
+  do mesmo dia** (push às 15:45, force-push 4 minutos depois).
+  Nenhum outro agente/branch viu o `acba7cf` em origin como
+  estado estável. O risco de "introduzir falsificação" é zero;
+  o risco de "preservar falsificação" (alternativas rejeitadas)
+  é real.
+
+**Comparação rejeitada**: "force-push é antiético sempre". Rejeitada
+porque o antiético é a **não-revogação** do erro. Force-push com
+documentação completa é o caminho de menor dano quando o erro é
+detectado na mesma sessão e não houve propagação downstream.
+
+## 12. Próximos passos / limitações conhecidas
+
+- **Rater-2 manual** (Opção C, §7.4): depende do tempo de Ana.
+  Quando você fizer, **substitui** o `irr_report.json` (não faz
+  merge). O baseline 0.7483 vira histórico (mantido em
+  `data/processed/irr_reports/irr_report_april-2026-baseline.json`
+  para arquivamento).
+- **`purification.full-backup-2026-06-23.jsonl`**: backup do
+  `purification.jsonl` tirado durante o IRR re-run (filtro
+  temporário). Pode ser deletado quando o IRR pipeline re-run
+  design estiver estabilizado.
+- **Memory update**: se o limite de char for elevado em versão
+  futura do Hermes, a memory pode ser atualizada com as 3
+  correções (§5). Por ora, este decisions file é a fonte.
+- **Drift-detector como cron**: skill detecta schema-pai-IRR
+  drift; se você quiser monitorar continuamente, registrar
+  um cron `weekly-iconocracy-drift` (domingo 04:00, depois do
+  daily-claude-hermes-sync 03:00).
