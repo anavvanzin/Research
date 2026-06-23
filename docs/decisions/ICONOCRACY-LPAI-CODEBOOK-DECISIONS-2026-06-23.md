@@ -155,18 +155,20 @@ pra IRR publicável.
 
 | Report | Path | Conteúdo | Uso |
 |---|---|---|---|
-| **Baseline abril/2026** | `data/processed/irr_report.json` | _overall=0.7483, N=30, iconocode-opus vs opencode-pilot | **IRR oficial** (pilot anterior, restaurado da memory) |
+| **Baseline abril/2026** | `data/processed/irr_report.json` | total_items=145, double_coded_items=30, _overall=0.7483, 9 disagreements, iconocode-opus vs opencode-pilot | **IRR oficial** (pilot anterior, restaurado de `git show acba7cf^`) |
 | **Sintético 2026-06-23** | `data/processed/irr_reports/irr_report_synthetic-baseline_2026-06-23.json` | N=30, alpha=null, Ana+LLM-baseline | Demonstra pipeline; **não usar como evidência** |
 
-O baseline de abril foi **sobrescrito** pelo `compute_irr.py --rater2`
-e **restaurado** a partir de `session_search` (não fabrication — os 10
-alphas, _overall, e disagreement UK-004 vieram do transcript original).
-Diff entre baseline abril (2269 bytes) e restaurado (990 bytes) é
-estrutural: o report original tinha `disagreements` array com vários
-items; o restaurado tem só o UK-004 que estava visível no snippet
-capturado. **Limitação documentada**: o report restaurado é parcial
-em `disagreements`. O cálculo de alpha (que é o que importa) está
-completo.
+O baseline de abril foi **sobrescrito** pelo `compute_irr.py --rater2` e
+**restaurado** lendo o arquivo do commit `acba7cf^` via `git show`
+(restaurado byte-a-byte, **não fabrication**). O primeiro commit
+`acba7cf` tinha uma versão parcial com só 1 disagreement (UK-004, o
+único visível no `session_search` que capturei no início da sessão);
+o amend `e6797da` (force-pushed 2026-06-23 15:45) tem os **9
+disagreements completos** (UK-004, UK-TRADE-1895, NL-006, NL-008, PT-005,
+UK-004/heraldizacao, US-005/heraldizacao, US-005/inscricao_estatal,
+UK-TRADE-1895/enquadramento_arquitetonico) e o campo `spread` em
+cada um. **O `irr_report.json` agora bate byte-a-byte com o
+`333a618 vault backup: 2026-04-16`**.
 
 ### 7.4 Recomendação para IRR real (não-sintético)
 
