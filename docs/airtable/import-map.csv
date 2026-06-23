@@ -1,0 +1,45 @@
+source_layer,source_field,airtable_table,airtable_field,transform_rule,required,notes
+catalog_or_dataset,id,Itens do Corpus,ID do corpus,Preserve exactly as source string,yes,Primary join key
+catalog_or_dataset,title,Itens do Corpus,Título,Trim whitespace; preserve original language,yes,Do not translate destructively
+catalog_or_dataset,date,Itens do Corpus,Data textual,Preserve source text,yes,Use for ranges and uncertainty
+catalog_or_dataset,year,Itens do Corpus,Ano,Parse only unambiguous integer year,no,Leave blank for ranges or approximate dates
+catalog_or_dataset,period_or_period_norm,Itens do Corpus,Período,Map to controlled historical vocabulary,no,Retain source form in QA when normalized
+catalog_or_dataset,country_or_country_pt,Itens do Corpus,País,Map to controlled country label,no,Use principal production or issue location
+catalog_or_dataset,creator,Itens do Corpus,Criador / emissor,Preserve text,no,May contain artist institution issuer or printer
+catalog_or_dataset,medium_or_medium_norm,Itens do Corpus,Meio,Map to controlled medium vocabulary,no,Keep raw value in QA if changed
+catalog_or_dataset,support,Itens do Corpus,Suporte,Map to controlled support vocabulary,no,Example coin stamp banknote engraving painting monument
+catalog_or_dataset,motif_str,Itens do Corpus,Motivos,Split on documented delimiters; preserve multiple values,no,Do not force one motif
+catalog_or_dataset,tags_str,Itens do Corpus,Tags analíticas,Split into multiple selections,no,Use controlled vocabulary after review
+catalog_or_dataset,description,Itens do Corpus,Descrição,Preserve text,no,Separate factual description from later interpretation
+catalog_or_dataset,url,Itens do Corpus,URL da obra,Copy valid URL,no,Prefer source item page
+catalog_or_dataset,thumbnail_url,Itens do Corpus,URL da imagem,Copy valid URL,no,Auxiliary image link
+catalog_or_dataset,source_archive,Fontes e Arquivos,Fonte / arquivo,Create or match source record,no,Link from Itens do Corpus after import
+catalog_or_dataset,citation_abnt,Itens do Corpus,Citação ABNT,Preserve public reference,no,Do not silently shorten
+catalog_or_dataset,in_scope,Itens do Corpus,Em escopo,Convert true false consistently,no,Blank means undetermined
+catalog_or_dataset,scope_note,Itens do Corpus,Observações / QA,Append as import note,no,Preserve rationale
+catalog_or_dataset,desincorporacao,Codificação Visual,Desincorporação,Numeric 0 to 3 only,no,Blank means not coded
+catalog_or_dataset,rigidez_postural,Codificação Visual,Rigidez postural,Numeric 0 to 3 only,no,Blank means not coded
+catalog_or_dataset,dessexualizacao,Codificação Visual,Dessexualização,Numeric 0 to 3 only,no,Blank means not coded
+catalog_or_dataset,uniformizacao_facial,Codificação Visual,Uniformização facial,Numeric 0 to 3 only,no,Blank means not coded
+catalog_or_dataset,heraldizacao,Codificação Visual,Heraldização,Numeric 0 to 3 only,no,Blank means not coded
+catalog_or_dataset,enquadramento_arquitetonico,Codificação Visual,Enquadramento arquitetônico,Numeric 0 to 3 only,no,Blank means not coded
+catalog_or_dataset,apagamento_narrativo,Codificação Visual,Apagamento narrativo,Numeric 0 to 3 only,no,Blank means not coded
+catalog_or_dataset,monocromatizacao,Codificação Visual,Monocromatização,Numeric 0 to 3 only,no,Blank means not coded
+catalog_or_dataset,serialidade,Codificação Visual,Serialidade,Numeric 0 to 3 only,no,Blank means not coded
+catalog_or_dataset,inscricao_estatal,Codificação Visual,Inscrição estatal,Numeric 0 to 3 only,no,Blank means not coded
+catalog_or_dataset,purificacao_composto,Codificação Visual,Índice de purificação,Import numeric value and verify recomputation,no,Do not replace without QA record
+catalog_or_dataset,regime_iconocratico,Codificação Visual,Regime iconocrático,Map to controlled regime options,no,Record unresolved values in QA
+catalog_or_dataset,coded_by,Codificação Visual,Codificador(a),Preserve text,no,May later map to collaborator
+catalog_or_dataset,coded_at,Codificação Visual,Data de codificação,Parse ISO date when available,no,Leave original in notes if parse fails
+catalog_or_dataset,notes,Codificação Visual,Notas metodológicas,Preserve text,no,Append rather than overwrite
+editorial_selection,case_title,Casos Argumentativos,Caso argumentativo,Create descriptive editorial title,yes,Not necessarily same as artwork title
+editorial_selection,corpus_id,Casos Argumentativos,Item do Corpus,Link using ID do corpus,yes,One case can reference one or more items only when explicitly justified
+editorial_selection,chapter,Casos Argumentativos,Capítulo,Map to current thesis structure,no,Update as structure evolves
+editorial_selection,claim,Casos Argumentativos,Tese interpretativa,Use short defensible proposition,no,Do not confuse with description
+editorial_selection,evidence,Casos Argumentativos,Evidência visual,State visible formal or material evidence,no,Ground interpretation
+editorial_selection,concepts,Casos Argumentativos,Conceitos-chave,Split into controlled terms,no,Examples iconocracy seriality coloniality allegory
+source_register,archive_name,Fontes e Arquivos,Fonte / arquivo,Preserve institutional name,yes,Primary field
+source_register,source_type,Fontes e Arquivos,Tipo de fonte,Map to source vocabulary,no,Example museum archive library catalogue
+source_register,url,Fontes e Arquivos,URL,Copy valid URL,no,Prefer permanent links
+source_register,citation_abnt,Fontes e Arquivos,Referência ABNT,Preserve citation,no,Use public bibliographic convention
+source_register,evidence_level,Fontes e Arquivos,Nível de evidência,Map to primary institutional secondary provisional,no,Document uncertain provenance
