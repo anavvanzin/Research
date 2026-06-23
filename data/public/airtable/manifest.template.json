@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "release_id": "YYYY-MM-DD-camada-vN",
+  "released_at": "YYYY-MM-DD",
+  "repository": "anavvanzin/Research",
+  "source_system": "Airtable — Iconocracia — Corpus e Tese",
+  "layer": "catalogo | ledger_validado | codificacao_visual | extrato_analitico | casos_argumentativos",
+  "tables": [
+    {
+      "name": "Itens do Corpus",
+      "file": "items.csv",
+      "record_count": 0,
+      "primary_key": "ID do corpus",
+      "included_fields": [],
+      "inclusion_criteria": "Descrever claramente a camada e os critérios de inclusão.",
+      "exclusion_criteria": "Descrever lacunas, duplicatas, itens fora de escopo e registros ainda pendentes.",
+      "notes": "Não confundir a contagem deste release com o tamanho total do corpus."
+    }
+  ],
+  "qa": {
+    "qa_log_file": "qa-log.csv",
+    "unresolved_issues": 0,
+    "known_limitations": []
+  },
+  "provenance": {
+    "source_commit": "<commit-sha>",
+    "airtable_export_date": "YYYY-MM-DD",
+    "normalization_rules": "docs/airtable/import-map.csv",
+    "qa_protocol": "docs/airtable/qa-protocol.md"
+  },
+  "license_and_attribution": {
+    "metadata": "Public metadata released with source attribution preserved.",
+    "images": "Image links and reproductions retain the attribution, rights note and source URL recorded in the corpus."
+  }
+}
