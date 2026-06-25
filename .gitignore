@@ -152,6 +152,16 @@ iconocracia_junho*/
 #         codebook expansion v2/" → candidatos a mover/limpar antes de β
 # -----------------------------------------------------------------------------
 
+# -----------------------------------------------------------------------------
+# §11.5 — GitHub/ working dir no meta-repo (nested-git trap protection)
+#        22 dirs neste path inclui clones aninhados (Research/, ana/, sbm/,
+#        united-by-marriage/, anavvanzin/, anavvanzin.github.io/,
+#        iconocracy-corpus/) que podem explodir em git add.
+#        Working session transitório; mover para /Users/ana/Documents/GitHub/
+#        em sessão futura se algum precisar ser promoted.
+# -----------------------------------------------------------------------------
+/GitHub/
+
 # =============================================================================
 # §A — Auditoria (executar periodicamente, ideal antes de cada fase γ/α/β)
 # =============================================================================
