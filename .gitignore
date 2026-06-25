@@ -1,16 +1,22 @@
-# ~/Documents/projetos/research/ is a meta-workspace, not a monorepo.
-# Sub-repos have their own .git and MUST NOT be nested-tracked here.
-# This repo only versions workspace-level meta files: README, CLAUDE.md, docs/, cowork/.
+# =============================================================================
+# /Users/ana/Research/ — meta-repo .gitignore
+# =============================================================================
+# Modelo: multi-harness git physics (ADR 2026-06-25-multi-harness-git-physics.md)
+# Ownership canônica: docs/decisions/AGENT-OWNERSHIP.md
+#
+# Princípios:
+#   1. Repo raiz magro. Apenas índices, contratos e docs/decisions/.
+#   2. Sub-repo por harness/projeto, .git próprio, nunca nested-trackeado.
+#   3. Config canônica de harness = trackeada. Runtime = ignorada.
+#   4. Symlinks legados: manter onde já existem, NÃO criar novos.
+#
+# Convenção de seção: cada bloco abaixo referencia qual(is) harness(es)
+# ou path reservado governa a regra, para facilitar auditoria futura.
+# =============================================================================
 
-# --- Ignore bucket dirs (populated or not) ---
-/hub/
-/labs/
-
-# --- Untracked research material (PDFs, admin docs, legacy outputs) ---
-/rotinas/
-/dashboard.html
-
-# --- Also ignore typical noise ---
+# -----------------------------------------------------------------------------
+# §1 — Header noise (universal, todo harness respeita)
+# -----------------------------------------------------------------------------
 .DS_Store
 *.swp
 *.swo
@@ -21,59 +27,137 @@
 **/.venv/
 **/*.pyc
 **/.pytest_cache/
-**/*.log
 
-# Repo-local self-improving-agent runtime state
+# -----------------------------------------------------------------------------
+# §2 — Sub-repos canônicos do bucket (path absoluto em AGENT-OWNERSHIP.md)
+#      NÃO criar novos symlinks. Estes existem e ficam.
+# -----------------------------------------------------------------------------
+# iconocracy-corpus: sub-repo principal do doutorado
+/hub/
+
+# labs: reservado, ainda não populado
+/labs/
+
+# Symlinks legados a sub-repos externos (manter, não replicar)
+/iconocracia-companion
+/iconocracia-corpus
+
+# -----------------------------------------------------------------------------
+# §3 — Codex app runtime (config canônica em .agents/, .codex/ é trackeada)
+#      Owner: codex-app
+# -----------------------------------------------------------------------------
+.codex/cache/
+.codex/sessions/
+.codex/*.log
+
+# -----------------------------------------------------------------------------
+# §4 — Claude CLI runtime (config canônica em .claude/ é trackeada)
+#      Owner: claude-cli
+#      Skills config trackeada; runtime state ignorado.
+# -----------------------------------------------------------------------------
+.claude/skills/*/runtime/
+.claude/skills/*/.cache/
+.claude/skills/*/sessions/
+.claude/skills/*/*.log
+
+# self-improving-agent runtime memory (config/skill trackeada)
 /.claude/self-improving-agent/memory/episodic/**/*.json
 /.claude/self-improving-agent/memory/working/*.json
 !/.claude/self-improving-agent/memory/episodic/.gitkeep
 !/.claude/self-improving-agent/memory/working/.gitkeep
 
-# Session dumps (Hermes conversation exports)
+# -----------------------------------------------------------------------------
+# §5 — Hermes CLI runtime
+#      Owner: hermes-cli
+# -----------------------------------------------------------------------------
+.hermes/conversations/
+.hermes/cache/
+.hermes/sessions/
+.hermes/*.log
 /hermes_conversation_*.json
 **/hermes_conversation_*.json
 /hermes-agent/
 
-# Git worktrees
+# -----------------------------------------------------------------------------
+# §6 — Antigravity 2.0 runtime
+#      Owner: antigravity
+# -----------------------------------------------------------------------------
+.antigravity/cache/
+.antigravity/sessions/
+.antigravity/*.log
+
+# -----------------------------------------------------------------------------
+# §7 — GitHub Copilot runtime
+#      Owner: copilot
+# -----------------------------------------------------------------------------
+.copilot/cache/
+.copilot/sessions/
+
+# -----------------------------------------------------------------------------
+# §8 — Claude app cross-harness learnings (runtime ignorado)
+#      Owner: claude-app
+# -----------------------------------------------------------------------------
+.learnings/runtime/
+.learnings/sessions/
+
+# -----------------------------------------------------------------------------
+# §9 — Worktrees e sessão-dumps (transversal, todos os harnesses)
+# -----------------------------------------------------------------------------
 /.worktrees/
 /.claude/worktrees/
-/Research/
+/.worktree-salvage-*/
 .claude/settings.json
 
-# OpenCode superpowers cache
-.superpowers/
+# -----------------------------------------------------------------------------
+# §10 — Rascunhos de plano NÃO versionados (resolve Q3 do ADR 2026-06-25)
+#       Quando o plano virar ADR/capítulo, conteúdo migra para docs/decisions/
+#       ou plans/, e diretório morre.
+# -----------------------------------------------------------------------------
+iconocracia_junho*/
+"ICONOCRACIA — Trajetória"/
+"ICONOCRACIA — Trajetória"/*
+/.atlas-iconocratico-toolkit.bak-*/
 
-# --- Untracked sub-repos at root (own .git, not part of meta-workspace) ---
-/agency-agents/
-/agent-personal/
-/agent-thesis/
-/alignment-for-honesty/
-/deep-memory/
-/hermes-agent-camel/
+# -----------------------------------------------------------------------------
+# §11 — Binários soltos e arquivos stray (transversal)
+# -----------------------------------------------------------------------------
+*.dmg
+*.zip
+*.bak-*/
 /hermes-agent-*.bak-*/
-/hermes-workspace/
-/ml-intern/
-/openclaw/
-/united-by-marriage/
 
-# --- Untracked symlinks to bucket sub-repos (resolved via parent dirs) ---
-/iconocracia-companion
-/iconocracy-corpus
+# -----------------------------------------------------------------------------
+# §12 — Working dirs não-populados / reservados (auditar periodicamente)
+#       Ana autorizou remover da lista: /capture/, /Do/, /Ideas/, /Imported/,
+#       /LLM Skills/, /Other/, /Paths/, /Specs/, /Text/, /Tools/,
+#       /agency-agents/, /agent-personal/, /agent-thesis/,
+#       /alignment-for-honesty/, /deep-memory/, /hermes-agent-camel/,
+#       /hermes-workspace/, /ml-intern/, /openclaw/, /united-by-marriage/,
+#       /scripts/, /Iconocracia/, /rotinas/, /dashboard.html
+#       Removidos 2026-06-25 — auditoria full em §A (abaixo) na fase α.
+# -----------------------------------------------------------------------------
 
-# --- Sibling dirs (own .git or local, not tracked) ---
-/capture/
-/scripts/
-/Do/
-/Iconocracia/
-/Ideas/
-/Imported/
-/LLM Skills/
-/Other/
-/Paths/
-/Specs/
-/Text/
-/Tools/
+# -----------------------------------------------------------------------------
+# §13 — Anexo: paths NÃO ignorados intencionalmente (lembrete para auditoria)
+#       Estes ficam visíveis em `git status` e SÃO versionados ou estão sob
+#       decisão de ownership pendente:
+#       - .agents/, .codex/, .claude/, .hermes/, .antigravity/, .copilot/,
+#         .learnings/, .obsidian/ → config canônica dos respectivos harnesses
+#         (versão β: tracked; pré-β: untracked, mas visíveis)
+#       - apps/, archive/, gestao/, vida-os/, shared/, plans/ → candidatos
+#         a sub-repo na fase β
+#       - iconocracy-editorial-wt/, .worktree-salvage-20260530/ → decisão
+#         pendente (Q4 do ADR)
+#       - ChatGPT.dmg, iconocracia_docs.zip, GitHub/, "Elicit allegorical
+#         codebook expansion v2/" → candidatos a mover/limpar antes de β
+# -----------------------------------------------------------------------------
 
-# --- Stray root files ---
-/Symlink - com~apple~CloudDocs
-/ICONOCRACIA — *.pdf
+# =============================================================================
+# §A — Auditoria (executar periodicamente, ideal antes de cada fase γ/α/β)
+# =============================================================================
+# Comando de auditoria sugerido:
+#   git status --porcelain | awk '{print $2}' | sort -u > /tmp/untracked.txt
+#   diff <(git ls-files) <(find . -path ./.git -prune -o -type f -print \
+#       | sed 's|^./||' | sort) > /tmp/drift.txt
+#   # investigar /tmp/untracked.txt e /tmp/drift.txt
+# =============================================================================
