@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julho 2026 — O Grande Jogo das Alegorias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0b0e;
+    --bg-card: #121218;
+    --bg-card-hover: #17171f;
+    --ink: #e8e2d5;
+    --ink-dim: #9a937f;
+    --gold: #c9a227;
+    --gold-soft: #a3873a;
+    --line: #2a2a33;
+    --boss: #8b2635;
+    --garden: #4a6b4f;
+    --wild: #3d5a6b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.55;
+    background-image: radial-gradient(ellipse at 50% -10%, #1a1520 0%, var(--bg) 55%);
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+
+  /* ---------- header ---------- */
+  header { text-align: center; margin-bottom: 3.5rem; }
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin: 0.6rem 0 0.4rem;
+    color: var(--ink);
+  }
+  h1 .gold { color: var(--gold); }
+  .subtitle { font-style: italic; color: var(--ink-dim); font-size: 1.15rem; max-width: 620px; margin: 0 auto; }
+  .ornament { color: var(--gold-soft); margin: 1.4rem 0 0; font-size: 1.1rem; letter-spacing: 0.6em; }
+
+  /* ---------- progress ---------- */
+  .progress-shell {
+    margin: 2.2rem auto 0; max-width: 560px;
+    border: 1px solid var(--line); border-radius: 2px;
+    padding: 0.9rem 1.2rem; background: rgba(255,255,255,0.015);
+  }
+  .progress-label {
+    display: flex; justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-dim);
+    margin-bottom: 0.5rem;
+  }
+  .progress-bar { height: 6px; background: #1c1c24; border-radius: 3px; overflow: hidden; }
+  .progress-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold));
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ---------- sections ---------- */
+  section { margin-top: 4rem; }
+  .section-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.6rem; }
+  .section-head h2 { font-size: 1.7rem; font-weight: 600; letter-spacing: 0.03em; white-space: nowrap; }
+  .section-head .rule { flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+  .section-note { font-style: italic; color: var(--ink-dim); margin-bottom: 1.4rem; margin-top: -0.8rem; }
+
+  /* ---------- board table ---------- */
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th {
+    font-family: 'IBM Plex Mono', monospace; font-weight: 500;
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-soft);
+  }
+  td:first-child { white-space: nowrap; font-weight: 600; }
+  td { color: var(--ink); }
+  td .dim { color: var(--ink-dim); }
+  .golden-rule {
+    margin-top: 1.2rem; padding: 0.9rem 1.2rem;
+    border-left: 2px solid var(--gold); background: rgba(201,162,39,0.05);
+    font-style: italic;
+  }
+
+  /* ---------- realm groups ---------- */
+  .realm { margin-top: 2.6rem; }
+  .realm-title {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-dim);
+    margin-bottom: 1.1rem; display: flex; align-items: center; gap: 0.7rem;
+  }
+  .realm-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* ---------- cards ---------- */
+  .deck { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.1rem; }
+  .card {
+    position: relative;
+    border: 1px solid var(--line); border-radius: 4px;
+    background: var(--bg-card);
+    padding: 1.3rem 1.3rem 1.1rem;
+    cursor: pointer;
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  }
+  .card:hover { transform: translateY(-3px); border-color: var(--gold-soft); background: var(--bg-card-hover); }
+  .card.boss { border-color: var(--boss); box-shadow: inset 0 0 40px rgba(139,38,53,0.12); }
+  .card.boss:hover { border-color: #c0374b; }
+  .card.wild { border-color: var(--wild); }
+  .card.garden { border-color: var(--garden); }
+  .card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem; }
+  .card-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem;
+    color: var(--gold-soft); letter-spacing: 0.15em;
+  }
+  .card-check {
+    width: 1.15rem; height: 1.15rem; border: 1px solid var(--ink-dim); border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; color: transparent; transition: all 0.2s ease; flex-shrink: 0;
+  }
+  .card.done .card-check { background: var(--gold); border-color: var(--gold); color: #0b0b0e; }
+  .card.done { opacity: 0.82; }
+  .card.done .card-name { text-decoration: line-through; text-decoration-color: var(--gold-soft); text-decoration-thickness: 1px; }
+  .card-name { font-size: 1.35rem; font-weight: 600; letter-spacing: 0.02em; }
+  .card-name .emoji { font-size: 1.05rem; margin-left: 0.3rem; }
+  .card-tag {
+    display: inline-block; margin: 0.15rem 0 0.55rem;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: #c0374b;
+  }
+  .card-quest { color: var(--ink); font-size: 1rem; }
+  .card-unlock { margin-top: 0.6rem; font-style: italic; color: var(--ink-dim); font-size: 0.9rem; }
+
+  /* ---------- acts ---------- */
+  .act {
+    border: 1px solid var(--line); border-radius: 4px; background: var(--bg-card);
+    padding: 1.4rem 1.5rem; margin-bottom: 1rem;
+    display: grid; grid-template-columns: 150px 1fr; gap: 1.4rem; align-items: start;
+  }
+  @media (max-width: 640px) { .act { grid-template-columns: 1fr; } }
+  .act-label .act-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-soft);
+  }
+  .act-label .act-name { font-size: 1.3rem; font-weight: 600; margin-top: 0.2rem; }
+  .act-label .act-days { font-style: italic; color: var(--ink-dim); font-size: 0.95rem; }
+  .act-body { display: grid; gap: 0.4rem; font-size: 1rem; }
+  .act-row { display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.6rem; align-items: baseline; }
+  .act-row .icon { text-align: center; }
+  .act-row strong { color: var(--gold); font-weight: 600; }
+
+  /* ---------- achievements ---------- */
+  .badges { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem; }
+  .badge {
+    display: flex; gap: 0.8rem; align-items: center;
+    border: 1px solid var(--line); border-radius: 4px; padding: 0.85rem 1rem;
+    background: var(--bg-card); cursor: pointer; transition: border-color 0.2s ease;
+  }
+  .badge:hover { border-color: var(--gold-soft); }
+  .badge .medal { font-size: 1.4rem; filter: grayscale(1) opacity(0.45); transition: filter 0.3s ease; }
+  .badge.earned .medal { filter: none; }
+  .badge.earned { border-color: var(--gold-soft); background: rgba(201,162,39,0.06); }
+  .badge-name { font-weight: 600; font-size: 1.05rem; }
+  .badge-desc { color: var(--ink-dim); font-size: 0.88rem; font-style: italic; }
+
+  /* ---------- victory ---------- */
+  .endings { display: grid; gap: 0.8rem; }
+  .ending {
+    border-left: 2px solid var(--line); padding: 0.7rem 1.2rem;
+    background: rgba(255,255,255,0.015);
+  }
+  .ending.good { border-color: var(--ink-dim); }
+  .ending.great { border-color: var(--gold-soft); }
+  .ending.legendary { border-color: var(--gold); background: rgba(201,162,39,0.05); }
+  .ending .ending-name { font-weight: 700; letter-spacing: 0.05em; }
+  .ending.legendary .ending-name { color: var(--gold); }
+
+  footer {
+    margin-top: 5rem; text-align: center;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-dim);
+  }
+  footer .reset { color: var(--gold-soft); cursor: pointer; text-decoration: underline dotted; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">PPGD · UFSC · Iconocracia · Férias com amor</div>
+    <h1>JULHO 2026<br><span class="gold">O Grande Jogo das Alegorias</span></h1>
+    <p class="subtitle">Ana é a Iconocrata. 31 dias, um baralho de 19 cartas-alegoria, três reinos por dia. Objetivo: agosto com a tese blindada, dois apps vivos, textos publicados — e descansada.</p>
+    <div class="ornament">✦ ✦ ✦</div>
+    <div class="progress-shell">
+      <div class="progress-label"><span>Cartas jogadas</span><span id="progress-count">0 / 19</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head"><h2>O Tabuleiro — os três reinos do dia</h2><div class="rule"></div></div>
+    <table>
+      <thead><tr><th>Reino</th><th>Quando</th><th>O que se joga lá</th></tr></thead>
+      <tbody>
+        <tr><td>🔬 O Laboratório</td><td class="dim">manhã ~3h</td><td>Ciência da tese — dados, análise, capítulo</td></tr>
+        <tr><td>⚒️ A Oficina</td><td class="dim">tarde ~3h</td><td>Código — Atlas, Research Wing</td></tr>
+        <tr><td>🕯️ A Escrivaninha</td><td class="dim">noite ~1h</td><td>Escrita — artigo, ensaios. Leve, com vinho se quiser</td></tr>
+        <tr><td>🌿 A Terra Selvagem</td><td class="dim">sexta à tarde</td><td>Exploração livre — a Oficina vira playground</td></tr>
+        <tr><td>🌸 O Jardim</td><td class="dim">fins de semana</td><td>Zero quests. Férias dentro das férias</td></tr>
+      </tbody>
+    </table>
+    <div class="golden-rule">Regra de ouro: <strong>reino não invade reino.</strong> Atlas atrasado não come a manhã da Juíza.</div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>O Baralho — 19 cartas-alegoria</h2><div class="rule"></div></div>
+    <p class="section-note">Clique numa carta para marcá-la como jogada. O progresso fica salvo neste navegador.</p>
+    <div id="deck-root"></div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Os Quatro Atos</h2><div class="rule"></div></div>
+    <div id="acts-root"></div>
+    <p class="section-note" style="margin-top:1rem;">Sextas à tarde, em todos os atos: uma carta da Terra Selvagem à escolha do dia.</p>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Conquistas</h2><div class="rule"></div></div>
+    <p class="section-note">Clique para desbloquear quando conquistar.</p>
+    <div class="badges" id="badges-root"></div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Condições de Vitória</h2><div class="rule"></div></div>
+    <div class="endings">
+      <div class="ending good"><span class="ending-name">FINAL BOM</span> — Zeladora + Restauradora + Agrimensora + Vernissage 15/jul</div>
+      <div class="ending great"><span class="ending-name">FINAL ÓTIMO</span> — + veredito da Juíza + Cap. 6 v2 + draft de artigo</div>
+      <div class="ending legendary"><span class="ending-name">FINAL LENDÁRIO</span> — tudo acima + Wing no ar com ensaio + 1 carta selvagem viva + Jardim Perfeito</div>
+    </div>
+  </section>
+
+  <footer>
+    Spec: docs/superpowers/specs/2026-07-02-plano-julho-jogo-alegorias-design.md · <span class="reset" id="reset-btn">reiniciar jogo</span>
+  </footer>
+</div>
+
+<script>
+const REALMS = [
+  { id: 'prologo', title: 'Prólogo — dia 1, joga antes de tudo', cards: [
+    { n: 0, name: 'A Zeladora', emoji: '🧹', quest: 'Limpa o disco (2,1% livre!) e reacende os três vigias adormecidos (cron jobs, pip install openai, path do vault). Quest de 1 dia.', unlock: 'Desbloqueia: o mês inteiro.' },
+  ]},
+  { id: 'lab', title: '🔬 Reino do Laboratório', cards: [
+    { n: 1, name: 'A Restauradora', quest: 'Cura os 41 registros sem purificacao e exorciza os 4 gêmeos falsos (hashes duplicados).', unlock: 'Desbloqueia: A Juíza.' },
+    { n: 2, name: 'A Agrimensora', quest: 'Re-mede o território: notebooks 05→08 com N=328. O corpus dobrou; os mapas antigos mentem. E se os clusters mudarem?', unlock: 'Desbloqueia: A Escrivã. Drama garantido.' },
+    { n: 3, name: 'A Juíza', boss: 'BOSS FIGHT', quest: 'O Julgamento de Alfa. Krippendorff α ≥ 0.667 e a tese fica blindada na defesa. Amostra estratificada n≈50, human×AI.', unlock: 'A carta mais valiosa do baralho.' },
+    { n: 4, name: 'A Caçadora', quest: 'Expedição Scout a territórios virgens: Hemeroteca Digital, BN-RJ, iconografia republicana brasileira. Volta com alegorias novas na bolsa.' },
+    { n: 5, name: 'A Escrivã', quest: 'Reescreve o Cap. 6 com os números novos da Agrimensora. Instantâneo julho/2026.' },
+  ]},
+  { id: 'oficina', title: '⚒️ Reino da Oficina', cards: [
+    { n: 6, name: 'Mnemosyne Desperta', boss: 'BOSS FIGHT · 15/JUL', quest: 'O painel de Warburg ganha vida: fundo negro, cartas arrastáveis, linhas curvas de Nachleben, export A0.', unlock: 'Boss: A Vernissage (ship do v0).' },
+    { n: 7, name: 'A Cartógrafa', quest: 'Mapa 1559–1992, pins por cidade, timeline deslizante. Segunda camada do Atlas.' },
+    { n: 8, name: 'A Arauta', quest: 'Research Wing: a voz pública da tese. Hub, reading room, symbol canvas.', unlock: 'Combo: recebe os textos da Ensaísta.' },
+  ]},
+  { id: 'escrivaninha', title: '🕯️ Reino da Escrivaninha', cards: [
+    { n: 9, name: 'A Metodóloga', quest: 'Artigo "IconoCode: um protocolo Panofsky computacional" para revista de humanidades digitais. Ninguém publicou isso ainda.', unlock: 'Primeira autora do gênero.' },
+    { n: 10, name: 'A Autora', quest: 'Feminilidade de Estado (ou Contrato Sexual Visual) como paper standalone. Seus conceitos autorais com DOI próprio antes da defesa.' },
+    { n: 11, name: 'A Ensaísta', quest: 'Série "Biografia de um gesto": um ensaio visual por alegoria icônica. A venda da Justiça, a balança, o seio desnudo da República.', unlock: 'Combo: vira conteúdo da Arauta.' },
+    { n: 12, name: 'A Manifestante', quest: 'Ensaio-manifesto: por que iconografia jurídica importa. Texto de entrada do Wing.' },
+  ]},
+  { id: 'selvagem', title: '🌿 Cartas da Terra Selvagem — sextas', wild: true, cards: [
+    { n: 13, name: 'A Alquimista', quest: '328 alegorias num espaço de embeddings navegável (CLIP + UMAP). Pesquisa E brinquedo.', unlock: 'Combo: vira layout do Mnemosyne.' },
+    { n: 14, name: 'A Metamorfa', quest: 'Pathosformel morphing: gestos migrando entre séculos, arte generativa, animação.' },
+    { n: 15, name: 'A Sentinela', quest: 'Agente que caça alegorias de madrugada. Ana acorda com oferendas no vault.' },
+    { n: 16, name: 'A Aprendiz', quest: 'Vision model fine-tuned no corpus.', unlock: 'Combo: ajuda a Juíza no julgamento.' },
+    { n: 17, name: 'A Saltimbanca', quest: 'Jogo público "adivinhe o século da alegoria". Divulgação científica que diverte.' },
+  ]},
+  { id: 'jardim', title: '🌸 Carta do Jardim', garden: true, cards: [
+    { n: 18, name: 'A Ociosa', emoji: '👑', quest: 'Dolce far niente sagrado. Papel, arte analógica, sol. Carta obrigatória 2x/semana.', unlock: 'Quem não joga A Ociosa perde XP de todas as outras.' },
+  ]},
+];
+
+const ACTS = [
+  { num: 'ATO I', name: 'A Faxina e a Fundação', days: '01–05 jul', rows: [
+    ['🔬', 'Zeladora → Restauradora → Agrimensora'],
+    ['⚒️', 'Mnemosyne (scaffold)'],
+    ['🕯️', 'escolher artigo: Metodóloga ou Autora'],
+  ]},
+  { num: 'ATO II', name: 'A Vernissage', days: '06–15 jul', rows: [
+    ['🔬', 'Juíza — preparar + rodar o julgamento'],
+    ['⚒️', '<strong>Mnemosyne até o ship 15/jul</strong> ⚔️'],
+    ['🕯️', 'artigo avança + 1º ensaio da Ensaísta'],
+  ]},
+  { num: 'ATO III', name: 'Os Números Novos', days: '16–23 jul', rows: [
+    ['🔬', 'Escrivã (Cap. 6 v2) + veredito da Juíza'],
+    ['⚒️', 'Cartógrafa → Arauta (scaffold)'],
+    ['🕯️', 'artigo fecha draft + Manifestante'],
+  ]},
+  { num: 'ATO IV', name: 'A Colheita', days: '24–31 jul', rows: [
+    ['🔬', 'Caçadora — expedição Scout'],
+    ['⚒️', 'Arauta + carta selvagem favorita'],
+    ['🕯️', 'Ensaísta publica no Wing + retro do mês'],
+  ]},
+];
+
+const BADGES = [
+  { id: 'alfa', medal: '🏅', name: 'Alfa Dourado', desc: 'α ≥ 0.667 no primeiro julgamento' },
+  { id: 'vernissage', medal: '🖼️', name: 'Vernissage Pontual', desc: 'Atlas v0 no ar em 15/jul' },
+  { id: 'dupla', medal: '🎭', name: 'Dupla Face', desc: 'mesmo dia com commit no Atlas E parágrafo no artigo' },
+  { id: 'colecionadora', medal: '🦋', name: 'A Colecionadora', desc: '+20 alegorias novas no corpus em julho' },
+  { id: 'voz', medal: '📣', name: 'Voz Pública', desc: 'primeiro ensaio publicado no Research Wing' },
+  { id: 'jardim', medal: '🌻', name: 'Jardim Perfeito', desc: '4 fins de semana sem laptop de trabalho' },
+];
+
+const STORE_CARDS = 'julho2026-cards';
+const STORE_BADGES = 'julho2026-badges';
+const TOTAL_CARDS = REALMS.reduce((sum, r) => sum + r.cards.length, 0);
+
+function loadSet(key) {
+  try { return new Set(JSON.parse(localStorage.getItem(key) || '[]')); }
+  catch { return new Set(); }
+}
+function saveSet(key, set) {
+  localStorage.setItem(key, JSON.stringify([...set]));
+}
+
+function roman(n) {
+  if (n === 0) return '0';
+  const table = [[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];
+  let out = '', v = n;
+  for (const [val, sym] of table) while (v >= val) { out += sym; v -= val; }
+  return out;
+}
+
+function renderDeck() {
+  const played = loadSet(STORE_CARDS);
+  const root = document.getElementById('deck-root');
+  root.innerHTML = '';
+  for (const realm of REALMS) {
+    const section = document.createElement('div');
+    section.className = 'realm';
+    const title = document.createElement('div');
+    title.className = 'realm-title';
+    title.textContent = realm.title;
+    section.appendChild(title);
+    const deck = document.createElement('div');
+    deck.className = 'deck';
+    for (const card of realm.cards) {
+      const el = document.createElement('div');
+      el.className = 'card'
+        + (card.boss ? ' boss' : '')
+        + (realm.wild ? ' wild' : '')
+        + (realm.garden ? ' garden' : '')
+        + (played.has(card.n) ? ' done' : '');
+      el.innerHTML = `
+        <div class="card-top">
+          <span class="card-num">CARTA ${roman(card.n)}</span>
+          <span class="card-check">✓</span>
+        </div>
+        <div class="card-name">${card.name}${card.emoji ? `<span class="emoji">${card.emoji}</span>` : ''}</div>
+        ${card.boss ? `<div class="card-tag">⚔️ ${card.boss}</div>` : ''}
+        <div class="card-quest">${card.quest}</div>
+        ${card.unlock ? `<div class="card-unlock">${card.unlock}</div>` : ''}`;
+      el.addEventListener('click', () => {
+        const set = loadSet(STORE_CARDS);
+        set.has(card.n) ? set.delete(card.n) : set.add(card.n);
+        saveSet(STORE_CARDS, set);
+        renderDeck();
+      });
+      deck.appendChild(el);
+    }
+    section.appendChild(deck);
+    root.appendChild(section);
+  }
+  const count = played.size;
+  document.getElementById('progress-count').textContent = `${count} / ${TOTAL_CARDS}`;
+  document.getElementById('progress-fill').style.width = `${(count / TOTAL_CARDS) * 100}%`;
+}
+
+function renderActs() {
+  const root = document.getElementById('acts-root');
+  root.innerHTML = ACTS.map(act => `
+    <div class="act">
+      <div class="act-label">
+        <div class="act-num">${act.num}</div>
+        <div class="act-name">${act.name}</div>
+        <div class="act-days">${act.days}</div>
+      </div>
+      <div class="act-body">
+        ${act.rows.map(([icon, text]) => `<div class="act-row"><span class="icon">${icon}</span><span>${text}</span></div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function renderBadges() {
+  const earned = loadSet(STORE_BADGES);
+  const root = document.getElementById('badges-root');
+  root.innerHTML = '';
+  for (const badge of BADGES) {
+    const el = document.createElement('div');
+    el.className = 'badge' + (earned.has(badge.id) ? ' earned' : '');
+    el.innerHTML = `
+      <span class="medal">${badge.medal}</span>
+      <span><span class="badge-name">${badge.name}</span><br><span class="badge-desc">${badge.desc}</span></span>`;
+    el.addEventListener('click', () => {
+      const set = loadSet(STORE_BADGES);
+      set.has(badge.id) ? set.delete(badge.id) : set.add(badge.id);
+      saveSet(STORE_BADGES, set);
+      renderBadges();
+    });
+    root.appendChild(el);
+  }
+}
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  if (confirm('Reiniciar o jogo? Todas as cartas e conquistas serão desmarcadas.')) {
+    localStorage.removeItem(STORE_CARDS);
+    localStorage.removeItem(STORE_BADGES);
+    renderDeck();
+    renderBadges();
+  }
+});
+
+renderDeck();
+renderActs();
+renderBadges();
+</script>
+</body>
+</html>
