@@ -10,7 +10,7 @@
 
 ## Versão do prompt
 
-`00-finalizar-setup` · revisão 2026-05-11 · autora original: pareceria Ana ↔ Claude (sessão de planejamento).
+`00-finalizar-setup` · revisão 2026-05-11 · autora original: parceria Ana ↔ Claude (sessão de planejamento).
 
 ---
 

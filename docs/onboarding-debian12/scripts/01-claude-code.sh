@@ -30,16 +30,25 @@ echo "→ diagnóstico (claude doctor):"
 claude doctor || true
 
 echo
-echo "→ validação criptográfica (importa chave de release e mostra fingerprint)…"
+echo "→ validação criptográfica (importa chave de release e valida fingerprint)…"
 curl -fsSL https://downloads.claude.ai/keys/claude-code.asc | gpg --import 2>/dev/null
-echo
-echo "Fingerprint instalado:"
-gpg --fingerprint security@anthropic.com 2>/dev/null | grep -E '[A-F0-9]{4}( [A-F0-9]{4}){9}' || true
-echo
-echo "Fingerprint esperado:"
-echo "  $EXPECTED_FINGERPRINT"
-echo
-echo "→ se os fingerprints coincidem, a verificação passou."
+
+INSTALLED_FP="$(gpg --fingerprint security@anthropic.com 2>/dev/null \
+  | grep -Eo '[A-F0-9]{4}( [A-F0-9]{4}){9}' | head -1)"
+# Normaliza espaços internos para comparação robusta
+norm() { echo "$1" | tr -s ' ' | sed -e 's/^ //' -e 's/ $//'; }
+if [[ -z "$INSTALLED_FP" ]]; then
+  echo "✗ ERRO: nenhum fingerprint encontrado para security@anthropic.com" >&2
+  echo "         chave GPG pode não ter sido importada" >&2
+  exit 3
+fi
+if [[ "$(norm "$INSTALLED_FP")" != "$(norm "$EXPECTED_FINGERPRINT")" ]]; then
+  echo "✗ ERRO: fingerprint diverge do esperado — ABORTANDO" >&2
+  echo "  instalado: $INSTALLED_FP" >&2
+  echo "  esperado : $EXPECTED_FINGERPRINT" >&2
+  exit 4
+fi
+echo "✓ fingerprint confere: $INSTALLED_FP"
 
 # Estrutura mínima de config
 mkdir -p "$HOME/.claude"

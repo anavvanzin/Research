@@ -66,11 +66,11 @@
 
 ## Domingo de manhã (≈3h)
 
-- [ ] **D1-1 ·** Executar `scripts/02-academic-stack.sh` (Zotero, Syncthing já está pronto, VS Code, gh, Starship). (40 min) → S1-1
+- [ ] **D1-1 ·** Executar `scripts/02-academic-stack.sh` (Obsidian, Syncthing user-service, VS Code + extensões, gh, Starship, rclone). Zotero 7 fica para D1-2 (instalação manual — ver manual.md § 2.3). (40 min) → S1-1
 - [ ] **D1-2 ·** Configurar Zotero: pasta vinculada `~/Documents/iconocracy-corpus/biblio/`. (10 min) → D1-1
 - [ ] **D1-3 ·** Instalar Better BibTeX + ZotMoov; importar biblioteca do Mac (via Syncthing). (30 min) → D1-2
 - [ ] **D1-4 ·** Abrir VS Code; instalar extensões mínimas (ver § 2.8 do manual). (10 min) → D1-1
-- [ ] **D1-5 ·** Executar `scripts/04-rclone-drive.sh` para instalar e configurar rclone com remote `drive-iconocracy`. (30 min — inclui OAuth) → S1-1
+- [ ] **D1-5 ·** Configurar `rclone` com remote `drive-iconocracy` (OAuth Google via `rclone config`). Passo-a-passo em manual.md § 2.7. (30 min) → D1-1
 - [ ] **D1-6 ·** Validar acesso: `rclone lsd drive-iconocracy:ICONOCRACIA`. (5 min) → D1-5
 - [ ] **D1-7 ·** Dry-run do bisync: `rclone bisync ~/iconocracy-corpus/data/raw/ drive-iconocracy:ICONOCRACIA/data/raw/ --resync --dry-run`. **Não executar sem `--dry-run` ainda.** (10 min) → D1-6
 
@@ -84,7 +84,7 @@
 - [ ] **D2-2 ·** Backup defensivo: `tar -czf ~/iconocracy-corpus-backup-$(date +%F).tar.gz ~/iconocracy-corpus/`. (10 min)
 - [ ] **D2-3 ·** Mapear segredo no histórico: `git log --all --full-history -S '<prefixo>' --source --remotes`. Anotar commits e arquivos. (15 min)
 - [ ] **D2-4 ·** Clonar fresh-mirror para `git-filter-repo`: ver § 3.4 passo 4 do manual. (10 min) → D2-2
-- [ ] **D2-5 ·** Executar `scripts/05-secrets-rotation.sh` em modo `--dry-run` primeiro; depois em modo real. (30 min) → D2-4
+- [ ] **D2-5 ·** Executar `git filter-repo` no mirror fresco conforme sequência prescrita em manual.md § 3.4 (rotação DM-001 é manual e supervisionada — sem script automatizado). (30 min) → D2-4
 - [ ] **D2-6 ·** `git push --force --mirror` para o remote real. **Confirme três vezes antes.** (5 min) → D2-5
 - [ ] **D2-7 ·** Re-clonar repo limpo em `~/iconocracy-corpus`; renomear o antigo como `~/iconocracy-corpus.preDM001-YYYY-MM-DD`. (15 min) → D2-6
 - [ ] **D2-8 ·** Emitir token NOVO no provedor; salvar em `~/.config/iconocracy/.env` (chmod 600). (10 min)

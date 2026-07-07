@@ -61,7 +61,7 @@ rm -rf "$OBS_TMP"
 
 # ---------- Starship prompt -------------------------------------------------
 echo "→ Starship…"
-sudo -u "$REAL_USER" bash -c '
+sudo -H -u "$REAL_USER" bash -c '
   curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
   if ! grep -q "starship init bash" "$HOME/.bashrc" 2>/dev/null; then
     echo "eval \"\$(starship init bash)\"" >> "$HOME/.bashrc"
@@ -74,9 +74,9 @@ curl -fsSL https://rclone.org/install.sh | bash
 
 # ---------- Habilita Syncthing como user service ----------------------------
 echo "→ habilitando Syncthing como serviço do usuário…"
-sudo -u "$REAL_USER" XDG_RUNTIME_DIR="/run/user/$(id -u $REAL_USER)" \
+sudo -H -u "$REAL_USER" XDG_RUNTIME_DIR="/run/user/$(id -u "$REAL_USER")" \
   systemctl --user enable syncthing.service || true
-sudo -u "$REAL_USER" XDG_RUNTIME_DIR="/run/user/$(id -u $REAL_USER)" \
+sudo -H -u "$REAL_USER" XDG_RUNTIME_DIR="/run/user/$(id -u "$REAL_USER")" \
   systemctl --user start syncthing.service || true
 
 # Extensões VS Code mínimas
@@ -90,7 +90,7 @@ EXT_LIST=(
   anthropic.claude-code
 )
 for ext in "${EXT_LIST[@]}"; do
-  sudo -u "$REAL_USER" code --install-extension "$ext" --force >/dev/null 2>&1 || \
+  sudo -H -u "$REAL_USER" code --install-extension "$ext" --force >/dev/null 2>&1 || \
     echo "  - falha ao instalar $ext (instale manualmente depois)"
 done
 
