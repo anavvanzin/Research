@@ -598,10 +598,13 @@ rclone lsd drive-iconocracy:ICONOCRACIA  # confere pasta canônica do projeto
 
 **Sync de `data/raw/`.** O comando canônico é `bisync` (preserva mudanças nos dois lados), mas exige *primeira execução* com `--resync` para estabelecer baseline:
 
+O filtro `~/iconocracy-corpus/.rclone-filter` (definido abaixo) precisa ser aplicado **desde a primeira execução** — o `--resync` estabelece o baseline e, se rodar sem filtro, envia junto qualquer lixo ou arquivo fora da convenção. Passe `--filter-from` também no `--resync`.
+
 ```bash
 # (C) PRIMEIRA execução APENAS — declara o lado local como autoridade inicial
 rclone bisync ~/iconocracy-corpus/data/raw/ drive-iconocracy:ICONOCRACIA/data/raw/ \
   --resync \
+  --filter-from ~/iconocracy-corpus/.rclone-filter \
   --dry-run                    # rode com --dry-run primeiro, conforme execução real
 ```
 
@@ -609,21 +612,34 @@ rclone bisync ~/iconocracy-corpus/data/raw/ drive-iconocracy:ICONOCRACIA/data/ra
 # (C) Execuções subsequentes — sincronização incremental
 rclone bisync ~/iconocracy-corpus/data/raw/ drive-iconocracy:ICONOCRACIA/data/raw/ \
   --conflict-resolve newer \
-  --check-access \
   --filter-from ~/iconocracy-corpus/.rclone-filter
 ```
 
-Arquivo `~/iconocracy-corpus/.rclone-filter` (excluir lixos e validar convenção de nomes):
+> **Sobre `--check-access` (opcional, não incluído acima):** ativa uma trava adicional que exige a presença de arquivos-sentinela `RCLONE_TEST` nos dois lados do sync — útil para prevenir bisync contra uma pasta remota errada. Só ativar depois de criar os sentinelas explicitamente:
+>
+> ```bash
+> # (C) apenas se decidir ativar --check-access
+> touch ~/iconocracy-corpus/data/raw/RCLONE_TEST
+> rclone touch drive-iconocracy:ICONOCRACIA/data/raw/RCLONE_TEST
+> # daí em diante pode adicionar --check-access ao bisync incremental
+> ```
+
+Arquivo `~/iconocracy-corpus/.rclone-filter` (excluir lixos e validar convenção de nomes; aceita códigos de país de 2 **ou** 3 letras, ex.: `FR`, `DE`, `USA`):
 
 ```
 - .DS_Store
 - Thumbs.db
 - *.tmp
 + /[A-Z][A-Z]_*_[0-9][0-9][0-9][0-9]_*_[0-9]*.jpg
++ /[A-Z][A-Z][A-Z]_*_[0-9][0-9][0-9][0-9]_*_[0-9]*.jpg
 + /[A-Z][A-Z]_*_[0-9][0-9][0-9][0-9]_*_[0-9]*.jpeg
++ /[A-Z][A-Z][A-Z]_*_[0-9][0-9][0-9][0-9]_*_[0-9]*.jpeg
 + /[A-Z][A-Z]_*_[0-9][0-9][0-9][0-9]_*_[0-9]*.png
++ /[A-Z][A-Z][A-Z]_*_[0-9][0-9][0-9][0-9]_*_[0-9]*.png
 + /[A-Z][A-Z]_*_[0-9][0-9][0-9][0-9]_*_[0-9]*.tif
++ /[A-Z][A-Z][A-Z]_*_[0-9][0-9][0-9][0-9]_*_[0-9]*.tif
 + /[A-Z][A-Z]_*_[0-9][0-9][0-9][0-9]_*_[0-9]*.tiff
++ /[A-Z][A-Z][A-Z]_*_[0-9][0-9][0-9][0-9]_*_[0-9]*.tiff
 - *
 ```
 
@@ -1049,9 +1065,13 @@ cd ~/iconocracy-corpus
 git log --all --full-history -S '<PREFIXO_DO_SEGREDO>' --source --remotes \
   --pretty=format:'%h %ai %s'
 
-# Confere o arquivo afetado em cada commit listado
-git show <hash>:<caminho-suspeito> | head -50
+# Identifica o(s) arquivo(s) afetado(s) SEM ecoar o conteúdo do segredo.
+# NÃO faça `git show <hash>:<arquivo>` (imprime o segredo no terminal).
+git show --stat <hash>                       # arquivos tocados pelo commit
+git log --diff-filter=A --name-only <hash>~..<hash>   # arquivos ADICIONADOS
 ```
+
+> Se for absolutamente necessário ver o conteúdo bruto para confirmar a linha, use um viewer que não deixe rastro em scrollback: `git show <hash>:<caminho> | less -R`, feche imediatamente com `q`, e limpe o scrollback do terminal (`printf '\ec'` ou `clear && reset`).
 
 #### Passo 3 — Backup defensivo
 
@@ -1079,11 +1099,37 @@ Há duas operações possíveis. Escolher uma delas:
 
 **Opção A — apagar substring sensível em todo o histórico, mantendo arquivos:**
 
+> **⚠️ ATENÇÃO CRÍTICA.** `git filter-repo --replace-text` interpreta o padrão como **texto literal** por padrão. Se você fornecer apenas o prefixo do segredo (ex.: os primeiros 8 caracteres), o rewrite substitui **apenas o prefixo** e deixa o *sufixo do token intacto* em todos os blobs afetados — o histórico continua vazando o segredo (algo como `REMOVED…restodotoken`). Use uma das duas estratégias:
+
+*Estratégia A.1 — Token completo em arquivo temporário (recomendada):* fornecer o token inteiro (mesmo já revogado) num arquivo com permissões 600, e destruí-lo depois.
+
 ```bash
-# (C) Substitua PADRAO pelo prefixo único do segredo (mínimo 8 caracteres)
-echo 'PADRAO==>REMOVED' > /tmp/replacements.txt
+# (C) NÃO cole o token no shell — leia-o de um cofre e grave direto no arquivo
+umask 077
+SECRET_FULL="$(cat /caminho/para/vault/token-antigo.txt)"   # ou pass, gpg -d, etc.
+printf '%s==>REMOVED\n' "$SECRET_FULL" > /tmp/replacements.txt
+chmod 600 /tmp/replacements.txt
+unset SECRET_FULL
+
 git filter-repo --replace-text /tmp/replacements.txt
+
+shred -u /tmp/replacements.txt          # sobrescreve e apaga
 ```
+
+*Estratégia A.2 — Regex por formato conhecido:* se o segredo segue um formato bem definido (ex.: chaves Notion começam com `secret_` + 43 chars base62; chaves Anthropic começam com `sk-ant-`), use o prefixo `regex:` para casar o padrão completo:
+
+```bash
+# (C) Exemplos — ADAPTE ao provedor exato do DM-001
+cat > /tmp/replacements.txt <<'EOF'
+regex:secret_[A-Za-z0-9]{43}==>REMOVED
+regex:sk-ant-[A-Za-z0-9_-]{40,}==>REMOVED
+EOF
+chmod 600 /tmp/replacements.txt
+git filter-repo --replace-text /tmp/replacements.txt
+shred -u /tmp/replacements.txt
+```
+
+**Nunca** use apenas os 8 caracteres iniciais do token como padrão literal — esse é o erro clássico que faz a rotação "parecer feita" enquanto o segredo continua no repositório.
 
 **Opção B — eliminar arquivo inteiro de todo o histórico:**
 

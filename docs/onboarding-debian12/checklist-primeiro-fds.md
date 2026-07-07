@@ -11,7 +11,17 @@
 - [ ] **T-1 ·** Confirmar BIOS / Secure Boot / dual boot — checar partições do SSD. (15 min)
 - [ ] **T-2 ·** Conectar à rede WiFi de casa; testar `ping 1.1.1.1`. (5 min)
 - [ ] **T-3 ·** Executar `scripts/00-bootstrap-apt.sh` (`sudo bash scripts/00-bootstrap-apt.sh`). (20 min — sobretudo download)
-- [ ] **T-4 ·** Configurar Syncthing (apenas instalação e pareamento com Mac antigo, sem aguardar sync completo). → T-3 (20 min)
+- [ ] **T-3.5 ·** Instalar Syncthing (não vem do bootstrap-apt; `02-academic-stack.sh` só é executado no domingo). → T-3 (10 min)
+      ```bash
+      sudo install -d -m 0755 /etc/apt/keyrings
+      sudo curl -fsSL https://syncthing.net/release-key.gpg \
+        -o /etc/apt/keyrings/syncthing-archive-keyring.gpg
+      echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" \
+        | sudo tee /etc/apt/sources.list.d/syncthing.list
+      sudo apt update && sudo apt install -y syncthing
+      systemctl --user enable --now syncthing.service
+      ```
+- [ ] **T-4 ·** Parear Syncthing com o Mac antigo em `http://localhost:8384` (sem aguardar sync completo). → T-3.5 (20 min)
 - [ ] **T-5 ·** **AÇÃO SEPARADA, NÃO LIGADA AO NOTEBOOK:** revogar token DM-001 no console do provedor. **Faça hoje.** Anote data/hora em papel.
 
 **Não tentar mais nada na terça.** Sync inicial do vault leva horas; deixar rodando à noite.

@@ -48,7 +48,7 @@ cd "$OBS_TMP"
 LATEST=$(curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest \
   | grep -oE '"browser_download_url":\s*"[^"]+_amd64\.deb"' \
   | head -1 \
-  | sed 's/.*"\(.*\)"/\1/')
+  | sed 's/.*"\(.*\)"/\1/' || true)
 if [[ -n "$LATEST" ]]; then
   wget -O obsidian.deb "$LATEST"
   apt install -y ./obsidian.deb
@@ -60,9 +60,12 @@ cd /
 rm -rf "$OBS_TMP"
 
 # ---------- Starship prompt -------------------------------------------------
+# Instala em ~/.local/bin (user-writable) para evitar que o installer da
+# Starship chame sudo dentro deste script já elevado.
 echo "→ Starship…"
 sudo -H -u "$REAL_USER" bash -c '
-  curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
+  mkdir -p "$HOME/.local/bin"
+  curl -fsSL https://starship.rs/install.sh | sh -s -- --yes --bin-dir "$HOME/.local/bin"
   if ! grep -q "starship init bash" "$HOME/.bashrc" 2>/dev/null; then
     echo "eval \"\$(starship init bash)\"" >> "$HOME/.bashrc"
   fi

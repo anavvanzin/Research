@@ -63,8 +63,15 @@ em até 250 palavras, em tabela | componente | estado | evidência | gap |.
     • which claude ; claude --version ; claude doctor   (captura saída)
     • ls -la ~/.claude/ ; ls -la ~/.claude.json
     • test -f ~/.claude/CLAUDE.md && wc -l ~/.claude/CLAUDE.md
-    • cat ~/.claude/settings.json   (se existir)
-    • verificar ~/.claude/mcp.json ou .mcp.json no projeto
+    • ~/.claude/settings.json: NÃO faça `cat` — o campo .env pode conter
+      ANTHROPIC_API_KEY ou outros tokens. Use jq para redigir:
+        jq 'if .env then .env |= with_entries(
+              if (.key|test("KEY|TOKEN|SECRET|PASSWORD";"i")) or (.value|type=="string" and length>20)
+              then .value="<REDACTED>" else . end)
+            else . end' ~/.claude/settings.json 2>/dev/null
+      Se jq não estiver disponível, reporte apenas presença/ausência e
+      chaves top-level (jq 'keys'), NUNCA valores.
+    • verificar ~/.claude/mcp.json ou .mcp.json no projeto (mesmo tratamento)
     • gpg --fingerprint security@anthropic.com
       (esperado terminar em 1A7E CACE)
 

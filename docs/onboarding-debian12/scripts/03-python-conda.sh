@@ -51,5 +51,10 @@ echo "✓ env conda 'iconocracia' pronto."
 echo "  Para ativar em nova shell: conda activate iconocracia"
 echo
 echo "→ snapshot do ambiente:"
-conda env export --name iconocracia | head -30
+# Usa arquivo temporário para evitar que SIGPIPE do `head` propague sob
+# `set -o pipefail` e faça o script sair com status != 0 após tudo dar certo.
+SNAPSHOT="$(mktemp)"
+conda env export --name iconocracia > "$SNAPSHOT"
+head -30 "$SNAPSHOT"
+rm -f "$SNAPSHOT"
 echo "  (truncado em 30 linhas; export completo em conda env export --name iconocracia)"
