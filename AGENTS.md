@@ -116,3 +116,43 @@ para a sessão spawnada:
 - **QA test a URL:** `Load gstack. Run /qa https://...`
 - **build a feature end-to-end:** `Load gstack. Run /autoplan, implement the plan, then run /ship`
 - **plan before building:** `Load gstack. Run /office-hours then /autoplan. Save the plan, don't implement.`
+
+## Cursor Cloud specific instructions
+
+Notas para agentes rodando no Cloud (o update script já instalou dependências).
+
+### O que está presente neste checkout
+
+Cloud clona **só a raiz do meta-workspace** (`anavvanzin/research`). Os sub-repos
+citados em `README.md`/`CLAUDE.md` — `hub/iconocracy-corpus/`, `apps/`,
+`pipelines/`, `vaults/`, `shared/`, `deep-memory/`, `hermes-workspace/` — **NÃO
+existem aqui** (têm `.git` próprio, vivem fora). Logo, tese/corpus/notebooks/
+`make -C vault/tese/` não rodam neste VM; não tente. O único código executável
+versionado aqui é `scripts/git_physics_guard.py` e o pacote Node `cowork/`.
+
+### Runtimes (Linux VM, não macOS)
+
+- Python: `python3` do sistema (3.12.x). O env conda `iconocracy` citado nos docs
+  é macOS-only e **não existe** aqui; use `python3` direto.
+- Node 22 + npm 10 (via nvm). O `git_physics_guard.py` é stdlib-pura (zero deps).
+
+### Serviços / como rodar (não há dev server)
+
+- **git-physics-guard** (tool canônica de commit): `python3 scripts/git_physics_guard.py --help`.
+  Lê `docs/decisions/AGENT-OWNERSHIP.md` e classifica paths staged por harness.
+  `--mode info` (warn, exit 0) vs `--mode enforce` (BLOCK => exit 1). Default
+  harness = `codex-app`. `AGENTS.md`/`README.md`/`CLAUDE.md` são paths
+  compartilhados "não-owned" → geram WARN em info (commit segue), como esperado.
+- **cowork/**: só manifest de dependências (playwright, postman-cli, clawhub,
+  `@google/genai`, `@openrouter/sdk`); **sem** scripts `dev/build/test`. Verificação:
+  `cd cowork && npx playwright --version`.
+
+### Gotchas
+
+- `scripts/install-hooks.sh uninstall` só remove o hook se for symlink, mas o
+  instalador grava um arquivo regular (heredoc) → uninstall **não** remove.
+  Remova manual: `rm .git/hooks/pre-commit`.
+- Os workflows em `.github/workflows/` (jekyll/nextjs/python-conda) são samples
+  boilerplate do GitHub que referenciam arquivos de raiz inexistentes
+  (`environment.yml`, `package.json` raiz, config Jekyll). Não constroem nada
+  localmente; não os trate como "a aplicação" deste repo.
