@@ -16,7 +16,7 @@
 | **Research** | Meta-workspace (agentes, docs, automação, planos) | operacional | — |
 | **atlaslab** | Site público *Iuris Memoria* — Atlas da Pesquisa + Atlas Lab | público/divulgação | amostra própria (`data.js`, `corpus.jsonld`) |
 | **mnemosyne-viva** | `iconocracia.com` — casa editorial do acervo | público/acervo | export enriquecido (`corpus-data-enriched.json`) |
-| **atlas-celeste** | Quadro-jogo interno "O Grande Jogo das Alegorias" (Julho/2026) | planejamento interno | referencia N do corpus |
+| **atlas-celeste** | Quadro-jogo interno "O Grande Jogo das Alegorias" (Julho/2026) | planejamento interno | referencia o N do corpus |
 | **artigos** | Artigos derivados (bruxa/*Malleus*; réplica involuntária) | acadêmico | reusa corpus + apparatus |
 | **arno-dal-ri-site** | Sítio do orientador (Prof. Arno Dal Ri Jr.) | institucional | — |
 | **grupoiusgentium.com.br** | Site do Grupo Ius Gentium (UFSC) | institucional | — |
@@ -59,7 +59,7 @@
 | `atlaslab` (README "27" / `data.js` 30) | **27–30** | ✅ amostra demonstrativa (esperado) — mas README ≠ data |
 | `Research/README.md` | **264 / 265** | ⚠️ muito desatualizado |
 
-**Nota de posture:** por decisão de 2026-06-24, **N é intencionalmente não-fixo** (corpus em expansão até a defesa). Portanto a recomendação **não** é "congelar 328", e sim: (a) sincronizar/aposentar as cópias `companion-data.json`; (b) atualizar `Research/README.md`; (c) alinhar README×data no `atlaslab`; (d) descrever o corpus **provisionalmente** ("amostra analisada", "instantâneo") nas prosas públicas em vez de cravar número.
+**Nota de postura:** por decisão de 2026-06-24, **N é intencionalmente não-fixo** (corpus em expansão até a defesa). Portanto a recomendação **não** é "congelar 328", e sim: (a) sincronizar/aposentar as cópias `companion-data.json`; (b) atualizar `Research/README.md`; (c) alinhar README×data no `atlaslab`; (d) descrever o corpus **provisoriamente** ("amostra analisada", "instantâneo") nas prosas públicas em vez de cravar número.
 
 ### 3.2 Período — três faixas em conflito
 
@@ -106,7 +106,7 @@ O **conceito autoral #3** (Cap. 3; 188 arquivos no canônico) **não aparece em 
 | # | Ação | Repo(s) | Prioridade |
 |---|---|---|---|
 | 1 | Sincronizar ou aposentar as 3 cópias de `companion-data.json` (277/165/145) | iconocracy-corpus | **Alta** |
-| 2 | Alinhar molduras públicas de N/período/países à *posture exploratória* (prosa provisional, não número cravado) | atlaslab, mnemosyne | **Alta** |
+| 2 | Alinhar molduras públicas de N/período/países à *postura exploratória* (prosa provisória, não número cravado) | atlaslab, mnemosyne | **Alta** |
 | 3 | Atualizar `Research/README.md` (264/265 → estado atual) e `CLAUDE.md` (purification 236→279) | Research, iconocracy-corpus | Média |
 | 4 | Reenquadrar "seis nações" → "núcleo + expansão transnacional" | atlaslab | Média |
 | 5 | Explicitar relação 8 (curadoria) × 21 (inventário) de painéis | atlaslab, companion-data | Média |
