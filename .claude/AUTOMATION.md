@@ -2,7 +2,7 @@
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
-Last reviewed: 2026-06-01.
+Last reviewed: 2026-07-16.
 
 ---
 
@@ -12,6 +12,7 @@ Last reviewed: 2026-06-01.
 |---|---|---|---|
 | Self-improving-agent (project) | `.claude/settings.json` | PreToolUse Bash\|Write\|Edit, PostToolUse Bash, SessionEnd `.*` | Captures tool I/O (Bash + Write/Edit pre, Bash post) + session summaries into `.claude/self-improving-agent/memory/`. Stdin-JSON invocation; hooks scripts at `.claude/self-improving-agent/hooks/{pre-tool,post-bash,session-end}.sh`. Canonical wiring as of 2026-04-25 (`settings.local.json` `hooks` block stripped). |
 | Corpus protection (global) | `~/.claude/settings.json` | PreToolUse Write, PostToolUse Edit\|Write | Blocks binary image writes into `iconocracy-corpus/data/raw/`; warns on `corpus-data.json` edits; runs `tools/scripts/validate_schemas.py` on corpus JSONL changes. Owned by global config — do not duplicate at project level. |
+| Lock & Plan coordination (project) | `.claude/settings.json` (optional opt-in) | PreToolUse Edit\|Write, SessionStart, SessionEnd, UserPromptSubmit | Dev-infrastructure hooks (inert by default) to coordinate parallel sessions. Wired optionally to `task-lock-enforcer.sh`, `session-lock-awareness.sh`, `session-lock-release.sh`, and `master-plan-reminder.sh`. Lock state is tracked at `.claude/locks/`. |
 
 **Disabled via env:** `ECC_DISABLED_HOOKS=pre:bash:gateguard-fact-force,pre:edit-write:gateguard-fact-force` (set in shell, turns off ECC plugin's fact gate).
 
@@ -121,6 +122,7 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 | `pipelines/Atlas/` | Sub-repo (own `.git`) | Active research pipeline. |
 | `pipelines/indexing/` | Sub-repo (own `.git`) | Indexing pipeline. |
 | `rotinas/` | (removed) | **Archived 2026-04-25** to `archive/2026-04-25-stale/rotinas/`. Held only `(2)` duplicate stragglers; originals had been moved earlier and no in-tree references remained. |
+| `scripts/git_physics_guard.py` | Multi-harness git conflict guard | Script to prevent cross-session head contamination across checkouts. Installed via `scripts/install-hooks.sh`. ADR in `docs/decisions/2026-06-25-multi-harness-git-physics.md`. |
 
 ---
 
@@ -134,6 +136,15 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 The legacy `.worktrees/` directory is empty.
 
 **Policy:** worktrees inherit `CLAUDE.md` from their source branch; deletion is manual after merge; orphaned worktrees should be removed via `git worktree remove`, not `rm -rf`.
+
+---
+
+## Onboarding & Planning (docs/)
+
+| Surface | What's there | Purpose |
+|---|---|---|
+| `docs/onboarding-debian12/` | Debian 12 setup manuals and install scripts | Onboarding reference and automation scripts for Debian 12 environments (PR #9). |
+| `docs/superpowers/` | Creative cronjobs plans and game specs | Specifications and plans for creative cronjobs and the July "jogo-alegorias" planning (`2026-07-02-*`). |
 
 ---
 
