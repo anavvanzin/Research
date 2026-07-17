@@ -46,7 +46,7 @@ Agentes **MUST NOT** iniciar dev servers, watchers ou crons da raiz.
 | Compilar tese | `hub/iconocracy-corpus/vault/tese/` | `make docx`/`make pdf` — Makefile permanece aqui (migração pendente) |
 | Corpus / dados | `hub/iconocracy-corpus/corpus/corpus-data.json` | Hook protege contra binários crus em `data/raw/` |
 | Notebooks análise | `hub/iconocracy-corpus/notebooks/` | conda env `iconocracy` (Python 3.11 — rebuild 3.12→3.11 em 2026-06-22) |
-| Workflows W1–W6 / S1–S5 | `hub/iconocracy-corpus/Specs/WORKFLOW-*.md` | Docs autoritativos de pipeline |
+| Workflows W1–W6 / S1–S5 | `hub/iconocracy-corpus/Specs/WORKFLOW-*.md` | **TODO (2026-07-17):** path não existe — ver `docs/workflows/` (2 arquivos hoje). Não citar `Specs/` sem criar primeiro. |
 | Agentes / integrações cowork | `cowork/agents/` · `cowork/integrations/` | 85 agentes The Agency; tracked nesta raiz |
 | Plano de prioridade | `.opencode/plans/iconocracy-priority-plan.md` | Horizontes + desbloqueios |
 | Hooks / automação inventário | `.claude/AUTOMATION.md` | Índice único; atualize ao adicionar |

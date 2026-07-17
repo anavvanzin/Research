@@ -44,7 +44,7 @@ Quick paths (from `hub/iconocracy-corpus/`):
 | Capítulos da tese | `tese/manuscrito/` (lar canônico; era `vault/tese/`) |
 | Manuscrito + revisões | `tese/{manuscrito,revisoes}/` |
 | Entrega mais recente | `tese/Entrega_Orientador_Mar2026_FINAL/` |
-| Corpus canônico | `corpus/corpus-data.json` (264 itens; `records.jsonl` = 265, drift 1 item — ver *Known Data Issues* em `hub/iconocracy-corpus/CLAUDE.md`) |
+| Corpus canônico | `corpus/corpus-data.json` (provisório / em expansão — re-contar via `wc -l data/processed/records.jsonl`; NÃO pinar N aqui; ver *Known Data Issues* em `hub/iconocracy-corpus/CLAUDE.md`) |
 | Notebooks | `notebooks/` (01–08) |
 | Compilação | `make -C vault/tese/` (Makefile permanece em `vault/tese/`; migração de chapters → `tese/manuscrito/` em 2026-06-04 não moveu o pipeline) |
 
@@ -63,17 +63,12 @@ Single index: → **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)**
 
 ## Workflow Specifications
 
-ICONOCRACY pipeline workflows (W1–W6 + S1–S5) are documented in `Specs/WORKFLOW-*.md`:
-
-| File | Content |
-| --- | --- |
-| `Specs/WORKFLOW-REGISTRY.md` | Master index: all workflows, item lifecycle, gate checklist |
-| `Specs/WORKFLOW-iconocracy-corpus-acquisition.md` | W1: Gallica → vault → ledger |
-| `Specs/WORKFLOW-iconocracy-visual-analysis.md` | W2: Panofsky + ENDURECIMENTO scoring |
-| `Specs/WORKFLOW-iconocracy-synchronization.md` | W3: records.jsonl → vault → corpus-data.json → HF |
-| `Specs/ZOTERO-MCP-SETUP-STATUS.md` | Zotero MCP troubleshooting (setup broken, use Web API fallback) |
-
-These are the authoritative process docs — update them when the pipeline changes.
+> **TODO / drift (2026-07-17):** os arquivos `hub/iconocracy-corpus/Specs/WORKFLOW-*.md`
+> descritos aqui **não existem no repo** (verificação em `daily-review` 2026-07-17). Nunca
+> foram criados ou foram realocados. Docs de workflow atuais encontrados:
+> `hub/iconocracy-corpus/docs/workflows/` (2 arquivos: `iconocode-drafts-to-formal.md`,
+> `two-machine-sync.md`). Antes de referenciar um WORKFLOW-*.md aqui, criar em
+> `Specs/` ou reapontar para `docs/workflows/`. Não inventar caminho.
 
 ## Conventions (workspace-specific)
 
