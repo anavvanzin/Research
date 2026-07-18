@@ -1,0 +1,11 @@
+name: research
+# Ambiente mínimo do meta-workspace, usado pelo CI (.github/workflows/python-package-conda.yml).
+# O ambiente canônico da tese vive em hub/iconocracy-corpus/ (env `iconocracy`, Python 3.12);
+# aqui fixamos Python 3.10 para casar com o `actions/setup-python` do workflow.
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - flake8
+  - pytest
