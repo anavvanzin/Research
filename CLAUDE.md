@@ -79,7 +79,7 @@ These are the authoritative process docs — update them when the pipeline chang
 
 - **Sub-repo containment.** Only `cowork/` and `docs/` are tracked here.
   Do NOT run `git add` on anything else from this repo.
-- **conda env:** `iconocracy` (Python 3.12). Never system Python.
+- **conda env:** `iconocracy` (Python 3.11 — env rebuilt 3.12→3.11 em 2026-06-22; use path version-agnostic `/opt/homebrew/Caskroom/miniforge/base/envs/iconocracy/bin/python`). Never system Python.
 - **ABNT NBR 6023:2025** for Portuguese drafts; Chicago for English.
 - **Caveman mode** active by default (`~/.caveman-active`); `stop caveman` per session.
 - Always confirm path before creating new files.
