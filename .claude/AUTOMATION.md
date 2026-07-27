@@ -2,7 +2,7 @@
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
-Last reviewed: 2026-07-16.
+Last reviewed: 2026-07-27.
 
 ---
 
@@ -75,7 +75,7 @@ Verify cadence in each task's `*.json`/`*.yaml` before relying on this table.
 
 ## Per-project `CLAUDE.md` files
 
-8 found in workspace (max-depth 3 search):
+10 entradas ativas + 1 padrão de worktree (max-depth 3 search):
 
 | Path | Scope |
 |---|---|
@@ -123,19 +123,18 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 | `pipelines/indexing/` | Sub-repo (own `.git`) | Indexing pipeline. |
 | `rotinas/` | (removed) | **Archived 2026-04-25** to `archive/2026-04-25-stale/rotinas/`. Held only `(2)` duplicate stragglers; originals had been moved earlier and no in-tree references remained. |
 | `scripts/git_physics_guard.py` | Multi-harness git conflict guard | Script to prevent cross-session head contamination across checkouts. Installed via `scripts/install-hooks.sh`. ADR in `docs/decisions/2026-06-25-multi-harness-git-physics.md`. |
+| `.github/workflows/python-package-conda.yml` | Conda smoke test CI | Adicionado 2026-07 junto com `environment.yml`; roda em push/PR para validar o env `iconocracy` (PR #19-adjacente). Ver também `jekyll-gh-pages.yml`, `nextjs.yml`. |
+| `environment.yml` | Conda env lockfile (root) | Pin do env `iconocracy` (Python 3.11) para o smoke test do CI. Fonte-da-verdade continua sendo o env local em `/opt/homebrew/Caskroom/miniforge/base/envs/iconocracy/`. |
 
 ---
 
-## Worktrees (`.claude/worktrees/`)
+## Worktrees (`.claude/worktrees/` + `.codex/worktrees/`)
 
-2 active worktrees (gitignored as of Sprint 0; verified 2026-06-01):
+Reality mudou desde 2026-06-01: os worktrees `bold-kapitsa-1b2598/` e `quirky-meitner-9fce80/` já não existem, e a maior parte dos worktrees ativos agora vive sob `.codex/worktrees/<hash>/Research/` (ver `git worktree list`). Worktrees do Claude Code aparecem em `.claude/worktrees/<agente-adjetivo-hash>/` sob demanda.
 
-- `bold-kapitsa-1b2598/`
-- `quirky-meitner-9fce80/`
+TODO próxima revisão: rodar `git worktree list` na main tree e reconciliar a lista abaixo.
 
-The legacy `.worktrees/` directory is empty.
-
-**Policy:** worktrees inherit `CLAUDE.md` from their source branch; deletion is manual after merge; orphaned worktrees should be removed via `git worktree remove`, not `rm -rf`.
+**Policy (inalterada):** worktrees inherit `CLAUDE.md` from their source branch; deletion is manual after merge; orphaned worktrees should be removed via `git worktree remove`, not `rm -rf`.
 
 ---
 
@@ -145,6 +144,9 @@ The legacy `.worktrees/` directory is empty.
 |---|---|---|
 | `docs/onboarding-debian12/` | Debian 12 setup manuals and install scripts | Onboarding reference and automation scripts for Debian 12 environments (PR #9). |
 | `docs/superpowers/` | Creative cronjobs plans and game specs | Specifications and plans for creative cronjobs and the July "jogo-alegorias" planning (`2026-07-02-*`). |
+| `docs/CONFLUENCIA-REPOSITORIOS-2026-07-13.md` | Auditoria de confluência entre os 9 repositórios ICONOCRACIA | PR #20 (mergeado 2026-07-13). Registra 8 prioridades — ver item #8 sobre padronização da glosa `hardening` como acompanhamento explícito de `ENDURECIMENTO` em textos em inglês. |
+| `plans/2026-07-13-weekly-audit.md` | Relatório semanal automático | Gerado pela weekly-audit scheduled task (PR #21). Convém confirmar registro dela em `~/.claude/scheduled-tasks/` — TODO para próxima revisão. |
+| `.planning/2026-06-30-brainstorming-retrospective/` | Retrospectiva dos 11 specs de brainstorming | Diretório oculto, não indexado no README. Não editar sem contexto (é registro histórico). |
 
 ---
 
