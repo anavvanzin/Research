@@ -38,6 +38,7 @@ MODEL_LABEL="${MODEL_LABEL}]"
 # Context progress bar (10 chars).
 BAR_WIDTH=10
 PCT_NUM=${PCT:-0}
+[[ "$PCT_NUM" =~ ^[0-9]+$ ]] || PCT_NUM=0
 [ "$PCT_NUM" -lt 0 ] 2>/dev/null && PCT_NUM=0
 [ "$PCT_NUM" -gt 100 ] 2>/dev/null && PCT_NUM=100
 FILLED=$((PCT_NUM * BAR_WIDTH / 100))

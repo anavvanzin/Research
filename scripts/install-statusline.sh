@@ -40,6 +40,8 @@ run_test() {
 }
 
 do_uninstall() {
+    require_jq
+
     if [ -L "${TARGET}" ]; then
         rm "${TARGET}"
         echo "Removed symlink: ${TARGET}"
