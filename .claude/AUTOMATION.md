@@ -2,7 +2,7 @@
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
-Last reviewed: 2026-07-16.
+Last reviewed: 2026-07-28.
 
 ---
 
