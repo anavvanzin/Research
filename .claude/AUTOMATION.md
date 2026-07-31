@@ -2,7 +2,7 @@
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
-Last reviewed: 2026-07-16.
+Last reviewed: 2026-07-30.
 
 ---
 
@@ -123,6 +123,7 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 | `pipelines/indexing/` | Sub-repo (own `.git`) | Indexing pipeline. |
 | `rotinas/` | (removed) | **Archived 2026-04-25** to `archive/2026-04-25-stale/rotinas/`. Held only `(2)` duplicate stragglers; originals had been moved earlier and no in-tree references remained. |
 | `scripts/git_physics_guard.py` | Multi-harness git conflict guard | Script to prevent cross-session head contamination across checkouts. Installed via `scripts/install-hooks.sh`. ADR in `docs/decisions/2026-06-25-multi-harness-git-physics.md`. |
+| `scripts/statusline.sh` + `scripts/install-statusline.sh` | Cursor CLI status line | Renders Cursor CLI session context/percent in shell prompt. Added via PR #23 (2026-07-29). |
 
 ---
 

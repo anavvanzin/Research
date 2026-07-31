@@ -63,7 +63,9 @@ Single index: → **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)**
 
 ## Workflow Specifications
 
-ICONOCRACY pipeline workflows (W1–W6 + S1–S5) are documented in `Specs/WORKFLOW-*.md`:
+> ⚠️ **TODO drift 2026-07-29** — o diretório `hub/iconocracy-corpus/Specs/` não existe no repo atual (verificado). Os arquivos listados abaixo são referências históricas; confirmar se foram movidos (buscar em `docs/` ou `hub/iconocracy-corpus/docs/`) ou se nunca foram criados antes de tratar como autoritativos.
+
+ICONOCRACY pipeline workflows (W1–W6 + S1–S5) *estariam* documentados em `Specs/WORKFLOW-*.md`:
 
 | File | Content |
 | --- | --- |
@@ -73,7 +75,7 @@ ICONOCRACY pipeline workflows (W1–W6 + S1–S5) are documented in `Specs/WORKF
 | `Specs/WORKFLOW-iconocracy-synchronization.md` | W3: records.jsonl → vault → corpus-data.json → HF |
 | `Specs/ZOTERO-MCP-SETUP-STATUS.md` | Zotero MCP troubleshooting (setup broken, use Web API fallback) |
 
-These are the authoritative process docs — update them when the pipeline changes.
+Quando forem localizados/recriados, atualizar esta tabela; até lá, considerar referência quebrada.
 
 ## Conventions (workspace-specific)
 
