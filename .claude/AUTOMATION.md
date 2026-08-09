@@ -2,7 +2,7 @@
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
-Last reviewed: 2026-07-30.
+Last reviewed: 2026-08-01.
 
 ---
 
@@ -22,7 +22,7 @@ Last reviewed: 2026-07-30.
 
 ## Agents (`~/.claude/agents/`)
 
-20 agents installed globally. Thesis-specific (use these for ICONOCRACIA work):
+14 agents installed globally (pruned from 20 on 2026-07-27). Thesis-specific (use these for ICONOCRACIA work):
 
 | Agent | Purpose |
 |---|---|
@@ -31,8 +31,11 @@ Last reviewed: 2026-07-30.
 | `corpus-dedup` | Pre-save dedup check for new corpus candidates |
 | `iconclass-reviewer` | Verify Iconclass notation validity |
 | `iconocode` | Full Panofsky 3-level + 10-indicator visual analysis (ICONOCRACIA protocol) |
+| `iconographer` | Panofsky / Warburg method review of visual analyses |
+| `legal-historian` | Legal-history rigor pass (institutional / cultural / conceptual) |
+| `thesis-reviewer` | Chapter review — terminology, citation format, conceptual consistency |
 
-General-purpose (academic + engineering): `academic-{anthropologist,geographer,historian,narratologist,psychologist}`, `engineering-{code-reviewer,codebase-onboarding,git-workflow-master,minimal-change-engineer,software-architect,technical-writer}`, `specialized-{document-generator,mcp-builder}`, `support-{analytics-reporter,executive-summary-generator}`.
+Academic panel: `academic-{anthropologist,geographer,historian,narratologist,peer-reviewer,psychologist}`.
 
 ---
 
@@ -42,29 +45,35 @@ General-purpose (academic + engineering): `academic-{anthropologist,geographer,h
 
 Thesis-relevant defaults: `iconocracia-agent`, `corpus-scout`, `corpus-scout-workspace`, `corpus-stats`, `iconocode-analyze`, `iconocode-batch`, `validate-corpus`, `compilar-tese`, `dir410346`, `abnt-format`, `citation-management`, `citation-audit`, `claude-md`, `AutoResearchClaw` (live-symlinked from `~/Documents/GitHub/AutoResearchClaw`).
 
-**Project (`.claude/skills/`)** — 1 entry:
+**Project (`.claude/skills/`)** — 6 entries:
 
 | Skill | Purpose |
 |---|---|
 | `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. |
+| `abnt-6023` | Local ABNT NBR 6023:2025 reference formatter. |
+| `academic-research-skills` | Bundle of research helpers for academic writing. |
+| `AutoResearchClaw` | Autonomous 23-stage research pipeline (live-symlink to `~/Documents/GitHub/AutoResearchClaw`). |
+| `hegelian-dialectic` | Dialectic argument scaffolder. |
+| `playwright` | Playwright browser automation helpers for research capture. |
 
 ---
 
 ## Scheduled tasks (`~/.claude/scheduled-tasks/`)
 
-12 entries. Mixed cadence (cron + session triggers).
+13 entries. Mixed cadence (cron + session triggers).
 
 | Task | Cadence (assumed) | Purpose |
 |---|---|---|
 | `coding-progress` | daily | Coding session summary |
 | `corpus-validation` | daily | Schema-validate corpus JSONL |
-| `daily-review` | daily | Personal review prompt |
+| `daily-review` | daily | Governance-doc review + terminology sweep |
 | `dashboard-refresh` | daily | Rebuild thesis dashboard |
 | `drift-alert` | daily | Detect drift in tracked artifacts |
 | `gap-analysis` | weekly | Bibliography/coverage gap scan |
 | `iconocode-backfill` | weekly | Run iconocode on un-analyzed corpus items |
 | `thesis-progress-daily` | daily | Thesis chapter progress digest |
 | `vault-backup` | daily | Backup Obsidian vaults |
+| `dotclaude-backup` | daily | Backup `~/.claude/` config + skills |
 | `daily-corpus-context` | session-start | Inject corpus status line at session start |
 | `weekly-goal-prompt` | Mon session-start | Weekly writing goal adjustment prompt |
 | `researchclaw-summary` | after C5 | Prompt to review ResearchClaw candidates |
@@ -80,7 +89,7 @@ Verify cadence in each task's `*.json`/`*.yaml` before relying on this table.
 | Path | Scope |
 |---|---|
 | `/Users/ana/Research/CLAUDE.md` | Workspace root index for Claude Code sessions; defers to `hub/iconocracy-corpus/CLAUDE.md` for thesis work. |
-| `hub/iconocracy-corpus/CLAUDE.md` | **Authoritative** for thesis monorepo. Dual-agent pipeline, thesis compile, webiconocracy app, Gallica MCP. |
+| `hub/iconocracy-corpus/CLAUDE.md` | **Authoritative** for thesis monorepo. Dual-agent pipeline, thesis compile, Gallica MCP. (webiconocracy app retired.) |
 | `apps/iconocracia-companion/CLAUDE.md` | Companion app conventions. |
 | `vaults/CLAUDE.md` | Obsidian vault conventions. |
 | `united-by-marriage/CLAUDE.md` | (Personal project, unrelated.) |
@@ -129,10 +138,7 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 
 ## Worktrees (`.claude/worktrees/`)
 
-2 active worktrees (gitignored as of Sprint 0; verified 2026-06-01):
-
-- `bold-kapitsa-1b2598/`
-- `quirky-meitner-9fce80/`
+16 active worktrees (gitignored as of Sprint 0; verified 2026-08-01). List drifts as parallel Claude sessions spawn/retire trees; run `ls .claude/worktrees/` for the live set. Sample entries: `quirky-meitner-9fce80/`, `eager-wilson-f211fb/`, `reverent-solomon-051f3c/`.
 
 The legacy `.worktrees/` directory is empty.
 
