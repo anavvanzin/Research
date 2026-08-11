@@ -2,7 +2,7 @@
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
-Last reviewed: 2026-08-01.
+Last reviewed: 2026-08-11.
 
 ---
 
@@ -45,12 +45,11 @@ Academic panel: `academic-{anthropologist,geographer,historian,narratologist,pee
 
 Thesis-relevant defaults: `iconocracia-agent`, `corpus-scout`, `corpus-scout-workspace`, `corpus-stats`, `iconocode-analyze`, `iconocode-batch`, `validate-corpus`, `compilar-tese`, `dir410346`, `abnt-format`, `citation-management`, `citation-audit`, `claude-md`, `AutoResearchClaw` (live-symlinked from `~/Documents/GitHub/AutoResearchClaw`).
 
-**Project (`.claude/skills/`)** — 6 entries:
+**Project (`.claude/skills/`)** — 5 entries:
 
 | Skill | Purpose |
 |---|---|
 | `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. |
-| `abnt-6023` | Local ABNT NBR 6023:2025 reference formatter. |
 | `academic-research-skills` | Bundle of research helpers for academic writing. |
 | `AutoResearchClaw` | Autonomous 23-stage research pipeline (live-symlink to `~/Documents/GitHub/AutoResearchClaw`). |
 | `hegelian-dialectic` | Dialectic argument scaffolder. |
@@ -138,7 +137,7 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 
 ## Worktrees (`.claude/worktrees/`)
 
-16 active worktrees (gitignored as of Sprint 0; verified 2026-08-01). List drifts as parallel Claude sessions spawn/retire trees; run `ls .claude/worktrees/` for the live set. Sample entries: `quirky-meitner-9fce80/`, `eager-wilson-f211fb/`, `reverent-solomon-051f3c/`.
+20 active worktrees (gitignored as of Sprint 0; verified 2026-08-11). List drifts as parallel Claude sessions spawn/retire trees; run `ls .claude/worktrees/` for the live set. Sample entries: `quirky-meitner-9fce80/`, `eager-wilson-f211fb/`, `reverent-solomon-051f3c/`.
 
 The legacy `.worktrees/` directory is empty.
 
