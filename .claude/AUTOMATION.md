@@ -199,6 +199,43 @@ both firing on every push to `main` and contending for the same `pages` concurre
 
 ---
 
+## External CI surfaces (not versioned)
+
+Automation that posts to this repo from outside it. Nothing here lives in the tree, so the
+drift guard cannot check it — and nothing here is 🖥️ host-only either, since it runs on a
+third party's servers rather than on Ana's Mac. Registered so a red mark from an
+unexplained source is traceable, per the **Drift protocol** in [`../AGENTS.md`](../AGENTS.md).
+
+| Surface | Trigger | Signal | State |
+|---|---|---|---|
+| **Vercel Git integration** → project `anavanzin/research` | every push, all branches | legacy **commit status** (context `Vercel`), not a check run — so it is invisible to check-run APIs and to the check-suite rollup | ⚠️ see below |
+| Socket Security | pull requests | check runs (`Pull Request Alerts`, `Project Report`) | active, green |
+| Cursor Automation | pull requests | check run (`Find critical bugs`) | active, neutral |
+
+### Vercel — pending removal (2026-08-30)
+
+The project deployed this repo successfully on nearly every commit from at least
+2026-07-22 to 2026-08-09, then turned red today with `"Account is blocked."`
+(`research-anavanzin.vercel.app` returns HTTP 402).
+
+It should not be connected at all: this repo has **no HTML entrypoint anywhere**, no
+`package.json`, no `vercel.json`, no framework and no build output. No Root-Directory or
+Output-Directory setting can produce a real site from it, so every green "Deployment has
+completed" published nothing. Removal is a Vercel-dashboard action (Settings → Git →
+Disconnect, or delete the project); there is nothing in this tree to change, and adding a
+`vercel.json` to suppress deploys would be fighting config with config.
+
+Two distinct problems — do not conflate them:
+
+1. **the account block** is account-wide and affects every Vercel project on it; and
+2. **this repo should not be on Vercel**, which is what removal fixes.
+
+Disconnecting this repo does **not** lift the account block.
+
+Update this section with the decision and its date once the disconnection is done.
+
+---
+
 ## What this index does *not* duplicate
 
 - `~/.claude/CLAUDE.md` — global user config; reference, do not copy.
