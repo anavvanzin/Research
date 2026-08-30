@@ -44,13 +44,13 @@ Agentes **MUST NOT** iniciar dev servers, watchers ou crons da raiz.
 | Qualquer trabalho de tese | `hub/iconocracy-corpus/` | Tem `CLAUDE.md` autoritativo — leia-o primeiro |
 | Editar capítulos | `hub/iconocracy-corpus/tese/manuscrito/` | Lar canônico de chapters desde 2026-06-04 |
 | Compilar tese | `hub/iconocracy-corpus/vault/tese/` | `make docx`/`make pdf` — Makefile permanece aqui (migração pendente) |
-| Corpus / dados | `hub/iconocracy-corpus/corpus/corpus-data.json` | Hook protege contra binários crus em `data/raw/` |
+| Corpus / dados | `hub/iconocracy-corpus/corpus/corpus-data.json` | Hook protege contra binários crus em `hub/iconocracy-corpus/data/raw/` |
 | Notebooks análise | `hub/iconocracy-corpus/notebooks/` | conda env `iconocracy` (Python 3.11 — rebuild 3.12→3.11 em 2026-06-22) |
 | Workflows W1–W6 / S1–S5 | `hub/iconocracy-corpus/Specs/WORKFLOW-*.md` (**TODO drift 2026-07-29**: diretório `Specs/` ausente no repo; verificar se foi movido ou nunca criado) | Docs autoritativos de pipeline (referência quebrada) |
 | Agentes / integrações cowork | `cowork/agents/` · `cowork/integrations/` | 85 agentes The Agency; tracked nesta raiz |
 | Plano de prioridade | `.opencode/plans/iconocracy-priority-plan.md` | Horizontes + desbloqueios |
 | Hooks / automação inventário | `.claude/AUTOMATION.md` | Índice único; atualize ao adicionar |
-| Descobrir skill | Invocar skill `find-skill` | NÃO enumerar skills manualmente |
+| Descobrir skill | Invocar skill `find-skills` | NÃO enumerar skills manualmente |
 
 ## Convenções herdadas
 
@@ -73,12 +73,12 @@ Agentes **MUST NOT** iniciar dev servers, watchers ou crons da raiz.
 
 ## Descoberta de skills (regra)
 
-- **Nunca** enumerar skills manualmente. Usar `find-skill`:
-  - `find-skill <intent>` para busca semântica
-  - Se `find-skill` não achar, usar `hermes skills list <category>` com filtro
+- **Nunca** enumerar skills manualmente. Usar `find-skills`:
+  - `find-skills <intent>` para busca semântica
+  - Se `find-skills` não achar, usar `hermes skills list <category>` com filtro
   - Só como último recurso: `skills_list` e busca visual
 - 594 skills instaladas (Jul/2026). A maioria é ruído para o workflow ICONOCRACY.
-  Confiar no `find-skill`, não na memória.
+  Confiar no `find-skills`, não na memória.
 
 ## Drift protocol (anti-classe-de-bug)
 
