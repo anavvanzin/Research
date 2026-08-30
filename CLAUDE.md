@@ -57,9 +57,32 @@ Quick paths (from `hub/iconocracy-corpus/`):
 - `vaults/` — Obsidian vaults (see `vaults/CLAUDE.md`)
 - `shared/` — shared datasets and reference libraries
 
+## Remote / web sessions
+
+This repo is cloned into remote and web Claude Code sessions (claude.ai/code, GitHub
+integrations). Such a session gets **only the tracked meta-repo** — a Linux container at
+`/home/user/Research`, not `/Users/ana/Research`. Absent by design:
+
+| Not present remotely | Why |
+| --- | --- |
+| `hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`, `hermes-workspace/` | Sibling sub-repos with their own `.git`; never tracked here |
+| `~/.claude/agents/` (14 agents), `~/.claude/scheduled-tasks/` (13 tasks) | Live in the macOS home dir |
+| `.claude/skills/{abnt-6023,academic-research-skills,AutoResearchClaw,hegelian-dialectic,playwright}` | Exist on the Mac but were never committed |
+| `.claude/worktrees/`, `Tools/`, `~/.hermes/` | 🖥️ host-only |
+| **Plugins** (e.g. `claude-scientific-writer`) | Plugins do not sync to remote containers |
+
+A `/plugin-name:command` that works on the Mac returns **Unknown command** here. That is
+the plugin being absent, not a broken skill. When a capability must work everywhere, ship
+it as a versioned skill under `.claude/skills/` — see `scientific-writer`.
+
+Surfaces are marked 🖥️ **host-only** in [`.claude/AUTOMATION.md`](.claude/AUTOMATION.md).
+Do not try to "restore" one in a remote session, and do not treat its absence as drift.
+
 ## Automation
 
 Single index: → **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)**
+
+Governance docs are drift-checked in CI by `tests/test_docs_drift.py`.
 
 ## Workflow Specifications
 
@@ -96,4 +119,4 @@ Quando forem localizados/recriados, atualizar esta tabela; até lá, considerar 
 
 - User profile, plan tier → `~/.claude/CLAUDE.md`
 - Thesis pipeline internals → `hub/iconocracy-corpus/CLAUDE.md`
-- Skill catalog → `find-skill` skill
+- Skill catalog → `find-skills` skill
