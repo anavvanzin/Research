@@ -61,6 +61,60 @@ Quick paths (from `hub/iconocracy-corpus/`):
 
 Single index: → **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)**
 
+Wiring ativo (`.claude/settings.json`): hooks do *self-improving-agent* em
+PreToolUse Bash, PostToolUse Bash e SessionEnd, gravando em
+`.claude/self-improving-agent/memory/`. Os hooks de lock/plano
+(`.claude/hooks/*.sh`, estado em `.claude/locks/`) existem mas estão **inertes
+por padrão** — só passam a valer se forem explicitamente ligados no
+`settings.json`.
+
+## Root-level commands (a raiz TEM verificação)
+
+A raiz não é um codebase, mas — ao contrário do que `AGENTS.md` afirma — ela tem
+CI própria e um par de comandos que valem para o meta-workspace em si:
+
+| Tarefa | Comando |
+| --- | --- |
+| Testes do repo | `pytest` — `tests/test_repo_sanity.py` compila (`py_compile`) todo `.py` versionado |
+| Lint | `flake8 . --select=E9,F63,F7,F82` (erros de sintaxe / nomes indefinidos) |
+| Ambiente do CI | `conda env update --file environment.yml` — env `research`, **Python 3.10** |
+| Guard de ownership (pre-commit) | `bash scripts/install-hooks.sh` (modo `info`; `enforce` bloqueia) · `python3 scripts/git_physics_guard.py` avulso |
+| Statusline | `bash scripts/install-statusline.sh` |
+
+`.github/workflows/python-package-conda.yml` roda lint + `pytest` a cada push.
+O smoke test existe justamente porque `pytest` sem teste coletável sai com
+código 5 e quebra o job — não o remova ao adicionar testes reais.
+
+**Dois Pythons, de propósito:** `environment.yml` (env `research`, 3.10) é só
+para casar com o `actions/setup-python` do CI desta raiz. O ambiente canônico da
+pesquisa continua sendo `iconocracy` (3.11), em `hub/iconocracy-corpus/`. Não
+unifique um no outro.
+
+`scripts/git_physics_guard.py` é detector **read-only**: lê
+`docs/decisions/AGENT-OWNERSHIP.md` e valida que os caminhos staged pertencem ao
+harness ativo (`--harness`, padrão `$HARNESS_ACTIVE` ou `codex-app`; `--mode enforce` para bloquear). Saída 0 = limpo, 1 = violação,
+2 = erro do próprio script. Ele materializa a regra de contenção de sub-repos —
+ao vê-lo bloquear um commit, o caminho provavelmente pertence a outro repo.
+
+Os workflows `jekyll-gh-pages.yml` e `nextjs.yml` são *samples* do GitHub que
+nunca foram adaptados: não há site Jekyll nem app Next.js nesta raiz.
+
+## Sibling research repos (fora da árvore local)
+
+Além dos sub-repos siblings listados acima, quatro repositórios da pesquisa vivem
+no GitHub da autora e costumam ser clonados lado a lado em sessões remotas —
+cada um com seu próprio `CLAUDE.md`:
+
+| Repo | O que é |
+| --- | --- |
+| `anavvanzin/artigos` | Casa canônica dos artigos prontos + `tools/compilar.sh` e a auditoria transversal `tools/audit_artigos.py` |
+| `anavvanzin/biblioteca` | Camada pública dos artigos (gerador estático → GitHub Pages) |
+| `anavvanzin/ai-agent-notes` | Artigo sobre construção de agentes (só documentação) |
+| `anavvanzin/kant-visao-computacional` | Relatório Kant × visão computacional (só dados; o relatório em si nunca foi commitado) |
+
+A auditoria em `artigos/` assume os repositórios **irmãos no mesmo
+diretório-pai**; fora dessa disposição, `--todos` e `--root` não encontram nada.
+
 ## Workflow Specifications
 
 > ⚠️ **TODO drift 2026-07-29** — o diretório `hub/iconocracy-corpus/Specs/` não existe no repo atual (verificado). Os arquivos listados abaixo são referências históricas; confirmar se foram movidos (buscar em `docs/` ou `hub/iconocracy-corpus/docs/`) ou se nunca foram criados antes de tratar como autoritativos.
