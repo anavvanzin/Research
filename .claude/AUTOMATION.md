@@ -249,7 +249,17 @@ tabela de superfícies ativas acima.
 ## Quick decision rules
 
 - **New automated behavior (on every X):** add a hook in the right `settings.json` (project for project-scoped, global for cross-project). Do **not** add it in both.
-- **New cross-session capability:** create a skill in `~/.claude/skills/` and reference here only if thesis-relevant.
+- **New capability — decida primeiro se precisa ser portável:**
+  - **Precisa funcionar em sessão remota/web** (ou seja: precisa existir num clone
+    novo, sem o Mac) → versione em `.claude/skills/<nome>/SKILL.md` **e**
+    acrescente a linha na tabela de skills de projeto acima. É o único caminho que
+    sobrevive a um container; `~/.claude/skills/` e plugins não sincronizam, e uma
+    capacidade criada só lá reaparece como *Unknown command* fora do Mac.
+  - **Só faz sentido no Mac** (depende de path local, symlink, credencial da
+    máquina) → `~/.claude/skills/`, 🖥️ host-only, e referencie aqui apenas se for
+    relevante para a tese.
+  Na dúvida, versione: o custo de versionar algo que só roda no Mac é uma linha
+  na tabela; o de não versionar algo portável é a sessão remota falhar sem pista.
 - **New scheduled task:** add to `~/.claude/scheduled-tasks/` and add a row to the table above.
 - **New project rule:** edit the relevant `CLAUDE.md`; do not invent a new one.
 - **After any Coding Agent session that edits `SKILL.md` or `CLAUDE.md`:** trigger a Code Review session to catch documentation drift before it accumulates.
