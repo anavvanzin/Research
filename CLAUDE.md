@@ -10,8 +10,10 @@ This file is for Claude Code sessions; the human-readable counterpart is
 
 ## Workspace shape
 
-This is a **meta-workspace, not a monorepo.** Only versions meta files
-(`cowork/`, `docs/`, `.claude/AUTOMATION.md`, `.gitignore`). Sub-repos are
+This is a **meta-workspace, not a monorepo.** It versions only meta files —
+`cowork/`, `docs/`, `.claude/`, `.github/`, `.opencode/`, `.planning/`, `data/`,
+`plans/`, `scripts/`, `tests/` and the root files (`AGENTS.md`, `CLAUDE.md`,
+`README.md`, `environment.yml`, `.gitignore`, `.gitattributes`). Sub-repos are
 siblings with their own `.git`.
 
 ```
@@ -159,8 +161,12 @@ Quando forem localizados/recriados, atualizar esta tabela; até lá, considerar 
 
 ## Conventions (workspace-specific)
 
-- **Sub-repo containment.** Only `cowork/` and `docs/` are tracked here.
-  Do NOT run `git add` on anything else from this repo.
+- **Sub-repo containment.** Do NOT run `git add` on a **sub-repo** path
+  (`hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`,
+  `hermes-workspace/`) — each has its own `.git`. The meta surfaces listed under
+  *Workspace shape* above are tracked here and may be edited normally.
+  <!-- drift-pin: 2026-09-09 dizia "only cowork/ and docs/", já falso: tests/,
+       scripts/, .github/ e .claude/ eram rastreados antes disso. -->
 - **conda env:** `iconocracy` (Python 3.11 — env rebuilt 3.12→3.11 em 2026-06-22; use path version-agnostic `/opt/homebrew/Caskroom/miniforge/base/envs/iconocracy/bin/python`). Never system Python.
 - **ABNT NBR 6023:2025** for Portuguese drafts; Chicago for English.
 - **Caveman mode** active by default (`~/.caveman-active`); `stop caveman` per session.

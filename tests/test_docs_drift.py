@@ -54,6 +54,16 @@ _VERSIONED_ROOTS = frozenset({
     "cowork", "data", "docs", "plans", "scripts", "tests",
 })
 
+# Arquivos versionados na raiz. Um token sem "/" só é verificável se estiver aqui:
+# nomes soltos aparecem muito na prosa justamente para falar de arquivos que **não**
+# existem (`package.json`, `vercel.json`, `nextjs.yml`), então checar todos daria
+# falso positivo. Declarados, como as raízes acima, para que renomear ou remover um
+# deles com a referência de pé continue falhando.
+_VERSIONED_ROOT_FILES = frozenset({
+    "AGENTS.md", "CLAUDE.md", "README.md",
+    "environment.yml", ".gitignore", ".gitattributes",
+})
+
 _BACKTICKED = re.compile(r"`([^`\n]+)`")
 
 
@@ -89,14 +99,15 @@ def _candidate_paths(doc: str) -> list[tuple[int, str]]:
     found: list[tuple[int, str]] = []
     for lineno, line in _iter_doc_lines(doc):
         for token in _BACKTICKED.findall(line):
-            if "/" not in token:
-                continue  # nome solto (`CLAUDE.md`) é ambíguo, não é afirmação de caminho
             if _NOT_A_LITERAL_PATH & set(token):
                 continue
             if token.startswith(("/", "~", "http")):
                 continue
-            first_segment = token.split("/", 1)[0]
-            if first_segment not in _VERSIONED_ROOTS:
+            if "/" not in token:
+                # Nome solto: só conta se for arquivo de raiz versionado e declarado.
+                if token not in _VERSIONED_ROOT_FILES:
+                    continue
+            elif token.split("/", 1)[0] not in _VERSIONED_ROOTS:
                 continue
             found.append((lineno, token))
     return found
@@ -228,13 +239,18 @@ def test_versioned_roots_are_declared() -> None:
         ["git", "ls-files", "-z"],
         cwd=REPO_ROOT, capture_output=True, text=True, check=True,
     ).stdout
-    tracked_dirs = {
-        Path(entry).parts[0]
-        for entry in out.split("\0")
-        if entry and len(Path(entry).parts) > 1
-    }
-    missing = tracked_dirs - _VERSIONED_ROOTS
-    assert not missing, (
-        f"raízes rastreadas ausentes de _VERSIONED_ROOTS: {sorted(missing)} — "
+    entries = [e for e in out.split("\0") if e]
+    tracked_dirs = {Path(e).parts[0] for e in entries if len(Path(e).parts) > 1}
+    tracked_files = {e for e in entries if len(Path(e).parts) == 1}
+
+    missing_dirs = tracked_dirs - _VERSIONED_ROOTS
+    assert not missing_dirs, (
+        f"raízes rastreadas ausentes de _VERSIONED_ROOTS: {sorted(missing_dirs)} — "
         f"acrescente-as em tests/test_docs_drift.py para que suas referências sejam checadas"
+    )
+
+    missing_files = tracked_files - _VERSIONED_ROOT_FILES
+    assert not missing_files, (
+        f"arquivos de raiz rastreados ausentes de _VERSIONED_ROOT_FILES: "
+        f"{sorted(missing_files)} — acrescente-os em tests/test_docs_drift.py"
     )
