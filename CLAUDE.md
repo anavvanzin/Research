@@ -11,7 +11,7 @@ This file is for Claude Code sessions; the human-readable counterpart is
 ## Workspace shape
 
 This is a **meta-workspace, not a monorepo.** It versions only meta files —
-`cowork/`, `docs/`, `.claude/`, `.github/`, `.opencode/`, `.planning/`, `data/`,
+`cowork/`, `docs/`, `.claude/`, `.devcontainer/`, `.github/`, `.opencode/`, `.planning/`, `data/`,
 `plans/`, `scripts/`, `tests/` and the root files (`AGENTS.md`, `CLAUDE.md`,
 `README.md`, `environment.yml`, `.gitignore`, `.gitattributes`). Sub-repos are
 siblings with their own `.git`.

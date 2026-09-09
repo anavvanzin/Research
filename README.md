@@ -39,7 +39,7 @@ próprio. Não existe em sessões remotas/web — ver **Remote / web sessions** 
 ## Convenções
 
 - **Contenção de sub-repos.** Não rode `git add` em caminho de sub-repo (cada um tem
-  seu `.git`). Este repo rastreia as superfícies-meta: `cowork/`, `docs/`, `.claude/`, `.github/`, `.opencode/`, `.planning/`,
+  seu `.git`). Este repo rastreia as superfícies-meta: `cowork/`, `docs/`, `.claude/`, `.devcontainer/`, `.github/`, `.opencode/`, `.planning/`,
 `data/`, `plans/`, `scripts/`, `tests/` e os arquivos de raiz.
 - **Ambiente conda:** `iconocracy` (Python 3.11 — rebuild 3.12→3.11 em 2026-06-22).  
 - **Citação:** ABNT NBR 6023:2025 para português; Chicago para inglês.

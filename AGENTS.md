@@ -7,7 +7,7 @@ orienta agentes de IA; humano: [`README.md`](README.md); Claude Code:
 ## Natureza
 
 **Meta-workspace, NÃO codebase.** A raiz versiona as superfícies-meta:
-`cowork/`, `docs/`, `.claude/`, `.github/`, `.opencode/`, `.planning/`,
+`cowork/`, `docs/`, `.claude/`, `.devcontainer/`, `.github/`, `.opencode/`, `.planning/`,
 `data/`, `plans/`, `scripts/`, `tests/` e os arquivos de raiz (`AGENTS.md`, `CLAUDE.md`, `README.md`, `environment.yml`,
 `.gitignore`, `.gitattributes`). Trabalho real vive em sub-repos com `.git`
 próprio.
