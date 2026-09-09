@@ -69,7 +69,7 @@ integrations). Such a session gets **only the tracked meta-repo** — a Linux co
 | --- | --- |
 | `hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`, `hermes-workspace/` | Sibling sub-repos with their own `.git`; never tracked here |
 | `~/.claude/agents/` (14 agents), `~/.claude/scheduled-tasks/` (13 tasks) | Live in the macOS home dir |
-| `.claude/skills/{abnt-6023,academic-research-skills,AutoResearchClaw,hegelian-dialectic,playwright}` | Exist on the Mac but were never committed |
+| `.claude/skills/{academic-research-skills,AutoResearchClaw,hegelian-dialectic,playwright}` | Exist on the Mac but were never committed. Canonical list: `.claude/AUTOMATION.md` |
 | `.claude/worktrees/`, `Tools/`, `~/.hermes/` | 🖥️ host-only |
 | **Plugins** (e.g. `claude-scientific-writer`) | Plugins do not sync to remote containers |
 

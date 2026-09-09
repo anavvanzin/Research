@@ -25,12 +25,15 @@ See **Remote / web sessions** in [`../CLAUDE.md`](../CLAUDE.md).
 | Surface | Config file | Trigger | Purpose |
 |---|---|---|---|
 | Self-improving-agent (project) | `.claude/settings.json` | PreToolUse Bash\|Write\|Edit, PostToolUse Bash, SessionEnd `.*` | Captures tool I/O (Bash + Write/Edit pre, Bash post) + session summaries into `.claude/self-improving-agent/memory/`. Stdin-JSON invocation; hooks scripts at `.claude/self-improving-agent/hooks/{pre-tool,post-bash,session-end}.sh`. Canonical wiring as of 2026-04-25 (`settings.local.json` `hooks` block stripped). |
-| Corpus protection (global) | `~/.claude/settings.json` | PreToolUse Write, PostToolUse Edit\|Write | Blocks binary image writes into `iconocracy-corpus/data/raw/`; warns on `corpus-data.json` edits; runs `tools/scripts/validate_schemas.py` on corpus JSONL changes. Owned by global config — do not duplicate at project level. |
+| Corpus protection (global) — 🖥️ **host-only** | `~/.claude/settings.json` | PreToolUse Write, PostToolUse Edit\|Write | Blocks binary image writes into `iconocracy-corpus/data/raw/`; warns on `corpus-data.json` edits; runs `tools/scripts/validate_schemas.py` on corpus JSONL changes. Owned by global config — do not duplicate at project level. |
 | Lock & Plan coordination (project) | `.claude/settings.json` (optional opt-in) | PreToolUse Edit\|Write, SessionStart, SessionEnd, UserPromptSubmit | Dev-infrastructure hooks (inert by default) to coordinate parallel sessions. Wired optionally to `task-lock-enforcer.sh`, `session-lock-awareness.sh`, `session-lock-release.sh`, and `master-plan-reminder.sh`. Lock state is tracked at `.claude/locks/`. |
 
-**Disabled via env:** `ECC_DISABLED_HOOKS=pre:bash:gateguard-fact-force,pre:edit-write:gateguard-fact-force` (set in shell, turns off ECC plugin's fact gate).
+**Disabled via env** — 🖥️ **host-only** (variável de shell do Mac): `ECC_DISABLED_HOOKS=pre:bash:gateguard-fact-force,pre:edit-write:gateguard-fact-force` (set in shell, turns off ECC plugin's fact gate).
 
-**Permission denies (global):** `git reset --hard`, `git push --force`, `rm -rf` on `iconocracy-corpus/{tese,vault,corpus}` paths.
+**Permission denies (global)** — 🖥️ **host-only**: `git reset --hard`, `git push --force`,
+`rm -rf` em caminhos de `iconocracy-corpus/{tese,vault,corpus}`. Vêm de
+`~/.claude/settings.json`: **numa sessão remota esses bloqueios não existem**. Não
+presuma proteção contra comando destrutivo fora do Mac.
 
 ---
 
