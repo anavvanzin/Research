@@ -6,17 +6,28 @@ orienta agentes de IA; humano: [`README.md`](README.md); Claude Code:
 
 ## Natureza
 
-**Meta-workspace, NÃO codebase.** A raiz versiona apenas `cowork/`, `docs/`,
-`.claude/AUTOMATION.md`, `.gitignore`. Trabalho real vive em sub-repos com
-`.git` próprio.
+**Meta-workspace, NÃO codebase.** A raiz versiona as superfícies-meta:
+`cowork/`, `docs/`, `.claude/`, `.devcontainer/`, `.github/`, `.opencode/`, `.planning/`,
+`data/`, `plans/`, `scripts/`, `tests/` e os arquivos de raiz (`AGENTS.md`, `CLAUDE.md`, `README.md`, `environment.yml`,
+`.gitignore`, `.gitattributes`). Trabalho real vive em sub-repos com `.git`
+próprio.
 
 ## Constraints de acesso (read-only / proibições)
 
-- Agentes **MUST NOT** rodar `git add` fora de `cowork/` ou `docs/`. Sub-repos
+- Agentes **MUST NOT** rodar `git add` em caminho de sub-repo. Sub-repos
   (`hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`,
   `hermes-workspace/`) têm `.git` próprio — operar dentro deles.
-- Agentes **MUST NOT** executar `build`, `test`, `lint`, `typecheck` na raiz:
-  não há `package.json`/`pyproject.toml` aqui. Desça ao sub-repo.
+  O que esta raiz **versiona** é o conjunto de arquivos-meta: `cowork/`, `docs/`,
+  `.claude/`, `.github/`, `.opencode/`, `.planning/`, `data/`, `plans/`,
+  `scripts/`, `tests/` e os arquivos de raiz (`AGENTS.md`, `CLAUDE.md`,
+  `README.md`, `environment.yml`, `.gitignore`, `.gitattributes`).
+  <!-- drift-pin: 2026-09-09 a regra dizia "fora de cowork/ ou docs/", já falsa
+       antes disso — tests/, scripts/, .github/ e .claude/ já eram rastreados. -->
+- Agentes **PODEM** rodar `test` e `lint` **na raiz**: ela tem CI própria
+  (`.github/workflows/python-package-conda.yml` → `flake8` + `pytest`). Não há
+  `build` nem `typecheck` aqui, e não existe `package.json`/`pyproject.toml` —
+  o ambiente do CI vem de `environment.yml`. Ver **Root-level commands** em
+  [`CLAUDE.md`](CLAUDE.md). Para qualquer verificação de sub-repo, desça até ele.
 - Agentes **MUST NOT** modificar `.claude/AUTOMATION.md` sem ler integralmente
   antes — é índice canônico de hooks/skills/agents/scheduled tasks.
 - Agentes **MUST NOT** criar arquivos novos sem confirmar caminho-alvo (regra
@@ -44,13 +55,13 @@ Agentes **MUST NOT** iniciar dev servers, watchers ou crons da raiz.
 | Qualquer trabalho de tese | `hub/iconocracy-corpus/` | Tem `CLAUDE.md` autoritativo — leia-o primeiro |
 | Editar capítulos | `hub/iconocracy-corpus/tese/manuscrito/` | Lar canônico de chapters desde 2026-06-04 |
 | Compilar tese | `hub/iconocracy-corpus/vault/tese/` | `make docx`/`make pdf` — Makefile permanece aqui (migração pendente) |
-| Corpus / dados | `hub/iconocracy-corpus/corpus/corpus-data.json` | Hook protege contra binários crus em `data/raw/` |
+| Corpus / dados | `hub/iconocracy-corpus/corpus/corpus-data.json` | Hook protege contra binários crus em `hub/iconocracy-corpus/data/raw/` |
 | Notebooks análise | `hub/iconocracy-corpus/notebooks/` | conda env `iconocracy` (Python 3.11 — rebuild 3.12→3.11 em 2026-06-22) |
 | Workflows W1–W6 / S1–S5 | `hub/iconocracy-corpus/Specs/WORKFLOW-*.md` (**TODO drift 2026-07-29**: diretório `Specs/` ausente no repo; verificar se foi movido ou nunca criado) | Docs autoritativos de pipeline (referência quebrada) |
 | Agentes / integrações cowork | `cowork/agents/` · `cowork/integrations/` | 85 agentes The Agency; tracked nesta raiz |
 | Plano de prioridade | `.opencode/plans/iconocracy-priority-plan.md` | Horizontes + desbloqueios |
 | Hooks / automação inventário | `.claude/AUTOMATION.md` | Índice único; atualize ao adicionar |
-| Descobrir skill | Invocar skill `find-skill` | NÃO enumerar skills manualmente |
+| Descobrir skill | Invocar skill `find-skills` | NÃO enumerar skills manualmente |
 
 ## Convenções herdadas
 
@@ -73,12 +84,12 @@ Agentes **MUST NOT** iniciar dev servers, watchers ou crons da raiz.
 
 ## Descoberta de skills (regra)
 
-- **Nunca** enumerar skills manualmente. Usar `find-skill`:
-  - `find-skill <intent>` para busca semântica
-  - Se `find-skill` não achar, usar `hermes skills list <category>` com filtro
+- **Nunca** enumerar skills manualmente. Usar `find-skills`:
+  - `find-skills <intent>` para busca semântica
+  - Se `find-skills` não achar, usar `hermes skills list <category>` com filtro
   - Só como último recurso: `skills_list` e busca visual
 - 594 skills instaladas (Jul/2026). A maioria é ruído para o workflow ICONOCRACY.
-  Confiar no `find-skill`, não na memória.
+  Confiar no `find-skills`, não na memória.
 
 ## Drift protocol (anti-classe-de-bug)
 

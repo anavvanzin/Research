@@ -14,14 +14,17 @@ de produção vivem fora deste repo, com seu próprio `.git`.
 | **Automação** | `.claude/AUTOMATION.md` | Índice único de hooks, skills, agents, scheduled tasks |
 | **Planos** | `.opencode/plans/` | Planos prioritários e roadmaps |
 
-## Acesso rápido à tese
+## Acesso rápido à tese — 🖥️ host-only
 
-Caminhos a partir de `hub/iconocracy-corpus/`:
+Caminhos relativos a `hub/iconocracy-corpus/`, um sub-repo irmão com `.git`
+próprio. Não existe em sessões remotas/web — ver **Remote / web sessions** em
+[`CLAUDE.md`](CLAUDE.md).
 
 | O quê | Caminho |
 | --- | --- |
-| Capítulos da tese | `vault/tese/` |
-| Manuscrito e revisões | `tese/manuscrito/` · `tese/revisoes/` |
+| Capítulos da tese | `tese/manuscrito/` (lar canônico desde 2026-06-04; era `vault/tese/`) |
+| Revisões | `tese/revisoes/` |
+| Compilação | `make -C vault/tese/` (Makefile permanece aqui; migração pendente) |
 | Entrega mais recente | `tese/Entrega_Orientador_Mar2026_FINAL/` |
 | Corpus canônico | `corpus/corpus-data.json` (264 itens) |
 | Notebooks | `notebooks/` (01–08) |
@@ -35,8 +38,10 @@ Caminhos a partir de `hub/iconocracy-corpus/`:
 
 ## Convenções
 
-- **Contenção de sub-repos.** Apenas `cowork/` e `docs/` são rastreados neste repo.
-- **Ambiente conda:** `iconocracy` (Python 3.12).  
+- **Contenção de sub-repos.** Não rode `git add` em caminho de sub-repo (cada um tem
+  seu `.git`). Este repo rastreia as superfícies-meta: `cowork/`, `docs/`, `.claude/`, `.devcontainer/`, `.github/`, `.opencode/`, `.planning/`,
+`data/`, `plans/`, `scripts/`, `tests/` e os arquivos de raiz.
+- **Ambiente conda:** `iconocracy` (Python 3.11 — rebuild 3.12→3.11 em 2026-06-22).  
 - **Citação:** ABNT NBR 6023:2025 para português; Chicago para inglês.
 - **Automação:** Consulte `.claude/AUTOMATION.md` antes de adicionar hooks, skills ou agents.
 - **Navegação para a tese:** `cd hub/iconocracy-corpus/` e leia o `CLAUDE.md` de lá.
