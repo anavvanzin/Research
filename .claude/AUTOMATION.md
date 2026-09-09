@@ -232,7 +232,14 @@ Two distinct problems — do not conflate them:
 
 Disconnecting this repo does **not** lift the account block.
 
-Update this section with the decision and its date once the disconnection is done.
+**Decisão (2026-09-09): desconectar.** Ana optou por remover a integração. A execução é
+no painel da Vercel (Settings → Git → Disconnect no projeto `anavanzin/research`) ou no
+GitHub (Settings → Integrations → Applications → Vercel → Configure → tirar `Research` da
+lista de repositórios). Enquanto não for executada, o status `Vercel` continua vermelho em
+todo push — não é regressão de nenhum PR.
+
+Marcar aqui a data da execução quando ela ocorrer, e mover a linha da Vercel para fora da
+tabela de superfícies ativas acima.
 
 ---
 
