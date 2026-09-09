@@ -7,14 +7,27 @@
 
 set -euo pipefail
 
+# Ensure CLAUDE_PROJECT_DIR is declared to prevent unbound variable errors
+CLAUDE_PROJECT_DIR="${CLAUDE_PROJECT_DIR:-}"
+if [[ -z "$CLAUDE_PROJECT_DIR" ]]; then
+  # Fallback to git root if available, otherwise default to current directory
+  CLAUDE_PROJECT_DIR=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+fi
+
 LOCKS_DIR="${CLAUDE_PROJECT_DIR}/.claude/locks"
 
 # Ensure locks directory exists
 mkdir -p "$LOCKS_DIR"
 
-# Read JSON input
-INPUT=$(cat)
-SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // ""')
+# Guard against missing jq package
+if ! command -v jq &>/dev/null; then
+  # If jq is missing, silently exit (no locks can be parsed or released anyway)
+  exit 0
+fi
+
+# Read JSON input safely
+INPUT=$(cat || echo "")
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // ""' 2>/dev/null || echo "")
 
 if [[ -z "$SESSION_ID" ]]; then
   exit 0

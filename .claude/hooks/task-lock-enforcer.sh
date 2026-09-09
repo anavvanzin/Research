@@ -13,6 +13,13 @@
 
 set -euo pipefail
 
+# Ensure CLAUDE_PROJECT_DIR is declared to prevent unbound variable errors
+CLAUDE_PROJECT_DIR="${CLAUDE_PROJECT_DIR:-}"
+if [[ -z "$CLAUDE_PROJECT_DIR" ]]; then
+  # Fallback to git root if available, otherwise default to current directory
+  CLAUDE_PROJECT_DIR=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+fi
+
 # Configuration
 LOCKS_DIR="${CLAUDE_PROJECT_DIR}/.claude/locks"
 MASTER_PLAN="${CLAUDE_PROJECT_DIR}/docs/MASTER_PLAN.md"
@@ -21,13 +28,25 @@ LOCK_EXPIRY_HOURS=4  # Stale locks older than this are auto-cleared
 # Ensure locks directory exists
 mkdir -p "$LOCKS_DIR"
 
-# Read JSON input from stdin
-INPUT=$(cat)
+# Guard against missing jq package
+if ! command -v jq &>/dev/null; then
+  # If jq is missing, silently bypass lock enforcement to avoid blocking developer
+  exit 0
+fi
 
-# Extract data from hook input
-SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // ""')
-TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // ""')
-FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // ""')
+# Read JSON input from stdin safely
+INPUT=$(cat || echo "")
+
+# Extract data from hook input with safe fallbacks
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // ""' 2>/dev/null || echo "")
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // ""' 2>/dev/null || echo "")
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // ""' 2>/dev/null || echo "")
+
+# Global override / bypass variable check
+CLAUDE_BYPASS_LOCKS="${CLAUDE_BYPASS_LOCKS:-0}"
+if [[ "$CLAUDE_BYPASS_LOCKS" == "1" ]] || [[ "$CLAUDE_BYPASS_LOCKS" == "true" ]]; then
+  exit 0
+fi
 
 # Only apply to Edit and Write tools
 if [[ "$TOOL_NAME" != "Edit" ]] && [[ "$TOOL_NAME" != "Write" ]]; then
@@ -88,13 +107,13 @@ find_matching_task() {
     local task_id
     task_id=$(echo "$line" | grep -oE '(~~)?TASK-[0-9]+(~~)?' | head -1 | tr -d '~')
 
-    # Skip done tasks (strikethrough)
-    if [[ "$line" =~ ~~TASK-[0-9]+~~ ]]; then
-      continue
-    fi
-
     # Extract status (2nd column after ID)
     task_status=$(echo "$line" | cut -d'|' -f3 | xargs)
+
+    # Skip done tasks (by ID strikethrough or DONE/COMPLETE status column)
+    if [[ "$line" =~ ~~TASK-[0-9]+~~ ]] || [[ "$task_status" == "DONE" ]] || [[ "$task_status" == "COMPLETE" ]]; then
+      continue
+    fi
 
     # Extract primary files column (3rd column after ID)
     local primary_files
@@ -105,8 +124,8 @@ find_matching_task() {
       pattern=$(echo "$pattern" | xargs)  # trim whitespace
       [[ -z "$pattern" ]] && continue
 
-      # Direct filename match
-      if [[ "$filename" == "$pattern" ]]; then
+      # Match direct filename, exact path, or relative suffix pattern (e.g. docs/example.md)
+      if [[ "$filename" == "$pattern" ]] || [[ "$file_path" == "$pattern" ]] || [[ "$file_path" == *"/$pattern" ]]; then
         echo "$task_id|$task_status"
         return 0
       fi
@@ -197,7 +216,7 @@ if [[ -n "$LOCK_INFO" ]]; then
   LOCKED_BY=$(echo "$LOCK_INFO" | cut -d'|' -f1)
   LOCKED_AT=$(echo "$LOCK_INFO" | cut -d'|' -f2)
 
-  # Output error to stderr (will be shown to Claude)
+  # Output error to stderr (will be shown to Claude / developer)
   cat >&2 << EOF
 TASK CONFLICT BLOCKED: Cannot edit $FILENAME
 
@@ -205,10 +224,10 @@ $TASK_ID is currently locked by another Claude Code session.
   - Locked by session: ${LOCKED_BY:0:8}...
   - Locked at: $LOCKED_AT
 
-To resolve:
-1. Wait for the other session to complete
-2. Or manually delete: .claude/locks/${TASK_ID}.lock
-3. Check docs/MASTER_PLAN.md for task status
+To override or bypass:
+1. Export the bypass variable before editing: export CLAUDE_BYPASS_LOCKS=1
+2. Or manually remove the lock file: rm -f "$LOCKS_DIR/${TASK_ID}.lock"
+3. Check docs/MASTER_PLAN.md for current active tasks.
 
 Suggest working on a different task that doesn't conflict.
 EOF

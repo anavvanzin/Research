@@ -2,7 +2,7 @@
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
-Last reviewed: 2026-06-01.
+Last reviewed: 2026-08-11.
 
 ---
 
@@ -12,6 +12,7 @@ Last reviewed: 2026-06-01.
 |---|---|---|---|
 | Self-improving-agent (project) | `.claude/settings.json` | PreToolUse Bash\|Write\|Edit, PostToolUse Bash, SessionEnd `.*` | Captures tool I/O (Bash + Write/Edit pre, Bash post) + session summaries into `.claude/self-improving-agent/memory/`. Stdin-JSON invocation; hooks scripts at `.claude/self-improving-agent/hooks/{pre-tool,post-bash,session-end}.sh`. Canonical wiring as of 2026-04-25 (`settings.local.json` `hooks` block stripped). |
 | Corpus protection (global) | `~/.claude/settings.json` | PreToolUse Write, PostToolUse Edit\|Write | Blocks binary image writes into `iconocracy-corpus/data/raw/`; warns on `corpus-data.json` edits; runs `tools/scripts/validate_schemas.py` on corpus JSONL changes. Owned by global config — do not duplicate at project level. |
+| Lock & Plan coordination (project) | `.claude/settings.json` (optional opt-in) | PreToolUse Edit\|Write, SessionStart, SessionEnd, UserPromptSubmit | Dev-infrastructure hooks (inert by default) to coordinate parallel sessions. Wired optionally to `task-lock-enforcer.sh`, `session-lock-awareness.sh`, `session-lock-release.sh`, and `master-plan-reminder.sh`. Lock state is tracked at `.claude/locks/`. |
 
 **Disabled via env:** `ECC_DISABLED_HOOKS=pre:bash:gateguard-fact-force,pre:edit-write:gateguard-fact-force` (set in shell, turns off ECC plugin's fact gate).
 
@@ -21,7 +22,7 @@ Last reviewed: 2026-06-01.
 
 ## Agents (`~/.claude/agents/`)
 
-20 agents installed globally. Thesis-specific (use these for ICONOCRACIA work):
+14 agents installed globally (pruned from 20 on 2026-07-27). Thesis-specific (use these for ICONOCRACIA work):
 
 | Agent | Purpose |
 |---|---|
@@ -30,8 +31,11 @@ Last reviewed: 2026-06-01.
 | `corpus-dedup` | Pre-save dedup check for new corpus candidates |
 | `iconclass-reviewer` | Verify Iconclass notation validity |
 | `iconocode` | Full Panofsky 3-level + 10-indicator visual analysis (ICONOCRACIA protocol) |
+| `iconographer` | Panofsky / Warburg method review of visual analyses |
+| `legal-historian` | Legal-history rigor pass (institutional / cultural / conceptual) |
+| `thesis-reviewer` | Chapter review — terminology, citation format, conceptual consistency |
 
-General-purpose (academic + engineering): `academic-{anthropologist,geographer,historian,narratologist,psychologist}`, `engineering-{code-reviewer,codebase-onboarding,git-workflow-master,minimal-change-engineer,software-architect,technical-writer}`, `specialized-{document-generator,mcp-builder}`, `support-{analytics-reporter,executive-summary-generator}`.
+Academic panel: `academic-{anthropologist,geographer,historian,narratologist,peer-reviewer,psychologist}`.
 
 ---
 
@@ -41,29 +45,34 @@ General-purpose (academic + engineering): `academic-{anthropologist,geographer,h
 
 Thesis-relevant defaults: `iconocracia-agent`, `corpus-scout`, `corpus-scout-workspace`, `corpus-stats`, `iconocode-analyze`, `iconocode-batch`, `validate-corpus`, `compilar-tese`, `dir410346`, `abnt-format`, `citation-management`, `citation-audit`, `claude-md`, `AutoResearchClaw` (live-symlinked from `~/Documents/GitHub/AutoResearchClaw`).
 
-**Project (`.claude/skills/`)** — 1 entry:
+**Project (`.claude/skills/`)** — 5 entries:
 
 | Skill | Purpose |
 |---|---|
 | `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. |
+| `academic-research-skills` | Bundle of research helpers for academic writing. |
+| `AutoResearchClaw` | Autonomous 23-stage research pipeline (live-symlink to `~/Documents/GitHub/AutoResearchClaw`). |
+| `hegelian-dialectic` | Dialectic argument scaffolder. |
+| `playwright` | Playwright browser automation helpers for research capture. |
 
 ---
 
 ## Scheduled tasks (`~/.claude/scheduled-tasks/`)
 
-12 entries. Mixed cadence (cron + session triggers).
+13 entries. Mixed cadence (cron + session triggers).
 
 | Task | Cadence (assumed) | Purpose |
 |---|---|---|
 | `coding-progress` | daily | Coding session summary |
 | `corpus-validation` | daily | Schema-validate corpus JSONL |
-| `daily-review` | daily | Personal review prompt |
+| `daily-review` | daily | Governance-doc review + terminology sweep |
 | `dashboard-refresh` | daily | Rebuild thesis dashboard |
 | `drift-alert` | daily | Detect drift in tracked artifacts |
 | `gap-analysis` | weekly | Bibliography/coverage gap scan |
 | `iconocode-backfill` | weekly | Run iconocode on un-analyzed corpus items |
 | `thesis-progress-daily` | daily | Thesis chapter progress digest |
 | `vault-backup` | daily | Backup Obsidian vaults |
+| `dotclaude-backup` | daily | Backup `~/.claude/` config + skills |
 | `daily-corpus-context` | session-start | Inject corpus status line at session start |
 | `weekly-goal-prompt` | Mon session-start | Weekly writing goal adjustment prompt |
 | `researchclaw-summary` | after C5 | Prompt to review ResearchClaw candidates |
@@ -79,7 +88,7 @@ Verify cadence in each task's `*.json`/`*.yaml` before relying on this table.
 | Path | Scope |
 |---|---|
 | `/Users/ana/Research/CLAUDE.md` | Workspace root index for Claude Code sessions; defers to `hub/iconocracy-corpus/CLAUDE.md` for thesis work. |
-| `hub/iconocracy-corpus/CLAUDE.md` | **Authoritative** for thesis monorepo. Dual-agent pipeline, thesis compile, webiconocracy app, Gallica MCP. |
+| `hub/iconocracy-corpus/CLAUDE.md` | **Authoritative** for thesis monorepo. Dual-agent pipeline, thesis compile, Gallica MCP. (webiconocracy app retired.) |
 | `apps/iconocracia-companion/CLAUDE.md` | Companion app conventions. |
 | `vaults/CLAUDE.md` | Obsidian vault conventions. |
 | `united-by-marriage/CLAUDE.md` | (Personal project, unrelated.) |
@@ -121,19 +130,27 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 | `pipelines/Atlas/` | Sub-repo (own `.git`) | Active research pipeline. |
 | `pipelines/indexing/` | Sub-repo (own `.git`) | Indexing pipeline. |
 | `rotinas/` | (removed) | **Archived 2026-04-25** to `archive/2026-04-25-stale/rotinas/`. Held only `(2)` duplicate stragglers; originals had been moved earlier and no in-tree references remained. |
+| `scripts/git_physics_guard.py` | Multi-harness git conflict guard | Script to prevent cross-session head contamination across checkouts. Installed via `scripts/install-hooks.sh`. ADR in `docs/decisions/2026-06-25-multi-harness-git-physics.md`. |
+| `scripts/statusline.sh` + `scripts/install-statusline.sh` | Cursor CLI status line | Renders Cursor CLI session context/percent in shell prompt. Added via PR #23 (2026-07-29). |
 
 ---
 
 ## Worktrees (`.claude/worktrees/`)
 
-2 active worktrees (gitignored as of Sprint 0; verified 2026-06-01):
-
-- `bold-kapitsa-1b2598/`
-- `quirky-meitner-9fce80/`
+20 active worktrees (gitignored as of Sprint 0; verified 2026-08-11). List drifts as parallel Claude sessions spawn/retire trees; run `ls .claude/worktrees/` for the live set. Sample entries: `quirky-meitner-9fce80/`, `eager-wilson-f211fb/`, `reverent-solomon-051f3c/`.
 
 The legacy `.worktrees/` directory is empty.
 
 **Policy:** worktrees inherit `CLAUDE.md` from their source branch; deletion is manual after merge; orphaned worktrees should be removed via `git worktree remove`, not `rm -rf`.
+
+---
+
+## Onboarding & Planning (docs/)
+
+| Surface | What's there | Purpose |
+|---|---|---|
+| `docs/onboarding-debian12/` | Debian 12 setup manuals and install scripts | Onboarding reference and automation scripts for Debian 12 environments (PR #9). |
+| `docs/superpowers/` | Creative cronjobs plans and game specs | Specifications and plans for creative cronjobs and the July "jogo-alegorias" planning (`2026-07-02-*`). |
 
 ---
 

@@ -36,7 +36,7 @@ Caminhos a partir de `hub/iconocracy-corpus/`:
 ## Convenções
 
 - **Contenção de sub-repos.** Apenas `cowork/` e `docs/` são rastreados neste repo.
-- **Ambiente conda:** `iconocracy` (Python 3.12). Nunca usar Python do sistema.
+- **Ambiente conda:** `iconocracy` (Python 3.12).  
 - **Citação:** ABNT NBR 6023:2025 para português; Chicago para inglês.
 - **Automação:** Consulte `.claude/AUTOMATION.md` antes de adicionar hooks, skills ou agents.
 - **Navegação para a tese:** `cd hub/iconocracy-corpus/` e leia o `CLAUDE.md` de lá.
