@@ -2,7 +2,7 @@
 
 Single source of truth for *where* automation lives, *what triggers it*, and *what owns its config*. Read this before adding a new hook, skill, agent, or scheduled task.
 
-Last reviewed: 2026-08-30.
+Last reviewed: 2026-09-09.
 
 ## Scope legend
 
@@ -18,7 +18,6 @@ expected, not breakage.
 
 Do not "restore" a 🖥️ host-only surface in a remote session — it was never committed.
 See **Remote / web sessions** in [`../CLAUDE.md`](../CLAUDE.md).
-
 ---
 
 ## Hooks (Claude Code)
@@ -69,7 +68,6 @@ Thesis-relevant defaults: `iconocracia-agent`, `corpus-scout`, `corpus-scout-wor
 
 **Project (`.claude/skills/`)** — 2 versioned entries. These travel with the clone and
 work in every session:
-
 | Skill | Purpose |
 |---|---|
 | `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. |
@@ -79,14 +77,12 @@ Present in `.claude/skills/` on the Mac but **never committed**, so 🖥️ **ho
 
 | Skill | Purpose | Why uncommitted |
 |---|---|---|
-| `abnt-6023` | Local ABNT NBR 6023:2025 reference formatter. | Not added to git |
 | `academic-research-skills` | Bundle of research helpers for academic writing. | Not added to git |
 | `AutoResearchClaw` | Autonomous 23-stage research pipeline. | Live symlink to `~/Documents/GitHub/AutoResearchClaw` — inherently uncommittable |
 | `hegelian-dialectic` | Dialectic argument scaffolder. | Not added to git |
 | `playwright` | Playwright browser automation helpers for research capture. | Not added to git |
 
 To make any of these work in remote sessions, commit it under `.claude/skills/`.
-
 ---
 
 ## Scheduled tasks (`~/.claude/scheduled-tasks/`) — 🖥️ host-only
@@ -169,7 +165,7 @@ Captures tool I/O + session events into `memory/{episodic,working,semantic-patte
 
 ## Worktrees (`.claude/worktrees/`) — 🖥️ host-only
 
-16 active worktrees (gitignored as of Sprint 0; verified 2026-08-01). List drifts as parallel Claude sessions spawn/retire trees; run `ls .claude/worktrees/` for the live set. Sample entries: `quirky-meitner-9fce80/`, `eager-wilson-f211fb/`, `reverent-solomon-051f3c/`.
+20 active worktrees (gitignored as of Sprint 0; verified 2026-08-11). List drifts as parallel Claude sessions spawn/retire trees; run `ls .claude/worktrees/` for the live set. Sample entries: `quirky-meitner-9fce80/`, `eager-wilson-f211fb/`, `reverent-solomon-051f3c/`.
 
 The legacy `.worktrees/` directory is empty.
 
