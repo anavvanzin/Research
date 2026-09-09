@@ -23,6 +23,7 @@ Roda junto com `test_repo_sanity.py` no mesmo passo `pytest` do
 from __future__ import annotations
 
 import re
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -42,6 +43,16 @@ _ESCAPE_MARKERS = ("host-only", "drift-pin")
 
 # Caracteres que denunciam glob, placeholder ou trecho de comando — não é caminho literal.
 _NOT_A_LITERAL_PATH = set("*{}<>|$ ")
+
+# Raízes versionadas deste repo, declaradas **independentemente da existência atual**.
+# Ancorar na existência em disco criava um ponto cego: apagar `.opencode/` inteiro faria
+# as referências a `.opencode/plans/...` sumirem de _PATH_CASES e o CI passar — justamente
+# o drift que este teste existe para pegar. Editar esta constante é deliberado; o
+# test_versioned_roots_are_declared avisa quando uma raiz nova é rastreada e falta aqui.
+_VERSIONED_ROOTS = frozenset({
+    ".claude", ".devcontainer", ".github", ".opencode", ".planning",
+    "cowork", "data", "docs", "plans", "scripts", "tests",
+})
 
 _BACKTICKED = re.compile(r"`([^`\n]+)`")
 
@@ -69,10 +80,11 @@ def _iter_doc_lines(doc: str):
 def _candidate_paths(doc: str) -> list[tuple[int, str]]:
     """Tokens em crase que afirmam um caminho ancorado na raiz versionada.
 
-    Só entra o token cujo **primeiro segmento** já existe na raiz do repo. Isso
+    Só entra o token cujo **primeiro segmento** está em `_VERSIONED_ROOTS`. Isso
     exclui de graça: caminhos absolutos, `~/...`, sub-repos irmãos ausentes
     (`hub/`, `apps/`, `Tools/`) e fragmentos relativos a outro diretório
-    (`hooks/post-bash.sh`, relativo a `.claude/self-improving-agent/`).
+    (`hooks/post-bash.sh`, relativo a `.claude/self-improving-agent/`) — e, ao
+    contrário de checar existência, continua validando uma raiz que foi removida.
     """
     found: list[tuple[int, str]] = []
     for lineno, line in _iter_doc_lines(doc):
@@ -84,7 +96,7 @@ def _candidate_paths(doc: str) -> list[tuple[int, str]]:
             if token.startswith(("/", "~", "http")):
                 continue
             first_segment = token.split("/", 1)[0]
-            if not first_segment or not (REPO_ROOT / first_segment).exists():
+            if first_segment not in _VERSIONED_ROOTS:
                 continue
             found.append((lineno, token))
     return found
@@ -115,13 +127,31 @@ def test_documented_path_exists(doc: str, lineno: int, token: str) -> None:
     )
 
 
+def _versioned_skills() -> set[str]:
+    """Skills de projeto **rastreadas pelo Git**, não o conteúdo do diretório.
+
+    No Mac de Ana `.claude/skills/` também contém as entradas host-only nunca
+    commitadas; um `iterdir()` as contaria e faria o teste falhar localmente mesmo
+    com a tabela correta. Só o que está versionado conta.
+    """
+    out = subprocess.run(
+        ["git", "ls-files", "-z", ".claude/skills"],
+        cwd=REPO_ROOT, capture_output=True, text=True, check=True,
+    ).stdout
+    return {
+        Path(entry).parts[2]
+        for entry in out.split("\0")
+        if entry and len(Path(entry).parts) > 2
+    }
+
+
 def test_project_skill_table_matches_disk() -> None:
     """A tabela de skills de projeto do AUTOMATION.md precisa bater com o disco.
 
     Regressão do drift original: o doc declarava 6 entradas com apenas 1 versionada.
     """
     automation = (REPO_ROOT / ".claude/AUTOMATION.md").read_text(encoding="utf-8")
-    on_disk = {p.name for p in (REPO_ROOT / ".claude/skills").iterdir() if p.is_dir()}
+    on_disk = _versioned_skills()
 
     header = re.search(
         r"\*\*Project \(`\.claude/skills/`\)\*\* — (\d+) versioned entries", automation
@@ -130,15 +160,15 @@ def test_project_skill_table_matches_disk() -> None:
 
     declared_count = int(header.group(1))
     assert declared_count == len(on_disk), (
-        f"AUTOMATION.md declara {declared_count} skills de projeto, "
-        f"mas `.claude/skills/` tem {len(on_disk)}: {sorted(on_disk)}"
+        f"AUTOMATION.md declara {declared_count} skills de projeto versionadas, "
+        f"mas o Git rastreia {len(on_disk)}: {sorted(on_disk)}"
     )
 
     # Linhas de tabela entre o cabeçalho e o parágrafo de host-only que o sucede.
     table = automation[header.end():automation.index("host-only", header.end())]
     listed = set(re.findall(r"^\| `([a-z0-9-]+)` \|", table, flags=re.MULTILINE))
     assert listed == on_disk, (
-        f"tabela de skills de projeto fora de sincronia — "
+        f"tabela de skills de projeto fora de sincronia com o Git — "
         f"listadas mas ausentes: {sorted(listed - on_disk)}; "
         f"no disco mas não listadas: {sorted(on_disk - listed)}"
     )
@@ -184,4 +214,27 @@ def test_no_stale_find_skill_reference(doc: str) -> None:
     stale = re.findall(r"find-skill(?!s)", text)
     assert not stale, (
         f"{doc} referencia `find-skill` ({len(stale)}×); o skill instalado é `find-skills`"
+    )
+
+
+def test_versioned_roots_are_declared() -> None:
+    """Toda raiz de topo rastreada precisa estar em `_VERSIONED_ROOTS`.
+
+    Sem isso, um diretório novo entraria no repo sem que suas referências fossem
+    conferidas. O inverso é permitido de propósito: uma raiz já removida continua
+    declarada, para que referências órfãs a ela ainda falhem.
+    """
+    out = subprocess.run(
+        ["git", "ls-files", "-z"],
+        cwd=REPO_ROOT, capture_output=True, text=True, check=True,
+    ).stdout
+    tracked_dirs = {
+        Path(entry).parts[0]
+        for entry in out.split("\0")
+        if entry and len(Path(entry).parts) > 1
+    }
+    missing = tracked_dirs - _VERSIONED_ROOTS
+    assert not missing, (
+        f"raízes rastreadas ausentes de _VERSIONED_ROOTS: {sorted(missing)} — "
+        f"acrescente-as em tests/test_docs_drift.py para que suas referências sejam checadas"
     )

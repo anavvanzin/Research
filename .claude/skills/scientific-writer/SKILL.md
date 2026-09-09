@@ -58,10 +58,14 @@ Classify before invoking anything.
 | ABNT formatting, PT/FR review, legal-history and iconology rigor | `iconocracy-reviewer` |
 | Outline iteration, hooks, section-by-section feedback | `content-research-writer` |
 | Deliverable is `.docx` / `.pdf` / `.pptx` | `docx` / `pdf` / `pptx` |
-| Anything touching the thesis | `iconocracia-pipeline-router` |
+| A thesis-internal object — chapter, corpus, hypothesis matrix, thesis compile | `iconocracia-pipeline-router` |
 
 Pick the **smallest** route that answers the request. A one-paragraph review does not
 need the nine-stage pipeline.
+
+Note the carve-out from the scope boundary above: a **standalone paper drawn from**
+thesis material stays with this skill — the paper is the principal object and the thesis
+is a source. Only thesis-internal objects go to the router.
 
 ## Gates
 

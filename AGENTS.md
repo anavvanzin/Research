@@ -12,11 +12,20 @@ orienta agentes de IA; humano: [`README.md`](README.md); Claude Code:
 
 ## Constraints de acesso (read-only / proibições)
 
-- Agentes **MUST NOT** rodar `git add` fora de `cowork/` ou `docs/`. Sub-repos
+- Agentes **MUST NOT** rodar `git add` em caminho de sub-repo. Sub-repos
   (`hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`,
   `hermes-workspace/`) têm `.git` próprio — operar dentro deles.
-- Agentes **MUST NOT** executar `build`, `test`, `lint`, `typecheck` na raiz:
-  não há `package.json`/`pyproject.toml` aqui. Desça ao sub-repo.
+  O que esta raiz **versiona** é o conjunto de arquivos-meta: `cowork/`, `docs/`,
+  `.claude/`, `.github/`, `.opencode/`, `.planning/`, `data/`, `plans/`,
+  `scripts/`, `tests/` e os arquivos de raiz (`AGENTS.md`, `CLAUDE.md`,
+  `README.md`, `environment.yml`, `.gitignore`, `.gitattributes`).
+  <!-- drift-pin: 2026-09-09 a regra dizia "fora de cowork/ ou docs/", já falsa
+       antes disso — tests/, scripts/, .github/ e .claude/ já eram rastreados. -->
+- Agentes **PODEM** rodar `test` e `lint` **na raiz**: ela tem CI própria
+  (`.github/workflows/python-package-conda.yml` → `flake8` + `pytest`). Não há
+  `build` nem `typecheck` aqui, e não existe `package.json`/`pyproject.toml` —
+  o ambiente do CI vem de `environment.yml`. Ver **Root-level commands** em
+  [`CLAUDE.md`](CLAUDE.md). Para qualquer verificação de sub-repo, desça até ele.
 - Agentes **MUST NOT** modificar `.claude/AUTOMATION.md` sem ler integralmente
   antes — é índice canônico de hooks/skills/agents/scheduled tasks.
 - Agentes **MUST NOT** criar arquivos novos sem confirmar caminho-alvo (regra
