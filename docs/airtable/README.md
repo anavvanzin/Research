@@ -72,6 +72,13 @@ Snapshots públicos devem ser incluídos em `data/public/airtable/` com um arqui
 - referência do commit;
 - observações metodológicas relevantes.
 
+Quando o snapshot contiver a seleção do piloto de visão computacional, o
+manifesto deve incluir também o bloco `sampling` e um arquivo de frame com uma
+linha por item avaliado. Esse arquivo publica a posição no frame, seed, tamanho
+do estrato, probabilidade de seleção, indicador de seleção, ordem de reserva e
+código de exclusão. O algoritmo e a regra única de redistribuição estão
+pré-registrados no [protocolo de QA](qa-protocol.md#amostragem-pré-registrada-do-piloto-de-visão-computacional).
+
 ## Sincronização recomendada
 
 1. Atualizar e validar registros no Airtable.
