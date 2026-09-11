@@ -37,6 +37,29 @@ Este documento especifica a estrutura de dados da base **“Iconocracia — Corp
 | `Estado do registro` | seleção única | Fluxo de curadoria e validação. |
 | `Observações / QA` | texto longo | Notas de inconsistência, incerteza ou decisão de normalização. |
 
+### Campos do manifesto de amostragem do piloto CV
+
+O frame publicado para o piloto de visão computacional deve conter **uma linha por
+item avaliado pelo funil**, inclusive os excluídos. Os nomes abaixo são nomes de
+máquina e não devem ser traduzidos na exportação:
+
+| Campo | Tipo sugerido | Uso |
+|---|---|---|
+| `canonical_item_id` | texto | Identificador canônico usado como chave e primeiro critério de ordenação. |
+| `stratum` | texto | Estrato atribuído depois da normalização de suportes. Vazio somente quando a exclusão antecede a estratificação. |
+| `sampling_frame_order` | inteiro positivo ou vazio | Posição do item elegível no frame global ordenado por `canonical_item_id`; vazio para inelegíveis. |
+| `sampling_seed` | texto | Seed textual previamente registrada; no piloto, `cv-pilot-0.1`. Deve aparecer em todas as linhas, inclusive excluídas. |
+| `stratum_size` | inteiro não negativo | Número total de itens elegíveis no estrato no momento do sorteio; `0` se o item não chegou a um estrato incluível. |
+| `selection_probability` | decimal entre 0 e 1 | Probabilidade de inclusão da linha (`n_h / N_h`) sob a alocação efetivamente usada; `0` para inelegíveis e estratos não incluídos. |
+| `selected` | booleano | `true` apenas para a amostra principal; reservas permanecem `false`. |
+| `reserve_rank` | inteiro positivo ou vazio | Ordem dos itens não selecionados dentro do estrato; `1` é o primeiro suplente. Vazio para selecionados e inelegíveis. |
+| `exclusion_code` | texto controlado ou vazio | Motivo da inelegibilidade ou da não inclusão do estrato; vazio para itens que participaram do sorteio, selecionados ou reservas. |
+
+`stratum_size` e `selection_probability` são repetidos por linha para que o
+snapshot permaneça auditável sem depender de uma tabela externa. Códigos de
+exclusão devem vir de vocabulário controlado versionado; texto livre explicativo
+fica em `Observações / QA` e nunca substitui o código.
+
 ### Valores controlados: `Estado do registro`
 
 1. `bruto / importado`
