@@ -1,0 +1,153 @@
+# Protocolo de harmonizacao de suportes, aplicado antes da selecao de imagens.
+support_harmonization:
+  version: "1.0.0"
+  effective_date: "2026-09-09"
+  apply_before: image_selection
+
+  fields:
+    support_raw:
+      description: Valor original, preservado sem normalizacao.
+      required: true
+      immutable: true
+    support_source:
+      description: Arquivo ou dataset no qual support_raw foi encontrado.
+      required: true
+    support_stratum:
+      description: Categoria atomica usada na amostragem estratificada.
+      required: true
+      derived_from: support_raw
+    support_family:
+      description: Familia material mais ampla usada na analise de sensibilidade.
+      required: true
+      derived_from: support_stratum
+
+  # Tabela versionada raw_support -> support_stratum. As correspondencias sao
+  # exatas depois apenas de trim, casefold e normalizacao Unicode NFKC.
+  raw_to_stratum:
+    table_version: "1.0.0"
+    normalization: [trim, casefold, unicode_nfkc]
+    mappings:
+      # Moedas
+      moeda: moeda
+      moedas: moeda
+      coin: moeda
+      coins: moeda
+      medalha_monetaria: moeda
+      # Papel-moeda
+      papel-moeda: papel_moeda
+      papel moeda: papel_moeda
+      cedula: papel_moeda
+      cédula: papel_moeda
+      cedulas: papel_moeda
+      cédulas: papel_moeda
+      banknote: papel_moeda
+      banknotes: papel_moeda
+      # Selos
+      selo: selo
+      selos: selo
+      selo postal: selo
+      postage stamp: selo
+      stamp: selo
+      # Cartazes
+      cartaz: cartaz
+      cartazes: cartaz
+      poster: cartaz
+      posters: cartaz
+      # Estampas e gravuras permanecem estratos atomicos distintos.
+      estampa: estampa
+      estampas: estampa
+      print: estampa
+      gravura: gravura
+      gravuras: gravura
+      engraving: gravura
+      engravings: gravura
+      litografia: gravura
+      xilogravura: gravura
+      # Frontispicios
+      frontispicio: frontispicio
+      frontispício: frontispicio
+      frontispicios: frontispicio
+      frontispícios: frontispicio
+      frontispiece: frontispicio
+      frontispieces: frontispicio
+      # Pinturas
+      pintura: pintura
+      pinturas: pintura
+      painting: pintura
+      paintings: pintura
+      # Fotografias
+      fotografia: fotografia
+      fotografias: fotografia
+      foto: fotografia
+      photo: fotografia
+      photograph: fotografia
+      photographs: fotografia
+      # Monumentos e esculturas permanecem estratos atomicos distintos.
+      monumento: monumento
+      monumentos: monumento
+      monument: monumento
+      monuments: monumento
+      escultura: escultura
+      esculturas: escultura
+      sculpture: escultura
+      sculptures: escultura
+
+  stratum_to_family:
+    table_version: "1.0.0"
+    mappings:
+      moeda: circulacao_monetaria
+      papel_moeda: circulacao_monetaria
+      selo: impresso_efemero
+      cartaz: impresso_efemero
+      estampa: impresso_editorial
+      gravura: impresso_editorial
+      frontispicio: impresso_editorial
+      pintura: obra_pictorica
+      fotografia: imagem_fotografica
+      monumento: objeto_tridimensional
+      escultura: objeto_tridimensional
+
+  adjudication:
+    on_unmapped: reject_and_queue_manual_review
+    preserve_support_raw: true
+    require_support_source: true
+    forbidden_values: ["?", "", "null", "none", "n/a", "na", "unknown", "desconhecido"]
+    # Separadores sinalizam uma categoria composta; nenhum split automatico e
+    # permitido, pois a imagem deve receber um unico estrato adjudicado.
+    reject_composite_if_contains: ["/", ";", "|", "+", " e ", " and "]
+    manual_decision_fields:
+      - adjudicated_by
+      - adjudicated_at
+      - adjudication_note
+
+  frequency_reports:
+    run_before_image_selection: true
+    outputs:
+      - stage: before_mapping
+        group_by: support_raw
+        include_source: support_source
+        metric: count
+      - stage: after_mapping
+        group_by: support_stratum
+        metric: count
+      - stage: after_mapping
+        group_by: support_family
+        metric: count
+    include_zero_categories: true
+    fail_if_rejected_rows_exist: true
+
+  between_supports:
+    # Definicao principal: estratos diferentes. A familia e uma especificacao
+    # alternativa teoricamente defensavel e deve sempre ser reportada junto.
+    primary_definition: different_support_stratum
+    sensitivity_definitions:
+      - name: between_strata
+        filter: left.support_stratum != right.support_stratum
+        report: required
+      - name: between_families
+        filter: left.support_family != right.support_family
+        report: required
+    compare_results:
+      report_pair_counts: true
+      report_selected_image_counts: true
+      report_disagreements: true
