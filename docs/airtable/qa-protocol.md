@@ -73,6 +73,11 @@ Criar uma tabela adicional chamada **Divergências e QA** quando a primeira impo
 - [ ] Cada linha possui `ID do corpus` único ou está marcada como duplicata.
 - [ ] A contagem do release é declarada no manifesto.
 - [ ] O manifesto indica a camada de origem e os critérios de inclusão.
+- [ ] O manifesto experimental referencia o crosswalk e declara todas as colunas de identidade (`canonical_item_id`, `registry_id`, `editorial_id`, `hf_row_id`, `bucket_object_key`, `source_record_url`).
+- [ ] Cada vínculo informa `link_method` (`existing_crosswalk`, `exact_id`, `canonical_url` ou `manual_review`) e `link_evidence` verificável.
+- [ ] `data/processed/id_crosswalk.jsonl` foi incorporado quando disponível e sua proveniência foi preservada.
+- [ ] Nenhuma identidade foi confirmada somente por igualdade ou aproximação de título.
+- [ ] Colisões de IDs, imagens primárias múltiplas não resolvidas e vínculos apenas por título estão marcados como inelegíveis para a amostra.
 - [ ] Campos vazios foram mantidos como vazios, sem conversão automática para zero.
 - [ ] Valores fora da escala foram revisados ou marcados como pendentes.
 - [ ] URLs de origem e citações foram preservadas.
