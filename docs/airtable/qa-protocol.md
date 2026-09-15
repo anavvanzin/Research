@@ -93,8 +93,10 @@ Criar uma tabela adicional chamada **Divergências e QA** quando a primeira impo
   (`N_h >= 3`). Estratos menores recebem `selection_probability = 0`,
   `selected = false`, `reserve_rank` vazio e o código controlado
   `STRATUM_LT_3`.
-- Se houver exatamente seis estratos incluíveis, atribuir cinco itens a cada um
-  (`n_h = 5`), totalizando 30.
+- Se houver exatamente seis estratos incluíveis **e todos tiverem pelo menos
+  cinco itens elegíveis** (`N_h >= 5` em cada estrato), atribuir cinco itens a
+  cada um (`n_h = 5`), totalizando 30. Se qualquer um dos seis tiver
+  `3 <= N_h < 5`, aplicar o fallback proporcional limitado abaixo.
 - Nos demais casos, procurar um total factível nesta ordem previamente fixada:
   `30, 29, 31, 28, 27, 26, 25, 24`. Cada estrato incluído recebe no mínimo três
   e no máximo `min(6, N_h)` itens. Usar o primeiro total entre 24 e 31 que caiba
