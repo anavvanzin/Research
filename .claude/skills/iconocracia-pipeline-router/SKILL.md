@@ -35,6 +35,28 @@ Load at most one principal object per round:
 Large materials enter by summary plus local path, not by copying full text.
 If the task needs multiple objects, split the work into rounds.
 
+## Rota ausente nesta sessão
+
+Esta skill é versionada, então **carrega** em qualquer sessão — mas os pipelines que ela
+invoca não são versionados aqui: `deep-research`, `lit-review`, `academic-paper`,
+`academic-paper-reviewer`, `abnt-format`, `compilar-tese` e os scripts de `hub/` chegam
+pela conta ou pelo Mac. Numa sessão remota que não os tenha, delegar às cegas devolve
+*Unknown command* e o pedido morre ali.
+
+Então: **confirme a rota com `find-skills` antes de delegar**, e se ela não existir, não
+aborte —
+
+| Rota ausente | O que fazer no lugar |
+|---|---|
+| `deep-research`, `lit-review`, `fact-check`, `systematic-review` | Conduza a etapa `research` aqui, com as MCP tools de literatura (Consensus, Scite, Elicit, Scholar Gateway) quando conectadas. Sem elas, entregue o que pôde ser verificado e diga o que ficou aberto. |
+| `academic-paper`, `content-research-writer` | Para artigo standalone, entregue a `scientific-writer`, que é versionada. Para capítulo, produza o plano aqui no formato de `references/protocol.md` e pare no plano. |
+| `academic-paper-reviewer` | Faça a revisão adversarial nesta sessão contra a checklist de `review`, **declarando** que foi sem revisor dedicado. |
+| `abnt-format`, citation/Zotero checks | Aplique ABNT NBR 6023:2025 à mão e marque cada entrada que não deu para verificar. |
+| `compilar-tese`, `make -C vault/tese/`, scripts de `hub/` | Não simule: o pipeline de compilação e o corpus vivem em `hub/iconocracy-corpus/`, ausente numa sessão remota. Diga que a etapa exige o Mac (ou o clone do sub-repo) e pare. |
+
+Os gates e os blocks abaixo valem igual nos dois caminhos — a rota ausente muda quem
+executa, não o padrão. O que **não** se faz é reportar o *Unknown command* como resposta.
+
 ## Route Triage
 
 Classify the user request before invoking any pipeline.

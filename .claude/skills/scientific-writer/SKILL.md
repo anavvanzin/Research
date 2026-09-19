@@ -74,6 +74,12 @@ repo**: chegam pela conta. Numa sessão remota cuja conta não as tenha sincroni
 invocá-las devolve *Unknown command* — exatamente a falha que originou esta skill. Então
 antes de delegar, confirme com `find-skills` que a rota existe; e se não existir:
 
+> O router é versionado e portanto **carrega** em qualquer sessão, mas os pipelines que
+> *ele* invoca também chegam pela conta ou pelo Mac — ele tem a sua própria seção de rota
+> ausente. Entregar um objeto de tese ao router não é garantia de execução; é garantia de
+> que alguém com o fallback certo assume.
+
+
 | Rota ausente | O que fazer no lugar |
 |---|---|
 | `academic-pipeline` | Conduza os gates G1→G6 aqui mesmo, um por vez, com `references/protocol.md` aberto. A ordem dos gates é o pipeline; a skill é só a implementação dela. |

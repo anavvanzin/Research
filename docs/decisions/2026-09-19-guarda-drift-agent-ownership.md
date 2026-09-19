@@ -84,7 +84,7 @@ com a referência de pé passa a falhar o build.
 ## Verificação
 
 ```
-pytest tests/                                          → 141 passed (eram 117)
+pytest tests/                                          → 145 passed (eram 117)
 flake8 $(git ls-files '*.py') --select=E9,F63,F7,F82   → 0
 python3 scripts/git_physics_guard.py                   → exit 0
 ```

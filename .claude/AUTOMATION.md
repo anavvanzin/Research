@@ -13,8 +13,12 @@ expected, not breakage.
 
 | Marker | Meaning |
 |---|---|
-| *(unmarked)* | Versioned in this repo. Present in every session; the CI drift guard checks it. |
+| *(unmarked)* | Superfície **local e versionada** neste repo. Presente em toda sessão; a guarda de drift do CI a confere. |
 | 🖥️ **host-only** | Exists only on the macOS host. Absent in remote/web sessions; not checked by the drift guard. |
+| 🌐 **external** | Roda em servidor de terceiro, não vive na árvore. Não chega pelo clone e a guarda não a confere — ver *External CI surfaces*. |
+
+O *(unmarked)* só se aplica a superfície local: uma superfície externa é sempre 🌐, mesmo
+sem estar marcada linha a linha, porque a seção que a contém é marcada.
 
 Do not "restore" a 🖥️ host-only surface in a remote session — it was never committed.
 See **Remote / web sessions** in [`../CLAUDE.md`](../CLAUDE.md).
@@ -79,33 +83,28 @@ Academic panel: `academic-{anthropologist,geographer,historian,narratologist,pee
 skill for fuzzy lookup; do **not** enumerate.
 
 **Account-synced** — in remote/web sessions the only skills available are those synced to
-the Claude account, plus the versioned project skills below. A contagem depende da conta e
-muda sem aviso; como na linha global acima, não pine um número. Plugins do **not** sync:
+the Claude account, plus the versioned project skills below. Plugins do **not** sync:
 a `/plugin-name:command` that works on the Mac will report *Unknown command* in a remote
 session unless the capability is also shipped as a versioned project skill.
 
-Defaults sincronizados relevantes para a tese — conferidos em disco nesta sessão remota
-(2026-09-19), e portanto disponíveis em qualquer sessão: `iconocracy-agent`,
-`iconocracy-reviewer`, `corpus-scout`, `corpus-audit`, `corpus-publish-preflight`,
-`academic-pipeline`, `academic-writing-reviewer`, `arno-dal-ri-ufsc`,
-`georges-martyn-iconology`, `novelty-claim-sweep`, `especialista-oficina`,
-`manifesto-gravura`, `scholarly-craft-style`, `scholarly-precision-style`, `find-skills`.
+**Este documento não lista quais são.** A regra de descoberta do `AGENTS.md` vale aqui
+como em todo lugar: `find-skills` em tempo de execução, nunca enumeração mantida à mão.
+O conjunto sincronizado é estado da conta, muda sem aviso e sem passar por este repo — uma
+lista aqui seria uma observação de uma sessão apresentada como garantia universal, e é
+assim que uma sessão remota acaba roteando trabalho para skill ausente. Não pine número
+nem nome.
 
-Nomeadas nos docs mas **ausentes do conjunto sincronizado**, logo 🖥️ **host-only** —
-invocá-las numa sessão remota reproduz o mesmo *Unknown command* que originou esta
-seção: `corpus-scout-workspace`, `corpus-stats`, `iconocode-analyze`, `iconocode-batch`,
-`validate-corpus`, `compilar-tese`, `dir410346`, `abnt-format`, `abnt-6023`,
-`citation-management`, `citation-audit`, `claude-md`, `AutoResearchClaw`
-(live-symlinked de `~/Documents/GitHub/AutoResearchClaw` no Mac).
+O que vale afirmar, e é o que esta seção existe para dizer: **só o que está versionado em
+`.claude/skills/` chega garantido pelo clone.** Qualquer outra rota — sincronizada,
+global ou de plugin — é verificada com `find-skills` antes de ser usada, e quem roteia
+carrega fallback para a ausência dela.
 
-> O nome correto é **`iconocracy-agent`**; os docs diziam `iconocracia-agent`, que não
-> existe em nenhum dos dois conjuntos.
-
-**Project (`.claude/skills/`)** — 2 versioned entries. These travel with the clone and
-work in every session:
+**Project (`.claude/skills/`)** — 2 versioned entries. Chegam pelo clone, então **carregam**
+em qualquer sessão; as rotas que elas invocam não são garantidas, e cada uma traz o
+fallback para rota ausente:
 | Skill | Purpose |
 |---|---|
-| `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. |
+| `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. Seus executores (`deep-research`, `lit-review`, `academic-paper-reviewer`, `compilar-tese`) **não** são versionados; confira com `find-skills` antes de delegar e siga o fallback do próprio SKILL.md. |
 | `scientific-writer` | General scientific writing (artigos, grants, abstracts) — entry point that routes to `academic-pipeline`, `academic-writing-reviewer`, `iconocracy-reviewer`. Thesis work delegates to the router above. |
 
 Present in `.claude/skills/` on the Mac but **never committed**, so 🖥️ **host-only**:
@@ -230,7 +229,7 @@ both firing on every push to `main` and contending for the same `pages` concurre
 
 ---
 
-## External CI surfaces (not versioned)
+## External CI surfaces (not versioned) — 🌐 **external**
 
 Automation that posts to this repo from outside it. Nothing here lives in the tree, so the
 drift guard cannot check it — and nothing here is 🖥️ host-only either, since it runs on a
