@@ -66,6 +66,15 @@ _VERSIONED_ROOT_FILES = frozenset({
 
 _BACKTICKED = re.compile(r"`([^`\n]+)`")
 
+# Destino de link markdown: `[texto](caminho)`. A regex de crase nunca pegava isto, então
+# renomear um doc linkado deixava o link quebrado e o CI verde — inclusive os ponteiros
+# para a lista canônica que esta PR introduziu. Link explícito é inequívoco: quando começa
+# com ./ ou ../ é validado relativo ao próprio doc, sem passar pelo filtro de raízes.
+_MD_LINK = re.compile(r"\]\(([^)\s]+)\)")
+
+# Cabeçalho de qualquer nível encerra o escape de seção.
+_HEADING = re.compile(r"^#{1,6} ")
+
 
 def _is_escaped(line: str) -> bool:
     return any(marker in line for marker in _ESCAPE_MARKERS)
@@ -75,12 +84,18 @@ def _iter_doc_lines(doc: str):
     """Devolve (nº da linha, texto) das linhas verificáveis de `doc`.
 
     Escapa em dois níveis: uma linha marcada é pulada, e um **cabeçalho**
-    marcado silencia toda a sua seção (até o próximo cabeçalho `##`) — útil
-    para tabelas inteiras cujos caminhos são relativos a outro repo.
+    marcado silencia a sua seção — útil para tabelas inteiras cujos caminhos são
+    relativos a outro repo.
+
+    O escape vale até o **próximo cabeçalho de qualquer nível**, não só até o
+    próximo `##`. Antes, um `##` marcado host-only engolia também os `###` abaixo
+    dele: o link do ADR em `README.md`, acrescentado pelo main sob a seção da tese,
+    ficava sem verificação mesmo apontando para um caminho **deste** repo. Apagar o
+    ADR deixaria o link quebrado e o CI verde.
     """
     section_escaped = False
     for lineno, line in enumerate((REPO_ROOT / doc).read_text(encoding="utf-8").splitlines(), 1):
-        if line.startswith("## "):
+        if _HEADING.match(line):
             section_escaped = _is_escaped(line)
         if section_escaped or _is_escaped(line):
             continue
@@ -98,10 +113,18 @@ def _candidate_paths(doc: str) -> list[tuple[int, str]]:
     """
     found: list[tuple[int, str]] = []
     for lineno, line in _iter_doc_lines(doc):
-        for token in _BACKTICKED.findall(line):
-            if _NOT_A_LITERAL_PATH & set(token):
+        candidates = [(tok, False) for tok in _BACKTICKED.findall(line)]
+        candidates += [
+            (tok.split("#", 1)[0], True)          # âncora #secao não faz parte do caminho
+            for tok in _MD_LINK.findall(line)
+        ]
+        for token, is_link in candidates:
+            if not token or _NOT_A_LITERAL_PATH & set(token):
                 continue
-            if token.startswith(("/", "~", "http")):
+            if token.startswith(("/", "~", "http", "mailto:")):
+                continue
+            if is_link and token.startswith(("./", "../")):
+                found.append((lineno, token))      # link relativo explícito: sempre checável
                 continue
             if "/" not in token:
                 # Nome solto: só conta se for arquivo de raiz versionado e declarado.

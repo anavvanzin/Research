@@ -21,12 +21,13 @@ surfaces*, e não é repetida aqui. Trabalho real vive em sub-repos com `.git` p
   <!-- drift-pin: 2026-09-09 a regra dizia "fora de cowork/ ou docs/", já falsa
        antes disso — tests/, scripts/, .github/ e .claude/ já eram rastreados. A
        enumeração saiu daqui em 2026-09-19: tinha quatro cópias e divergiu 3×. -->
-- Agentes **PODEM** rodar `test` e `lint` **na raiz**, mas **com escopo**:
-  `pytest tests/` e `flake8 tests/ scripts/ .claude/` — os três diretórios onde vive
-  Python versionado. Um `flake8 .` no Mac desce pelos sub-repos irmãos (`hub/`,
-  `apps/`, `pipelines/`, `vaults/`…), pedindo dependências alheias e produzindo
-  falhas que não são desta raiz. No container remoto ele passa porque os irmãos não
-  estão lá — outro caso de comando que só falha no Mac.
+- Agentes **PODEM** rodar `test` e `lint` **na raiz**, mas **derivados do índice do
+  Git**: `pytest tests/` e `flake8 $(git ls-files '*.py')`. Passar diretórios ainda
+  erra: `.claude/` contém, no Mac, as skills host-only nunca commitadas e as worktrees
+  gitignored — Python de lá produz falhas alheias ao meta-repo. E `flake8 .` é pior
+  ainda: desce pelos sub-repos irmãos (`hub/`, `apps/`, `pipelines/`, `vaults/`…).
+  No container remoto qualquer das formas passa, porque nada disso está lá — motivo
+  pelo qual o CI pode usar caminho amplo e você, no Mac, não.
   Não há `build` nem `typecheck` aqui, e não existe `package.json`/`pyproject.toml` —
   o ambiente do CI vem de `environment.yml`. Ver **Root-level commands** em
   [`CLAUDE.md`](CLAUDE.md). Para qualquer verificação de sub-repo, desça até ele.

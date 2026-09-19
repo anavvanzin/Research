@@ -85,7 +85,7 @@ direta sem o texto em mãos.
 | **G1 · Sources** | Working bibliography, each entry with a resolvable identifier (DOI, ISBN, permalink, archive shelfmark) | Any entry that cannot be resolved |
 | **G2 · Structure** | Section outline with the claim each section must carry | A section with no claim; or uma claim que não tem **nem** fonte em G1 **nem** marca explícita de argumento da autora — a tese central de um artigo original é argumento autoral, e avança; o que exige fonte são suas premissas e evidências |
 | **G3 · Draft** | Prose, one section per round | — |
-| **G4 · Integrity** | Every informative claim mapped to a G1 entry | One unanchored claim |
+| **G4 · Integrity** | Cada afirmação informativa mapeada a uma entrada G1 **ou** marcada como argumento da autora | Uma claim sem nenhum dos dois — o argumento autoral que G2 admitiu não bloqueia aqui |
 | **G5 · Review** | Adversarial pass via `academic-writing-reviewer` (+ `iconocracy-reviewer` for PT/FR) | Unresolved finding |
 | **G6 · Format** | Reference list in the venue's standard, length and format limits met | Any reference failing the standard |
 
