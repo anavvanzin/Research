@@ -15,6 +15,7 @@ expected, not breakage.
 |---|---|
 | *(unmarked)* | Versioned in this repo. Present in every session; the CI drift guard checks it. |
 | 🖥️ **host-only** | Exists only on the macOS host. Absent in remote/web sessions; not checked by the drift guard. |
+| ☁️ **external** | Runs on a third party's servers. Not in the tree and not on the Mac, so nothing arrives with the clone and the drift guard cannot check it. Ver *External CI surfaces* abaixo. |
 
 Do not "restore" a 🖥️ host-only surface in a remote session — it was never committed.
 See **Remote / web sessions** in [`../CLAUDE.md`](../CLAUDE.md).
@@ -84,8 +85,17 @@ muda sem aviso; como na linha global acima, não pine um número. Plugins do **n
 a `/plugin-name:command` that works on the Mac will report *Unknown command* in a remote
 session unless the capability is also shipped as a versioned project skill.
 
-Defaults sincronizados relevantes para a tese — conferidos em disco nesta sessão remota
-(2026-09-19), e portanto disponíveis em qualquer sessão: `iconocracy-agent`,
+**Snapshot datado, não inventário.** Os dois blocos abaixo registram o que foi conferido
+em disco numa sessão remota, numa conta, em 2026-09-19. Não são garantia de
+disponibilidade: a sincronização da conta muda sem tocar neste arquivo. A descoberta em
+tempo de execução continua sendo `find-skills`, nunca esta lista — é a regra em
+[`../AGENTS.md`](../AGENTS.md) e a que este próprio índice repete em *What this index does
+not duplicate*. O registro existe porque nomes errados aqui já custaram um *Unknown
+command*, e vale como aviso, não como contrato. O `test_skill_inventories_are_disjoint`
+confere que os dois blocos são coerentes **entre si**; não confere, e não tem como
+conferir, que correspondam ao que a conta sincroniza hoje.
+
+Defaults sincronizados relevantes para a tese — conferidos em 2026-09-19: `iconocracy-agent`,
 `iconocracy-reviewer`, `corpus-scout`, `corpus-audit`, `corpus-publish-preflight`,
 `academic-pipeline`, `academic-writing-reviewer`, `arno-dal-ri-ufsc`,
 `georges-martyn-iconology`, `novelty-claim-sweep`, `especialista-oficina`,
@@ -101,11 +111,12 @@ seção: `corpus-scout-workspace`, `corpus-stats`, `iconocode-analyze`, `iconoco
 > O nome correto é **`iconocracy-agent`**; os docs diziam `iconocracia-agent`, que não
 > existe em nenhum dos dois conjuntos.
 
-**Project (`.claude/skills/`)** — 2 versioned entries. These travel with the clone and
-work in every session:
+**Project (`.claude/skills/`)** — 2 versioned entries. Os **arquivos** viajam com o clone
+e estão presentes em qualquer sessão; se a **capacidade** funciona ali é outra pergunta, e
+a resposta difere entre as duas:
 | Skill | Purpose |
 |---|---|
-| `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. |
+| `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. **Sem fallback:** delega a executores que chegam pela conta (`deep-research`, `lit-review`, `academic-paper-reviewer`) e a `compilar-tese`, que este mesmo inventário dá como exclusiva do Mac (🖥️). Numa sessão sem eles o objeto de tese fica sem executor — o mesmo buraco que o `scientific-writer` fechou com fallback por rota, e que aqui segue aberto. |
 | `scientific-writer` | General scientific writing (artigos, grants, abstracts) — entry point that routes to `academic-pipeline`, `academic-writing-reviewer`, `iconocracy-reviewer`. Thesis work delegates to the router above. |
 
 Present in `.claude/skills/` on the Mac but **never committed**, so 🖥️ **host-only**:
@@ -230,7 +241,7 @@ both firing on every push to `main` and contending for the same `pages` concurre
 
 ---
 
-## External CI surfaces (not versioned)
+## External CI surfaces — ☁️ external
 
 Automation that posts to this repo from outside it. Nothing here lives in the tree, so the
 drift guard cannot check it — and nothing here is 🖥️ host-only either, since it runs on a

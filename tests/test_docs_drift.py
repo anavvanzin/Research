@@ -234,8 +234,10 @@ def test_project_skill_table_matches_disk() -> None:
         f"mas o Git rastreia {len(on_disk)}: {sorted(on_disk)}"
     )
 
-    # Linhas de tabela entre o cabeçalho e o parágrafo de host-only que o sucede.
-    table = automation[header.end():automation.index("host-only", header.end())]
+    # Linhas de tabela entre o cabeçalho e a primeira linha em branco depois dele.
+    # Antes a fatia terminava na primeira ocorrência de "host-only", o que fazia qualquer
+    # linha da tabela que citasse o marcador truncar a tabela e sumir com as seguintes.
+    table = automation[header.end():].split("\n\n", 1)[0]
     listed = set(re.findall(r"^\| `([a-z0-9-]+)` \|", table, flags=re.MULTILINE))
     assert listed == on_disk, (
         f"tabela de skills de projeto fora de sincronia com o Git — "
