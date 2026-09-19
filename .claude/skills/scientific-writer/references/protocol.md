@@ -36,10 +36,9 @@ where each source came from; a source you could not open is not a source you can
 ## G2 · Structure
 
 One row per section. A section with no claim is cut or merged. Uma claim sem entrada G1
-volta para G1 — **exceto** a explicitamente marcada como argumento da autora, que avança:
-a tese central de um trabalho original é argumento autoral por definição. O que exige G1
-são suas premissas e evidências. Mesma regra da tabela de gates em `SKILL.md`; se
-divergirem, o `SKILL.md` é o resumo e esta é a versão detalhada — alinhe as duas.
+volta para G1, salvo a que leva **marca autoral**. A regra é enunciada uma única vez, nas
+*Non-negotiables* do `SKILL.md` — não a reformule aqui: foi a reformulação em paralelo que
+fez G2 e G4 divergirem duas vezes.
 
 | § | Section | Claim it must carry | G1 keys | Words |
 |---|---|---|---|---|
@@ -57,7 +56,7 @@ One section per round. Before drafting a section, restate its claim and its G1 k
 - Mark every borrowed statement with its G1 key inline as you write (`[SILVA2019]`),
   converting to the venue's citation form at G6. Anchoring after the fact is how
   unanchored claims survive.
-- Flag your own argumentative moves explicitly so G4 can tell them from sourced claims.
+- Aplique a **marca autoral** aos seus próprios movimentos argumentativos enquanto escreve, para o G4 distingui-los das claims com fonte.
 - Keep the author's register. Match the surrounding prose's sentence length and
   vocabulary; do not standardise it.
 
@@ -69,7 +68,7 @@ A separate pass over the finished draft, checked against G1. Not merged into G5.
 
 Checklist:
 
-- [ ] Every informative claim carries a G1 key or is explicitly marked as the author's argument.
+- [ ] Every informative claim carries a G1 key or the **marca autoral** (*Non-negotiables*, `SKILL.md`).
 - [ ] Every G1 key used in the text exists in the bibliography.
 - [ ] Every bibliography entry is actually cited (or deliberately listed as further reading).
 - [ ] Every quotation is verbatim and **locatable**: página quando a fonte é paginada; seção, parágrafo, timestamp ou outro localizador estável quando não é (fonte web, documento digital sem paginação). Paráfrases marcadas como paráfrase.

@@ -83,9 +83,9 @@ direta sem o texto em mãos.
 | Gate | Produces | Blocks on |
 |---|---|---|
 | **G1 · Sources** | Working bibliography, each entry with a resolvable identifier (DOI, ISBN, permalink, archive shelfmark) | Any entry that cannot be resolved |
-| **G2 · Structure** | Section outline with the claim each section must carry | A section with no claim; or uma claim que não tem **nem** fonte em G1 **nem** marca explícita de argumento da autora — a tese central de um artigo original é argumento autoral, e avança; o que exige fonte são suas premissas e evidências |
+| **G2 · Structure** | Section outline with the claim each section must carry | A section with no claim; ou uma claim sem entrada G1 **e** sem **marca autoral** (ver *Non-negotiables*) |
 | **G3 · Draft** | Prose, one section per round | — |
-| **G4 · Integrity** | Cada afirmação informativa mapeada a uma entrada G1 **ou** marcada como argumento da autora | Uma claim sem nenhum dos dois — o argumento autoral que G2 admitiu não bloqueia aqui |
+| **G4 · Integrity** | Cada afirmação informativa com entrada G1 **ou** com **marca autoral** | Uma claim sem nenhum dos dois (ver *Non-negotiables*) — o que G2 admitiu não volta a bloquear aqui |
 | **G5 · Review** | Adversarial pass via `academic-writing-reviewer` (+ `iconocracy-reviewer` for PT/FR) | Unresolved finding |
 | **G6 · Format** | Reference list in the venue's standard, length and format limits met | Any reference failing the standard |
 
@@ -96,8 +96,14 @@ finished draft, checked against G1 — not a reviewer's impression.
 
 - **Never fabricate a citation.** No invented DOI, page range, publisher, year, or
   quotation. An unverified source is reported as unverified, never smoothed into the text.
-- **Every informative claim is traceable** to an identifiable source. Claims that are the
-  author's own argument are marked as such, not dressed as established fact.
+- **Every informative claim is traceable** to an identifiable source — com uma única
+  exceção, a **marca autoral**: a claim que é argumento da própria autora é marcada como
+  tal e avança sem entrada G1, porque a tese central de um trabalho original é autoral
+  por definição. O que continua exigindo fonte são suas premissas e evidências, e
+  argumento marcado nunca é vestido de fato estabelecido.
+  **Esta é a única formulação da regra.** Os gates abaixo e o `references/protocol.md`
+  apontam para cá em vez de repeti-la: enunciada em quatro lugares, ela já divergiu
+  duas vezes — G2 admitia o que G4 bloqueava.
 - **Preserve the author's voice.** Improve clarity and structure; do not flatten prose
   into generic academic register, and do not rewrite an argument into a different one.
 - **Quotations are exact**, and **uma fonte não lida não é parafraseada.** Sem o texto
