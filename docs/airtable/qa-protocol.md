@@ -68,6 +68,33 @@ Criar uma tabela adicional chamada **Divergências e QA** quando a primeira impo
 - Desacordo entre codificações não deve ser resolvido por sobrescrita; deve receber status `divergente` até haver decisão registrada.
 - O `Índice de purificação` deve ser recalculado a partir dos dez indicadores quando todos estiverem presentes; qualquer exceção exige nota metodológica.
 
+## Elegibilidade de consultas para galerias analíticas
+
+A composição de uma galeria deve ser determinada por critérios verificáveis, e
+não por seleção manual posterior. Para cada consulta, aplicar e registrar os
+filtros na ordem definida pelo protocolo da análise. Depois de **cada** filtro,
+o relatório deve informar o denominador efetivo remanescente, inclusive quando
+um filtro não altera a contagem.
+
+Uma consulta só é elegível quando, ao final dos filtros:
+
+- contém `N >= 20` itens válidos;
+- registra `eligible_cross_support_candidates >= 10`;
+- reúne candidatos de pelo menos três suportes distintos;
+- não contém itens duplicados nem mais de uma reprodução do mesmo objeto.
+
+O alvo analítico é **30 itens por consulta**. Resultados com 24–29 itens são
+admissíveis, mas ficam abaixo do alvo; resultados com 20–23 itens constituem a
+**faixa mínima degradada** e devem ser identificados como tal no relatório.
+Resultados abaixo de 20, ou que descumpram qualquer outro critério acima, são
+inelegíveis.
+
+Quando uma consulta for inelegível, substituí-la pela próxima consulta ainda
+não utilizada da lista de reserva, respeitando estritamente a ordem congelada.
+Aplicar à substituta os mesmos filtros, critérios e relatório de denominadores.
+Se nenhuma consulta de reserva satisfizer os critérios, declarar a consulta
+inelegível; é vedada escolha manual *ad hoc* para completar a galeria.
+
 ## Checklist antes de um release público
 
 - [ ] Cada linha possui `ID do corpus` único ou está marcada como duplicata.
