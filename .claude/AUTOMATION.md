@@ -79,11 +79,27 @@ Academic panel: `academic-{anthropologist,geographer,historian,narratologist,pee
 skill for fuzzy lookup; do **not** enumerate.
 
 **Account-synced** — in remote/web sessions the only skills available are those synced to
-the Claude account (~50), plus the versioned project skills below. Plugins do **not** sync:
+the Claude account, plus the versioned project skills below. A contagem depende da conta e
+muda sem aviso; como na linha global acima, não pine um número. Plugins do **not** sync:
 a `/plugin-name:command` that works on the Mac will report *Unknown command* in a remote
 session unless the capability is also shipped as a versioned project skill.
 
-Thesis-relevant defaults: `iconocracia-agent`, `corpus-scout`, `corpus-scout-workspace`, `corpus-stats`, `iconocode-analyze`, `iconocode-batch`, `validate-corpus`, `compilar-tese`, `dir410346`, `abnt-format`, `citation-management`, `citation-audit`, `claude-md`, `AutoResearchClaw` (live-symlinked from `~/Documents/GitHub/AutoResearchClaw`).
+Defaults sincronizados relevantes para a tese — conferidos em disco nesta sessão remota
+(2026-09-19), e portanto disponíveis em qualquer sessão: `iconocracy-agent`,
+`iconocracy-reviewer`, `corpus-scout`, `corpus-audit`, `corpus-publish-preflight`,
+`academic-pipeline`, `academic-writing-reviewer`, `arno-dal-ri-ufsc`,
+`georges-martyn-iconology`, `novelty-claim-sweep`, `especialista-oficina`,
+`manifesto-gravura`, `scholarly-craft-style`, `scholarly-precision-style`, `find-skills`.
+
+Nomeadas nos docs mas **ausentes do conjunto sincronizado**, logo 🖥️ **host-only** —
+invocá-las numa sessão remota reproduz o mesmo *Unknown command* que originou esta
+seção: `corpus-scout-workspace`, `corpus-stats`, `iconocode-analyze`, `iconocode-batch`,
+`validate-corpus`, `compilar-tese`, `dir410346`, `abnt-format`, `abnt-6023`,
+`citation-management`, `citation-audit`, `claude-md`, `AutoResearchClaw`
+(live-symlinked de `~/Documents/GitHub/AutoResearchClaw` no Mac).
+
+> O nome correto é **`iconocracy-agent`**; os docs diziam `iconocracia-agent`, que não
+> existe em nenhum dos dois conjuntos.
 
 **Project (`.claude/skills/`)** — 2 versioned entries. These travel with the clone and
 work in every session:

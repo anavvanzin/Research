@@ -67,6 +67,24 @@ Note the carve-out from the scope boundary above: a **standalone paper drawn fro
 thesis material stays with this skill — the paper is the principal object and the thesis
 is a source. Only thesis-internal objects go to the router.
 
+### Se a rota não existe nesta sessão
+
+As rotas acima, fora do `iconocracia-pipeline-router`, **não são versionadas neste
+repo**: chegam pela conta. Numa sessão remota cuja conta não as tenha sincronizadas,
+invocá-las devolve *Unknown command* — exatamente a falha que originou esta skill. Então
+antes de delegar, confirme com `find-skills` que a rota existe; e se não existir:
+
+| Rota ausente | O que fazer no lugar |
+|---|---|
+| `academic-pipeline` | Conduza os gates G1→G6 aqui mesmo, um por vez, com `references/protocol.md` aberto. A ordem dos gates é o pipeline; a skill é só a implementação dela. |
+| `academic-writing-reviewer` · `iconocracy-reviewer` | Faça G5 nesta sessão, adversarialmente e contra a checklist de G5 do protocolo. Registre que a revisão foi feita sem revisor dedicado — é uma revisão mais fraca, e o usuário precisa saber. |
+| `content-research-writer` | Itere o outline direto no formato da tabela de G2. |
+| `docx` / `pdf` / `pptx` | Entregue Markdown e diga qual conversão ficou pendente; não simule o binário. |
+
+O que **não** se faz é abortar o pedido por falta de rota, nem delegar às cegas e
+reportar o *Unknown command* como se fosse resposta. Os gates e as Non-negotiables valem
+igual nos dois caminhos — a rota ausente muda quem executa, não o padrão.
+
 ## Gates — só para o ciclo completo
 
 Estes gates governam **um ciclo completo de escrita** (G1→G6): quando o objeto é um
@@ -82,10 +100,10 @@ direta sem o texto em mãos.
 
 | Gate | Produces | Blocks on |
 |---|---|---|
-| **G1 · Sources** | Working bibliography, each entry with a resolvable identifier (DOI, ISBN, permalink, archive shelfmark) | Any entry that cannot be resolved |
+| **G1 · Sources** | Working bibliography, each entry with a resolvable identifier (DOI, ISBN, permalink, archive shelfmark) **e** a marca de verificado / não verificado — identificador que resolve não é texto conferido | Any entry that cannot be resolved. Uma entrada não verificada não bloqueia G1, mas **nenhuma claim pode se ancorar nela** até o texto ser aberto |
 | **G2 · Structure** | Section outline with the claim each section must carry | A section with no claim; or uma claim que não tem **nem** fonte em G1 **nem** marca explícita de argumento da autora — a tese central de um artigo original é argumento autoral, e avança; o que exige fonte são suas premissas e evidências |
 | **G3 · Draft** | Prose, one section per round | — |
-| **G4 · Integrity** | Cada afirmação informativa mapeada a uma entrada G1 **ou** marcada como argumento da autora | Uma claim sem nenhum dos dois — o argumento autoral que G2 admitiu não bloqueia aqui |
+| **G4 · Integrity** | Cada afirmação informativa mapeada a uma entrada G1 **verificada** **ou** marcada como argumento da autora | Uma claim sem nenhum dos dois, ou ancorada numa entrada G1 ainda não verificada — o argumento autoral que G2 admitiu não bloqueia aqui |
 | **G5 · Review** | Adversarial pass via `academic-writing-reviewer` (+ `iconocracy-reviewer` for PT/FR) | Unresolved finding |
 | **G6 · Format** | Reference list in the venue's standard, length and format limits met | Any reference failing the standard |
 

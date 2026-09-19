@@ -3,6 +3,12 @@
 Loaded on demand. `SKILL.md` is sufficient for routine drafting; read this when the user
 asks for gate checklists, a submission template, or a formal artifact.
 
+**Escopo dos gates.** G1→G6 governam um **ciclo completo de escrita** — texto produzido
+do zero ou revisado por inteiro. Uma rota direta da triagem (revisar um parágrafo,
+padronizar uma referência, iterar um outline) **não passa por eles**: responde na rota
+escolhida, sob as Non-negotiables do `SKILL.md`. Mesma regra que a seção *Gates* do
+`SKILL.md`; se divergirem, o `SKILL.md` é o resumo e esta é a versão detalhada.
+
 ---
 
 ## G1 · Sources
@@ -20,10 +26,25 @@ with a resolvable identifier.
 | Web source | URL + access date (both required under ABNT) |
 
 **Gate output** — a table with: short key · full reference in the target standard ·
-identifier · what claim it is expected to support · verified yes/no.
+identifier · what claim it is expected to support · **resolvido** sim/não · **verificado**
+sim/não.
 
-**Blocks on** any entry that cannot be resolved. Report it as unresolved; do not carry it
-into G2 hoping it will firm up later.
+As duas colunas finais medem coisas diferentes e nenhuma substitui a outra:
+
+- **resolvido** — o identificador leva ao registro da obra. É o requisito de *entrada* na
+  bibliografia.
+- **verificado** — o texto foi aberto e a afirmação foi conferida nele. É o requisito de
+  *uso como evidência*.
+
+**Blocks on** qualquer entrada que não resolve: reporte como não resolvida e não a leve
+para G2 na esperança de firmar depois.
+
+**Uma entrada `verificado = não` não bloqueia G1, mas bloqueia o uso.** Ela existe na
+bibliografia como pendência, e nenhuma afirmação pode se ancorar nela: um DOI ou URL que
+resolve sem dar acesso ao texto não autoriza atribuir nada à obra. Até que o conteúdo seja
+consultado, a claim que dependia dela é marcada como não verificada — como manda a linha
+*a source you could not open is not a source you can cite*, abaixo — ou a fonte é pedida
+ao usuário. G4 cobra essa distinção; G3 não deve escrever contra uma chave pendente.
 
 ### Source discovery
 
@@ -70,6 +91,8 @@ A separate pass over the finished draft, checked against G1. Not merged into G5.
 Checklist:
 
 - [ ] Every informative claim carries a G1 key or is explicitly marked as the author's argument.
+- [ ] Nenhuma claim se ancora numa entrada G1 com `verificado = não` — identificador que
+      resolve não é texto conferido.
 - [ ] Every G1 key used in the text exists in the bibliography.
 - [ ] Every bibliography entry is actually cited (or deliberately listed as further reading).
 - [ ] Every quotation is verbatim and **locatable**: página quando a fonte é paginada; seção, parágrafo, timestamp ou outro localizador estável quando não é (fonte web, documento digital sem paginação). Paráfrases marcadas como paráfrase.
