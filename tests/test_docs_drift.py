@@ -221,10 +221,15 @@ def test_no_stale_find_skill_reference(doc: str) -> None:
     Regressão do bug encontrado em 2026-08-30, quando os quatro docs de governança
     mandavam invocar um skill inexistente.
     """
-    text = (REPO_ROOT / doc).read_text(encoding="utf-8")
-    stale = re.findall(r"find-skill(?!s)", text)
+    stale = [
+        lineno
+        for lineno, line in _iter_doc_lines(doc)
+        if re.search(r"find-skill(?!s)", line)
+    ]
     assert not stale, (
-        f"{doc} referencia `find-skill` ({len(stale)}×); o skill instalado é `find-skills`"
+        f"{doc} referencia `find-skill` nas linhas {stale}; o skill instalado é "
+        f"`find-skills`. Para registrar o nome antigo historicamente, marque a linha "
+        f"como host-only ou com <!-- drift-pin: ... -->."
     )
 
 

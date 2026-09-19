@@ -94,8 +94,11 @@ por padrão** — só passam a valer se forem explicitamente ligados no
 
 ## Root-level commands (a raiz TEM verificação)
 
-A raiz não é um codebase, mas — ao contrário do que `AGENTS.md` afirma — ela tem
-CI própria e um par de comandos que valem para o meta-workspace em si:
+A raiz não é um codebase, mas tem CI própria e um par de comandos que valem para o
+meta-workspace em si. O `AGENTS.md` diz o mesmo desde 2026-09-19 — os dois documentos
+concordam.
+<!-- drift-pin: 2026-09-19 dizia "ao contrário do que AGENTS.md afirma"; a ressalva
+     virou obsoleta quando o AGENTS.md passou a liberar test/lint com escopo. -->
 
 | Tarefa | Comando |
 | --- | --- |

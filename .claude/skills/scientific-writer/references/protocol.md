@@ -13,7 +13,7 @@ with a resolvable identifier.
 | Type | Required identifier |
 |---|---|
 | Journal article | DOI, or a stable publisher/repository URL |
-| Book / chapter | ISBN + publisher + year |
+| Book / chapter | ISBN **ou** outro identificador resolvível (permalink de catálogo, OCLC, registro de biblioteca) — obra anterior ao ISBN ou edição acadêmica sem ele entra por aí; editora e ano seguem obrigatórios como metadado |
 | Archival item | Repository + shelfmark/cote + permalink where digitised |
 | Thesis / dissertation | Institution + year + repository handle |
 | Legal source | Jurisdiction + instrument + date + official gazette reference |
@@ -35,8 +35,11 @@ where each source came from; a source you could not open is not a source you can
 
 ## G2 · Structure
 
-One row per section. A section with no claim is cut or merged; a claim with no G1 entry
-goes back to G1.
+One row per section. A section with no claim is cut or merged. Uma claim sem entrada G1
+volta para G1 — **exceto** a explicitamente marcada como argumento da autora, que avança:
+a tese central de um trabalho original é argumento autoral por definição. O que exige G1
+são suas premissas e evidências. Mesma regra da tabela de gates em `SKILL.md`; se
+divergirem, o `SKILL.md` é o resumo e esta é a versão detalhada — alinhe as duas.
 
 | § | Section | Claim it must carry | G1 keys | Words |
 |---|---|---|---|---|
@@ -69,7 +72,7 @@ Checklist:
 - [ ] Every informative claim carries a G1 key or is explicitly marked as the author's argument.
 - [ ] Every G1 key used in the text exists in the bibliography.
 - [ ] Every bibliography entry is actually cited (or deliberately listed as further reading).
-- [ ] Every quotation is verbatim and page-located; paraphrases are marked as paraphrase.
+- [ ] Every quotation is verbatim and **locatable**: página quando a fonte é paginada; seção, parágrafo, timestamp ou outro localizador estável quando não é (fonte web, documento digital sem paginação). Paráfrases marcadas como paráfrase.
 - [ ] No claim attributed to a source that does not make it.
 - [ ] Numbers, dates, N-counts and proper names match their sources.
 - [ ] No citation invented, inferred, or reconstructed from memory.
