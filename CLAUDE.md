@@ -99,11 +99,17 @@ CI própria e um par de comandos que valem para o meta-workspace em si:
 
 | Tarefa | Comando |
 | --- | --- |
-| Testes do repo | `pytest` — `tests/test_repo_sanity.py` compila (`py_compile`) todo `.py` versionado |
-| Lint | `flake8 . --select=E9,F63,F7,F82` (erros de sintaxe / nomes indefinidos) |
+| Testes do repo | `pytest tests/` — `test_repo_sanity.py` compila (`py_compile`) todo `.py` versionado; `test_docs_drift.py` é a guarda de drift |
+| Lint | `flake8 tests/ scripts/ .claude/ --select=E9,F63,F7,F82` (erros de sintaxe / nomes indefinidos) |
 | Ambiente do CI | `conda env update --file environment.yml` — env `research`, **Python 3.10** |
 | Guard de ownership (pre-commit) | `bash scripts/install-hooks.sh` (modo `info`; `enforce` bloqueia) · `python3 scripts/git_physics_guard.py` avulso |
 | Statusline | `bash scripts/install-statusline.sh` |
+
+**Escopo, não `.`:** no Mac a raiz também contém os sub-repos irmãos, e um `flake8 .`
+ou `pytest` sem caminho desce por eles — dependências alheias, falhas que não são
+desta raiz, suites fora de escopo. No container remoto o mesmo comando passa porque os
+irmãos não estão lá; é comando que só quebra no Mac. O CI pode usar `.` justamente
+porque lá só existe o meta-repo.
 
 `.github/workflows/python-package-conda.yml` roda lint + `pytest` a cada push.
 O smoke test existe justamente porque `pytest` sem teste coletável sai com

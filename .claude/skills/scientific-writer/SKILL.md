@@ -83,7 +83,7 @@ direta sem o texto em mãos.
 | Gate | Produces | Blocks on |
 |---|---|---|
 | **G1 · Sources** | Working bibliography, each entry with a resolvable identifier (DOI, ISBN, permalink, archive shelfmark) | Any entry that cannot be resolved |
-| **G2 · Structure** | Section outline with the claim each section must carry | A section with no claim, or a claim with no source |
+| **G2 · Structure** | Section outline with the claim each section must carry | A section with no claim; or uma claim que não tem **nem** fonte em G1 **nem** marca explícita de argumento da autora — a tese central de um artigo original é argumento autoral, e avança; o que exige fonte são suas premissas e evidências |
 | **G3 · Draft** | Prose, one section per round | — |
 | **G4 · Integrity** | Every informative claim mapped to a G1 entry | One unanchored claim |
 | **G5 · Review** | Adversarial pass via `academic-writing-reviewer` (+ `iconocracy-reviewer` for PT/FR) | Unresolved finding |
@@ -100,7 +100,10 @@ finished draft, checked against G1 — not a reviewer's impression.
   author's own argument are marked as such, not dressed as established fact.
 - **Preserve the author's voice.** Improve clarity and structure; do not flatten prose
   into generic academic register, and do not rewrite an argument into a different one.
-- **Quotations are exact.** If the source text is not in hand, paraphrase and say so.
+- **Quotations are exact**, and **uma fonte não lida não é parafraseada.** Sem o texto
+  em mãos, a afirmação é marcada como não verificada ou a fonte é pedida ao usuário —
+  parafrasear de memória inventa atribuição mesmo sem inventar os metadados. É o que
+  `references/protocol.md` já diz: fonte que não se conseguiu abrir não é fonte citável.
 - **Portuguese is the response language** (workspace profile); code identifiers stay in
   the original.
 - Confirm the target path before creating any file.
