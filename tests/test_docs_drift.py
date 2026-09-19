@@ -228,6 +228,46 @@ def test_no_stale_find_skill_reference(doc: str) -> None:
     )
 
 
+def _canonical_surfaces() -> tuple[set[str], set[str]]:
+    """As duas linhas da tabela *Versioned surfaces* do `.claude/AUTOMATION.md`.
+
+    Desde e95b4c6 essa tabela é a **única** enumeração em prosa; AGENTS.md, CLAUDE.md
+    e README.md apontam para ela. Sem parseá-la aqui, acrescentar uma raiz só exigiria
+    editar a constante e a fonte canônica podia ficar desatualizada — o furo que este
+    parser fecha.
+    """
+    automation = (REPO_ROOT / ".claude/AUTOMATION.md").read_text(encoding="utf-8")
+
+    def row(label: str) -> set[str]:
+        m = re.search(rf"^\| {label} \|(.+)\|$", automation, flags=re.MULTILINE)
+        assert m, f"tabela canônica perdeu a linha '{label}' em .claude/AUTOMATION.md"
+        return set(re.findall(r"`([^`]+)`", m.group(1)))
+
+    dirs = {d.rstrip("/") for d in row("Diretórios")}
+    return dirs, row("Arquivos de raiz")
+
+
+def test_canonical_table_matches_constants() -> None:
+    """A tabela canônica e as constantes da guarda precisam dizer a mesma coisa.
+
+    Fecha o furo da revisão de 2026-09-19: bastava acrescentar a raiz nova em
+    `_VERSIONED_ROOTS` para o teste passar, deixando a tabela *Versioned surfaces*
+    — a fonte única — atrasada.
+    """
+    table_dirs, table_files = _canonical_surfaces()
+    assert table_dirs == set(_VERSIONED_ROOTS), (
+        f"tabela canônica × _VERSIONED_ROOTS divergem — "
+        f"só na tabela: {sorted(table_dirs - set(_VERSIONED_ROOTS))}; "
+        f"só na constante: {sorted(set(_VERSIONED_ROOTS) - table_dirs)}. "
+        f"Edite os dois: .claude/AUTOMATION.md (*Versioned surfaces*) e este arquivo."
+    )
+    assert table_files == set(_VERSIONED_ROOT_FILES), (
+        f"tabela canônica × _VERSIONED_ROOT_FILES divergem — "
+        f"só na tabela: {sorted(table_files - set(_VERSIONED_ROOT_FILES))}; "
+        f"só na constante: {sorted(set(_VERSIONED_ROOT_FILES) - table_files)}."
+    )
+
+
 def test_versioned_roots_are_declared() -> None:
     """Toda raiz de topo rastreada precisa estar em `_VERSIONED_ROOTS`.
 
@@ -246,11 +286,11 @@ def test_versioned_roots_are_declared() -> None:
     missing_dirs = tracked_dirs - _VERSIONED_ROOTS
     assert not missing_dirs, (
         f"raízes rastreadas ausentes de _VERSIONED_ROOTS: {sorted(missing_dirs)} — "
-        f"acrescente-as em tests/test_docs_drift.py para que suas referências sejam checadas"
+        f"acrescente-as em tests/test_docs_drift.py **e** na tabela *Versioned surfaces* de .claude/AUTOMATION.md — o test_canonical_table_matches_constants cobra as duas"
     )
 
     missing_files = tracked_files - _VERSIONED_ROOT_FILES
     assert not missing_files, (
         f"arquivos de raiz rastreados ausentes de _VERSIONED_ROOT_FILES: "
-        f"{sorted(missing_files)} — acrescente-os em tests/test_docs_drift.py"
+        f"{sorted(missing_files)} — acrescente-os em tests/test_docs_drift.py **e** na tabela *Versioned surfaces* de .claude/AUTOMATION.md"
     )

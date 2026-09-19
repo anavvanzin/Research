@@ -67,9 +67,18 @@ Note the carve-out from the scope boundary above: a **standalone paper drawn fro
 thesis material stays with this skill — the paper is the principal object and the thesis
 is a source. Only thesis-internal objects go to the router.
 
-## Gates
+## Gates — só para o ciclo completo
 
-Run in order. Each gate has an output that blocks the next.
+Estes gates governam **um ciclo completo de escrita** (G1→G6): quando o objeto é um
+texto a ser produzido do zero ou revisado por inteiro. Rodam em ordem, e cada um tem
+uma saída que bloqueia o próximo.
+
+**Uma rota direta da triagem não passa por eles.** Revisar um parágrafo, padronizar
+uma referência, iterar um outline — isso vai à rota escolhida e responde ali mesmo;
+exigir bibliografia completa e draft antes de revisar três linhas contradiz o "escolha
+a menor rota" acima. O que permanece em qualquer rota são as **Non-negotiables** abaixo:
+nada de citação fabricada, afirmação informativa sem fonte identificável, ou citação
+direta sem o texto em mãos.
 
 | Gate | Produces | Blocks on |
 |---|---|---|
