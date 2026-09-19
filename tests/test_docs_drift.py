@@ -197,6 +197,25 @@ def test_documented_path_exists(doc: str, lineno: int, token: str, is_link: bool
     )
 
 
+def _tracked_top_level() -> tuple[set[str], set[str]]:
+    """Diretórios e arquivos de topo **rastreados pelo Git**, não o que há em disco.
+
+    O disco mente das duas direções nesta árvore: no Mac ele traz sub-repos irmãos e
+    árvores ignoradas que o Git não rastreia, e no container remoto não traz o que só
+    existe no Mac. Toda pergunta de "isto ainda é versionado?" se responde pelo índice —
+    é a mesma lição que já obrigou `_versioned_skills()` a trocar `iterdir()` por
+    `git ls-files`.
+    """
+    out = subprocess.run(
+        ["git", "ls-files", "-z"],
+        cwd=REPO_ROOT, capture_output=True, text=True, check=True,
+    ).stdout
+    entries = [e for e in out.split("\0") if e]
+    dirs = {Path(e).parts[0] for e in entries if len(Path(e).parts) > 1}
+    files = {e for e in entries if len(Path(e).parts) == 1}
+    return dirs, files
+
+
 def _versioned_skills() -> set[str]:
     """Skills de projeto **rastreadas pelo Git**, não o conteúdo do diretório.
 
@@ -341,13 +360,7 @@ def test_versioned_roots_are_declared() -> None:
     conferidas. O inverso é permitido de propósito: uma raiz já removida continua
     declarada, para que referências órfãs a ela ainda falhem.
     """
-    out = subprocess.run(
-        ["git", "ls-files", "-z"],
-        cwd=REPO_ROOT, capture_output=True, text=True, check=True,
-    ).stdout
-    entries = [e for e in out.split("\0") if e]
-    tracked_dirs = {Path(e).parts[0] for e in entries if len(Path(e).parts) > 1}
-    tracked_files = {e for e in entries if len(Path(e).parts) == 1}
+    tracked_dirs, tracked_files = _tracked_top_level()
 
     missing_dirs = tracked_dirs - _VERSIONED_ROOTS
     assert not missing_dirs, (
@@ -383,6 +396,45 @@ def _skill_inventories() -> tuple[set[str], set[str]]:
     synced = names("Defaults sincronizados relevantes para a tese")
     host_only = names("Nomeadas nos docs mas **ausentes do conjunto sincronizado**")
     return synced, host_only
+
+
+def _never_committed_skills() -> set[str]:
+    """A terceira tabela da seção *Skills*: presentes no Mac e nunca commitadas.
+
+    Ela não entra em `_skill_inventories()` porque é tabela, não parágrafo, e porque a
+    contradição que ela pode produzir é com o **Git**, não com os outros dois blocos:
+    commitar uma destas skills deixa o índice canônico declarando, ao mesmo tempo, que
+    ela é versionada e que nunca foi commitada.
+    """
+    automation = (REPO_ROOT / ".claude/AUTOMATION.md").read_text(encoding="utf-8")
+    anchor = "Present in `.claude/skills/` on the Mac but"
+    start = automation.find(anchor)
+    assert start != -1, (
+        "seção *Skills* do .claude/AUTOMATION.md perdeu a tabela de skills nunca "
+        "commitadas — se o texto foi reescrito, atualize este parser junto"
+    )
+    table = automation[start:automation.index("\n\nTo make any", start)]
+    return set(re.findall(r"^\| `([A-Za-z0-9_-]+)` \|", table, flags=re.MULTILINE))
+
+
+def test_never_committed_skills_are_not_versioned() -> None:
+    """Nenhuma skill pode ser "nunca commitada" e estar rastreada pelo Git.
+
+    Fecha o furo achado em 2026-09-19: commitar uma skill hoje listada como host-only
+    exigia atualizar a tabela de skills de projeto (o test_project_skill_table_matches_disk
+    cobra), mas nada obrigava a tirá-la desta terceira tabela — e o
+    test_skill_inventories_are_disjoint não a lê. O índice canônico passaria a afirmar
+    as duas coisas ao mesmo tempo, com o CI verde.
+    """
+    declared = _never_committed_skills()
+    assert declared, "a tabela de skills nunca commitadas ficou vazia"
+
+    contradiction = declared & _versioned_skills()
+    assert not contradiction, (
+        f"skills declaradas \"nunca commitadas\" mas rastreadas pelo Git: "
+        f"{sorted(contradiction)} — ao versionar uma delas, tire a linha da tabela "
+        f"host-only de .claude/AUTOMATION.md e acrescente-a à tabela de skills de projeto"
+    )
 
 
 def test_skill_inventories_are_disjoint() -> None:
@@ -422,10 +474,11 @@ def test_retired_vocabulary_is_coherent() -> None:
         f"arquivos declarados aposentados **e** versionados: {sorted(overlap_files)}"
     )
 
-    still_tracked = {
-        name for name in (_RETIRED_ROOTS | _RETIRED_ROOT_FILES)
-        if (REPO_ROOT / name).exists()
-    }
+    # Pelo índice, não pelo disco: no Mac uma raiz aposentada pode continuar em disco
+    # como diretório ignorado ou host-only, e `Path.exists()` a daria como ainda
+    # versionada — o teste ficaria vermelho localmente e verde no clone limpo do CI.
+    tracked_dirs, tracked_files = _tracked_top_level()
+    still_tracked = (_RETIRED_ROOTS | _RETIRED_ROOT_FILES) & (tracked_dirs | tracked_files)
     assert not still_tracked, (
         f"declarados aposentados mas ainda presentes no repo: {sorted(still_tracked)} — "
         f"devolva-os a _VERSIONED_ROOTS/_VERSIONED_ROOT_FILES e à tabela canônica"
