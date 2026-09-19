@@ -18,6 +18,22 @@ expected, not breakage.
 
 Do not "restore" a 🖥️ host-only surface in a remote session — it was never committed.
 See **Remote / web sessions** in [`../CLAUDE.md`](../CLAUDE.md).
+
+### Versioned surfaces — lista canônica
+
+**Esta é a única enumeração do conjunto.** `AGENTS.md`, `CLAUDE.md` e `README.md`
+apontam para cá em vez de repetir a lista: ela já divergiu três vezes por ter cópias,
+e nenhuma guarda pega isso (são afirmações em prosa, não referências de caminho).
+Ao acrescentar ou remover uma superfície, edite **aqui** — e atualize
+`_VERSIONED_ROOTS` / `_VERSIONED_ROOT_FILES` em `tests/test_docs_drift.py`, que é a
+cópia de máquina e é conferida contra `git ls-files`.
+
+| Tipo | Superfícies |
+|---|---|
+| Diretórios | `cowork/` · `docs/` · `.claude/` · `.devcontainer/` · `.github/` · `.opencode/` · `.planning/` · `data/` · `plans/` · `scripts/` · `tests/` |
+| Arquivos de raiz | `AGENTS.md` · `CLAUDE.md` · `README.md` · `environment.yml` · `.gitignore` · `.gitattributes` |
+
+Todo o resto na árvore é sub-repo irmão com `.git` próprio, ou 🖥️ host-only.
 ---
 
 ## Hooks (Claude Code)

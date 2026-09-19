@@ -6,23 +6,21 @@ orienta agentes de IA; humano: [`README.md`](README.md); Claude Code:
 
 ## Natureza
 
-**Meta-workspace, NÃO codebase.** A raiz versiona as superfícies-meta:
-`cowork/`, `docs/`, `.claude/`, `.devcontainer/`, `.github/`, `.opencode/`, `.planning/`,
-`data/`, `plans/`, `scripts/`, `tests/` e os arquivos de raiz (`AGENTS.md`, `CLAUDE.md`, `README.md`, `environment.yml`,
-`.gitignore`, `.gitattributes`). Trabalho real vive em sub-repos com `.git`
-próprio.
+**Meta-workspace, NÃO codebase.** A raiz versiona apenas superfícies-meta — a lista
+canônica vive em **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)**, seção *Versioned
+surfaces*, e não é repetida aqui. Trabalho real vive em sub-repos com `.git` próprio.
 
 ## Constraints de acesso (read-only / proibições)
 
 - Agentes **MUST NOT** rodar `git add` em caminho de sub-repo. Sub-repos
   (`hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`,
   `hermes-workspace/`) têm `.git` próprio — operar dentro deles.
-  O que esta raiz **versiona** é o conjunto de arquivos-meta: `cowork/`, `docs/`,
-  `.claude/`, `.github/`, `.opencode/`, `.planning/`, `data/`, `plans/`,
-  `scripts/`, `tests/` e os arquivos de raiz (`AGENTS.md`, `CLAUDE.md`,
-  `README.md`, `environment.yml`, `.gitignore`, `.gitattributes`).
+  As superfícies-meta que esta raiz versiona estão listadas em
+  [`.claude/AUTOMATION.md`](.claude/AUTOMATION.md) (*Versioned surfaces*) — editá-las
+  é normal e não requer nada além desta regra de sub-repo.
   <!-- drift-pin: 2026-09-09 a regra dizia "fora de cowork/ ou docs/", já falsa
-       antes disso — tests/, scripts/, .github/ e .claude/ já eram rastreados. -->
+       antes disso — tests/, scripts/, .github/ e .claude/ já eram rastreados. A
+       enumeração saiu daqui em 2026-09-19: tinha quatro cópias e divergiu 3×. -->
 - Agentes **PODEM** rodar `test` e `lint` **na raiz**: ela tem CI própria
   (`.github/workflows/python-package-conda.yml` → `flake8` + `pytest`). Não há
   `build` nem `typecheck` aqui, e não existe `package.json`/`pyproject.toml` —

@@ -10,11 +10,10 @@ This file is for Claude Code sessions; the human-readable counterpart is
 
 ## Workspace shape
 
-This is a **meta-workspace, not a monorepo.** It versions only meta files —
-`cowork/`, `docs/`, `.claude/`, `.devcontainer/`, `.github/`, `.opencode/`, `.planning/`, `data/`,
-`plans/`, `scripts/`, `tests/` and the root files (`AGENTS.md`, `CLAUDE.md`,
-`README.md`, `environment.yml`, `.gitignore`, `.gitattributes`). Sub-repos are
-siblings with their own `.git`.
+This is a **meta-workspace, not a monorepo.** It versions only meta files; the canonical
+list is in **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)** under *Versioned surfaces*
+and is deliberately not repeated here. Sub-repos are siblings with their own `.git`. The
+tree below shows the workspace's shape, not the set of tracked paths.
 
 ```
 /Users/ana/Research/      ← THIS REPO (git: anavvanzin/Research)
