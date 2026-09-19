@@ -162,8 +162,9 @@ Cloud clona **só a raiz do meta-workspace** (`anavvanzin/research`). Os sub-rep
 citados em `README.md`/`CLAUDE.md` — `hub/iconocracy-corpus/`, `apps/`,
 `pipelines/`, `vaults/`, `shared/`, `deep-memory/`, `hermes-workspace/` — **NÃO
 existem aqui** (têm `.git` próprio, vivem fora). Logo, tese/corpus/notebooks/
-`make -C vault/tese/` não rodam neste VM; não tente. O único código executável
-versionado aqui é `scripts/git_physics_guard.py` e o pacote Node `cowork/`.
+`make -C vault/tese/` não rodam neste VM; não tente. O Python versionado nesta raiz
+é `scripts/git_physics_guard.py`, `.claude/self-improving-agent/scripts/self_improve.py`
+e a suíte em `tests/` — mais o pacote Node `cowork/`.
 
 ### Runtimes (Linux VM, não macOS)
 
@@ -187,7 +188,12 @@ versionado aqui é `scripts/git_physics_guard.py` e o pacote Node `cowork/`.
 - `scripts/install-hooks.sh uninstall` só remove o hook se for symlink, mas o
   instalador grava um arquivo regular (heredoc) → uninstall **não** remove.
   Remova manual: `rm .git/hooks/pre-commit`.
-- Os workflows em `.github/workflows/` (jekyll/nextjs/python-conda) são samples
-  boilerplate do GitHub que referenciam arquivos de raiz inexistentes
-  (`environment.yml`, `package.json` raiz, config Jekyll). Não constroem nada
-  localmente; não os trate como "a aplicação" deste repo.
+- `.github/workflows/` tem **um** workflow, e ele é deliberado:
+  `python-package-conda.yml` roda `flake8` + `pytest` a cada push, com ambiente vindo
+  de `environment.yml` — que **existe** e é versionado. Não constrói aplicação alguma
+  (não há nenhuma nesta raiz), mas é a verificação real do meta-repo: não o trate como
+  boilerplate. Os samples `jekyll-gh-pages.yml` e `nextjs.yml`, que de fato eram
+  boilerplate sem site nem app, foram removidos em 2026-08-30 — ver
+  [`.claude/AUTOMATION.md`](.claude/AUTOMATION.md).
+  <!-- drift-pin: 2026-09-19 o texto anterior listava três workflows e dizia que
+       environment.yml não existia; ambos falsos. -->
