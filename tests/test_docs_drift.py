@@ -8,11 +8,12 @@ repo. Este arquivo é essa aplicação.
 
 Verifica apenas afirmações **checáveis dentro deste repo**:
 
-1. caminhos ancorados numa entrada real da raiz existem de fato — em crase ou como
-   destino de link markdown;
+1. caminhos ancorados numa raiz conhecida (versionada ou aposentada) existem de fato,
+   e link markdown resolve relativo ao próprio documento;
 2. a tabela de skills de projeto bate com `.claude/skills/`;
 3. as contagens declaradas de `cowork/` batem com o disco;
-4. nenhuma referência sobrou ao nome antigo `find-skill` (o skill é `find-skills`).
+4. nenhuma referência sobrou ao nome antigo `find-skill` (o skill é `find-skills`);
+5. nenhuma skill é declarada sincronizada **e** host-only ao mesmo tempo.
 
 Cobre os quatro docs de governança em prosa mais `docs/decisions/AGENT-OWNERSHIP.md`,
 que é lido por máquina (`scripts/git_physics_guard.py`).
@@ -75,6 +76,18 @@ _VERSIONED_ROOT_FILES = frozenset({
     "environment.yml", ".gitignore", ".gitattributes",
 })
 
+# Raízes e arquivos **já aposentados**: não são mais versionados, mas continuam no
+# vocabulário de detecção. Sem isso, aposentar uma superfície (tirando-a da tabela
+# canônica e de `_VERSIONED_ROOTS`) faria toda referência residual a ela deixar de ser
+# reconhecida como caminho — e o CI voltaria ao verde justamente no drift que a guarda
+# existe para pegar. Ao remover uma superfície, **mova** o nome para cá em vez de apagá-lo.
+_RETIRED_ROOTS: frozenset[str] = frozenset()
+_RETIRED_ROOT_FILES: frozenset[str] = frozenset()
+
+# O que conta como "token que afirma um caminho deste repo" — atual **ou** aposentado.
+_KNOWN_ROOTS = _VERSIONED_ROOTS | _RETIRED_ROOTS
+_KNOWN_ROOT_FILES = _VERSIONED_ROOT_FILES | _RETIRED_ROOT_FILES
+
 _BACKTICKED = re.compile(r"`([^`\n]+)`")
 
 # Destino de link markdown: `[texto](caminho)`. A regex de crase nunca pegava isto, então
@@ -113,16 +126,18 @@ def _iter_doc_lines(doc: str):
         yield lineno, line
 
 
-def _candidate_paths(doc: str) -> list[tuple[int, str]]:
-    """Tokens em crase que afirmam um caminho ancorado na raiz versionada.
+def _candidate_paths(doc: str) -> list[tuple[int, str, bool]]:
+    """Tokens que afirmam um caminho deste repo, com a marca de link markdown.
 
-    Só entra o token cujo **primeiro segmento** está em `_VERSIONED_ROOTS`. Isso
-    exclui de graça: caminhos absolutos, `~/...`, sub-repos irmãos ausentes
-    (`hub/`, `apps/`, `Tools/`) e fragmentos relativos a outro diretório
-    (`hooks/post-bash.sh`, relativo a `.claude/self-improving-agent/`) — e, ao
-    contrário de checar existência, continua validando uma raiz que foi removida.
+    Só entra o token cujo **primeiro segmento** está em `_KNOWN_ROOTS` — as raízes
+    versionadas **mais** as aposentadas. Isso exclui de graça: caminhos absolutos,
+    `~/...`, sub-repos irmãos ausentes (`hub/`, `apps/`, `Tools/`) e fragmentos
+    relativos a outro diretório (`hooks/post-bash.sh`, relativo a
+    `.claude/self-improving-agent/`); e, por ancorar no vocabulário em vez de na
+    existência, continua reconhecendo referência a raiz removida — tanto a que
+    desapareceu do disco quanto a que foi formalmente aposentada.
     """
-    found: list[tuple[int, str]] = []
+    found: list[tuple[int, str, bool]] = []
     for lineno, line in _iter_doc_lines(doc):
         candidates = [(tok, False) for tok in _BACKTICKED.findall(line)]
         candidates += [
@@ -135,37 +150,47 @@ def _candidate_paths(doc: str) -> list[tuple[int, str]]:
             if token.startswith(("/", "~", "http", "mailto:")):
                 continue
             if is_link and token.startswith(("./", "../")):
-                found.append((lineno, token))      # link relativo explícito: sempre checável
+                found.append((lineno, token, True))  # link relativo explícito: sempre checável
                 continue
             if "/" not in token:
                 # Nome solto: só conta se for arquivo de raiz versionado e declarado.
-                if token not in _VERSIONED_ROOT_FILES:
+                if token not in _KNOWN_ROOT_FILES:
                     continue
-            elif token.split("/", 1)[0] not in _VERSIONED_ROOTS:
+            elif token.split("/", 1)[0] not in _KNOWN_ROOTS:
                 continue
-            found.append((lineno, token))
+            found.append((lineno, token, is_link))
     return found
 
 
 _PATH_CASES = [
-    (doc, lineno, token)
+    (doc, lineno, token, is_link)
     for doc in GOVERNANCE_DOCS
-    for lineno, token in _candidate_paths(doc)
+    for lineno, token, is_link in _candidate_paths(doc)
 ]
 
 
 @pytest.mark.parametrize(
-    ("doc", "lineno", "token"),
+    ("doc", "lineno", "token", "is_link"),
     _PATH_CASES,
-    ids=[f"{doc}:{lineno}:{token}" for doc, lineno, token in _PATH_CASES],
+    ids=[f"{doc}:{lineno}:{token}" for doc, lineno, token, _ in _PATH_CASES],
 )
-def test_documented_path_exists(doc: str, lineno: int, token: str) -> None:
-    """Todo caminho ancorado citado num doc de governança precisa existir."""
+def test_documented_path_exists(doc: str, lineno: int, token: str, is_link: bool) -> None:
+    """Todo caminho ancorado citado num doc de governança precisa existir.
+
+    Link markdown resolve **só** relativo ao diretório do próprio documento, como o
+    GitHub o resolve. Aceitar também a raiz deixaria `[texto](README.md)` dentro de
+    `.claude/AUTOMATION.md` passar por causa do `README.md` da raiz, enquanto o link
+    renderizado aponta para `.claude/README.md` e está quebrado. Token em crase é
+    afirmação de caminho **da raiz** por construção (o filtro de raízes acima), então
+    para ele a raiz é a referência correta.
+    """
     relative = token.rstrip("/")
     doc_dir = (REPO_ROOT / doc).parent
-    resolved = (REPO_ROOT / relative).exists() or (doc_dir / relative).exists()
+    base = doc_dir if is_link else REPO_ROOT
+    onde = f"link relativo a {base.relative_to(REPO_ROOT)}/" if is_link else "raiz do repo"
+    resolved = (base / relative).exists()
     assert resolved, (
-        f"{doc}:{lineno} cita `{token}`, que não existe no repo. "
+        f"{doc}:{lineno} cita `{token}`, que não existe ({onde}). "
         f"Atualize o doc com o valor real (Drift protocol, AGENTS.md); se a superfície "
         f"vive só no Mac, marque a linha (ou o cabeçalho da seção) como host-only, "
         f"ou anote com <!-- drift-pin: ... -->."
@@ -332,4 +357,74 @@ def test_versioned_roots_are_declared() -> None:
     assert not missing_files, (
         f"arquivos de raiz rastreados ausentes de _VERSIONED_ROOT_FILES: "
         f"{sorted(missing_files)} — acrescente-os em tests/test_docs_drift.py **e** na tabela *Versioned surfaces* de .claude/AUTOMATION.md"
+    )
+
+
+def _skill_inventories() -> tuple[set[str], set[str]]:
+    """Os dois inventários de skills da seção *Skills* do `.claude/AUTOMATION.md`.
+
+    Um nome só pode estar em um dos dois: ou a skill chega numa sessão remota pela
+    conta, ou é 🖥️ host-only. Estar nos dois é a contradição que um operador remoto
+    paga com *Unknown command* — foi o que iniciou a PR #28.
+    """
+    automation = (REPO_ROOT / ".claude/AUTOMATION.md").read_text(encoding="utf-8")
+
+    def names(anchor: str) -> set[str]:
+        start = automation.find(anchor)
+        assert start != -1, (
+            f"seção *Skills* do .claude/AUTOMATION.md perdeu o trecho {anchor!r} — "
+            f"se o texto foi reescrito, atualize este parser junto"
+        )
+        block = automation[start:].split("\n\n", 1)[0]
+        return set(re.findall(r"`([^`\n]+)`", block))
+
+    synced = names("Defaults sincronizados relevantes para a tese")
+    host_only = names("Nomeadas nos docs mas **ausentes do conjunto sincronizado**")
+    return synced, host_only
+
+
+def test_skill_inventories_are_disjoint() -> None:
+    """Nenhuma skill pode ser declarada sincronizada **e** host-only.
+
+    Fecha a divergência achada em 2026-09-19: a linha de defaults listava 15 nomes
+    como sincronizados quando 12 deles não estavam no conjunto da conta, e um
+    (`AutoResearchClaw`) já aparecia como host-only em outro doc.
+    """
+    synced, host_only = _skill_inventories()
+
+    assert synced, "o inventário de skills sincronizadas ficou vazio"
+    assert host_only, "o inventário de skills host-only ficou vazio"
+
+    both = synced & host_only
+    assert not both, (
+        f"skills declaradas como sincronizadas **e** host-only: {sorted(both)} — "
+        f"decida qual conjunto vale e remova do outro, em .claude/AUTOMATION.md"
+    )
+
+
+def test_retired_vocabulary_is_coherent() -> None:
+    """O vocabulário aposentado precisa ser disjunto do atual — e de fato aposentado.
+
+    `_RETIRED_ROOTS` existe para que uma superfície removida continue sendo reconhecida
+    como caminho, e não para duplicar a lista corrente: um nome nos dois conjuntos
+    contradiria a tabela canônica, e um nome aposentado que ainda está rastreado
+    significa que a remoção não aconteceu.
+    """
+    overlap_dirs = _RETIRED_ROOTS & _VERSIONED_ROOTS
+    assert not overlap_dirs, (
+        f"raízes declaradas aposentadas **e** versionadas: {sorted(overlap_dirs)} — "
+        f"ao aposentar uma superfície, mova o nome; não o copie"
+    )
+    overlap_files = _RETIRED_ROOT_FILES & _VERSIONED_ROOT_FILES
+    assert not overlap_files, (
+        f"arquivos declarados aposentados **e** versionados: {sorted(overlap_files)}"
+    )
+
+    still_tracked = {
+        name for name in (_RETIRED_ROOTS | _RETIRED_ROOT_FILES)
+        if (REPO_ROOT / name).exists()
+    }
+    assert not still_tracked, (
+        f"declarados aposentados mas ainda presentes no repo: {sorted(still_tracked)} — "
+        f"devolva-os a _VERSIONED_ROOTS/_VERSIONED_ROOT_FILES e à tabela canônica"
     )
