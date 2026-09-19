@@ -8,10 +8,14 @@ repo. Este arquivo é essa aplicação.
 
 Verifica apenas afirmações **checáveis dentro deste repo**:
 
-1. caminhos ancorados numa entrada real da raiz existem de fato;
+1. caminhos ancorados numa entrada real da raiz existem de fato — em crase ou como
+   destino de link markdown;
 2. a tabela de skills de projeto bate com `.claude/skills/`;
 3. as contagens declaradas de `cowork/` batem com o disco;
 4. nenhuma referência sobrou ao nome antigo `find-skill` (o skill é `find-skills`).
+
+Cobre os quatro docs de governança em prosa mais `docs/decisions/AGENT-OWNERSHIP.md`,
+que é lido por máquina (`scripts/git_physics_guard.py`).
 
 Superfícies que vivem só no Mac de Ana ficam fora: uma linha marcada
 `host-only` ou com `<!-- drift-pin: ... -->` é ignorada, e caminhos ancorados
@@ -31,11 +35,18 @@ import pytest
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 # Documentos de governança sob guarda.
+#
+# `AGENT-OWNERSHIP.md` entrou em 2026-09-19. Não é prosa como os outros quatro: é o
+# contrato que `scripts/git_physics_guard.py` **parseia** para decidir a que harness
+# pertence cada path staged. Um caminho podre ali não é um link quebrado, é o guard
+# distribuindo permissão sobre superfície inexistente — foi o que a rodada 3 desta PR
+# achou à mão. Ver `docs/decisions/2026-09-19-guarda-drift-agent-ownership.md`.
 GOVERNANCE_DOCS = (
     "CLAUDE.md",
     "README.md",
     "AGENTS.md",
     ".claude/AUTOMATION.md",
+    "docs/decisions/AGENT-OWNERSHIP.md",
 )
 
 # Uma linha com qualquer destes marcadores é ignorada por completo.

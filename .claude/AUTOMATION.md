@@ -206,7 +206,7 @@ The legacy `.worktrees/` directory is empty.
 | Surface | File | Trigger | Purpose |
 |---|---|---|---|
 | Python syntax smoke test | `tests/test_repo_sanity.py` | `pytest` in `.github/workflows/python-package-conda.yml` (`on: [push]`) | Every tracked `.py` compiles. Also guarantees pytest collects something (empty collection = exit 5 = red build). |
-| **Governance-doc drift guard** | `tests/test_docs_drift.py` | same `pytest` step | Fails the build when `CLAUDE.md`, `README.md`, `AGENTS.md`, or this file reference an in-repo path, a skill, or a count that does not exist. Enforces the **Drift protocol** in [`../AGENTS.md`](../AGENTS.md), whose `drift-detector` is 🖥️ host-only. Escape hatches: a line marked 🖥️ host-only, or carrying `<!-- drift-pin: ... -->`, is skipped. |
+| **Governance-doc drift guard** | `tests/test_docs_drift.py` | same `pytest` step | Fails the build when `CLAUDE.md`, `README.md`, `AGENTS.md`, this file or `docs/decisions/AGENT-OWNERSHIP.md` reference an in-repo path, a skill, or a count that does not exist. O quinto entrou em 2026-09-19 por ser lido por máquina — `scripts/git_physics_guard.py` parseia aquela matriz; ver [`../docs/decisions/2026-09-19-guarda-drift-agent-ownership.md`](../docs/decisions/2026-09-19-guarda-drift-agent-ownership.md). Enforces the **Drift protocol** in [`../AGENTS.md`](../AGENTS.md), whose `drift-detector` is 🖥️ host-only. Escape hatches: a line marked 🖥️ host-only, or carrying `<!-- drift-pin: ... -->`, is skipped. |
 
 Removed 2026-08-30: `.github/workflows/nextjs.yml` and `.github/workflows/jekyll-gh-pages.yml` <!-- drift-pin: 2026-08-30 referência histórica; os arquivos foram deletados de propósito -->
 — unmodified GitHub starter templates with no Next.js app and no Jekyll site in the repo,

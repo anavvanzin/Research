@@ -173,7 +173,8 @@ Quando forem localizados/recriados, atualizar esta tabela; até lá, considerar 
 - **Sub-repo containment.** Do NOT run `git add` on a **sub-repo** path
   (`hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`,
   `hermes-workspace/`) — each has its own `.git`. The meta surfaces listed under
-  *Workspace shape* above are tracked here and may be edited normally.
+  *Versioned surfaces* in [`.claude/AUTOMATION.md`](.claude/AUTOMATION.md) are tracked
+  here and may be edited normally.
   <!-- drift-pin: 2026-09-09 dizia "only cowork/ and docs/", já falso: tests/,
        scripts/, .github/ e .claude/ eram rastreados antes disso. -->
 - **conda env:** `iconocracy` (Python 3.11 — env rebuilt 3.12→3.11 em 2026-06-22; use path version-agnostic `/opt/homebrew/Caskroom/miniforge/base/envs/iconocracy/bin/python`). Never system Python.
