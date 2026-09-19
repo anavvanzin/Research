@@ -38,7 +38,7 @@ Uma verificação que só roda quando alguém olha não é verificação.
 Acrescentar `docs/decisions/AGENT-OWNERSHIP.md` a `GOVERNANCE_DOCS` em
 `tests/test_docs_drift.py`.
 
-A guarda passa a conferir 29 tokens de caminho neste arquivo. Cinco linhas recebem
+A guarda passa a conferir **23** afirmações de caminho neste arquivo. Cinco linhas recebem
 `<!-- drift-pin: 2026-09-19 ... -->`, em duas classes distintas, e a distinção importa
 mais que a contagem.
 
@@ -76,7 +76,7 @@ confere que a atribuição harness→path faz sentido, nem que as colunas *Forbi
 coerentes entre si, nem que os 13 `HARNESS_ACTIVE` cobrem os harnesses em uso. Isso
 segue sendo leitura humana.
 
-Dos 29 tokens, a cobertura efetiva são os 24 não pinados — entre eles
+A cobertura efetiva são as 23 afirmações não pinadas — entre elas
 `.claude/self-improving-agent/`, `plans/`, `.planning/`, `docs/decisions/`, os arquivos
 de raiz e os dois links para o ADR de 2026-09-09. Renomear ou remover qualquer um deles
 com a referência de pé passa a falhar o build.
@@ -84,10 +84,16 @@ com a referência de pé passa a falhar o build.
 ## Verificação
 
 ```
-pytest tests/                                          → 145 passed (eram 117)
+pytest tests/                                          → verde
 flake8 $(git ls-files '*.py') --select=E9,F63,F7,F82   → 0
 python3 scripts/git_physics_guard.py                   → exit 0
 ```
+
+O ganho desta mudança são **23 casos novos** de `test_documented_path_exists`, ancorados
+neste arquivo. O total da suíte de propósito não fica registrado aqui: ele se move a cada
+commit que toque qualquer doc de governança, então fixá-lo num ADR é plantar exatamente a
+divergência numérica que o *Drift protocol* manda corrigir — foi o que aconteceu com a
+primeira versão deste bloco, que dizia 141 quando o head já trazia 145.
 
 Os 13 ids `HARNESS_ACTIVE` seguem sendo parseados após as anotações — os pins são
 comentários HTML e não tocam os cabeçalhos `### <nome> (HARNESS_ACTIVE=<id>)` que o

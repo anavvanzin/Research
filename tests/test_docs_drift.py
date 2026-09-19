@@ -12,7 +12,8 @@ Verifica apenas afirmações **checáveis dentro deste repo**:
    e link markdown resolve relativo ao próprio documento;
 2. a tabela de skills de projeto bate com `.claude/skills/`;
 3. as contagens declaradas de `cowork/` batem com o disco;
-4. nenhuma referência sobrou ao nome antigo `find-skill` (o skill é `find-skills`).
+4. nenhuma referência sobrou ao nome antigo `find-skill` (o skill é `find-skills`);
+5. nenhuma skill é declarada sincronizada **e** host-only ao mesmo tempo.
 
 Cobre os quatro docs de governança em prosa mais `docs/decisions/AGENT-OWNERSHIP.md`,
 que é lido por máquina (`scripts/git_physics_guard.py`).
@@ -233,8 +234,10 @@ def test_project_skill_table_matches_disk() -> None:
         f"mas o Git rastreia {len(on_disk)}: {sorted(on_disk)}"
     )
 
-    # Linhas de tabela entre o cabeçalho e o parágrafo de host-only que o sucede.
-    table = automation[header.end():automation.index("host-only", header.end())]
+    # Linhas de tabela entre o cabeçalho e a primeira linha em branco depois dele.
+    # Antes a fatia terminava na primeira ocorrência de "host-only", o que fazia qualquer
+    # linha da tabela que citasse o marcador truncar a tabela e sumir com as seguintes.
+    table = automation[header.end():].split("\n\n", 1)[0]
     listed = set(re.findall(r"^\| `([a-z0-9-]+)` \|", table, flags=re.MULTILINE))
     assert listed == on_disk, (
         f"tabela de skills de projeto fora de sincronia com o Git — "
@@ -356,6 +359,48 @@ def test_versioned_roots_are_declared() -> None:
     assert not missing_files, (
         f"arquivos de raiz rastreados ausentes de _VERSIONED_ROOT_FILES: "
         f"{sorted(missing_files)} — acrescente-os em tests/test_docs_drift.py **e** na tabela *Versioned surfaces* de .claude/AUTOMATION.md"
+    )
+
+
+def _skill_inventories() -> tuple[set[str], set[str]]:
+    """Os dois inventários de skills da seção *Skills* do `.claude/AUTOMATION.md`.
+
+    Um nome só pode estar em um dos dois: ou a skill chega numa sessão remota pela
+    conta, ou é 🖥️ host-only. Estar nos dois é a contradição que um operador remoto
+    paga com *Unknown command* — foi o que iniciou a PR #28.
+    """
+    automation = (REPO_ROOT / ".claude/AUTOMATION.md").read_text(encoding="utf-8")
+
+    def names(anchor: str) -> set[str]:
+        start = automation.find(anchor)
+        assert start != -1, (
+            f"seção *Skills* do .claude/AUTOMATION.md perdeu o trecho {anchor!r} — "
+            f"se o texto foi reescrito, atualize este parser junto"
+        )
+        block = automation[start:].split("\n\n", 1)[0]
+        return set(re.findall(r"`([^`\n]+)`", block))
+
+    synced = names("Defaults sincronizados relevantes para a tese")
+    host_only = names("Nomeadas nos docs mas **ausentes do conjunto sincronizado**")
+    return synced, host_only
+
+
+def test_skill_inventories_are_disjoint() -> None:
+    """Nenhuma skill pode ser declarada sincronizada **e** host-only.
+
+    Fecha a divergência achada em 2026-09-19: a linha de defaults listava 15 nomes
+    como sincronizados quando 12 deles não estavam no conjunto da conta, e um
+    (`AutoResearchClaw`) já aparecia como host-only em outro doc.
+    """
+    synced, host_only = _skill_inventories()
+
+    assert synced, "o inventário de skills sincronizadas ficou vazio"
+    assert host_only, "o inventário de skills host-only ficou vazio"
+
+    both = synced & host_only
+    assert not both, (
+        f"skills declaradas como sincronizadas **e** host-only: {sorted(both)} — "
+        f"decida qual conjunto vale e remova do outro, em .claude/AUTOMATION.md"
     )
 
 

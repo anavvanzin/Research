@@ -13,12 +13,9 @@ expected, not breakage.
 
 | Marker | Meaning |
 |---|---|
-| *(unmarked)* | Superfície **local e versionada** neste repo. Presente em toda sessão; a guarda de drift do CI a confere. |
+| *(unmarked)* | Versioned in this repo. Present in every session; the CI drift guard checks it. |
 | 🖥️ **host-only** | Exists only on the macOS host. Absent in remote/web sessions; not checked by the drift guard. |
-| 🌐 **external** | Roda em servidor de terceiro, não vive na árvore. Não chega pelo clone e a guarda não a confere — ver *External CI surfaces*. |
-
-O *(unmarked)* só se aplica a superfície local: uma superfície externa é sempre 🌐, mesmo
-sem estar marcada linha a linha, porque a seção que a contém é marcada.
+| ☁️ **external** | Runs on a third party's servers. Not in the tree and not on the Mac, so nothing arrives with the clone and the drift guard cannot check it. Ver *External CI surfaces* abaixo. |
 
 Do not "restore" a 🖥️ host-only surface in a remote session — it was never committed.
 See **Remote / web sessions** in [`../CLAUDE.md`](../CLAUDE.md).
@@ -83,28 +80,43 @@ Academic panel: `academic-{anthropologist,geographer,historian,narratologist,pee
 skill for fuzzy lookup; do **not** enumerate.
 
 **Account-synced** — in remote/web sessions the only skills available are those synced to
-the Claude account, plus the versioned project skills below. Plugins do **not** sync:
+the Claude account, plus the versioned project skills below. A contagem depende da conta e
+muda sem aviso; como na linha global acima, não pine um número. Plugins do **not** sync:
 a `/plugin-name:command` that works on the Mac will report *Unknown command* in a remote
 session unless the capability is also shipped as a versioned project skill.
 
-**Este documento não lista quais são.** A regra de descoberta do `AGENTS.md` vale aqui
-como em todo lugar: `find-skills` em tempo de execução, nunca enumeração mantida à mão.
-O conjunto sincronizado é estado da conta, muda sem aviso e sem passar por este repo — uma
-lista aqui seria uma observação de uma sessão apresentada como garantia universal, e é
-assim que uma sessão remota acaba roteando trabalho para skill ausente. Não pine número
-nem nome.
+**Snapshot datado, não inventário.** Os dois blocos abaixo registram o que foi conferido
+em disco numa sessão remota, numa conta, em 2026-09-19. Não são garantia de
+disponibilidade: a sincronização da conta muda sem tocar neste arquivo. A descoberta em
+tempo de execução continua sendo `find-skills`, nunca esta lista — é a regra em
+[`../AGENTS.md`](../AGENTS.md) e a que este próprio índice repete em *What this index does
+not duplicate*. O registro existe porque nomes errados aqui já custaram um *Unknown
+command*, e vale como aviso, não como contrato. O `test_skill_inventories_are_disjoint`
+confere que os dois blocos são coerentes **entre si**; não confere, e não tem como
+conferir, que correspondam ao que a conta sincroniza hoje.
 
-O que vale afirmar, e é o que esta seção existe para dizer: **só o que está versionado em
-`.claude/skills/` chega garantido pelo clone.** Qualquer outra rota — sincronizada,
-global ou de plugin — é verificada com `find-skills` antes de ser usada, e quem roteia
-carrega fallback para a ausência dela.
+Defaults sincronizados relevantes para a tese — conferidos em 2026-09-19: `iconocracy-agent`,
+`iconocracy-reviewer`, `corpus-scout`, `corpus-audit`, `corpus-publish-preflight`,
+`academic-pipeline`, `academic-writing-reviewer`, `arno-dal-ri-ufsc`,
+`georges-martyn-iconology`, `novelty-claim-sweep`, `especialista-oficina`,
+`manifesto-gravura`, `scholarly-craft-style`, `scholarly-precision-style`, `find-skills`.
 
-**Project (`.claude/skills/`)** — 2 versioned entries. Chegam pelo clone, então **carregam**
-em qualquer sessão; as rotas que elas invocam não são garantidas, e cada uma traz o
-fallback para rota ausente:
+Nomeadas nos docs mas **ausentes do conjunto sincronizado**, logo 🖥️ **host-only** —
+invocá-las numa sessão remota reproduz o mesmo *Unknown command* que originou esta
+seção: `corpus-scout-workspace`, `corpus-stats`, `iconocode-analyze`, `iconocode-batch`,
+`validate-corpus`, `compilar-tese`, `dir410346`, `abnt-format`, `abnt-6023`,
+`citation-management`, `citation-audit`, `claude-md`, `AutoResearchClaw`
+(live-symlinked de `~/Documents/GitHub/AutoResearchClaw` no Mac).
+
+> O nome correto é **`iconocracy-agent`**; os docs diziam `iconocracia-agent`, que não
+> existe em nenhum dos dois conjuntos.
+
+**Project (`.claude/skills/`)** — 2 versioned entries. Os **arquivos** viajam com o clone
+e estão presentes em qualquer sessão; se a **capacidade** funciona ali é outra pergunta, e
+a resposta difere entre as duas:
 | Skill | Purpose |
 |---|---|
-| `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. Seus executores (`deep-research`, `lit-review`, `academic-paper-reviewer`, `compilar-tese`) **não** são versionados; confira com `find-skills` antes de delegar e siga o fallback do próprio SKILL.md. |
+| `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. Delega a executores que chegam pela conta (`deep-research`, `lit-review`, `academic-paper-reviewer`) e a `compilar-tese`, que este mesmo inventário dá como exclusiva do Mac (🖥️) — então **carrega** em toda sessão sem por isso executar em toda sessão. Traz a seção *Rota ausente nesta sessão*, com fallback por etapa; a de compilação diz que exige o Mac em vez de simular. |
 | `scientific-writer` | General scientific writing (artigos, grants, abstracts) — entry point that routes to `academic-pipeline`, `academic-writing-reviewer`, `iconocracy-reviewer`. Thesis work delegates to the router above. |
 
 Present in `.claude/skills/` on the Mac but **never committed**, so 🖥️ **host-only**:
@@ -229,7 +241,7 @@ both firing on every push to `main` and contending for the same `pages` concurre
 
 ---
 
-## External CI surfaces (not versioned) — 🌐 **external**
+## External CI surfaces — ☁️ external
 
 Automation that posts to this repo from outside it. Nothing here lives in the tree, so the
 drift guard cannot check it — and nothing here is 🖥️ host-only either, since it runs on a
