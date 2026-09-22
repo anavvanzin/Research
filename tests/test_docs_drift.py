@@ -119,9 +119,15 @@ def _iter_doc_lines(doc: str):
     ADR deixaria o link quebrado e o CI verde.
     """
     section_escaped = False
+    escape_level = 0
     for lineno, line in enumerate((REPO_ROOT / doc).read_text(encoding="utf-8").splitlines(), 1):
-        if _HEADING.match(line):
-            section_escaped = _is_escaped(line)
+        cabecalho = _HEADING.match(line)
+        if cabecalho:
+            nivel = len(cabecalho.group(0)) - 1
+            if _is_escaped(line):
+                section_escaped, escape_level = True, nivel
+            elif nivel <= escape_level:
+                section_escaped, escape_level = False, 0
         if section_escaped or _is_escaped(line):
             continue
         yield lineno, line
@@ -410,6 +416,43 @@ def _skill_inventories() -> tuple[set[str], set[str]]:
     synced = names("Defaults sincronizados relevantes para a tese")
     host_only = names("Nomeadas nos docs mas **ausentes do conjunto sincronizado**")
     return synced, host_only
+
+
+def test_section_escape_respects_nesting() -> None:
+    """Um cabeçalho marcado silencia suas **subseções**; um irmão do mesmo nível encerra.
+
+    A rodada 12 fez qualquer cabeçalho encerrar o escape, para o link de um ADR numa
+    subseção `###` do `README.md` voltar a ser conferido. O efeito colateral era que uma
+    tabela host-only inteira dependia de nenhum `###` aparecer no meio dela — e o
+    `docs/methodology.md`, caminho relativo ao sub-repo, escapava por acidente de posição.
+
+    A estrutura do README foi corrigida (as duas subseções eram irmãs, não filhas, e
+    viraram `##`), o que tornou seguro o escape respeitar o aninhamento: `##` marcado
+    cobre seus `###`, e só um cabeçalho de nível igual ou superior o encerra.
+    """
+    linhas = [
+        "## Seção host-only",        # abre escape em nível 2
+        "`tese/inexistente/`",       # coberto
+        "### Subseção sem marca",    # mais fundo: não encerra
+        "`corpus/inexistente/`",     # ainda coberto
+        "## Seção normal",           # irmão: encerra
+        "`docs/`",                   # conferido
+    ]
+    doc = REPO_ROOT / "tests" / "_fixture_nesting.md"
+    doc.write_text("\n".join(linhas), encoding="utf-8")
+    try:
+        visiveis = {ln for ln, _ in _iter_doc_lines("tests/_fixture_nesting.md")}
+    finally:
+        doc.unlink()
+
+    assert 2 not in visiveis and 4 not in visiveis, (
+        "um `###` sem marca encerrou o escape de um `##` marcado: a seção host-only "
+        "deixou de cobrir as próprias subseções"
+    )
+    assert 6 in visiveis, (
+        "um `##` irmão sem marca não encerrou o escape: a seção host-only vazou para "
+        "a seção seguinte"
+    )
 
 
 def test_guard_row_is_not_self_escaped() -> None:

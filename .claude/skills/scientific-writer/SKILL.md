@@ -72,7 +72,11 @@ is a source. Only thesis-internal objects go to the router.
 As rotas acima, fora do `iconocracia-pipeline-router`, **não são versionadas neste
 repo**: chegam pela conta. Numa sessão remota cuja conta não as tenha sincronizadas,
 invocá-las devolve *Unknown command* — exatamente a falha que originou esta skill. Então
-antes de delegar, confirme com `find-skills` que a rota existe; e se não existir:
+antes de delegar, confirme que a rota existe, na cadeia que o `AGENTS.md` define:
+`find-skills <intent>`, depois `hermes skills list <categoria>`, e só por último
+`skills_list`. **`find-skills` também chega pela conta**, então se ele próprio não
+responder, não insista na cadeia nem trate isso como erro: vá direto ao fallback local
+abaixo, que é o que a tabela existe para dar. E se existir:
 
 > O router é versionado e portanto **carrega** em qualquer sessão, mas os pipelines que
 > *ele* invoca também chegam pela conta ou pelo Mac — ele tem a sua própria seção de rota

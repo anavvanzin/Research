@@ -29,9 +29,9 @@ próprio. Não existe em sessões remotas/web — ver **Remote / web sessions** 
 | Corpus canônico | `corpus/corpus-data.json` (336 itens) |
 | Notebooks | `notebooks/` (01–08) |
 | Schemas JSON | `tools/schemas/` (9 schemas; conferido 2026-09-19) |
-| Método | `hub/iconocracy-corpus/docs/methodology.md` |
+| Método | `docs/methodology.md` |
 
-### Protocolo de consultas do microcorpus
+## Protocolo de consultas do microcorpus
 
 A seleção das 12 consultas para comparação HOG/CLIP é regida pela decisão de
 [seleção reprodutível das consultas do microcorpus](docs/decisions/2026-09-09-selecao-consultas-microcorpus.md).
@@ -39,7 +39,7 @@ Ela exige sorteio estratificado com uma segunda seed fixa, validações estátic
 e registro da SHA-256 de `hub/iconocracy-corpus/data/queries.csv` — o artefato canônico
 nomeado pelo ADR, no sub-repo da tese, não nesta raiz — antes da geração dos rankings.
 
-### Contagens da tese — 🖥️ host-only, fora da guarda
+## Contagens da tese — 🖥️ host-only, fora da guarda
 
 Os números acima descrevem `hub/iconocracy-corpus/`, **sub-repo irmão com `.git` próprio**.
 `tests/test_docs_drift.py` não os alcança: numa sessão remota o diretório não existe, e a
