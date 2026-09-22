@@ -43,8 +43,11 @@ invoca não são versionados aqui: `deep-research`, `lit-review`, `academic-pape
 pela conta ou pelo Mac. Numa sessão remota que não os tenha, delegar às cegas devolve
 *Unknown command* e o pedido morre ali.
 
-Então: **confirme a rota com `find-skills` antes de delegar**, e se ela não existir, não
-aborte —
+Então: **confirme a rota antes de delegar**, na cadeia que o `AGENTS.md` define:
+`find-skills <intent>`, depois `hermes skills list <categoria>`, e só por último
+`skills_list`. **`find-skills` também chega pela conta**: se ele próprio não responder,
+não insista na cadeia nem trate o *Unknown command* dele como resposta — vá direto à
+tabela abaixo, que existe justamente para isso. E se a rota não existir, não aborte —
 
 | Rota ausente | O que fazer no lugar |
 |---|---|

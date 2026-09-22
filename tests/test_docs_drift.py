@@ -204,22 +204,30 @@ def test_documented_path_exists(doc: str, lineno: int, token: str, is_link: bool
     )
 
 
-def _tracked_top_level() -> tuple[set[str], set[str]]:
-    """Diretórios e arquivos de topo **rastreados pelo Git**, não o que há em disco.
+def _tracked_entries(prefix: str = "") -> list[Path]:
+    """Caminhos rastreados pelo Git sob `prefix`, relativos a ele.
 
-    O disco mente das duas direções nesta árvore: no Mac ele traz sub-repos irmãos e
-    árvores ignoradas que o Git não rastreia, e no container remoto não traz o que só
-    existe no Mac. Toda pergunta de "isto ainda é versionado?" se responde pelo índice —
-    é a mesma lição que já obrigou `_versioned_skills()` a trocar `iterdir()` por
-    `git ls-files`.
+    O disco mente das duas direções nesta árvore: no Mac ele traz sub-repos irmãos,
+    árvores ignoradas e rascunhos nunca commitados que o Git não rastreia, e no
+    container remoto não traz o que só existe no Mac. Toda pergunta de "isto ainda é
+    versionado?" — e toda contagem que um doc afirma — se responde pelo índice.
     """
+    argv = ["git", "ls-files", "-z"]
+    if prefix:
+        argv += ["--", prefix]
     out = subprocess.run(
-        ["git", "ls-files", "-z"],
-        cwd=REPO_ROOT, capture_output=True, text=True, check=True,
+        argv, cwd=REPO_ROOT, capture_output=True, text=True, check=True,
     ).stdout
-    entries = [e for e in out.split("\0") if e]
-    dirs = {Path(e).parts[0] for e in entries if len(Path(e).parts) > 1}
-    files = {e for e in entries if len(Path(e).parts) == 1}
+    base = Path(prefix) if prefix else None
+    entries = [Path(e) for e in out.split("\0") if e]
+    return [e.relative_to(base) for e in entries] if base else entries
+
+
+def _tracked_top_level() -> tuple[set[str], set[str]]:
+    """Diretórios e arquivos de topo **rastreados pelo Git**, não o que há em disco."""
+    entries = _tracked_entries()
+    dirs = {e.parts[0] for e in entries if len(e.parts) > 1}
+    files = {str(e) for e in entries if len(e.parts) == 1}
     return dirs, files
 
 
@@ -297,20 +305,54 @@ def test_documented_counts_match(doc: str, pattern: str) -> None:
     README **e** no `pattern` ainda deixava o build vermelho, com uma mensagem que
     contradizia o arquivo que o leitor tinha aberto.
 
-    A varredura de disco também roda aqui, no corpo, e não no `@parametrize`. Lá ela
-    era executada em tempo de import, e um `cowork/integrations/` ausente derrubava a
+    A contagem também roda aqui, no corpo, e não no `@parametrize`. Lá ela era
+    executada em tempo de import, e um `cowork/integrations/` ausente derrubava a
     coleta do módulo inteiro — as outras ~145 asserções nunca chegavam a rodar.
+
+    E ela vem do **índice**, não do disco. Era a quinta vez nesta PR que um mecanismo
+    contra drift lia `rglob`/`iterdir`: no Mac um rascunho `.md` não rastreado sob
+    `cowork/agents/`, ou um diretório local sob `cowork/integrations/`, mudava a
+    contagem e deixava `pytest tests/` vermelho acusando um README que está correto —
+    o clone do CI, que só tem o versionado, concordava com o doc. O filtro de
+    profundidade nas integrações não é enfeite: `cowork/integrations/README.md` é
+    rastreado e não é uma integração.
     """
     text = (REPO_ROOT / doc).read_text(encoding="utf-8")
     declarado = re.search(pattern, text)
     assert declarado, f"{doc} perdeu a frase de contagem esperada"
 
-    agentes = len(list((REPO_ROOT / "cowork/agents").rglob("*.md")))
-    integracoes = len([p for p in (REPO_ROOT / "cowork/integrations").iterdir() if p.is_dir()])
+    agentes = len([e for e in _tracked_entries("cowork/agents") if e.suffix == ".md"])
+    integracoes = len({
+        e.parts[0] for e in _tracked_entries("cowork/integrations") if len(e.parts) > 1
+    })
 
     assert (int(declarado.group(1)), int(declarado.group(2))) == (agentes, integracoes), (
         f"{doc} declara {declarado.group(1)} agentes + {declarado.group(2)} integrações, "
-        f"mas o disco tem {agentes} agentes + {integracoes} integrações"
+        f"mas o Git rastreia {agentes} agentes + {integracoes} integrações"
+    )
+
+
+def test_counts_ignore_untracked_drafts(tmp_path: Path) -> None:
+    """Um rascunho não rastreado sob `cowork/agents/` não pode mexer na contagem.
+
+    Regressão direta do achado: enquanto a contagem vinha de `rglob`, este arquivo
+    levava o total de 85 para 86 e derrubava `test_documented_counts_match` no Mac de
+    Ana, com o README e o clone do CI corretos. Irmão de
+    `test_never_committed_skills_are_not_versioned`, que é a mesma lição em outra
+    superfície.
+    """
+    del tmp_path  # o caso exige o caminho real dentro do repo, não um tmp isolado
+    antes = len([e for e in _tracked_entries("cowork/agents") if e.suffix == ".md"])
+    probe = REPO_ROOT / "cowork/agents/_drift_probe.md"
+    assert not probe.exists(), f"{probe} já existe; remova antes de rodar"
+    try:
+        probe.write_text("rascunho de teste\n", encoding="utf-8")
+        depois = len([e for e in _tracked_entries("cowork/agents") if e.suffix == ".md"])
+    finally:
+        probe.unlink(missing_ok=True)
+    assert depois == antes, (
+        f"a contagem de agentes saiu de {antes} para {depois} por causa de um arquivo "
+        f"não rastreado — ela precisa vir de `git ls-files`, não do disco"
     )
 
 
