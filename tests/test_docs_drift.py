@@ -162,8 +162,15 @@ def _candidate_paths(doc: str) -> list[tuple[int, str, bool]]:
                 continue
             if token.startswith(("/", "~", "http", "mailto:")):
                 continue
-            if is_link and token.startswith(("./", "../")):
-                found.append((lineno, token, True))  # link relativo explícito: sempre checável
+            if is_link:
+                # Link markdown local resolve relativo ao próprio documento, com ou sem
+                # `./`. Exigir o prefixo descartava `[ADR](2026-09-19-exemplo.md)` — a
+                # sintaxe normal — e também `[x](subdir/arquivo.md)` num doc aninhado,
+                # cujo primeiro segmento não é raiz desta raiz. Apagar o alvo deixava o
+                # link quebrado com a guarda verde. Os filtros de raiz abaixo valem para
+                # o token em crase, que é afirmação de caminho **da raiz**; aqui eles só
+                # cegavam.
+                found.append((lineno, token, True))
                 continue
             if "/" not in token:
                 # Nome solto: só conta se for arquivo de raiz versionado e declarado.
@@ -325,9 +332,16 @@ def test_project_skill_table_matches_disk() -> None:
         f"no disco mas não listadas: {sorted(on_disk - listed)}"
     )
 
+    # Pelo índice, não por `is_file()`: com o manifesto fora do Git e uma cópia local
+    # não rastreada no lugar, a skill continua em `_versioned_skills()` por causa dos
+    # outros arquivos dela, o Mac passa, e o clone limpo recebe a skill sem manifesto.
+    # Oitava vez nesta PR que uma verificação pergunta ao disco o que só o índice sabe.
+    rastreados = _tracked_paths()
     for skill in sorted(on_disk):
-        assert (REPO_ROOT / ".claude/skills" / skill / "SKILL.md").is_file(), (
-            f"skill de projeto `{skill}` não tem SKILL.md"
+        manifesto = f".claude/skills/{skill}/SKILL.md"
+        assert manifesto in rastreados, (
+            f"skill de projeto `{skill}`: o Git não rastreia `{manifesto}`. Uma cópia "
+            f"local não basta — no clone do CI a skill chegaria sem manifesto."
         )
 
 
@@ -691,12 +705,25 @@ def test_skill_inventories_are_disjoint() -> None:
 
     Como no teste acima, qualquer um dos dois inventários pode legitimamente esvaziar —
     uma categoria que deixa de existir não é drift. A asserção é sobre a interseção.
+
+    E o bloco host-only é confrontado também com o **índice**. Sem isso, versionar uma
+    skill dali (`compilar-tese`, digamos) e acrescentá-la à tabela de projeto passava em
+    tudo: o `test_never_committed_skills_are_not_versioned` lê a *terceira* tabela, não
+    esta, e o índice canônico ficava declarando a mesma skill portável e exclusiva do
+    Mac ao mesmo tempo. É o furo que a rodada 17 fechou, na tabela vizinha.
     """
     synced, host_only = _skill_inventories()
     both = synced & host_only
     assert not both, (
         f"skills declaradas como sincronizadas **e** host-only: {sorted(both)} — "
         f"decida qual conjunto vale e remova do outro, em .claude/AUTOMATION.md"
+    )
+
+    versionadas = host_only & _versioned_skills()
+    assert not versionadas, (
+        f"skills declaradas host-only mas rastreadas pelo Git: {sorted(versionadas)} — "
+        f"uma skill versionada viaja com o clone e deixou de ser exclusiva do Mac; "
+        f"tire-a do bloco host-only de .claude/AUTOMATION.md"
     )
 
 
