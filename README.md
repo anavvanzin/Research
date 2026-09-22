@@ -28,8 +28,8 @@ próprio. Não existe em sessões remotas/web — ver **Remote / web sessions** 
 | Entrega mais recente | `tese/Entrega_Orientador_Mar2026_FINAL/` |
 | Corpus canônico | `corpus/corpus-data.json` (336 itens) |
 | Notebooks | `notebooks/` (01–08) |
-| Schemas JSON | `tools/schemas/` (7 schemas) |
-| Método | `docs/methodology.md` |
+| Schemas JSON | `tools/schemas/` (9 schemas; conferido 2026-09-19) |
+| Método | `hub/iconocracy-corpus/docs/methodology.md` |
 
 ### Protocolo de consultas do microcorpus
 

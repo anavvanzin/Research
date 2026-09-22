@@ -27,6 +27,7 @@ Roda junto com `test_repo_sanity.py` no mesmo passo `pytest` do
 """
 from __future__ import annotations
 
+import itertools
 import re
 import subprocess
 from pathlib import Path
@@ -227,10 +228,13 @@ def _versioned_skills() -> set[str]:
         ["git", "ls-files", "-z", ".claude/skills"],
         cwd=REPO_ROOT, capture_output=True, text=True, check=True,
     ).stdout
+    # `> 3` e nao `> 2`: exige `.claude/skills/<nome>/<arquivo>`. Com `> 2`, um
+    # `.claude/skills/README.md` commitado viraria a "skill" README.md, e a tabela — cuja
+    # regex so casa `[a-z0-9-]+` — nunca conseguiria declara-la.
     return {
         Path(entry).parts[2]
         for entry in out.split("\0")
-        if entry and len(Path(entry).parts) > 2
+        if entry and len(Path(entry).parts) > 3
     }
 
 
@@ -253,10 +257,14 @@ def test_project_skill_table_matches_disk() -> None:
         f"mas o Git rastreia {len(on_disk)}: {sorted(on_disk)}"
     )
 
-    # Linhas de tabela entre o cabeçalho e a primeira linha em branco depois dele.
-    # Antes a fatia terminava na primeira ocorrência de "host-only", o que fazia qualquer
-    # linha da tabela que citasse o marcador truncar a tabela e sumir com as seguintes.
-    table = automation[header.end():].split("\n\n", 1)[0]
+    # Colhe as linhas de tabela que seguem o cabeçalho, parando na primeira que não é
+    # linha de tabela. Duas versões anteriores cortaram no lugar errado: primeiro na
+    # ocorrência de "host-only" (qualquer célula que citasse o marcador truncava a
+    # tabela), depois na primeira linha em branco (a linha em branco idiomática entre
+    # parágrafo e tabela esvaziava `listed`). O que delimita uma tabela é o "|".
+    depois = automation[header.end():].splitlines()
+    linhas = list(itertools.dropwhile(lambda l: not l.lstrip().startswith("|"), depois))
+    table = "\n".join(itertools.takewhile(lambda l: l.lstrip().startswith("|"), linhas))
     listed = set(re.findall(r"^\| `([a-z0-9-]+)` \|", table, flags=re.MULTILINE))
     assert listed == on_disk, (
         f"tabela de skills de projeto fora de sincronia com o Git — "
@@ -271,26 +279,32 @@ def test_project_skill_table_matches_disk() -> None:
 
 
 @pytest.mark.parametrize(
-    ("doc", "pattern", "actual"),
-    [
-        (
-            "README.md",
-            r"85 definições de agentes \+ 12 integrações",
-            (
-                len(list((REPO_ROOT / "cowork/agents").rglob("*.md"))),
-                len([p for p in (REPO_ROOT / "cowork/integrations").iterdir() if p.is_dir()]),
-            ),
-        ),
-    ],
+    ("doc", "pattern"),
+    [("README.md", r"(\d+) definições de agentes \+ (\d+) integrações")],
     ids=["README:cowork-counts"],
 )
-def test_documented_counts_match(doc: str, pattern: str, actual: tuple[int, int]) -> None:
-    """As contagens de `cowork/` afirmadas nos docs precisam bater com o disco."""
+def test_documented_counts_match(doc: str, pattern: str) -> None:
+    """As contagens de `cowork/` afirmadas nos docs precisam bater com o disco.
+
+    O número vem do **documento**, capturado pela regex, e não de uma constante no
+    teste. Antes o `assert` comparava com um `(85, 12)` fixo: corrigir a contagem no
+    README **e** no `pattern` ainda deixava o build vermelho, com uma mensagem que
+    contradizia o arquivo que o leitor tinha aberto.
+
+    A varredura de disco também roda aqui, no corpo, e não no `@parametrize`. Lá ela
+    era executada em tempo de import, e um `cowork/integrations/` ausente derrubava a
+    coleta do módulo inteiro — as outras ~145 asserções nunca chegavam a rodar.
+    """
     text = (REPO_ROOT / doc).read_text(encoding="utf-8")
-    assert re.search(pattern, text), f"{doc} perdeu a frase de contagem esperada"
-    assert actual == (85, 12), (
-        f"{doc} declara 85 agentes + 12 integrações, mas o disco tem "
-        f"{actual[0]} agentes + {actual[1]} integrações"
+    declarado = re.search(pattern, text)
+    assert declarado, f"{doc} perdeu a frase de contagem esperada"
+
+    agentes = len(list((REPO_ROOT / "cowork/agents").rglob("*.md")))
+    integracoes = len([p for p in (REPO_ROOT / "cowork/integrations").iterdir() if p.is_dir()])
+
+    assert (int(declarado.group(1)), int(declarado.group(2))) == (agentes, integracoes), (
+        f"{doc} declara {declarado.group(1)} agentes + {declarado.group(2)} integrações, "
+        f"mas o disco tem {agentes} agentes + {integracoes} integrações"
     )
 
 
@@ -398,6 +412,43 @@ def _skill_inventories() -> tuple[set[str], set[str]]:
     return synced, host_only
 
 
+def test_guard_row_is_not_self_escaped() -> None:
+    """A linha que documenta esta guarda no `.claude/AUTOMATION.md` tem de ser conferida.
+
+    Quarta recorrência, nesta PR, de mecanismo que não se cobre — e a mais direta: a
+    linha da tabela *Tests / CI* que descreve esta guarda explicava também os escapes,
+    e por citar "host-only" caía no próprio `_is_escaped`, que casa por substring. Dez
+    afirmações de caminho daquela linha deixavam de ser conferidas, entre elas o único
+    link verificado para o ADR que a PR acrescenta: renomear o ADR quebrava o link com
+    o CI verde.
+
+    A correção foi de prosa — a explicação dos escapes desceu para um parágrafo abaixo
+    da tabela —, então é aqui que ela fica presa.
+    """
+    doc = ".claude/AUTOMATION.md"
+    visiveis = {ln for ln, _ in _iter_doc_lines(doc)}
+    alvo = [
+        ln
+        for ln, linha in enumerate((REPO_ROOT / doc).read_text(encoding="utf-8").splitlines(), 1)
+        if "Governance-doc drift guard" in linha
+    ]
+    assert alvo, f"{doc} perdeu a linha da tabela que descreve a guarda de drift"
+
+    escapadas = [ln for ln in alvo if ln not in visiveis]
+    assert not escapadas, (
+        f"{doc}:{escapadas} descreve a guarda de drift mas está escapada dela — "
+        f"a linha caiu em _is_escaped (provavelmente por citar 'host-only' ou "
+        f"'drift-pin' ao explicar os escapes). Mantenha a explicação dos escapes no "
+        f"parágrafo abaixo da tabela; a célula da tabela só descreve e aponta caminhos."
+    )
+
+    conferidos = {tok for ln, tok, _ in _candidate_paths(doc) if ln in alvo}
+    assert "tests/test_docs_drift.py" in conferidos, (
+        f"a linha da guarda em {doc} deixou de afirmar o caminho do próprio arquivo de "
+        f"teste; sem isso este teste não prova que a linha está sendo conferida"
+    )
+
+
 def _never_committed_skills() -> set[str]:
     """A terceira tabela da seção *Skills*: presentes no Mac e nunca commitadas.
 
@@ -413,7 +464,13 @@ def _never_committed_skills() -> set[str]:
         "seção *Skills* do .claude/AUTOMATION.md perdeu a tabela de skills nunca "
         "commitadas — se o texto foi reescrito, atualize este parser junto"
     )
-    table = automation[start:automation.index("\n\nTo make any", start)]
+    fim = automation.find("\n\nTo make any", start)
+    assert fim != -1, (
+        "seção *Skills* do .claude/AUTOMATION.md perdeu a frase de fecho "
+        "'To make any of these work…' que delimita a tabela — se o texto foi "
+        "reescrito, atualize este parser junto"
+    )
+    table = automation[start:fim]
     return set(re.findall(r"^\| `([A-Za-z0-9_-]+)` \|", table, flags=re.MULTILINE))
 
 
