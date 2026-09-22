@@ -112,23 +112,28 @@ def _iter_doc_lines(doc: str):
     marcado silencia a sua seção — útil para tabelas inteiras cujos caminhos são
     relativos a outro repo.
 
-    O escape vale até o **próximo cabeçalho de qualquer nível**, não só até o
-    próximo `##`. Antes, um `##` marcado host-only engolia também os `###` abaixo
-    dele: o link do ADR em `README.md`, acrescentado pelo main sob a seção da tese,
-    ficava sem verificação mesmo apontando para um caminho **deste** repo. Apagar o
-    ADR deixaria o link quebrado e o CI verde.
+    Um cabeçalho marcado cobre as **subseções** abaixo dele; só um cabeçalho de nível
+    igual ou mais raso o encerra. A rodada 12 fazia qualquer cabeçalho encerrar o
+    escape, para o link de um ADR numa subseção `###` do `README.md` voltar a ser
+    conferido; corrigida a estrutura daquele arquivo, o aninhamento passou a valer.
+
+    Os níveis escapados vivem numa **pilha**, não num inteiro. Com um inteiro, uma
+    subseção marcada dentro de uma seção marcada sobrescrevia o nível externo — um
+    `###` marcado dentro de um `##` marcado levava o nível de 2 para 3 —, e o próximo
+    `###` **sem** marca encerrava o escape inteiro, embora ainda estivesse dentro da
+    seção host-only externa. Os caminhos locais dali em diante voltavam a ser
+    conferidos e deixavam o CI remoto vermelho.
     """
-    section_escaped = False
-    escape_level = 0
+    escapadas: list[int] = []
     for lineno, line in enumerate((REPO_ROOT / doc).read_text(encoding="utf-8").splitlines(), 1):
         cabecalho = _HEADING.match(line)
         if cabecalho:
             nivel = len(cabecalho.group(0)) - 1
+            while escapadas and nivel <= escapadas[-1]:
+                escapadas.pop()
             if _is_escaped(line):
-                section_escaped, escape_level = True, nivel
-            elif nivel <= escape_level:
-                section_escaped, escape_level = False, 0
-        if section_escaped or _is_escaped(line):
+                escapadas.append(nivel)
+        if escapadas or _is_escaped(line):
             continue
         yield lineno, line
 
@@ -292,43 +297,75 @@ def test_project_skill_table_matches_disk() -> None:
         )
 
 
-@pytest.mark.parametrize(
-    ("doc", "pattern"),
-    [("README.md", r"(\d+) definições de agentes \+ (\d+) integrações")],
-    ids=["README:cowork-counts"],
-)
-def test_documented_counts_match(doc: str, pattern: str) -> None:
-    """As contagens de `cowork/` afirmadas nos docs precisam bater com o disco.
+_AGENTES = re.compile(r"(\d+)\s+(?:definições de\s+)?agentes\b")
+_INTEGRACOES = re.compile(r"(\d+)\s+integrações\b")
 
-    O número vem do **documento**, capturado pela regex, e não de uma constante no
-    teste. Antes o `assert` comparava com um `(85, 12)` fixo: corrigir a contagem no
-    README **e** no `pattern` ainda deixava o build vermelho, com uma mensagem que
-    contradizia o arquivo que o leitor tinha aberto.
 
-    A contagem também roda aqui, no corpo, e não no `@parametrize`. Lá ela era
-    executada em tempo de import, e um `cowork/integrations/` ausente derrubava a
-    coleta do módulo inteiro — as outras ~145 asserções nunca chegavam a rodar.
+def _cowork_counts() -> tuple[int, int]:
+    """Agentes e integrações de `cowork/` **segundo o índice do Git**.
 
-    E ela vem do **índice**, não do disco. Era a quinta vez nesta PR que um mecanismo
-    contra drift lia `rglob`/`iterdir`: no Mac um rascunho `.md` não rastreado sob
-    `cowork/agents/`, ou um diretório local sob `cowork/integrations/`, mudava a
-    contagem e deixava `pytest tests/` vermelho acusando um README que está correto —
-    o clone do CI, que só tem o versionado, concordava com o doc. O filtro de
-    profundidade nas integrações não é enfeite: `cowork/integrations/README.md` é
-    rastreado e não é uma integração.
+    O filtro de profundidade nas integrações não é enfeite: `cowork/integrations/README.md`
+    é rastreado e não é uma integração — sem ele o total daria 13 em vez de 12.
     """
-    text = (REPO_ROOT / doc).read_text(encoding="utf-8")
-    declarado = re.search(pattern, text)
-    assert declarado, f"{doc} perdeu a frase de contagem esperada"
-
     agentes = len([e for e in _tracked_entries("cowork/agents") if e.suffix == ".md"])
     integracoes = len({
         e.parts[0] for e in _tracked_entries("cowork/integrations") if len(e.parts) > 1
     })
+    return agentes, integracoes
 
-    assert (int(declarado.group(1)), int(declarado.group(2))) == (agentes, integracoes), (
-        f"{doc} declara {declarado.group(1)} agentes + {declarado.group(2)} integrações, "
-        f"mas o Git rastreia {agentes} agentes + {integracoes} integrações"
+
+@pytest.mark.parametrize("doc", GOVERNANCE_DOCS)
+def test_documented_counts_match(doc: str) -> None:
+    """**Toda** afirmação numérica sobre `cowork/` num doc de governança tem de bater.
+
+    Antes isto era uma tabela de casos com um `pattern` por documento, e a tabela tinha
+    uma linha só: o `README.md`. Bastava atualizar ali para o teste passar, enquanto
+    `CLAUDE.md` e `AGENTS.md` seguiam declarando o número antigo — a guarda permitia
+    exatamente o drift numérico que existe para detectar, e uma quarta declaração num
+    doc novo nasceria fora da cobertura. Agora o teste varre as linhas verificáveis de
+    cada doc e confere cada ocorrência; não há lista a manter em sincronia.
+
+    Os números vêm do **documento** e do **índice**, nunca de uma constante aqui nem do
+    disco: uma mensagem de falha que contradiga o arquivo aberto pelo leitor é pior que
+    nenhuma, e no Mac um rascunho não rastreado sob `cowork/agents/` não pode derrubar
+    um build que o clone do CI aprova.
+
+    As afirmações em inglês sobre `~/.claude/agents/` (os 14 agents globais) ficam de
+    fora por construção: as regexes são das formas em português, que só o par
+    `cowork/agents` + `cowork/integrations` usa.
+    """
+    agentes, integracoes = _cowork_counts()
+
+    for lineno, line in _iter_doc_lines(doc):
+        for declarado in _AGENTES.finditer(line):
+            assert int(declarado.group(1)) == agentes, (
+                f"{doc}:{lineno} declara {declarado.group(1)} agentes, mas o Git rastreia "
+                f"{agentes} sob cowork/agents/. Atualize o doc, ou marque a linha como "
+                f"host-only / com <!-- drift-pin: ... --> se o número for histórico."
+            )
+        for declarado in _INTEGRACOES.finditer(line):
+            assert int(declarado.group(1)) == integracoes, (
+                f"{doc}:{lineno} declara {declarado.group(1)} integrações, mas o Git "
+                f"rastreia {integracoes} diretórios sob cowork/integrations/ "
+                f"(o README.md solto lá não conta)."
+            )
+
+
+def test_cowork_counts_are_stated_somewhere() -> None:
+    """Apagar a frase não pode ser jeito de calar o teste acima.
+
+    O varredor conferiria zero ocorrências e passaria. Esta é a contraparte: a
+    declaração canônica do `README.md` tem de continuar existindo e visível à guarda.
+    """
+    declaracoes = [
+        (lineno, line)
+        for lineno, line in _iter_doc_lines("README.md")
+        if _AGENTES.search(line) and _INTEGRACOES.search(line)
+    ]
+    assert declaracoes, (
+        "README.md perdeu a linha que declara agentes + integrações de cowork/, ou ela "
+        "foi marcada como host-only — sem ela o test_documented_counts_match não tem o "
+        "que conferir"
     )
 
 
@@ -495,6 +532,39 @@ def test_section_escape_respects_nesting() -> None:
         "um `##` irmão sem marca não encerrou o escape: a seção host-only vazou para "
         "a seção seguinte"
     )
+
+
+def test_nested_escaped_heading_does_not_shorten_the_outer_one() -> None:
+    """Uma subseção marcada dentro de uma seção marcada não pode encurtar a de fora.
+
+    Enquanto o nível escapado era um inteiro, o `###` marcado sobrescrevia o `##`
+    marcado (2 → 3) e o `###` seguinte, **sem** marca, satisfazia `nivel <= escape_level`
+    e encerrava o escape inteiro — ainda dentro da seção host-only externa. Os caminhos
+    dali em diante voltavam a ser conferidos e deixavam o CI remoto vermelho. Por isso
+    os níveis viram uma pilha.
+    """
+    linhas = [
+        "## Seção host-only",        # abre escape em nível 2
+        "`tese/inexistente/`",       # coberto
+        "### Subseção host-only",    # marcada também: empilha o nível 3
+        "`corpus/inexistente/`",     # coberto
+        "### Subseção sem marca",    # desempilha só o 3; o 2 continua de pé
+        "`vault/inexistente/`",      # tem de continuar coberto
+        "## Seção normal",           # irmão do nível 2: encerra
+        "`docs/`",                   # conferido
+    ]
+    doc = REPO_ROOT / "tests" / "_fixture_nesting_dupla.md"
+    doc.write_text("\n".join(linhas), encoding="utf-8")
+    try:
+        visiveis = {ln for ln, _ in _iter_doc_lines("tests/_fixture_nesting_dupla.md")}
+    finally:
+        doc.unlink()
+
+    assert 6 not in visiveis, (
+        "a subseção marcada encurtou o escape da seção externa: a linha 6 voltou a ser "
+        "conferida embora ainda esteja dentro do `##` host-only"
+    )
+    assert 8 in visiveis, "o `##` irmão não encerrou o escape depois da pilha esvaziar"
 
 
 def test_guard_row_is_not_self_escaped() -> None:
