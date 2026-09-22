@@ -42,10 +42,16 @@ alvo histórico (não reflete o disco):
 └── deep-memory/           ← own .git                          [ausente]
 ```
 
-## Primary surface: the thesis
+## Primary surface: the thesis — 🖥️ host-only
 
 **`hub/iconocracy-corpus/`** is the canonical thesis monorepo.
 Navigate: `cd hub/iconocracy-corpus`
+
+Os caminhos desta seção são **relativos ao sub-repo**, que tem `.git` próprio e não
+existe em sessões remotas/web — daí o marcador no cabeçalho. É o mesmo arranjo da
+seção *Acesso rápido à tese* do [`README.md`](README.md): sem ele, a guarda de drift
+lê `data/processed/` como raiz **desta** raiz, e qualificar o caminho para agradá-la
+duplicava o prefixo no texto que o leitor copia.
 
 Quick paths (from `hub/iconocracy-corpus/`):
 
@@ -54,7 +60,7 @@ Quick paths (from `hub/iconocracy-corpus/`):
 | Capítulos da tese | `tese/manuscrito/` (lar canônico; era `vault/tese/`) |
 | Manuscrito + revisões | `tese/{manuscrito,revisoes}/` |
 | Entrega mais recente | `tese/Entrega_Orientador_Mar2026_FINAL/` |
-| Corpus canônico | `corpus/corpus-data.json` (336 itens; `hub/iconocracy-corpus/data/processed/records.jsonl` = 336 linhas — o drift de 1 item que esta linha descrevia não existe mais; conferido 2026-09-19) |
+| Corpus canônico | `corpus/corpus-data.json` (336 itens; `data/processed/records.jsonl` = 336 linhas — o drift de 1 item que esta linha descrevia não existe mais; conferido 2026-09-19) |
 | Notebooks | `notebooks/` (01–08) |
 | Compilação | `make -C vault/tese/` (Makefile permanece em `vault/tese/`; migração de chapters → `tese/manuscrito/` em 2026-06-04 não moveu o pipeline) |
 
