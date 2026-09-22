@@ -25,12 +25,21 @@ tree below shows the workspace's shape, not the set of tracked paths.
 │   ├── iconocracy-corpus/ ← thesis monorepo (git: anavvanzin/iconocracy-corpus)
 │   └── mnemosyne-scout/   ← scout staging area (no .git)
 ├── apps/                  ← iconocracia-companion, iconocracia-db, iconocracia-space
-├── pipelines/             ← Atlas, indexing (sibling sub-repos)
 ├── vaults/                ← Obsidian vaults (dir410340/346, iconocracy)
 ├── shared/                ← iconclass-data, the-book-of-secret-knowledge
-├── deep-memory/           ← own .git
 ├── hermes-workspace/      ← own .git
 └── labs/                  ← experimental sub-repos
+```
+
+> <!-- drift-pin: 2026-09-22 real=`pipelines/` (Atlas, indexing) e
+> `deep-memory/` ausentes na raiz; bloco abaixo é o estado alvo, não o atual.
+> Repositórios órfãos foram movidos para `archive/` na organização de
+> 2026-09-22 (ver docs/organizacao/). -->
+
+```
+alvo histórico (não reflete o disco):
+├── pipelines/             ← Atlas, indexing (sibling sub-repos)  [ausente]
+└── deep-memory/           ← own .git                          [ausente]
 ```
 
 ## Primary surface: the thesis
@@ -51,10 +60,10 @@ Quick paths (from `hub/iconocracy-corpus/`):
 
 ## Sibling repos
 
-- `deep-memory/` — Persistent-memory agent (own `.git`)
+- `deep-memory/` — Persistent-memory agent (own `.git`) <!-- drift-pin: 2026-09-22 ausente na raiz -->
 - `hermes-workspace/` — Hermes experimental workspace (own `.git`)
 - `apps/iconocracia-companion/` · `apps/iconocracia-db/` · `apps/iconocracia-space/`
-- `pipelines/Atlas/` · `pipelines/indexing/`
+- `pipelines/Atlas/` · `pipelines/indexing/` <!-- drift-pin: 2026-09-22 pipelines/ ausente na raiz -->
 - `vaults/` — Obsidian vaults (see `vaults/CLAUDE.md`)
 - `shared/` — shared datasets and reference libraries
 

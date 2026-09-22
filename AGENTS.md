@@ -21,6 +21,9 @@ surfaces*, e não é repetida aqui. Trabalho real vive em sub-repos com `.git` p
   <!-- drift-pin: 2026-09-09 a regra dizia "fora de cowork/ ou docs/", já falsa
        antes disso — tests/, scripts/, .github/ e .claude/ já eram rastreados. A
        enumeração saiu daqui em 2026-09-19: tinha quatro cópias e divergiu 3×. -->
+  <!-- drift-pin: 2026-09-22 (341b6d2, origem main) real=`pipelines/` e `deep-memory/`
+       ausentes na raiz do Mac, verificados com ls. Ficam listados porque a regra é
+       sobre o namespace do sub-repo, não sobre o diretório estar clonado agora. -->
 - Agentes **PODEM** rodar `test` e `lint` **na raiz**, mas **derivados do índice do
   Git**: `pytest tests/` e `flake8 $(git ls-files '*.py')`. Passar diretórios ainda
   erra: `.claude/` contém, no Mac, as skills host-only nunca commitadas e as worktrees
@@ -162,10 +165,13 @@ Notas para agentes rodando no Cloud (o update script já instalou dependências)
 Cloud clona **só a raiz do meta-workspace** (`anavvanzin/research`). Os sub-repos
 citados em `README.md`/`CLAUDE.md` — `hub/iconocracy-corpus/`, `apps/`,
 `pipelines/`, `vaults/`, `shared/`, `deep-memory/`, `hermes-workspace/` — **NÃO
-existem aqui** (têm `.git` próprio, vivem fora). Logo, tese/corpus/notebooks/
-`make -C vault/tese/` não rodam neste VM; não tente. O Python versionado nesta raiz
-é `scripts/git_physics_guard.py`, `.claude/self-improving-agent/scripts/self_improve.py`
-e a suíte em `tests/` — mais o pacote Node `cowork/`.
+existem aqui** (têm `.git` próprio, vivem fora). <!-- drift-pin: 2026-09-22
+(341b6d2, origem main) real=no macOS a raiz também só traz hub/, apps/, vaults/,
+shared/ e hermes-workspace/; `pipelines/` e `deep-memory/` ausentes lá. --> Logo,
+tese/corpus/notebooks/ e `make -C vault/tese/` não rodam neste VM; não tente. O Python
+versionado nesta raiz é `scripts/git_physics_guard.py`,
+`.claude/self-improving-agent/scripts/self_improve.py` e a suíte em `tests/` — mais o
+pacote Node `cowork/`.
 
 ### Runtimes (Linux VM, não macOS)
 

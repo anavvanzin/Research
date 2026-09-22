@@ -111,13 +111,14 @@ seção: `corpus-scout-workspace`, `corpus-stats`, `iconocode-analyze`, `iconoco
 > O nome correto é **`iconocracy-agent`**; os docs diziam `iconocracia-agent`, que não
 > existe em nenhum dos dois conjuntos.
 
-**Project (`.claude/skills/`)** — 2 versioned entries. Os **arquivos** viajam com o clone
+**Project (`.claude/skills/`)** — 3 versioned entries. Os **arquivos** viajam com o clone
 e estão presentes em qualquer sessão; se a **capacidade** funciona ali é outra pergunta, e
 a resposta difere entre as duas:
 | Skill | Purpose |
 |---|---|
 | `iconocracia-pipeline-router` | Routes ICONOCRACIA thesis work through the right pipeline stage. Delega a executores que chegam pela conta (`deep-research`, `lit-review`, `academic-paper-reviewer`) e a `compilar-tese`, que este mesmo inventário dá como exclusiva do Mac (🖥️) — então **carrega** em toda sessão sem por isso executar em toda sessão. Traz a seção *Rota ausente nesta sessão*, com fallback por etapa; a de compilação diz que exige o Mac em vez de simular. |
 | `scientific-writer` | General scientific writing (artigos, grants, abstracts) — entry point that routes to `academic-pipeline`, `academic-writing-reviewer`, `iconocracy-reviewer`. Thesis work delegates to the router above. |
+| `mnemosyne-research-atelier` | Pesquisa e interpretação de materiais visuais e arquivísticos (ficha de objeto, painel de atlas, auditoria de acervo); fica entre `corpus-scout` (achar) e `iconocode-*` (codificar), ambas 🖥️/conta. Versionada em `6e18e35`, então **carrega** em qualquer sessão. |
 
 Present in `.claude/skills/` on the Mac but **never committed**, so 🖥️ **host-only**:
 
