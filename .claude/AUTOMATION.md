@@ -234,7 +234,17 @@ The legacy `.worktrees/` directory is empty.
 | Surface | File | Trigger | Purpose |
 |---|---|---|---|
 | Python syntax smoke test | `tests/test_repo_sanity.py` | `pytest` in `.github/workflows/python-package-conda.yml` (`on: [push]`) | Every tracked `.py` compiles. Also guarantees pytest collects something (empty collection = exit 5 = red build). |
-| **Governance-doc drift guard** | `tests/test_docs_drift.py` | same `pytest` step | Fails the build when `CLAUDE.md`, `README.md`, `AGENTS.md`, this file or `docs/decisions/AGENT-OWNERSHIP.md` reference an in-repo path, a skill, or a count that does not exist. O quinto entrou em 2026-09-19 por ser lido por máquina — `scripts/git_physics_guard.py` parseia aquela matriz; ver [`../docs/decisions/2026-09-19-guarda-drift-agent-ownership.md`](../docs/decisions/2026-09-19-guarda-drift-agent-ownership.md). Enforces the **Drift protocol** in [`../AGENTS.md`](../AGENTS.md). |
+| **Governance-doc drift guard** | `tests/test_docs_drift.py` | same `pytest` step | Fails the build when `CLAUDE.md`, `README.md`, `AGENTS.md`, this file or `docs/decisions/AGENT-OWNERSHIP.md` afirmam um caminho no repo que o Git não rastreia, uma contagem de `cowork/` que não bate com o índice, uma tabela de skills de projeto fora de sincronia com `git ls-files .claude/skills`, o singular aposentado de `find-skills`, ou um mesmo nome de skill nos dois inventários. O quinto entrou em 2026-09-19 por ser lido por máquina — `scripts/git_physics_guard.py` parseia aquela matriz; ver [`../docs/decisions/2026-09-19-guarda-drift-agent-ownership.md`](../docs/decisions/2026-09-19-guarda-drift-agent-ownership.md). Enforces the **Drift protocol** in [`../AGENTS.md`](../AGENTS.md). |
+
+**O que a guarda não confere: nome de skill solto.** Um `` `nome-inexistente` `` citado
+em prosa não derruba build nenhum, e não tem como derrubar — as skills que importam
+chegam pela conta, não pelo clone, então nenhuma verificação feita aqui dentro sabe se
+o nome existe na sessão de quem lê. O que é conferível é o que o repo contém: a tabela
+de skills de projeto contra `git ls-files`, a disjunção dos dois inventários e a
+regressão do singular `find-skill` <!-- drift-pin: 2026-09-22 grafia histórica, é o
+próprio bug que a regressão vigia -->, aposentado em favor de `find-skills`. A frase da
+tabela acima prometia validação geral de nome de skill até 2026-09-22; descobri-la falsa
+é o mesmo bug que abriu esta PR, um nível acima.
 
 **Escapes da guarda, e por que não ficam na tabela acima.** Uma linha marcada 🖥️ host-only, ou que carregue `<!-- drift-pin: ... -->`, é pulada; um cabeçalho marcado silencia a seção até o próximo cabeçalho. O `drift-detector` citado no *Drift protocol* é 🖥️ host-only. Esta explicação mora aqui, e não na célula da tabela, porque o escape é casado por substring: enquanto a frase ficou dentro da linha que descreve a guarda, a guarda não enxergava a própria documentação e dez afirmações de caminho daquela linha nunca foram conferidas — entre elas o único link verificado para o ADR de 2026-09-19.
 

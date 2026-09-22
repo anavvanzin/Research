@@ -8,10 +8,10 @@ repo. Este arquivo é essa aplicação.
 
 Verifica apenas afirmações **checáveis dentro deste repo**:
 
-1. caminhos ancorados numa raiz conhecida (versionada ou aposentada) existem de fato,
-   e link markdown resolve relativo ao próprio documento;
-2. a tabela de skills de projeto bate com `.claude/skills/`;
-3. as contagens declaradas de `cowork/` batem com o disco;
+1. caminhos ancorados numa raiz conhecida (versionada ou aposentada) estão **no índice
+   do Git**, e link markdown resolve relativo ao próprio documento;
+2. a tabela de skills de projeto bate com `git ls-files .claude/skills`;
+3. toda contagem declarada de `cowork/` bate com o índice;
 4. nenhuma referência sobrou ao nome antigo `find-skill` (o skill é `find-skills`);
 5. nenhuma skill é declarada sincronizada **e** host-only ao mesmo tempo.
 
@@ -28,6 +28,7 @@ Roda junto com `test_repo_sanity.py` no mesmo passo `pytest` do
 from __future__ import annotations
 
 import itertools
+import os
 import re
 import subprocess
 from pathlib import Path
@@ -187,7 +188,7 @@ _PATH_CASES = [
     ids=[f"{doc}:{lineno}:{token}" for doc, lineno, token, _ in _PATH_CASES],
 )
 def test_documented_path_exists(doc: str, lineno: int, token: str, is_link: bool) -> None:
-    """Todo caminho ancorado citado num doc de governança precisa existir.
+    """Todo caminho ancorado citado num doc de governança precisa estar **no índice**.
 
     Link markdown resolve **só** relativo ao diretório do próprio documento, como o
     GitHub o resolve. Aceitar também a raiz deixaria `[texto](README.md)` dentro de
@@ -195,17 +196,35 @@ def test_documented_path_exists(doc: str, lineno: int, token: str, is_link: bool
     renderizado aponta para `.claude/README.md` e está quebrado. Token em crase é
     afirmação de caminho **da raiz** por construção (o filtro de raízes acima), então
     para ele a raiz é a referência correta.
+
+    A pergunta é *está versionado?*, não *existe em disco?* — e era `Path.exists()` até
+    a rodada 18, a sexta vez nesta PR que um mecanismo contra drift consultou o disco.
+    Um caminho tirado do índice mas com cópia ignorada ou não rastreada no Mac (sob
+    `.claude/`, sobretudo, onde vivem as skills host-only e as worktrees gitignored)
+    deixava `pytest tests/` verde na máquina da Ana enquanto o arquivo não viajava no
+    clone e o CI remoto quebrava. Era a assimetria que esta guarda existe para eliminar,
+    na verificação central dela.
+
+    Só o índice, sem conferir disco junto: `rm` local não commitado é estado sujo de
+    quem trabalha, não drift de documento. Caminho real porém gitignored é caso dos
+    escapes, e a mensagem abaixo diz isso.
     """
     relative = token.rstrip("/")
     doc_dir = (REPO_ROOT / doc).parent
     base = doc_dir if is_link else REPO_ROOT
     onde = f"link relativo a {base.relative_to(REPO_ROOT)}/" if is_link else "raiz do repo"
-    resolved = (base / relative).exists()
+
+    alvo = os.path.normpath(os.path.join(str(base), relative))
+    no_repo = os.path.relpath(alvo, str(REPO_ROOT))
+    rastreados = _tracked_paths()
+    resolved = no_repo in rastreados or any(
+        entry.startswith(no_repo + "/") for entry in rastreados
+    )
     assert resolved, (
-        f"{doc}:{lineno} cita `{token}`, que não existe ({onde}). "
+        f"{doc}:{lineno} cita `{token}`, que o Git não rastreia ({onde}). "
         f"Atualize o doc com o valor real (Drift protocol, AGENTS.md); se a superfície "
-        f"vive só no Mac, marque a linha (ou o cabeçalho da seção) como host-only, "
-        f"ou anote com <!-- drift-pin: ... -->."
+        f"vive só no Mac — ou existe em disco sem ser versionada —, marque a linha "
+        f"(ou o cabeçalho da seção) como host-only, ou anote com <!-- drift-pin: ... -->."
     )
 
 
@@ -226,6 +245,21 @@ def _tracked_entries(prefix: str = "") -> list[Path]:
     base = Path(prefix) if prefix else None
     entries = [Path(e) for e in out.split("\0") if e]
     return [e.relative_to(base) for e in entries] if base else entries
+
+
+def _tracked_paths() -> frozenset[str]:
+    """Todos os caminhos rastreados, como strings relativas à raiz.
+
+    Memoizado: `test_documented_path_exists` é parametrizado em ~140 casos e um
+    `git ls-files` por caso seria desperdício puro.
+    """
+    global _TRACKED_CACHE
+    if _TRACKED_CACHE is None:
+        _TRACKED_CACHE = frozenset(e.as_posix() for e in _tracked_entries())
+    return _TRACKED_CACHE
+
+
+_TRACKED_CACHE: frozenset[str] | None = None
 
 
 def _tracked_top_level() -> tuple[set[str], set[str]]:
@@ -497,7 +531,7 @@ def _skill_inventories() -> tuple[set[str], set[str]]:
     return synced, host_only
 
 
-def test_section_escape_respects_nesting() -> None:
+def test_section_escape_respects_nesting(tmp_path: Path) -> None:
     """Um cabeçalho marcado silencia suas **subseções**; um irmão do mesmo nível encerra.
 
     A rodada 12 fez qualquer cabeçalho encerrar o escape, para o link de um ADR numa
@@ -517,12 +551,9 @@ def test_section_escape_respects_nesting() -> None:
         "## Seção normal",           # irmão: encerra
         "`docs/`",                   # conferido
     ]
-    doc = REPO_ROOT / "tests" / "_fixture_nesting.md"
+    doc = tmp_path / "nesting.md"
     doc.write_text("\n".join(linhas), encoding="utf-8")
-    try:
-        visiveis = {ln for ln, _ in _iter_doc_lines("tests/_fixture_nesting.md")}
-    finally:
-        doc.unlink()
+    visiveis = {ln for ln, _ in _iter_doc_lines(str(doc))}
 
     assert 2 not in visiveis and 4 not in visiveis, (
         "um `###` sem marca encerrou o escape de um `##` marcado: a seção host-only "
@@ -534,7 +565,7 @@ def test_section_escape_respects_nesting() -> None:
     )
 
 
-def test_nested_escaped_heading_does_not_shorten_the_outer_one() -> None:
+def test_nested_escaped_heading_does_not_shorten_the_outer_one(tmp_path: Path) -> None:
     """Uma subseção marcada dentro de uma seção marcada não pode encurtar a de fora.
 
     Enquanto o nível escapado era um inteiro, o `###` marcado sobrescrevia o `##`
@@ -553,12 +584,9 @@ def test_nested_escaped_heading_does_not_shorten_the_outer_one() -> None:
         "## Seção normal",           # irmão do nível 2: encerra
         "`docs/`",                   # conferido
     ]
-    doc = REPO_ROOT / "tests" / "_fixture_nesting_dupla.md"
+    doc = tmp_path / "nesting_dupla.md"
     doc.write_text("\n".join(linhas), encoding="utf-8")
-    try:
-        visiveis = {ln for ln, _ in _iter_doc_lines("tests/_fixture_nesting_dupla.md")}
-    finally:
-        doc.unlink()
+    visiveis = {ln for ln, _ in _iter_doc_lines(str(doc))}
 
     assert 6 not in visiveis, (
         "a subseção marcada encurtou o escape da seção externa: a linha 6 voltou a ser "
@@ -637,10 +665,15 @@ def test_never_committed_skills_are_not_versioned() -> None:
     cobra), mas nada obrigava a tirá-la desta terceira tabela — e o
     test_skill_inventories_are_disjoint não a lê. O índice canônico passaria a afirmar
     as duas coisas ao mesmo tempo, com o CI verde.
+
+    A tabela **pode** ficar vazia, e isso não é falha: versionar ou apagar as quatro
+    skills que restam ali é o desfecho que o próprio `AUTOMATION.md` recomenda. Havia
+    aqui um `assert declared` que derrubaria o CI exatamente nessa hora, obrigando a
+    manter uma entrada fictícia ou uma seção morta. O que este teste garante é a
+    **interseção** vazia; quem cobra a existência da tabela de skills versionadas é o
+    `test_project_skill_table_matches_disk`, que lê o índice e não some com a lista.
     """
     declared = _never_committed_skills()
-    assert declared, "a tabela de skills nunca commitadas ficou vazia"
-
     contradiction = declared & _versioned_skills()
     assert not contradiction, (
         f"skills declaradas \"nunca commitadas\" mas rastreadas pelo Git: "
@@ -655,12 +688,11 @@ def test_skill_inventories_are_disjoint() -> None:
     Fecha a divergência achada em 2026-09-19: a linha de defaults listava 15 nomes
     como sincronizados quando 12 deles não estavam no conjunto da conta, e um
     (`AutoResearchClaw`) já aparecia como host-only em outro doc.
+
+    Como no teste acima, qualquer um dos dois inventários pode legitimamente esvaziar —
+    uma categoria que deixa de existir não é drift. A asserção é sobre a interseção.
     """
     synced, host_only = _skill_inventories()
-
-    assert synced, "o inventário de skills sincronizadas ficou vazio"
-    assert host_only, "o inventário de skills host-only ficou vazio"
-
     both = synced & host_only
     assert not both, (
         f"skills declaradas como sincronizadas **e** host-only: {sorted(both)} — "
