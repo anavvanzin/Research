@@ -1,0 +1,3205 @@
+[
+  {
+    "nome": "2026-09-22",
+    "tipo": "dir",
+    "tamanho_mb": 0.0,
+    "listing": [
+      "sites-plugin-sites-openai-curated-remote",
+      "sites-plugin-sites-openai-curated-remote-2"
+    ],
+    "exts_top": []
+  },
+  {
+    "nome": "2026-materiais",
+    "tipo": "dir",
+    "tamanho_mb": 443.3984375,
+    "listing": [
+      ".DS_Store",
+      ".planning",
+      "Antropologia, Direito e Religião (DIR410350)",
+      "De Panofsky a DINOv2_ Um Atlas Computacional da Semelhança Iconográfica no Corpus ICONOCRACIA.md",
+      "Kimi_Agent_CosmosSite",
+      "Kimi_Agent_CosmosSite.zip",
+      "annas-arch-02dcfc9d9251",
+      "annas-arch-02dcfc9d9251.zip",
+      "artigos-prontos-2026",
+      "claude sciense",
+      "files.zip",
+      "história da cultura jurídica",
+      "iconocracia_sessao_2026-07-24",
+      "iconocracia_sessao_2026-07-24.zip",
+      "ideaaais",
+      "ius-gentium-2026-2-completo",
+      "ius-gentium-2026-2-completo.zip",
+      "living-manuscript-manuscrito-viv-e845"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        112
+      ],
+      [
+        ".pdf",
+        39
+      ],
+      [
+        "(sem ext)",
+        33
+      ],
+      [
+        ".jsonl",
+        25
+      ],
+      [
+        ".png",
+        21
+      ],
+      [
+        ".docx",
+        18
+      ],
+      [
+        ".jpg",
+        18
+      ],
+      [
+        ".page",
+        16
+      ],
+      [
+        ".json",
+        10
+      ],
+      [
+        ".zip",
+        6
+      ],
+      [
+        ".txt",
+        5
+      ],
+      [
+        ".py",
+        4
+      ]
+    ]
+  },
+  {
+    "nome": "abnt-6023",
+    "tipo": "dir",
+    "tamanho_mb": 0.07421875,
+    "listing": [
+      ".DS_Store",
+      "SKILL.md",
+      "references",
+      "scripts"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        2
+      ],
+      [
+        ".py",
+        2
+      ],
+      [
+        "(sem ext)",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "abnt-6023.zip",
+    "tipo": "file",
+    "tamanho_mb": 0.01171875
+  },
+  {
+    "nome": "agent-thesis",
+    "tipo": "dir",
+    "tamanho_mb": 0.40625,
+    "listing": [
+      ".DS_Store",
+      ".env.example",
+      ".git",
+      ".gitignore",
+      ".runs",
+      ".sessions",
+      "agent.config.json",
+      "package-lock.json",
+      "package.json",
+      "scripts",
+      "src",
+      "tsconfig.json"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "96d354b chore(gitignore): exclude .runs/ headless smoke logs",
+        "1ab92c3 init: agent-thesis ICONOCRACIA research CLI"
+      ],
+      "remotes": [],
+      "uncommitted_n": 0,
+      "uncommitted_amostra": [],
+      "unpushed": "sem-upstream"
+    },
+    "exts_top": [
+      [
+        ".ts",
+        22
+      ],
+      [
+        ".json",
+        4
+      ],
+      [
+        "(sem ext)",
+        2
+      ],
+      [
+        ".jsonl",
+        2
+      ],
+      [
+        ".example",
+        1
+      ],
+      [
+        ".out",
+        1
+      ],
+      [
+        ".log",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "ana 2026 main",
+    "tipo": "dir",
+    "tamanho_mb": 151.0078125,
+    "listing": [
+      ".DS_Store",
+      "ANAlise",
+      "Projects Claude"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        682
+      ],
+      [
+        ".js",
+        162
+      ],
+      [
+        ".ts",
+        160
+      ],
+      [
+        ".json",
+        144
+      ],
+      [
+        ".css",
+        84
+      ],
+      [
+        ".png",
+        83
+      ],
+      [
+        ".tsx",
+        37
+      ],
+      [
+        ".base",
+        24
+      ],
+      [
+        ".woff",
+        23
+      ],
+      [
+        ".pdf",
+        11
+      ],
+      [
+        "(sem ext)",
+        10
+      ],
+      [
+        ".styl",
+        10
+      ]
+    ]
+  },
+  {
+    "nome": "ARNO AGOSTO 10 DE AGOSTO",
+    "tipo": "dir",
+    "tamanho_mb": 0.25390625,
+    "listing": [
+      ".DS_Store",
+      "Kimi_Agent_Tradução it-pt ABNT",
+      "Kimi_Agent_Tradução it-pt ABNT 2",
+      "Kimi_Agent_Tradução it-pt ABNT.zip"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        8
+      ],
+      [
+        ".skill",
+        2
+      ],
+      [
+        ".zip",
+        1
+      ],
+      [
+        "(sem ext)",
+        1
+      ],
+      [
+        ".docx",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "artifacts",
+    "tipo": "dir",
+    "tamanho_mb": 23.0625,
+    "listing": [
+      ".DS_Store",
+      ".memory",
+      "28288fc3-0092-43b3-accc-d0e56bc7724a.png",
+      "Pacote ICONOCRACY — dossiê + notas + miniaturas.zip",
+      "artigo_endurecimento",
+      "bilderatlas_iconocraticus.html",
+      "coder_effect_audit.csv",
+      "endurecimento_manifesto.md",
+      "fig1_corpus_structure.png",
+      "fig2_hardening_composition.png",
+      "fig3_mapa_de_lacunas.png",
+      "iconocracia-corpus-center",
+      "iconocracia_freeze_audit.csv",
+      "iconocracia_freeze_flat.csv",
+      "iconocracia_freeze_report.md",
+      "manha-iconocracia",
+      "pacote_corpus",
+      "painel-ana",
+      "painel-do-dia-iconocracia",
+      "registro_de_lacunas.csv"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        18
+      ],
+      [
+        ".jpg",
+        14
+      ],
+      [
+        ".png",
+        10
+      ],
+      [
+        ".html",
+        10
+      ],
+      [
+        ".csv",
+        4
+      ],
+      [
+        "(sem ext)",
+        3
+      ],
+      [
+        ".zip",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "artifacts.zip",
+    "tipo": "file",
+    "tamanho_mb": 0.55859375
+  },
+  {
+    "nome": "artigos ",
+    "tipo": "dir",
+    "tamanho_mb": 0.015625,
+    "listing": [
+      "findings.md",
+      "progress.md",
+      "task_plan.md"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        3
+      ]
+    ]
+  },
+  {
+    "nome": "ARTIGOS EM DESENVOLVIMENTO",
+    "tipo": "dir",
+    "tamanho_mb": 0.0234375,
+    "listing": [
+      "artigo_sigrid_weigel.md"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "atlas-iconocratico-toolkit.bak-20260425-153251",
+    "tipo": "dir",
+    "tamanho_mb": 4.61328125,
+    "listing": [
+      ".DS_Store",
+      "Atlas"
+    ],
+    "exts_top": [
+      [
+        ".csv",
+        14
+      ],
+      [
+        ".png",
+        13
+      ],
+      [
+        ".py",
+        8
+      ],
+      [
+        "(sem ext)",
+        4
+      ],
+      [
+        ".json",
+        3
+      ],
+      [
+        ".ipynb",
+        3
+      ],
+      [
+        ".txt",
+        2
+      ],
+      [
+        ".yml",
+        2
+      ],
+      [
+        ".md",
+        1
+      ],
+      [
+        ".js",
+        1
+      ],
+      [
+        ".docx",
+        1
+      ],
+      [
+        ".xml",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "binaries",
+    "tipo": "dir",
+    "tamanho_mb": 143.4140625,
+    "listing": [
+      ".DS_Store",
+      "Images",
+      "Other",
+      "PDFs"
+    ],
+    "exts_top": [
+      [
+        ".jpg",
+        160
+      ],
+      [
+        ".pdf",
+        32
+      ],
+      [
+        ".png",
+        15
+      ],
+      [
+        "(sem ext)",
+        3
+      ],
+      [
+        ".md",
+        2
+      ],
+      [
+        ".svg",
+        1
+      ],
+      [
+        ".dylib",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "browser-harness",
+    "tipo": "dir",
+    "tamanho_mb": 2.5,
+    "listing": [
+      ".DS_Store",
+      ".env.example",
+      ".git",
+      ".gitignore",
+      "LICENSE",
+      "README.md",
+      "SKILL.md",
+      "__pycache__",
+      "admin.py",
+      "daemon.py",
+      "docs",
+      "domain-skills",
+      "harness.egg-info",
+      "helpers.py",
+      "install.md",
+      "interaction-skills",
+      "pyproject.toml",
+      "run.py",
+      "uv.lock"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "4ec6255 domain-skills: framer — web editor (#98)",
+        "1eb0400 admin: explain why stop_remote_daemon calls restart_daemon (#97)",
+        "82a1f2f remote: stop_remote_daemon helper, skill updates from sub-agent testing (#96)"
+      ],
+      "remotes": [
+        "origin https://github.com/browser-use/browser-harness.git"
+      ],
+      "uncommitted_n": 2,
+      "uncommitted_amostra": [
+        "?? .DS_Store",
+        "?? domain-skills/.DS_Store"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".md",
+        80
+      ],
+      [
+        "(sem ext)",
+        8
+      ],
+      [
+        ".txt",
+        5
+      ],
+      [
+        ".py",
+        4
+      ],
+      [
+        ".lock",
+        1
+      ],
+      [
+        ".toml",
+        1
+      ],
+      [
+        ".example",
+        1
+      ],
+      [
+        ".png",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "chrome-devtools-mcp",
+    "tipo": "dir",
+    "tamanho_mb": 26.98828125,
+    "listing": [
+      ".DS_Store",
+      ".claude-plugin",
+      ".cursor-plugin",
+      ".gemini",
+      ".git",
+      ".gitattributes",
+      ".github",
+      ".gitignore",
+      ".npmrc",
+      ".nvmrc",
+      ".prettierignore",
+      ".prettierrc.cjs",
+      ".release-please-manifest.json",
+      "AGENTS.md",
+      "CHANGELOG.md",
+      "CONTRIBUTING.md",
+      "LICENSE",
+      "README.md",
+      "SECURITY.md",
+      "docs"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "8d8cf12 docs: fix formatting and indentation of tool descriptions (#2275)",
+        "ce5edbd chore(deps-dev): bump the dev-dependencies group across 1 directory with 7 updates (#2266)",
+        "7fa95d3 fix: create PID directory with secure permissions (0o700) (#2262)"
+      ],
+      "remotes": [
+        "origin https://github.com/ChromeDevTools/chrome-devtools-mcp.git"
+      ],
+      "uncommitted_n": 0,
+      "uncommitted_amostra": [],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".ts",
+        167
+      ],
+      [
+        ".md",
+        26
+      ],
+      [
+        ".json",
+        20
+      ],
+      [
+        ".snapshot",
+        17
+      ],
+      [
+        ".js",
+        11
+      ],
+      [
+        ".yml",
+        11
+      ],
+      [
+        "(sem ext)",
+        8
+      ],
+      [
+        ".mjs",
+        4
+      ],
+      [
+        ".heapsnapshot",
+        4
+      ],
+      [
+        ".html",
+        3
+      ],
+      [
+        ".cjs",
+        2
+      ],
+      [
+        ".gz",
+        2
+      ]
+    ]
+  },
+  {
+    "nome": "Claude outputs",
+    "tipo": "dir",
+    "tamanho_mb": 0.2890625,
+    "listing": [
+      ".DS_Store",
+      "2026-09-16-resumo-visita-martyn-recorte-1822-1922.md",
+      "lastro-0.2",
+      "lastro-0.2.tar.gz",
+      "moldura-perfil.md"
+    ],
+    "exts_top": [
+      [
+        "(sem ext)",
+        3
+      ],
+      [
+        ".md",
+        3
+      ],
+      [
+        ".json",
+        3
+      ],
+      [
+        ".py",
+        2
+      ],
+      [
+        ".gz",
+        1
+      ],
+      [
+        ".sh",
+        1
+      ],
+      [
+        ".toml",
+        1
+      ],
+      [
+        ".jsonl",
+        1
+      ],
+      [
+        ".html",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "claude-devfleet",
+    "tipo": "dir",
+    "tamanho_mb": 2.26953125,
+    "listing": [
+      ".DS_Store",
+      ".git",
+      ".gitignore",
+      "CLAUDE.md",
+      "IMPLEMENTATION_SUMMARY.md",
+      "INTELLIGENCE.md",
+      "INTELLIGENCE_QUICK_START.md",
+      "LICENSE",
+      "README.md",
+      "backend",
+      "cli",
+      "diagrams",
+      "docker-compose.yml",
+      "frontend",
+      "integrations",
+      "plugins",
+      "scripts",
+      "start.sh"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "c10a939 Merge pull request #3 from LEC-AI/fix/worktree-merge-stale-base-and-stderr-capture"
+      ],
+      "remotes": [
+        "origin https://github.com/LEC-AI/claude-devfleet.git"
+      ],
+      "uncommitted_n": 10,
+      "uncommitted_amostra": [
+        " M backend/autoloop.py",
+        " M backend/cost_optimizer.py",
+        " M backend/dispatcher.py",
+        " M backend/health_metrics.py",
+        " M backend/mcp_context.py",
+        " M backend/mission_watcher.py",
+        " M backend/planner_v2.py",
+        " M backend/plugins.py",
+        " M backend/project_analyzer.py",
+        " M backend/sdk_engine.py"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".py",
+        26
+      ],
+      [
+        ".jsx",
+        20
+      ],
+      [
+        ".md",
+        12
+      ],
+      [
+        "(sem ext)",
+        7
+      ],
+      [
+        ".html",
+        3
+      ],
+      [
+        ".sh",
+        2
+      ],
+      [
+        ".js",
+        2
+      ],
+      [
+        ".json",
+        2
+      ],
+      [
+        ".yml",
+        1
+      ],
+      [
+        ".conf",
+        1
+      ],
+      [
+        ".css",
+        1
+      ],
+      [
+        ".txt",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "cloudfare",
+    "tipo": "dir",
+    "tamanho_mb": 213.9765625,
+    "listing": [
+      ".DS_Store",
+      "node_modules"
+    ],
+    "exts_top": [
+      [
+        "(sem ext)",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "design-explorations",
+    "tipo": "dir",
+    "tamanho_mb": 0.01953125,
+    "listing": [
+      "dashboard-direcoes.html"
+    ],
+    "exts_top": [
+      [
+        ".html",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "Documents",
+    "tipo": "dir",
+    "tamanho_mb": 4299.4375,
+    "listing": [
+      ".DS_Store",
+      ".localized",
+      ".remember",
+      "06022026_GuiadoProponenteEditalConjuntoCAPES.STFn2.20261.pdf",
+      "1. Usufrutu rio tem legitimidade para propor a‡Æo reivindicat¢ria - STJ.docx",
+      "113chandra.pdf",
+      "118_PET1.pdf",
+      "132_INFBEN1.pdf",
+      "1_PROMOCAO2 (1).pdf",
+      "2026.2",
+      "25_PROMOCAO1.pdf",
+      "3167095d-f761-4f51-b0c4-c92a9f934525.png",
+      "3_DOCUMENTACAO2.pdf",
+      "3_soldani_Fepol.pdf",
+      "42_MANDCITACAO2.pdf",
+      "50008145620268240523_132efb02689b9979c877bb63c0b4dae6.pdf",
+      "69f03643-b575-41a9-a3d3-4dbdfb46a88a.pdf.md",
+      "7º Comunicado - Aprovados - Ensino Médio e Técnico.pdf",
+      "A César o que é de Deus-  magia, mito e sacralidade do direito.pdf",
+      "A Construção Histórica e Jurídica da “Mulher Pública” no Brasil (Séc. XIX-XX) – Comparações com Fran.docx"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        1449
+      ],
+      [
+        ".meta",
+        372
+      ],
+      [
+        ".sst",
+        372
+      ],
+      [
+        ".py",
+        331
+      ],
+      [
+        ".json",
+        217
+      ],
+      [
+        ".docx",
+        130
+      ],
+      [
+        ".png",
+        127
+      ],
+      [
+        "(sem ext)",
+        125
+      ],
+      [
+        ".pdf",
+        118
+      ],
+      [
+        ".js",
+        117
+      ],
+      [
+        ".map",
+        67
+      ],
+      [
+        ".html",
+        66
+      ]
+    ]
+  },
+  {
+    "nome": "Downloads",
+    "tipo": "dir",
+    "tamanho_mb": 74.33203125,
+    "listing": [
+      ".DS_Store",
+      "ana-vanzin-figma-ready-assets (1)",
+      "ana-vanzin-figma-ready-assets (1).zip",
+      "data.zip",
+      "mnemosyne-viva-adobe-express-ready.zip",
+      "mnemosyne-viva-assets",
+      "mnemosyne-viva-assets 2",
+      "mnemosyne-viva-figma-assets.zip",
+      "session-export-1783127319768.zip"
+    ],
+    "exts_top": [
+      [
+        ".svg",
+        29
+      ],
+      [
+        ".jpg",
+        13
+      ],
+      [
+        ".png",
+        10
+      ],
+      [
+        ".zip",
+        6
+      ],
+      [
+        "(sem ext)",
+        5
+      ],
+      [
+        ".css",
+        4
+      ],
+      [
+        ".html",
+        4
+      ],
+      [
+        ".json",
+        3
+      ],
+      [
+        ".md",
+        2
+      ]
+    ]
+  },
+  {
+    "nome": "DSH",
+    "tipo": "dir",
+    "tamanho_mb": 0.12109375,
+    "listing": [
+      ".DS_Store",
+      "auditoria_soberania_afetiva.md.metadata.json",
+      "memory",
+      "rumo_da_tese_iconocracia.md"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        14
+      ],
+      [
+        "(sem ext)",
+        3
+      ],
+      [
+        ".json",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "Education",
+    "tipo": "dir",
+    "tamanho_mb": 1.5,
+    "listing": [
+      "6884b86f-cb05-4d18-a1af-776566ca5a86_segunda-feira_1532.pdf",
+      "Elicit - Roteiro Argumentativo para Q&A Malleus, Justilee7a e Bruxaria Colonial.pdf",
+      "Iconocracia-Mapa-Historiografico.pdf",
+      "divergencia_comissao.pdf",
+      "fala_condensada_completa.pdf"
+    ],
+    "exts_top": [
+      [
+        ".pdf",
+        5
+      ]
+    ]
+  },
+  {
+    "nome": "GitHub",
+    "tipo": "dir",
+    "tamanho_mb": 5838.046875,
+    "listing": [
+      ".DS_Store",
+      "1github",
+      "AutoResearchClaw",
+      "IUSGENTIUM",
+      "Research",
+      "ana",
+      "code",
+      "data",
+      "deer-flow.bak-20260425-153251",
+      "gemini-cli.bak-20260425-153251",
+      "github-mcp-server.bak-20260425-153251",
+      "grupoiusgentium.com.br",
+      "mentoria-landing",
+      "mentoria-landing.zip",
+      "sbm",
+      "seminario8-dever-poder",
+      "stunning-disco",
+      "turbo-octo-broccoli.bak-20260425-153251",
+      "united-by-marriage",
+      "verbose-engine"
+    ],
+    "exts_top": [
+      [
+        ".py",
+        1473
+      ],
+      [
+        ".md",
+        553
+      ],
+      [
+        ".json",
+        321
+      ],
+      [
+        "(sem ext)",
+        263
+      ],
+      [
+        ".html",
+        237
+      ],
+      [
+        ".png",
+        236
+      ],
+      [
+        ".txt",
+        191
+      ],
+      [
+        ".js",
+        93
+      ],
+      [
+        ".tsx",
+        81
+      ],
+      [
+        ".jpg",
+        76
+      ],
+      [
+        ".webp",
+        63
+      ],
+      [
+        ".kt",
+        45
+      ]
+    ]
+  },
+  {
+    "nome": "hegelian-dialectic-skill",
+    "tipo": "dir",
+    "tamanho_mb": 0.5703125,
+    "listing": [
+      ".DS_Store",
+      ".git",
+      "README.md",
+      "SKILL.md",
+      "reference"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "aebcc5b Integrate Boyd's paper rigorously: reversibility check, three pillars, same-arrangement test",
+        "8fbac2c improvements",
+        "c689203 Add hard stop after Phase 4 negation — present to user before synthesis"
+      ],
+      "remotes": [
+        "origin https://github.com/KyleAMathews/hegelian-dialectic-skill.git"
+      ],
+      "uncommitted_n": 1,
+      "uncommitted_amostra": [
+        "?? .DS_Store"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".md",
+        9
+      ],
+      [
+        "(sem ext)",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "hermes-agent",
+    "tipo": "dir",
+    "tamanho_mb": 438.90625,
+    "listing": [
+      ".DS_Store",
+      ".dockerignore",
+      ".env.example",
+      ".envrc",
+      ".git",
+      ".gitattributes",
+      ".github",
+      ".gitignore",
+      ".gitmodules",
+      ".mailmap",
+      ".plans",
+      ".ruff_cache",
+      "AGENTS.md",
+      "CONTRIBUTING.md",
+      "Dockerfile",
+      "LICENSE",
+      "MANIFEST.in",
+      "README.md",
+      "RELEASE_v0.10.0.md",
+      "RELEASE_v0.11.0.md"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "5a61c116e fix(nix): auto-refresh npm lockfile hashes",
+        "69d4800db chore: add txbxxx to AUTHOR_MAP",
+        "9ee540a5e fix(install): promote croniter to a core dependency"
+      ],
+      "remotes": [
+        "origin https://github.com/NousResearch/hermes-agent"
+      ],
+      "uncommitted_n": 6,
+      "uncommitted_amostra": [
+        " M docker/entrypoint.sh",
+        " D plugins/example-dashboard/dashboard/dist/index.js",
+        " D plugins/strike-freedom-cockpit/dashboard/dist/index.js",
+        " D tinker-atropos",
+        "?? docker/config.yaml.template",
+        "?? docker/jobs.json.template"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".py",
+        1260
+      ],
+      [
+        ".md",
+        848
+      ],
+      [
+        ".ts",
+        274
+      ],
+      [
+        ".tsx",
+        81
+      ],
+      [
+        ".xsd",
+        39
+      ],
+      [
+        ".json",
+        36
+      ],
+      [
+        "(sem ext)",
+        35
+      ],
+      [
+        ".yaml",
+        28
+      ],
+      [
+        ".sh",
+        17
+      ],
+      [
+        ".yml",
+        17
+      ],
+      [
+        ".sty",
+        13
+      ],
+      [
+        ".nix",
+        12
+      ]
+    ]
+  },
+  {
+    "nome": "huggingface",
+    "tipo": "dir",
+    "tamanho_mb": 0.03515625,
+    "listing": [
+      ".DS_Store",
+      "corpus-explorer-space"
+    ],
+    "exts_top": [
+      [
+        "(sem ext)",
+        1
+      ],
+      [
+        ".html",
+        1
+      ],
+      [
+        ".md",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "Iconocracia research report",
+    "tipo": "dir",
+    "tamanho_mb": 11.62890625,
+    "listing": [
+      ".DS_Store",
+      "README-iconocracia-research-report.md",
+      "_ds",
+      "deploy",
+      "docs",
+      "github.md",
+      "uploads"
+    ],
+    "exts_top": [
+      [
+        ".woff2",
+        30
+      ],
+      [
+        ".png",
+        17
+      ],
+      [
+        ".css",
+        8
+      ],
+      [
+        ".html",
+        6
+      ],
+      [
+        ".md",
+        4
+      ],
+      [
+        ".json",
+        4
+      ],
+      [
+        ".svg",
+        3
+      ],
+      [
+        ".js",
+        2
+      ],
+      [
+        "(sem ext)",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "iconocracia-companion",
+    "tipo": "symlink",
+    "tamanho_mb": 0.0,
+    "symlink_target": "/users/ana/Research/apps/iconocracia-companion",
+    "target_existe": true
+  },
+  {
+    "nome": "iconocracia-cv",
+    "tipo": "dir",
+    "tamanho_mb": 4.078125,
+    "listing": [
+      ".DS_Store",
+      ".cursor",
+      ".git",
+      ".github",
+      ".gitignore",
+      ".openai",
+      ".worktreeinclude",
+      "AGENTS.md",
+      "README.md",
+      "analysis",
+      "data",
+      "docs",
+      "package.json",
+      "public",
+      "scripts",
+      "site",
+      "supabase"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "e35e5b8 chore: configure Cloud Agent install without npm install (#7)",
+        "8622e70 docs: add AGENTS.md with Cursor Cloud setup/run instructions",
+        "b9b6302 Merge pull request #4 from anavvanzin/codex/sites-hosting"
+      ],
+      "remotes": [
+        "origin https://github.com/anavvanzin/iconocracia-cv.git"
+      ],
+      "uncommitted_n": 2,
+      "uncommitted_amostra": [
+        " M .DS_Store",
+        "?? analysis/huggingface-regime-coverage-2026-08-13/__pycache__/"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".json",
+        11
+      ],
+      [
+        ".md",
+        7
+      ],
+      [
+        "(sem ext)",
+        3
+      ],
+      [
+        ".csv",
+        1
+      ],
+      [
+        ".py",
+        1
+      ],
+      [
+        ".sql",
+        1
+      ],
+      [
+        ".svg",
+        1
+      ],
+      [
+        ".png",
+        1
+      ],
+      [
+        ".mjs",
+        1
+      ],
+      [
+        ".yml",
+        1
+      ],
+      [
+        ".html",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "iconocracia_junho2026 2",
+    "tipo": "dir",
+    "tamanho_mb": 0.03125,
+    "listing": [
+      "01_projeto_v2_2026.md",
+      "02_codebook_v0.md",
+      "03_notas_de_trabalho.md",
+      "README.md"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        4
+      ]
+    ]
+  },
+  {
+    "nome": "iconocracia_sessao_2026-07-24",
+    "tipo": "dir",
+    "tamanho_mb": 15.51171875,
+    "listing": [
+      ".DS_Store",
+      ".obsidian",
+      "02_painel",
+      "03_recodificacao_piloto",
+      "04_conselho",
+      "05_varredura_recusas",
+      "06_espinha_tese",
+      "07_notas_obsidian",
+      "08_scout",
+      "09_pesquisa",
+      "LEIA-ME.md"
+    ],
+    "exts_top": [
+      [
+        ".json",
+        30
+      ],
+      [
+        ".md",
+        26
+      ],
+      [
+        ".css",
+        13
+      ],
+      [
+        ".js",
+        11
+      ],
+      [
+        "(sem ext)",
+        2
+      ],
+      [
+        ".html",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "Iconocracy Training",
+    "tipo": "dir",
+    "tamanho_mb": 3.51171875,
+    "listing": [
+      "iconocracy_eval_prompts_v1_1.jsonl",
+      "iconocracy_sft_v1.jsonl",
+      "iconocracy_sft_v1_1.jsonl",
+      "iconocracy_sft_v1_1_train.jsonl",
+      "iconocracy_sft_v1_1_val.jsonl"
+    ],
+    "exts_top": [
+      [
+        ".jsonl",
+        5
+      ]
+    ]
+  },
+  {
+    "nome": "iconocracy-corpus-1",
+    "tipo": "dir",
+    "tamanho_mb": 860.00390625,
+    "listing": [
+      ".DS_Store",
+      ".agents",
+      ".ai-specs",
+      ".air",
+      ".claude",
+      ".codex",
+      ".dockerignore",
+      ".git",
+      ".github",
+      ".gitignore",
+      ".hermes",
+      ".planning",
+      ".remember",
+      ".reports",
+      "A clean direct study connecting Federici's primitive-accumulation thesis to female allegory on currency isn't something my search .md",
+      "AGENTS.md",
+      "AGENT_CONFIG_ICONOCRACIA.md",
+      "CITATION.cff",
+      "CLAUDE.md",
+      "CNAME"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "500ce74 style(dir410346): atualizar flyer e slides em PDF unificado para o novo esquema de cores (dark mode)",
+        "926fd0f feat(dir410346): unificar roteiro, tabela, galeria e 7 slides em um unico PDF de 8 paginas",
+        "23c2abe fix(dir410346): publicar arquivos PDF finais do Artigo ABNT e do Flyer de Apoio"
+      ],
+      "remotes": [
+        "origin https://github.com/anavvanzin/iconocracy-corpus.git"
+      ],
+      "uncommitted_n": 6,
+      "uncommitted_amostra": [
+        " D tese/Entrega_Orientador_Mar2026_FINAL/sumario/sumario.pdf",
+        " D tese/drafts/outline-capitulo-7.md",
+        " D tese/manuscrito/sumario.pdf",
+        "?? adasdsa/",
+        "?? vault/projeto/review-phase0.5-data-purist.json",
+        "?? vault/projeto/review-phase0.5-writing-first.json"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".md",
+        2537
+      ],
+      [
+        ".py",
+        261
+      ],
+      [
+        ".json",
+        224
+      ],
+      [
+        ".js",
+        153
+      ],
+      [
+        ".png",
+        116
+      ],
+      [
+        ".pdf",
+        99
+      ],
+      [
+        ".log",
+        71
+      ],
+      [
+        ".css",
+        63
+      ],
+      [
+        ".txt",
+        59
+      ],
+      [
+        "(sem ext)",
+        56
+      ],
+      [
+        ".docx",
+        48
+      ],
+      [
+        ".yaml",
+        47
+      ]
+    ]
+  },
+  {
+    "nome": "iconocracy-editorial-wt",
+    "tipo": "dir",
+    "tamanho_mb": 343.35546875,
+    "listing": [
+      ".DS_Store",
+      ".agents",
+      ".air",
+      ".claude",
+      ".dockerignore",
+      ".git",
+      ".github",
+      ".gitignore",
+      ".hermes",
+      ".planning",
+      ".pytest_cache",
+      ".remember",
+      ".reports",
+      ".ruff_cache",
+      "AGENTS.md",
+      "AGENT_CONFIG_ICONOCRACIA.md",
+      "CITATION.cff",
+      "CLAUDE.md",
+      "DOCKER_OPTIMIZATION_GUIDE.md",
+      "EOF"
+    ],
+    "git": {
+      "gitdir_kind": "file",
+      "branch": "editorial/revisao-2026-06-24",
+      "ultimos_commits": [
+        "55c6e7a docs: add metadata crosswalk and migration gaps report for Mnemosyne Viva v0.2",
+        "6151da4 feat(seminario-ad): artigo de direito administrativo sobre devido processo legal algoritmico",
+        "5863aa4 Add Malleus Cajada class deliverables"
+      ],
+      "remotes": [
+        "origin git@github.com:anavvanzin/iconocracy-corpus.git"
+      ],
+      "uncommitted_n": 22,
+      "uncommitted_amostra": [
+        " D tese/Entrega_Orientador_Mar2026_FINAL/sumario/sumario.pdf",
+        " D tese/manuscrito/sumario.pdf",
+        " M tools/audit/scripts/analyze_threads.py",
+        " D tools/claude-scientific-writer",
+        " M tools/scripts/compile_skills.py",
+        " M tools/scripts/compute_irr.py",
+        " M tools/scripts/irr_rater2_batch.py",
+        " M tools/scripts/irr_sample.py",
+        " M tools/scripts/semantic_memory_to_schema.py",
+        " M tools/scripts/update_session_state.py"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".md",
+        2508
+      ],
+      [
+        ".py",
+        269
+      ],
+      [
+        ".json",
+        214
+      ],
+      [
+        ".js",
+        152
+      ],
+      [
+        ".pdf",
+        115
+      ],
+      [
+        ".png",
+        113
+      ],
+      [
+        "(sem ext)",
+        73
+      ],
+      [
+        ".css",
+        63
+      ],
+      [
+        ".txt",
+        60
+      ],
+      [
+        ".jsonl",
+        37
+      ],
+      [
+        ".yaml",
+        33
+      ],
+      [
+        ".html",
+        32
+      ]
+    ]
+  },
+  {
+    "nome": "IDEAS 18",
+    "tipo": "dir",
+    "tamanho_mb": 16.9609375,
+    "listing": [
+      ".DS_Store",
+      "Category_Europa_regina.pdf",
+      "Europa regina — dossiê ICONOCRACY (IDEAS 18).docx",
+      "Europe_As_A_Queen_Sebastian_Munster_1570.jpg",
+      "FileEurope as a queen map uprightJPG - Wikimedia Commons.pdf",
+      "Historiana.pdf",
+      "How_do_allegorical_mother_figures_differ_in_symbol.pdf",
+      "Iconography of the Nation.pdf",
+      "Michael_Maier_-_Atalanta_Fugiens_-_Mother_Earth.jpg",
+      "document_instructions_to_agent.md",
+      "muenster_cosmographia_1628_0117.jpg"
+    ],
+    "exts_top": [
+      [
+        ".pdf",
+        5
+      ],
+      [
+        ".jpg",
+        3
+      ],
+      [
+        "(sem ext)",
+        1
+      ],
+      [
+        ".md",
+        1
+      ],
+      [
+        ".docx",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "imagens",
+    "tipo": "dir",
+    "tamanho_mb": 17.77734375,
+    "listing": [
+      ".DS_Store",
+      ".dev.vars.example",
+      ".git",
+      ".github",
+      ".gitignore",
+      "AGENTS.md",
+      "AUDITORIA-ARQUITETURA.md",
+      "CNAME",
+      "Dockerfile",
+      "README.md",
+      "acervo-validation-report.md",
+      "docs",
+      "package-lock.json",
+      "package.json",
+      "schemas",
+      "scripts",
+      "site",
+      "src",
+      "tests",
+      "vercel.json"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "4199cff Use central edelweiss icon for brand flower",
+        "256731b Update favicon to central edelweiss",
+        "3abbc44 Add edelweiss central icon"
+      ],
+      "remotes": [
+        "origin https://github.com/anavvanzin/imagens.git"
+      ],
+      "uncommitted_n": 1,
+      "uncommitted_amostra": [
+        " M schemas/corpus-data-enriched.schema.json"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".webp",
+        64
+      ],
+      [
+        ".woff2",
+        22
+      ],
+      [
+        ".json",
+        10
+      ],
+      [
+        ".css",
+        7
+      ],
+      [
+        ".md",
+        5
+      ],
+      [
+        "(sem ext)",
+        5
+      ],
+      [
+        ".py",
+        5
+      ],
+      [
+        ".yml",
+        4
+      ],
+      [
+        ".html",
+        3
+      ],
+      [
+        ".png",
+        2
+      ],
+      [
+        ".js",
+        2
+      ],
+      [
+        ".example",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "INDEX",
+    "tipo": "dir",
+    "tamanho_mb": 10.2265625,
+    "listing": [
+      ".DS_Store",
+      ".claude",
+      ".old-finder-aliases",
+      ".remember",
+      "Agencia-autonomia-e-liberdade-de-recusa_ICONOCRACIA.md",
+      "CLAUDE.md",
+      "Kimi_Agent_Apresentação acadêmica profunda",
+      "Kimi_Agent_Apresentação acadêmica profunda 2",
+      "Kimi_Agent_Apresentação acadêmica profunda.zip",
+      "Tradução",
+      "acc.db",
+      "acc.db-shm",
+      "acc.db-wal",
+      "ana 2026 main",
+      "atlas-celeste",
+      "atlaslab",
+      "autoresearchclaw",
+      "baralho",
+      "claude",
+      "companion"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        41
+      ],
+      [
+        ".page",
+        30
+      ],
+      [
+        "(sem ext)",
+        17
+      ],
+      [
+        ".png",
+        17
+      ],
+      [
+        ".log",
+        11
+      ],
+      [
+        ".json",
+        6
+      ],
+      [
+        ".docx",
+        4
+      ],
+      [
+        ".pdf",
+        3
+      ],
+      [
+        ".pptd",
+        2
+      ],
+      [
+        ".zip",
+        1
+      ],
+      [
+        ".db",
+        1
+      ],
+      [
+        ".db-shm",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "kimi",
+    "tipo": "dir",
+    "tamanho_mb": 342.74609375,
+    "listing": [
+      ".DS_Store",
+      "Workspaces",
+      "tasks",
+      "workspace"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        2630
+      ],
+      [
+        ".py",
+        306
+      ],
+      [
+        ".json",
+        236
+      ],
+      [
+        ".js",
+        152
+      ],
+      [
+        ".png",
+        131
+      ],
+      [
+        ".css",
+        60
+      ],
+      [
+        ".txt",
+        59
+      ],
+      [
+        ".jsonl",
+        46
+      ],
+      [
+        ".yaml",
+        46
+      ],
+      [
+        "(sem ext)",
+        41
+      ],
+      [
+        ".pdf",
+        39
+      ],
+      [
+        ".html",
+        34
+      ]
+    ]
+  },
+  {
+    "nome": "local",
+    "tipo": "dir",
+    "tamanho_mb": 2.1796875,
+    "listing": [
+      ".DS_Store",
+      ".gitattributes",
+      "LICENSE",
+      "README.md",
+      "__pycache__",
+      "chat_template.jinja",
+      "config.json",
+      "configuration_spark.py",
+      "generation_config.json",
+      "images",
+      "merges.txt",
+      "model-00001-of-00005.safetensors",
+      "model-00001-of-00131.safetensors",
+      "model-00002-of-00005.safetensors",
+      "model-00002-of-00131.safetensors",
+      "model-00003-of-00005.safetensors",
+      "model-00003-of-00131.safetensors",
+      "model-00004-of-00005.safetensors",
+      "model-00004-of-00131.safetensors"
+    ],
+    "exts_top": [
+      [
+        ".safetensors",
+        8
+      ],
+      [
+        "(sem ext)",
+        3
+      ],
+      [
+        ".json",
+        2
+      ],
+      [
+        ".svg",
+        2
+      ],
+      [
+        ".py",
+        1
+      ],
+      [
+        ".md",
+        1
+      ],
+      [
+        ".txt",
+        1
+      ],
+      [
+        ".jinja",
+        1
+      ],
+      [
+        ".png",
+        1
+      ],
+      [
+        ".jpg",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "Logos SBHCJ.dc.html",
+    "tipo": "file",
+    "tamanho_mb": 0.015625
+  },
+  {
+    "nome": "ml-intern",
+    "tipo": "dir",
+    "tamanho_mb": 0.0078125,
+    "listing": [
+      ".git",
+      "REVIEW.md"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "chore/organizacao-2026-09-22",
+      "ultimos_commits": [
+        "7b7670bf docs: inventário pré-organização + manifesto de triagem (2026-09-22)",
+        "967d42fc docs: mark §2 of the reorg plan as false positive (verified 2026-09-21)",
+        "6e18e354 feat(skills): recover Mnemosyne Research Atelier from orphaned zenflow branch"
+      ],
+      "remotes": [
+        "origin https://github.com/anavvanzin/Research.git"
+      ],
+      "uncommitted_n": 126,
+      "uncommitted_amostra": [
+        "?? .agents/",
+        "?? .claude/hooks/state/",
+        "?? .claude/skills/AutoResearchClaw/",
+        "?? .claude/skills/academic-research-skills/",
+        "?? .claude/skills/hegelian-dialectic/",
+        "?? .codemate/",
+        "?? .codex/",
+        "?? .obsidian/",
+        "?? .planning/.active_plan",
+        "?? .planning/2026-08-20-unused-code-audit/"
+      ],
+      "unpushed": "sem-upstream"
+    },
+    "exts_top": [
+      [
+        ".md",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "notion-export",
+    "tipo": "dir",
+    "tamanho_mb": 0.03515625,
+    "listing": [
+      "DIR410346 - Aula 01 - Comentários e orientações.md",
+      "DIR410346 - História do Direito Penal e da Justiça Criminal.md",
+      "História do Direito - Aprofundamento (Aula 01, 2026-08-17).md",
+      "História do Direito - Leitura obrigatória (Aula 01, 2026-08-17).md",
+      "Martins Junior - Historia do direito nacional (1895).md"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        5
+      ]
+    ]
+  },
+  {
+    "nome": "notion-export.zip",
+    "tipo": "file",
+    "tamanho_mb": 0.015625
+  },
+  {
+    "nome": "o-grande-jogo-das-alegorias",
+    "tipo": "dir",
+    "tamanho_mb": 397.328125,
+    "listing": [
+      ".DS_Store",
+      "50D6DE2D-E0E9-4AA2-B937-FED7DD0DA1C2.PNG",
+      "6ec5724a-91a1-4c8d-991d-0076cac75c5f (2).png",
+      "AA5E5188-880D-4351-B13E-73B90F3B0086.PNG",
+      "ALEGORIAS",
+      "MUJO_all_28_designs",
+      "MUJO_all_28_designs.zip",
+      "Programa de Pós-Graduação em Direito.pdf",
+      "README.md",
+      "cards",
+      "compile-scout-data.py",
+      "d9e252e9-fcfb-4933-97f3-333582ad1f34 (1).png",
+      "d9e252e9-fcfb-4933-97f3-333582ad1f34.png",
+      "docker",
+      "duvidam-punem",
+      "iconocracia-companion",
+      "iconocracia-cv",
+      "mockup-atlas.html",
+      "mockup-manifesto.html",
+      "project"
+    ],
+    "exts_top": [
+      [
+        ".png",
+        161
+      ],
+      [
+        ".md",
+        30
+      ],
+      [
+        ".html",
+        21
+      ],
+      [
+        "(sem ext)",
+        16
+      ],
+      [
+        ".json",
+        15
+      ],
+      [
+        ".jpg",
+        6
+      ],
+      [
+        ".js",
+        5
+      ],
+      [
+        ".dockerfile",
+        4
+      ],
+      [
+        ".pdf",
+        2
+      ],
+      [
+        ".css",
+        2
+      ],
+      [
+        ".toml",
+        2
+      ],
+      [
+        ".zip",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "Other",
+    "tipo": "dir",
+    "tamanho_mb": 1.43359375,
+    "listing": [
+      "hermes_conversation_20260425_145316.json",
+      "hermes_conversation_20260425_150850.json"
+    ],
+    "exts_top": [
+      [
+        ".json",
+        2
+      ]
+    ]
+  },
+  {
+    "nome": "output",
+    "tipo": "dir",
+    "tamanho_mb": 1.94921875,
+    "listing": [
+      ".ruff-cache",
+      "__pycache__",
+      "ruff_iconocracy_editorial.json",
+      "ruff_other_python.json",
+      "ruff_scitex.json",
+      "run_ast_audit.py",
+      "run_ast_audit_fast.py",
+      "unused-code-cleanup-plan.md",
+      "unused_code_ast_candidates.json",
+      "unused_code_ast_candidates_fast.json"
+    ],
+    "exts_top": [
+      [
+        "(sem ext)",
+        45
+      ],
+      [
+        ".json",
+        5
+      ],
+      [
+        ".py",
+        2
+      ],
+      [
+        ".md",
+        1
+      ],
+      [
+        ".tag",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "pacote-tese-iconocracia",
+    "tipo": "dir",
+    "tamanho_mb": 0.90625,
+    "listing": [
+      "02-a-materialidade-do-indeterminado.REVISADO.md",
+      "04-imagens-da-nacao.REVISADO.md",
+      "05-maria-marianne-e-a-republica.REVISADO.md",
+      "CHANGELOG-reparos.md",
+      "CONTRA-ALEGORIA-The-Emptied-Sign-Refilled-EN-2026-09-08.md",
+      "DEMONSTRACAO-nucleo-prosa-2026-09-08.md",
+      "ERRATA-cap10-FINAL.md",
+      "ERRATA-cap10.md",
+      "ESCOPO-tese-uma-pagina-2026-09-08.md",
+      "ESPINHA-The-Emptied-Sign-EN-2026-09-08.md",
+      "HANDOFF-tese-iconocracia.md",
+      "MARIANNE-estrato-frances-EN-2026-09-08.md",
+      "MASTER-spine-Arquitetura-C-EN-2026-09-08.md",
+      "PROPOSICAO-principal-para-inserir-capitulo-02.md",
+      "REPAROS-pendentes-rascunhos-2026-09-08.md",
+      "REPUBLICA-BRANCA-estrato-brasileiro-EN-2026-09-08.md",
+      "SERIE-DOCUMENTAL-levantamento-2026-09-08.md",
+      "endurecimento_intrarregime_sem_autora.csv",
+      "estado-do-material-e-arquitetura-C.md",
+      "manuscrito-etapa-3.md"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        20
+      ],
+      [
+        ".csv",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "pacote-tese-iconocracia.zip",
+    "tipo": "file",
+    "tamanho_mb": 0.08203125
+  },
+  {
+    "nome": "pandoc",
+    "tipo": "dir",
+    "tamanho_mb": 101.859375,
+    "listing": [
+      ".DS_Store",
+      ".cirrus.yml",
+      ".editorconfig",
+      ".git",
+      ".gitattributes",
+      ".github",
+      ".gitignore",
+      ".hlint.yaml",
+      ".mailmap",
+      ".stylish-haskell.yaml",
+      "AUTHORS.md",
+      "BUGS",
+      "CITATION.cff",
+      "CONTRIBUTING.md",
+      "COPYING.md",
+      "COPYRIGHT",
+      "INSTALL.md",
+      "MANUAL.txt",
+      "Makefile",
+      "README.md"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "aabed4299 Set default User-Agent request header to pandoc/VERSION.",
+        "44b23c202 Remove redundant import.",
+        "fcd8eae94 Man writer: don't run together successive definitions..."
+      ],
+      "remotes": [
+        "origin https://github.com/jgm/pandoc.git"
+      ],
+      "uncommitted_n": 1,
+      "uncommitted_amostra": [
+        "?? tools/__pycache__/"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".md",
+        1107
+      ],
+      [
+        ".hs",
+        364
+      ],
+      [
+        ".native",
+        254
+      ],
+      [
+        ".yaml",
+        129
+      ],
+      [
+        ".docx",
+        128
+      ],
+      [
+        ".pptx",
+        107
+      ],
+      [
+        ".odt",
+        52
+      ],
+      [
+        "(sem ext)",
+        49
+      ],
+      [
+        ".lua",
+        48
+      ],
+      [
+        ".strings",
+        48
+      ],
+      [
+        ".xml",
+        47
+      ],
+      [
+        ".csl",
+        28
+      ]
+    ]
+  },
+  {
+    "nome": "Particular e Compartilhado",
+    "tipo": "dir",
+    "tamanho_mb": 0.61328125,
+    "listing": [
+      "Antropologia, Direito e Religião (DIR410350)",
+      "Antropologia, Direito e Religião (DIR410350) 3c0158101a0580ee91e3ed76900ccca8.md"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        1
+      ],
+      [
+        ".png",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "pi-law-firm-portfolio",
+    "tipo": "dir",
+    "tamanho_mb": 511.41015625,
+    "listing": [
+      ".DS_Store",
+      ".gitignore",
+      ".next",
+      "README.md",
+      "messages",
+      "next-env.d.ts",
+      "next.config.mjs",
+      "node_modules",
+      "out",
+      "package-lock.json",
+      "package.json",
+      "postcss.config.mjs",
+      "public",
+      "src",
+      "tailwind.config.ts",
+      "tsconfig.json"
+    ],
+    "exts_top": [
+      [
+        ".js",
+        91
+      ],
+      [
+        ".html",
+        59
+      ],
+      [
+        ".json",
+        41
+      ],
+      [
+        ".tsx",
+        30
+      ],
+      [
+        ".txt",
+        28
+      ],
+      [
+        ".rsc",
+        27
+      ],
+      [
+        ".meta",
+        27
+      ],
+      [
+        ".ts",
+        21
+      ],
+      [
+        ".woff2",
+        20
+      ],
+      [
+        ".pack",
+        9
+      ],
+      [
+        "(sem ext)",
+        7
+      ],
+      [
+        ".css",
+        3
+      ]
+    ]
+  },
+  {
+    "nome": "Projects",
+    "tipo": "dir",
+    "tamanho_mb": 11.15234375,
+    "listing": [
+      ".DS_Store",
+      "Memória (1)",
+      "PHD",
+      "claude-scientific-writer",
+      "iuris-ops",
+      "mcp",
+      "my-site",
+      "poems",
+      "skills"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        137
+      ],
+      [
+        ".py",
+        103
+      ],
+      [
+        "(sem ext)",
+        35
+      ],
+      [
+        ".ts",
+        24
+      ],
+      [
+        ".json",
+        20
+      ],
+      [
+        ".js",
+        19
+      ],
+      [
+        ".tex",
+        13
+      ],
+      [
+        ".pdf#",
+        6
+      ],
+      [
+        ".tmp",
+        6
+      ],
+      [
+        ".txt",
+        5
+      ],
+      [
+        ".toml",
+        4
+      ],
+      [
+        ".yml",
+        4
+      ]
+    ]
+  },
+  {
+    "nome": "projetos",
+    "tipo": "dir",
+    "tamanho_mb": 2291.11328125,
+    "listing": [
+      ".DS_Store",
+      "research"
+    ],
+    "exts_top": [
+      [
+        ".py",
+        921
+      ],
+      [
+        ".json",
+        779
+      ],
+      [
+        ".log",
+        706
+      ],
+      [
+        ".md",
+        362
+      ],
+      [
+        ".png",
+        304
+      ],
+      [
+        ".yaml",
+        189
+      ],
+      [
+        ".pkl",
+        187
+      ],
+      [
+        ".rst",
+        175
+      ],
+      [
+        ".csv",
+        138
+      ],
+      [
+        ".txt",
+        78
+      ],
+      [
+        ".h5",
+        30
+      ],
+      [
+        ".jpg",
+        27
+      ]
+    ]
+  },
+  {
+    "nome": "reEnquadramento-tese-1822-1922-2026-09-22",
+    "tipo": "dir",
+    "tamanho_mb": 0.33984375,
+    "listing": [
+      "01-reenquadramento",
+      "02-proposicao-09-07",
+      "03-decisoes-memoria",
+      "04-revisoes",
+      "05-arquitetura",
+      "06-manuscrito-caps-centrais"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        17
+      ]
+    ]
+  },
+  {
+    "nome": "reEnquadramento-tese-1822-1922-2026-09-22.zip",
+    "tipo": "file",
+    "tamanho_mb": 0.125
+  },
+  {
+    "nome": "research-report-assembly 2",
+    "tipo": "dir",
+    "tamanho_mb": 1.0078125,
+    "listing": [
+      ".DS_Store",
+      "README.md",
+      "project"
+    ],
+    "exts_top": [
+      [
+        ".woff2",
+        8
+      ],
+      [
+        "(sem ext)",
+        3
+      ],
+      [
+        ".md",
+        3
+      ],
+      [
+        ".js",
+        3
+      ],
+      [
+        ".svg",
+        2
+      ],
+      [
+        ".css",
+        2
+      ],
+      [
+        ".json",
+        2
+      ],
+      [
+        ".html",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "sbhcj-press-kit",
+    "tipo": "dir",
+    "tamanho_mb": 22.765625,
+    "listing": [
+      "sbhcj-press-kit.iconocracia-5216.chatgpt.site"
+    ],
+    "exts_top": [
+      [
+        ".jpeg",
+        10
+      ],
+      [
+        ".png",
+        6
+      ],
+      [
+        ".js",
+        5
+      ],
+      [
+        ".html",
+        1
+      ],
+      [
+        ".zip",
+        1
+      ],
+      [
+        ".css",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "Scheduled",
+    "tipo": "dir",
+    "tamanho_mb": 0.00390625,
+    "listing": [
+      "briefing-iconocracia"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "scitex-python",
+    "tipo": "dir",
+    "tamanho_mb": 1012.8515625,
+    "listing": [
+      ".DS_Store",
+      ".dockerignore",
+      ".env.d.examples",
+      ".git",
+      ".github",
+      ".gitignore",
+      ".pre-commit-config.yaml",
+      ".readthedocs.yaml",
+      ".ruff_cache",
+      "CHANGELOG.md",
+      "CLA.md",
+      "CLAUDE.md",
+      "CONTRIBUTING.md",
+      "LICENSE",
+      "Makefile",
+      "README.md",
+      "config",
+      "containers",
+      "data",
+      "docs"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "1164fd6f Merge pull request #221 from ywatanabe1989/develop",
+        "97c78b0d docs(skills): mandate per-package NN_env-vars.md leaf; add 26_arch-re-export; checklist §15",
+        "ddc4495b ci(sync-about): skip template packages (automated-research-demo, singularity-template, …)"
+      ],
+      "remotes": [
+        "origin https://github.com/ywatanabe1989/scitex-python.git"
+      ],
+      "uncommitted_n": 13,
+      "uncommitted_amostra": [
+        " D examples/_legacy/scitex/io/bundle/pngs/-home-ywatanabe-proj-scitex-code-examples-fig-auto_crop_visualization_out-png-demo2_multi_element.png",
+        " D examples/_legacy/scitex/io/bundle/pngs/-home-ywatanabe-proj-scitex-code-examples-fig-pngs--home-ywatanabe-proj-scitex-code-examples-fig-auto_crop_visualization_out-png-demo2_multi_element.png",
+        " D examples/_legacy/scitex/io/bundle/pngs/-home-ywatanabe-proj-scitex-code-examples-scitex-fts-pngs--home-ywatanabe-proj-scitex-code-examples-fig-auto_crop_visualization_out-png-demo2_multi_element.png",
+        " D examples/_legacy/scitex/io/bundle/pngs/-home-ywatanabe-proj-scitex-code-examples-scitex-fts-pngs--home-ywatanabe-proj-scitex-code-examples-fig-pngs--home-ywatanabe-proj-scitex-code-examples-fig-auto_crop_visualization_out-png-demo2_multi_element.png",
+        " D examples/_legacy/scitex/io/bundle/pngs/-home-ywatanabe-proj-scitex-code-examples-scitex-fts-pngs--home-ywatanabe-proj-scitex-code-examples-scitex-fts-pngs--home-ywatanabe-proj-scitex-code-examples-fig-auto_crop_visualization_out-png-demo2_multi_element.png",
+        "?? .DS_Store",
+        "?? docs/.DS_Store",
+        "?? docs/assets/.DS_Store",
+        "?? docs/assets/logos/.DS_Store",
+        "?? docs/sphinx/.DS_Store"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".py",
+        923
+      ],
+      [
+        ".json",
+        862
+      ],
+      [
+        ".log",
+        708
+      ],
+      [
+        ".png",
+        331
+      ],
+      [
+        ".yaml",
+        189
+      ],
+      [
+        ".pkl",
+        188
+      ],
+      [
+        ".rst",
+        175
+      ],
+      [
+        ".csv",
+        152
+      ],
+      [
+        "(sem ext)",
+        105
+      ],
+      [
+        ".txt",
+        78
+      ],
+      [
+        ".zip",
+        61
+      ],
+      [
+        ".md",
+        56
+      ]
+    ]
+  },
+  {
+    "nome": "setembro",
+    "tipo": "dir",
+    "tamanho_mb": 0.05078125,
+    "listing": [
+      ".DS_Store",
+      "SCAN-SET2026-notas",
+      "SCAN-SET2026-notas.zip"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        3
+      ],
+      [
+        "(sem ext)",
+        1
+      ],
+      [
+        ".zip",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "site-anavvanzin",
+    "tipo": "dir",
+    "tamanho_mb": 354.30859375,
+    "listing": [
+      ".DS_Store",
+      ".assetsignore",
+      ".git",
+      ".wrangler",
+      "404.html",
+      "CLAUDE_CODE_HANDOFF.md",
+      "CNAME",
+      "Nova ideia homepage Anavanzin.zip",
+      "README.md",
+      "WindowContents.js",
+      "_LEIA.md",
+      "_ds_bundle.js",
+      "advocacia.html",
+      "assets",
+      "atlas",
+      "companheira.js",
+      "conceitos.html",
+      "content.js",
+      "corpus",
+      "data"
+    ],
+    "git": {
+      "gitdir_kind": "dir",
+      "branch": "main",
+      "ultimos_commits": [
+        "2a1f69b chore: .assetsignore para deploy limpo + preview dos sprites",
+        "36bc6e2 test: exclui verso.webp da contagem de lâminas",
+        "aafd3c4 feat: a vigilante no desktop; sorte/ substitui tarot/ com redirect"
+      ],
+      "remotes": [
+        "origin https://github.com/anavvanzin/anavanzinparte242.git"
+      ],
+      "uncommitted_n": 20,
+      "uncommitted_amostra": [
+        " M .DS_Store",
+        " M assets/.DS_Store",
+        " M docs/.DS_Store",
+        " M docs/superpowers/.DS_Store",
+        " M iconocracia/.DS_Store",
+        " D iconocracia/src/.DS_Store",
+        " M site/.DS_Store",
+        " M site/assets/.DS_Store",
+        " D site/assets/martirios.png",
+        " D site/assets/mood/m1.png"
+      ],
+      "unpushed": "não"
+    },
+    "exts_top": [
+      [
+        ".html",
+        94
+      ],
+      [
+        ".png",
+        56
+      ],
+      [
+        ".jpg",
+        43
+      ],
+      [
+        ".js",
+        32
+      ],
+      [
+        ".woff2",
+        32
+      ],
+      [
+        ".webp",
+        29
+      ],
+      [
+        ".css",
+        22
+      ],
+      [
+        ".svg",
+        21
+      ],
+      [
+        "(sem ext)",
+        18
+      ],
+      [
+        ".md",
+        14
+      ],
+      [
+        ".jsx",
+        12
+      ],
+      [
+        ".json",
+        7
+      ]
+    ]
+  },
+  {
+    "nome": "THE COIN AND THE WITCH",
+    "tipo": "dir",
+    "tamanho_mb": 8.57421875,
+    "listing": [
+      ".DS_Store",
+      ".claude",
+      ".remember",
+      "Branch · Ponte teórica para aula copiar.pdf",
+      "The-Blindfold-and-the-Dock-manuscript.md",
+      "The-Coin-and-the-Witch-v2-manuscript.md",
+      "The-Coin-and-the-Witch-v3-LawAndHumanities.docx",
+      "The-Coin-and-the-Witch-v3-LawAndHumanities.md",
+      "The-Coin-and-the-Witch-v3-LawAndHumanities.pdf",
+      "acc.db",
+      "acc.db-shm",
+      "acc.db-wal",
+      "artifacts",
+      "artifacts 2",
+      "artifacts.zip",
+      "cover-letter-LawAndHumanities.md",
+      "md2latex_blindfold.py",
+      "paper",
+      "paper-coin",
+      "pipeline-integrity-report-stage2.5.md"
+    ],
+    "exts_top": [
+      [
+        ".log",
+        29
+      ],
+      [
+        ".tex",
+        21
+      ],
+      [
+        ".md",
+        18
+      ],
+      [
+        ".csv",
+        13
+      ],
+      [
+        "(sem ext)",
+        10
+      ],
+      [
+        ".pdf",
+        4
+      ],
+      [
+        ".py",
+        4
+      ],
+      [
+        ".png",
+        4
+      ],
+      [
+        ".json",
+        3
+      ],
+      [
+        ".out",
+        2
+      ],
+      [
+        ".aux",
+        2
+      ],
+      [
+        ".zip",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "Tools",
+    "tipo": "dir",
+    "tamanho_mb": 0.0078125,
+    "listing": [
+      ".DS_Store"
+    ],
+    "exts_top": [
+      [
+        "(sem ext)",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "traducoes",
+    "tipo": "dir",
+    "tamanho_mb": 31.45703125,
+    "listing": [
+      ".DS_Store",
+      "Capitulo 5 - Historia Juridica LGBTQ+.md",
+      "Capitulo 5 - Historia Juridica LGBTQ+.pdf",
+      "Capitulo-5_Historia-juridica-LGBTQ_traducao-PT-BR_ilustrado.pdf",
+      "Chapter 5_ LGBTQ+ Legal History – Introduction to LGBTQ+ Studies_ A Cross-Disciplinary Approach.pdf",
+      "Kimi_Agent_SBHCJ logo gallery.zip",
+      "Kimi_Agent_写作与翻译",
+      "Kimi_Agent_写作与翻译.zip",
+      "app"
+    ],
+    "exts_top": [
+      [
+        ".jpg",
+        27
+      ],
+      [
+        ".json",
+        5
+      ],
+      [
+        ".pdf",
+        4
+      ],
+      [
+        ".md",
+        3
+      ],
+      [
+        ".zip",
+        2
+      ],
+      [
+        "(sem ext)",
+        2
+      ],
+      [
+        ".ts",
+        2
+      ],
+      [
+        ".tsx",
+        2
+      ],
+      [
+        ".docx",
+        2
+      ],
+      [
+        ".html",
+        1
+      ],
+      [
+        ".js",
+        1
+      ],
+      [
+        ".css",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "United-by-Marriage 2",
+    "tipo": "dir",
+    "tamanho_mb": 327.9375,
+    "listing": [
+      ".DS_Store",
+      "LEIA-ME.md",
+      "MANIFESTO.csv",
+      "Women's Nationality and Legal Identity",
+      "dissertacao",
+      "livro",
+      "materiais-relacionados",
+      "proveniencia",
+      "united-by-marriage"
+    ],
+    "exts_top": [
+      [
+        ".json",
+        434
+      ],
+      [
+        ".md",
+        305
+      ],
+      [
+        ".jsonl",
+        135
+      ],
+      [
+        ".txt",
+        59
+      ],
+      [
+        ".png",
+        58
+      ],
+      [
+        ".pdf",
+        50
+      ],
+      [
+        ".py",
+        46
+      ],
+      [
+        "(sem ext)",
+        19
+      ],
+      [
+        ".yaml",
+        13
+      ],
+      [
+        ".docx",
+        9
+      ],
+      [
+        ".jpg",
+        8
+      ],
+      [
+        ".html",
+        7
+      ]
+    ]
+  },
+  {
+    "nome": "YEY",
+    "tipo": "dir",
+    "tamanho_mb": 6.11328125,
+    "listing": [
+      ".DS_Store",
+      "Plano de ampliação e.txt",
+      "corpus-copies-audit-2026-09-15.md",
+      "craft-extracts",
+      "memorando-estrategico-iconocracia-2026-09-16",
+      "novidades-tese-craft-2026-09-22.md",
+      "reconciliacao-ids-2026-09-16.md",
+      "reconciliation-matches.json",
+      "reconciliation-verdicts-2026-09-15.md",
+      "sad-roentgen-unique-items.json",
+      "snapshot-2026-09-15"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        42
+      ],
+      [
+        ".png",
+        9
+      ],
+      [
+        ".json",
+        5
+      ],
+      [
+        ".txt",
+        2
+      ],
+      [
+        "(sem ext)",
+        1
+      ],
+      [
+        ".docx",
+        1
+      ],
+      [
+        ".pdf",
+        1
+      ],
+      [
+        ".jsonl",
+        1
+      ],
+      [
+        ".py",
+        1
+      ]
+    ]
+  },
+  {
+    "nome": "ZenflowProjects",
+    "tipo": "dir",
+    "tamanho_mb": 2.9140625,
+    "listing": [
+      ".DS_Store",
+      "new-project",
+      "zenflow_projects"
+    ],
+    "exts_top": [
+      [
+        ".md",
+        21
+      ],
+      [
+        "(sem ext)",
+        6
+      ],
+      [
+        ".sh",
+        4
+      ],
+      [
+        ".json",
+        3
+      ],
+      [
+        ".yml",
+        2
+      ],
+      [
+        ".py",
+        1
+      ]
+    ]
+  }
+]

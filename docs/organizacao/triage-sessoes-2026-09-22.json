@@ -1,0 +1,1321 @@
+{
+  "2026-07-16": {
+    "mb": 0.0,
+    "n_files": 3,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        3
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-07-17": {
+    "mb": 0.0,
+    "n_files": 7,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        7
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-07-18": {
+    "mb": 0.0,
+    "n_files": 1,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        1
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-07-20": {
+    "mb": 0.0,
+    "n_files": 4,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        4
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-07-21": {
+    "mb": 0.0,
+    "n_files": 4,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        4
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-07-23": {
+    "mb": 233.7,
+    "n_files": 4574,
+    "tem_git_aninhado": true,
+    "ext_top": [
+      [
+        ".md",
+        3139
+      ],
+      [
+        ".py",
+        309
+      ],
+      [
+        ".json",
+        248
+      ],
+      [
+        ".js",
+        152
+      ],
+      [
+        ".png",
+        114
+      ],
+      [
+        ".css",
+        65
+      ],
+      [
+        ".txt",
+        62
+      ],
+      [
+        ".yaml",
+        48
+      ],
+      [
+        ".jpg",
+        46
+      ],
+      [
+        ".jsonl",
+        43
+      ]
+    ],
+    "valiosos": [
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/vault/obsidian-dir410346/{aulas,leituras,memoriais,templates,assets}/Malleus Maleficarum Construção Jurídico-Penal da Bruxaria.pptx",
+        "kb": 5030
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/tese/Entrega_Orientador_Mar2026_FINAL/sumario/sumario.pdf",
+        "kb": 3697
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/tese/manuscrito/sumario.pdf",
+        "kb": 3697
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/vault/obsidian-dir410346/aulas/assets-apresentacao-malleus/entrega-2026-06-30/flyer-malleus-cajada-handout.pdf",
+        "kb": 2783
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/corpus/DASHBOARD_CORPUS.html",
+        "kb": 2661
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/wiki/DIR410346-Historia-Direito-Penal/aulas/Flyer_Apresentacao_Malleus.pdf",
+        "kb": 2349
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/Other/DASHBOARD_CORPUS.html",
+        "kb": 1384
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/tools/audit/network/iconocracy_network.png",
+        "kb": 1367
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/gallery/stf/02_ceschiatti_justica_detail_2005.jpg",
+        "kb": 1304
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/wiki/assets/obsidian-kanban/docs/Assets/Screen Shot 2021-09-16 at 12.58.22 PM.png",
+        "kb": 1246
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/tese/Entrega_Orientador_Mar2026_FINAL/atlas/ATLAS_ICONOCRACIA.pdf",
+        "kb": 1222
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/wiki/.obsidian/plugins/novel-word-count/data.json",
+        "kb": 1149
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/tese/ATLAS_ICONOCRACIA.docx",
+        "kb": 1116
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/corpus/infografico_gemini.png",
+        "kb": 1041
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/gallery/stf/01_ceschiatti_justica_exterior_1961.jpg",
+        "kb": 1024
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/corpus/infografico_corpus.png",
+        "kb": 1021
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/vault/obsidian-dir410346/{aulas,leituras,memoriais,templates,assets}/malleus-maleficarum.pptx",
+        "kb": 930
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/vault/obsidian-dir410346/aulas/assets-apresentacao-malleus/malleus-maleficarum.pptx",
+        "kb": 930
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/docs/research/elicit/2026-07-07-feminist-allegories-political-representation/dossier.md",
+        "kb": 893
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/gallery/gallica/04_moitte_liberte_1792.jpg",
+        "kb": 862
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/gallery/gallica/06_bruegel_justicia_1559.jpg",
+        "kb": 787
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/Other/My Library.bib",
+        "kb": 781
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/corpus/corpus-data.v2.json",
+        "kb": 747
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/Other/parallel_results.json",
+        "kb": 717
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/data/processed/parallel_results.json",
+        "kb": 717
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/Other/01_exploratory.ipynb",
+        "kb": 640
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/notebooks/01_exploratory.ipynb",
+        "kb": 640
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/wiki/assets/obsidian-kanban/docs/Assets/Screen Shot 2021-09-16 at 1.10.38 PM.png",
+        "kb": 569
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/archive/notas-legacy/tropical-iconoclasm/Tropical Iconoclasm and Legal Literacy_ A Case Study in Brazilian Legal History (1).md",
+        "kb": 567
+      },
+      {
+        "path": "fa-a-o-passe-final-de/work/iconocracy-pr139-coherence/archive/notas-legacy/tropical-iconoclasm/Tropical Iconoclasm and Legal Literacy_ A Case Study in Brazilian Legal History.md",
+        "kb": 563
+      }
+    ]
+  },
+  "2026-07-24": {
+    "mb": 0.0,
+    "n_files": 2,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        2
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-07-26": {
+    "mb": 15.5,
+    "n_files": 123,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        ".png",
+        46
+      ],
+      [
+        ".docx",
+        20
+      ],
+      [
+        ".pdf",
+        17
+      ],
+      [
+        ".txt",
+        10
+      ],
+      [
+        "(sem ext)",
+        7
+      ],
+      [
+        ".zip",
+        7
+      ],
+      [
+        ".md",
+        6
+      ],
+      [
+        ".jsonl",
+        6
+      ],
+      [
+        ".py",
+        3
+      ],
+      [
+        ".xml",
+        1
+      ]
+    ],
+    "valiosos": [
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/previews_malleus/artigo_p9.png",
+        "kb": 325
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_final/page-1.png",
+        "kb": 323
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_final_course/article-first.png",
+        "kb": 323
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_course/article-first.png",
+        "kb": 316
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_complete/page-1.png",
+        "kb": 316
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_clean/conclusion.png",
+        "kb": 314
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/extracted/page-1.png",
+        "kb": 299
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/previews_malleus/artigo_p1.png",
+        "kb": 292
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_clean/article-first.png",
+        "kb": 283
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_complete/page-9.png",
+        "kb": 260
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/previews_malleus/artigo_p4.png",
+        "kb": 250
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_final/page-16.png",
+        "kb": 246
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_complete/page-16-final.png",
+        "kb": 243
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_final/page-7.png",
+        "kb": 235
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_complete/page-15.png",
+        "kb": 234
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_clean/references.png",
+        "kb": 225
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/extracted/page-10.png",
+        "kb": 217
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/outputs/ENTREGA_FINAL_HISTORIOGRAFIA_2026-08-06/trabalho_final_historia_justica_criminal_direito_penal.pdf",
+        "kb": 213
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/outputs/ENTREGA_FINAL_HISTORIOGRAFIA_2026-08-06/artigo_iconografia_autoridade_juridica.pdf",
+        "kb": 209
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/outputs/ENTREGA_FINAL_DISCIPLINA_2026-08-05 2/trabalho_final_historia_justica_criminal_direito_penal.pdf",
+        "kb": 208
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/outputs/ENTREGA_FINAL_DISCIPLINA_2026-08-05/paper final.pdf",
+        "kb": 208
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/outputs/ENTREGA_LIMPA_2026-08-05/trabalho_final_historia_justica_criminal_direito_penal.pdf",
+        "kb": 208
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/outputs/ENTREGA_LIMPA_2026-08-05/artigo_iconografia_autoridade_juridica.pdf",
+        "kb": 204
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/previews_malleus/artigo_p2.png",
+        "kb": 200
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/outputs/ENTREGA_FINAL_MALLEUS_CAJADA_2026-08-06/trabalho_final_historia_direito_penal_cajada.pdf",
+        "kb": 193
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/outputs/ENTREGA_FINAL_MALLEUS_CAJADA_2026-08-06/artigo_ate_quando_duvidam_punem.pdf",
+        "kb": 191
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/outputs/ENTREGA_FINAL_MALLEUS_CAJADA_2026-08-06 2/trabalho_final_historia_direito_penal_cajada.pdf",
+        "kb": 189
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/outputs/ENTREGA_FINAL_MALLEUS_CAJADA_2026-08-06 2/artigo_ate_quando_duvidam_punem.pdf",
+        "kb": 187
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/preview_complete/page-16.png",
+        "kb": 186
+      },
+      {
+        "path": "prepare-o-pacote-final-de-submiss/work/previews_malleus/artigo_p6.png",
+        "kb": 179
+      }
+    ]
+  },
+  "2026-07-27": {
+    "mb": 0.0,
+    "n_files": 2,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        2
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-07-31": {
+    "mb": 0.0,
+    "n_files": 2,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        2
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-08-07": {
+    "mb": 0.0,
+    "n_files": 2,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        2
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-08-08": {
+    "mb": 1.2,
+    "n_files": 20,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        ".md",
+        6
+      ],
+      [
+        "(sem ext)",
+        4
+      ],
+      [
+        ".svg",
+        4
+      ],
+      [
+        ".html",
+        3
+      ],
+      [
+        ".docx",
+        1
+      ],
+      [
+        ".pdf",
+        1
+      ],
+      [
+        ".png",
+        1
+      ]
+    ],
+    "valiosos": [
+      {
+        "path": "translation-submission-for-foreign-journal/outputs/work/Dal Ri Jr - From the Pulpits to the Chairs (EN, submission).pdf",
+        "kb": 355
+      },
+      {
+        "path": "baralho-das-alegorias-setup/outputs/baralho-das-alegorias.html",
+        "kb": 243
+      },
+      {
+        "path": "georges-martyn-website-interests/outputs/iconocracia-catalogo.html",
+        "kb": 162
+      },
+      {
+        "path": "translation-submission-for-foreign-journal/outputs/work/PT.md",
+        "kb": 90
+      },
+      {
+        "path": "translation-submission-for-foreign-journal/outputs/work/EN.md",
+        "kb": 77
+      },
+      {
+        "path": "translation-submission-for-foreign-journal/outputs/work/EN_final.md",
+        "kb": 76
+      },
+      {
+        "path": "translation-submission-for-foreign-journal/outputs/work/EN_clean.md",
+        "kb": 76
+      },
+      {
+        "path": "translation-submission-for-foreign-journal/outputs/Dal Ri Jr - From the Pulpits to the Chairs (EN, submission).docx",
+        "kb": 44
+      },
+      {
+        "path": "baralho-das-alegorias-setup/outputs/baralho/src/assets/hero.png",
+        "kb": 12
+      },
+      {
+        "path": "baralho-das-alegorias-setup/outputs/baralho/public/favicon.svg",
+        "kb": 9
+      },
+      {
+        "path": "georges-martyn-website-interests/outputs/MASTER_PLAN.backup.20260713-054838.md",
+        "kb": 8
+      },
+      {
+        "path": "baralho-das-alegorias-setup/outputs/baralho/src/assets/vite.svg",
+        "kb": 8
+      },
+      {
+        "path": "baralho-das-alegorias-setup/outputs/baralho/public/icons.svg",
+        "kb": 4
+      },
+      {
+        "path": "baralho-das-alegorias-setup/outputs/baralho/src/assets/react.svg",
+        "kb": 4
+      },
+      {
+        "path": "baralho-das-alegorias-setup/outputs/baralho/README.md",
+        "kb": 1
+      },
+      {
+        "path": "baralho-das-alegorias-setup/outputs/baralho/index.html",
+        "kb": 0
+      }
+    ]
+  },
+  "2026-09-05": {
+    "mb": 0.0,
+    "n_files": 2,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        2
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-09-06": {
+    "mb": 0.0,
+    "n_files": 1,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        1
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-09-09": {
+    "mb": 33.5,
+    "n_files": 47,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        ".jpeg",
+        20
+      ],
+      [
+        ".png",
+        12
+      ],
+      [
+        "(sem ext)",
+        5
+      ],
+      [
+        ".py",
+        2
+      ],
+      [
+        ".html",
+        2
+      ],
+      [
+        ".js",
+        2
+      ],
+      [
+        ".css",
+        2
+      ],
+      [
+        ".jsonc",
+        1
+      ],
+      [
+        ".zip",
+        1
+      ]
+    ],
+    "valiosos": [
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-09.png",
+        "kb": 2259
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-09.png",
+        "kb": 2259
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-11.png",
+        "kb": 1713
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-11.png",
+        "kb": 1713
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-12.png",
+        "kb": 1148
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-12.png",
+        "kb": 1148
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-10.png",
+        "kb": 1048
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-10.png",
+        "kb": 1048
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-05.jpeg",
+        "kb": 766
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-05.jpeg",
+        "kb": 766
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-08.jpeg",
+        "kb": 708
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-08.jpeg",
+        "kb": 708
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-01.jpeg",
+        "kb": 658
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-01.jpeg",
+        "kb": 658
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-03.jpeg",
+        "kb": 648
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-04.jpeg",
+        "kb": 648
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-03.jpeg",
+        "kb": 648
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-04.jpeg",
+        "kb": 648
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-02.jpeg",
+        "kb": 515
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-02.jpeg",
+        "kb": 515
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-15.jpeg",
+        "kb": 344
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-15.jpeg",
+        "kb": 344
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-13.jpeg",
+        "kb": 320
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-13.jpeg",
+        "kb": 320
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-16.jpeg",
+        "kb": 316
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-16.jpeg",
+        "kb": 316
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-14.jpeg",
+        "kb": 238
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-14.jpeg",
+        "kb": 238
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/press-kit-sbhcj/SBHCJ-06.png",
+        "kb": 65
+      },
+      {
+        "path": "sbhcj-press-kit-sites-project-appgprj/outputs/sbhcj-cloudflare/public/assets/arte-06.png",
+        "kb": 65
+      }
+    ]
+  },
+  "2026-09-10": {
+    "mb": 0.0,
+    "n_files": 2,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        2
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-09-12": {
+    "mb": 347.9,
+    "n_files": 600,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        ".png",
+        135
+      ],
+      [
+        ".html",
+        121
+      ],
+      [
+        ".tsx",
+        67
+      ],
+      [
+        ".jpg",
+        59
+      ],
+      [
+        ".js",
+        34
+      ],
+      [
+        ".woff2",
+        24
+      ],
+      [
+        ".webp",
+        22
+      ],
+      [
+        ".css",
+        21
+      ],
+      [
+        ".json",
+        20
+      ],
+      [
+        "(sem ext)",
+        12
+      ]
+    ],
+    "valiosos": [
+      {
+        "path": "new-chat-2/work/runtime-assets/slides/malleus-maleficarum.pptx",
+        "kb": 15366
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/6104F02E-EC5B-41C6-87CB-41441FA22BC0.JPG",
+        "kb": 11458
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/slides/madre-della-nazione.pptx",
+        "kb": 11376
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/Female Allegory in Legal Culture – Moodboard (cópia) (4).png",
+        "kb": 10160
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/Female Allegory in Legal Culture – Moodboard.png",
+        "kb": 7841
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/slides/nacionalidade-feminina.pptx",
+        "kb": 7789
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/Female Allegory in Legal Culture – Moodboard (cópia) (3).png",
+        "kb": 7491
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/slides/allegorical-sexual-contract.pdf",
+        "kb": 7266
+      },
+      {
+        "path": "new-chat-2/work/audit.json",
+        "kb": 6925
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/Female Allegory in Legal Culture – Moodboard (cópia) (2).png",
+        "kb": 6206
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/Female Allegory in Legal Culture – Moodboard (cópia) (1).png",
+        "kb": 6149
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/slides/marianne-irma-tropical.pptx",
+        "kb": 6076
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/Female Allegory in Legal Culture – Moodboard (cópia).png",
+        "kb": 5467
+      },
+      {
+        "path": "new-chat-2/work/metodo-app/public/images/pomodoro.png",
+        "kb": 3855
+      },
+      {
+        "path": "new-chat-2/work/metodo-app/public/images/excelencia.png",
+        "kb": 3822
+      },
+      {
+        "path": "new-chat-2/work/metodo-app/public/images/etimologia.png",
+        "kb": 3807
+      },
+      {
+        "path": "new-chat-2/work/metodo-app/public/images/pratica-intercalada.png",
+        "kb": 3743
+      },
+      {
+        "path": "new-chat-2/work/metodo-app/public/images/virgula.png",
+        "kb": 3742
+      },
+      {
+        "path": "new-chat-2/work/metodo-app/public/images/persistencia.png",
+        "kb": 3640
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/ChatGPT Image 25 de jun. de 2026, 20_37_51.png",
+        "kb": 3632
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/ChatGPT Image 25 de jun. de 2026, 20_37_18.png",
+        "kb": 3603
+      },
+      {
+        "path": "new-chat-2/work/metodo-app/public/images/metodo-feynman.png",
+        "kb": 3516
+      },
+      {
+        "path": "new-chat-2/work/metodo-app/public/images/repeticao-espacada.png",
+        "kb": 3459
+      },
+      {
+        "path": "new-chat-2/work/metodo-app/public/images/fichamento.png",
+        "kb": 3429
+      },
+      {
+        "path": "new-chat-2/work/metodo-app/public/images/recordacao-ativa.png",
+        "kb": 3234
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/ChatGPT Image 25 de jun. de 2026, 21_05_21.png",
+        "kb": 3130
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/ChatGPT Image 25 de jun. de 2026, 20_43_01 (4).png",
+        "kb": 3090
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/ICONOCRACIAgrupohistoriadireito.html",
+        "kb": 3060
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/ChatGPT Image 25 de jun. de 2026, 20_37_34.png",
+        "kb": 3013
+      },
+      {
+        "path": "new-chat-2/work/runtime-assets/assets/ChatGPT Image 25 de jun. de 2026, 20_43_01 (3).png",
+        "kb": 3008
+      }
+    ]
+  },
+  "2026-09-15": {
+    "mb": 2.2,
+    "n_files": 7,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        ".png",
+        4
+      ],
+      [
+        "(sem ext)",
+        2
+      ],
+      [
+        ".md",
+        1
+      ]
+    ],
+    "valiosos": [
+      {
+        "path": "spawn-a-subagent-to-explore-this/outputs/atlas-editorial.png",
+        "kb": 1325
+      },
+      {
+        "path": "spawn-a-subagent-to-explore-this/outputs/atlas-edelweiss.png",
+        "kb": 443
+      },
+      {
+        "path": "spawn-a-subagent-to-explore-this/outputs/atlas-lavanda.png",
+        "kb": 440
+      },
+      {
+        "path": "spawn-a-subagent-to-explore-this/outputs/plano-ampliacao-atlas.md",
+        "kb": 14
+      },
+      {
+        "path": "spawn-a-subagent-to-explore-this/outputs/atlas-edelweiss-rodape.png",
+        "kb": 9
+      }
+    ]
+  },
+  "2026-09-16": {
+    "mb": 0.0,
+    "n_files": 0,
+    "tem_git_aninhado": false,
+    "ext_top": [],
+    "valiosos": []
+  },
+  "2026-09-17": {
+    "mb": 16.7,
+    "n_files": 133,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        ".jpg",
+        119
+      ],
+      [
+        ".json",
+        7
+      ],
+      [
+        ".txt",
+        2
+      ],
+      [
+        ".log",
+        2
+      ],
+      [
+        "(sem ext)",
+        1
+      ],
+      [
+        ".md",
+        1
+      ],
+      [
+        ".mp4",
+        1
+      ]
+    ],
+    "valiosos": [
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_018.jpg",
+        "kb": 533
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_012.jpg",
+        "kb": 384
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_020.jpg",
+        "kb": 377
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_011.jpg",
+        "kb": 373
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_004.jpg",
+        "kb": 347
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_007.jpg",
+        "kb": 329
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_017.jpg",
+        "kb": 319
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_003.jpg",
+        "kb": 318
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_019.jpg",
+        "kb": 313
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_006.jpg",
+        "kb": 310
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_013.jpg",
+        "kb": 293
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_005.jpg",
+        "kb": 291
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_021.jpg",
+        "kb": 280
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_016.jpg",
+        "kb": 246
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_008.jpg",
+        "kb": 238
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_015.jpg",
+        "kb": 234
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_023.jpg",
+        "kb": 222
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_009.jpg",
+        "kb": 202
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_025.jpg",
+        "kb": 197
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_022.jpg",
+        "kb": 183
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_027.jpg",
+        "kb": 180
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_024.jpg",
+        "kb": 178
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_030.jpg",
+        "kb": 172
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_026.jpg",
+        "kb": 141
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_028.jpg",
+        "kb": 140
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_029.jpg",
+        "kb": 139
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_010.jpg",
+        "kb": 132
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_002.jpg",
+        "kb": 125
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_014.jpg",
+        "kb": 120
+      },
+      {
+        "path": "upwork-plugin-app-6a75165ed2d8819182548553aa4cb6d5-openai-curated/work/frames_5s/frame_001.jpg",
+        "kb": 83
+      }
+    ]
+  },
+  "2026-09-18": {
+    "mb": 0.0,
+    "n_files": 0,
+    "tem_git_aninhado": false,
+    "ext_top": [],
+    "valiosos": []
+  },
+  "2026-09-19": {
+    "mb": 0.0,
+    "n_files": 1,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        "(sem ext)",
+        1
+      ]
+    ],
+    "valiosos": []
+  },
+  "2026-09-19-martyn": {
+    "mb": 9.7,
+    "n_files": 15,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        ".jpg",
+        4
+      ],
+      [
+        ".png",
+        3
+      ],
+      [
+        ".html",
+        2
+      ],
+      [
+        ".pdf",
+        2
+      ],
+      [
+        ".md",
+        2
+      ],
+      [
+        ".json",
+        2
+      ]
+    ],
+    "valiosos": [
+      {
+        "path": "one-pager-iconocracia-pt.pdf",
+        "kb": 2296
+      },
+      {
+        "path": "one-pager-iconocracia.pdf",
+        "kb": 2293
+      },
+      {
+        "path": "preview.png",
+        "kb": 1217
+      },
+      {
+        "path": "preview-pt.png",
+        "kb": 1197
+      },
+      {
+        "path": "imgs/ceschiatti.jpg",
+        "kb": 1024
+      },
+      {
+        "path": "imgs/bruegel.jpg",
+        "kb": 787
+      },
+      {
+        "path": "preview2.png",
+        "kb": 736
+      },
+      {
+        "path": "imgs/villares.jpg",
+        "kb": 219
+      },
+      {
+        "path": "imgs/chifflart.jpg",
+        "kb": 105
+      },
+      {
+        "path": "copilot-config-backup/config.json",
+        "kb": 34
+      },
+      {
+        "path": "one-pager-pt.html",
+        "kb": 7
+      },
+      {
+        "path": "one-pager.html",
+        "kb": 7
+      },
+      {
+        "path": "padrao-de-rigor-martyn.md",
+        "kb": 4
+      },
+      {
+        "path": "copilot-config-backup/settings.json",
+        "kb": 4
+      },
+      {
+        "path": "one-pager-iconocracia-en.md",
+        "kb": 2
+      }
+    ]
+  },
+  "2026-09-21": {
+    "mb": 0.0,
+    "n_files": 18,
+    "tem_git_aninhado": false,
+    "ext_top": [
+      [
+        ".md",
+        17
+      ],
+      [
+        "(sem ext)",
+        1
+      ]
+    ],
+    "valiosos": [
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/SKILL.md",
+        "kb": 7
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/references/templates-obsidian.md",
+        "kb": 4
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/references/regimes-iconocraticos.md",
+        "kb": 4
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/modes/iconocode.md",
+        "kb": 3
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/modes/scout.md",
+        "kb": 2
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/modes/compilar-validar-sync.md",
+        "kb": 2
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/modes/zwischenraum.md",
+        "kb": 1
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/modes/researchclaw.md",
+        "kb": 1
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/modes/pesquisar.md",
+        "kb": 1
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/references/schemas-referencia.md",
+        "kb": 1
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/references/indicadores-purificacao.md",
+        "kb": 1
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/modes/pipeline.md",
+        "kb": 0
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/modes/revisar.md",
+        "kb": 0
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/modes/redigir.md",
+        "kb": 0
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/references/ferramentas-disponiveis.md",
+        "kb": 0
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/references/tags-canonicas.md",
+        "kb": 0
+      },
+      {
+        "path": "install-this-skill/work/iconocracy-agent-install-20260922T030215Z-ml0rme2x/previous/iconocracy-agent/references/corpus-parameters.md",
+        "kb": 0
+      }
+    ]
+  }
+}
