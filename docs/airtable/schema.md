@@ -111,3 +111,57 @@ Cada registro deve vincular-se a exatamente um `ID do corpus`; recodificações 
 - Não use `0` para significar “não codificado”. `0` significa ausência do indicador; ausência de dado permanece vazia.
 - Valores fora de 0–3 devem ser enviados para a tabela de divergências antes de qualquer normalização.
 - Use URLs permanentes ou de catálogo quando houver; URLs de thumbnails são auxiliares e não substituem a referência da obra.
+
+## Manifesto experimental e crosswalk de identidade
+
+Todo extrato experimental deve publicar, ao lado do manifesto, um crosswalk
+linha a linha que mantenha separados os identificadores de cada sistema. O
+arquivo deve conter obrigatoriamente as seguintes colunas, sem reutilizar uma
+como substituta de outra:
+
+| Coluna | Conteúdo |
+|---|---|
+| `canonical_item_id` | Identificador canônico do item no corpus. |
+| `registry_id` | Identificador do registro no catálogo ou ledger de origem. |
+| `editorial_id` | Identificador usado na seleção ou camada editorial. |
+| `hf_row_id` | Identificador estável da linha no dataset Hugging Face. |
+| `bucket_object_key` | Chave completa do objeto no bucket, não apenas o nome do arquivo. |
+| `source_record_url` | URL canônica do registro na fonte. |
+| `link_method` | Método controlado de vínculo. |
+| `link_evidence` | Evidência verificável que justificou o vínculo. |
+| `review_status` | Estado da revisão humana, quando necessária. |
+| `sample_eligible` | Booleano que controla a entrada na amostra. |
+| `exclusion_reason` | Motivo controlado do bloqueio, quando houver. |
+
+### Construção e precedência
+
+O crosswalk deve ser construído a partir dos artefatos existentes, preservando
+a proveniência de cada valor. Quando existir,
+`data/processed/id_crosswalk.jsonl` é uma entrada prioritária, mas não dispensa
+a validação de unicidade e de evidência. A ordem de resolução é:
+
+1. vínculo documentado em crosswalk existente (`existing_crosswalk`);
+2. igualdade de identificador emitido pelo mesmo sistema (`exact_id`);
+3. igualdade de URL após normalização estritamente sintática (`canonical_url`);
+4. decisão humana documentada (`manual_review`).
+
+Cada linha deve registrar em `link_evidence` o artefato e o campo consultados
+(e, quando aplicável, a decisão de revisão). Título não é chave: igualdade ou
+similaridade de título pode somente abrir uma revisão e jamais confirmar a
+identidade automaticamente.
+
+### Bloqueios de amostragem
+
+Antes da seleção experimental, `sample_eligible` deve ser `false` e
+`exclusion_reason` deve registrar um dos motivos abaixo sempre que houver:
+
+- `id_collision`: um identificador aponta para mais de um item ou dois itens
+  reivindicam o mesmo identificador no mesmo sistema;
+- `unresolved_multiple_primary_images`: há mais de uma imagem marcada como
+  primária e nenhuma decisão documentada resolve a ambiguidade;
+- `approximate_title_only`: o único sinal de correspondência é título exato ou
+  aproximado, sem ID, URL canônica ou revisão humana conclusiva.
+
+Campos ausentes permanecem vazios; não devem ser preenchidos por inferência.
+Uma linha bloqueada pode permanecer no crosswalk para auditoria, mas não pode
+entrar na amostra até a resolução explícita e registrada do problema.
