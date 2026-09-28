@@ -5,6 +5,37 @@
   "repository": "anavvanzin/Research",
   "source_system": "Airtable — Iconocracia — Corpus e Tese",
   "layer": "catalogo | ledger_validado | codificacao_visual | extrato_analitico | casos_argumentativos",
+  "identity_crosswalk": {
+    "file": "id-crosswalk.csv",
+    "input_artifacts": [
+      "data/processed/id_crosswalk.jsonl"
+    ],
+    "required_columns": [
+      "canonical_item_id",
+      "registry_id",
+      "editorial_id",
+      "hf_row_id",
+      "bucket_object_key",
+      "source_record_url",
+      "link_method",
+      "link_evidence",
+      "review_status",
+      "sample_eligible",
+      "exclusion_reason"
+    ],
+    "allowed_link_methods": [
+      "existing_crosswalk",
+      "exact_id",
+      "canonical_url",
+      "manual_review"
+    ],
+    "identity_policy": "Exigir correspondencia explicita ou revisao humana; titulo, mesmo aproximado, nunca estabelece identidade.",
+    "blocking_rules": [
+      "id_collision",
+      "unresolved_multiple_primary_images",
+      "approximate_title_only"
+    ]
+  },
   "tables": [
     {
       "name": "Itens do Corpus",
