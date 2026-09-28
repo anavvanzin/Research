@@ -6,19 +6,34 @@ orienta agentes de IA; humano: [`README.md`](README.md); Claude Code:
 
 ## Natureza
 
-**Meta-workspace, NÃO codebase.** A raiz versiona apenas `cowork/`, `docs/`,
-`.claude/AUTOMATION.md`, `.gitignore`. Trabalho real vive em sub-repos com
-`.git` próprio.
+**Meta-workspace, NÃO codebase.** A raiz versiona apenas superfícies-meta — a lista
+canônica vive em **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)**, seção *Versioned
+surfaces*, e não é repetida aqui. Trabalho real vive em sub-repos com `.git` próprio.
 
 ## Constraints de acesso (read-only / proibições)
 
-- Agentes **MUST NOT** rodar `git add` fora de `cowork/` ou `docs/`. Sub-repos
-  (`hub/`, `apps/`, `vaults/`, `shared/`, `labs/`, `hermes-workspace/`) têm
-  `.git` próprio — operar dentro deles. <!-- drift-pin: 2026-09-22
-  real=`pipelines/` e `deep-memory/` ausentes na raiz (verificados com ls);
-  CLAUDE.md ainda os descreve como existentes. -->
-- Agentes **MUST NOT** executar `build`, `test`, `lint`, `typecheck` na raiz:
-  não há `package.json`/`pyproject.toml` aqui. Desça ao sub-repo.
+- Agentes **MUST NOT** rodar `git add` em caminho de sub-repo. Sub-repos
+  (`hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`,
+  `hermes-workspace/`) têm `.git` próprio — operar dentro deles.
+  As superfícies-meta que esta raiz versiona estão listadas em
+  [`.claude/AUTOMATION.md`](.claude/AUTOMATION.md) (*Versioned surfaces*) — editá-las
+  é normal e não requer nada além desta regra de sub-repo.
+  <!-- drift-pin: 2026-09-09 a regra dizia "fora de cowork/ ou docs/", já falsa
+       antes disso — tests/, scripts/, .github/ e .claude/ já eram rastreados. A
+       enumeração saiu daqui em 2026-09-19: tinha quatro cópias e divergiu 3×. -->
+  <!-- drift-pin: 2026-09-22 (341b6d2, origem main) real=`pipelines/` e `deep-memory/`
+       ausentes na raiz do Mac, verificados com ls. Ficam listados porque a regra é
+       sobre o namespace do sub-repo, não sobre o diretório estar clonado agora. -->
+- Agentes **PODEM** rodar `test` e `lint` **na raiz**, mas **derivados do índice do
+  Git**: `pytest tests/` e `flake8 $(git ls-files '*.py')`. Passar diretórios ainda
+  erra: `.claude/` contém, no Mac, as skills host-only nunca commitadas e as worktrees
+  gitignored — Python de lá produz falhas alheias ao meta-repo. E `flake8 .` é pior
+  ainda: desce pelos sub-repos irmãos (`hub/`, `apps/`, `pipelines/`, `vaults/`…).
+  No container remoto qualquer das formas passa, porque nada disso está lá — motivo
+  pelo qual o CI pode usar caminho amplo e você, no Mac, não.
+  Não há `build` nem `typecheck` aqui, e não existe `package.json`/`pyproject.toml` —
+  o ambiente do CI vem de `environment.yml`. Ver **Root-level commands** em
+  [`CLAUDE.md`](CLAUDE.md). Para qualquer verificação de sub-repo, desça até ele.
 - Agentes **MUST NOT** modificar `.claude/AUTOMATION.md` sem ler integralmente
   antes — é índice canônico de hooks/skills/agents/scheduled tasks.
 - Agentes **MUST NOT** criar arquivos novos sem confirmar caminho-alvo (regra
@@ -46,13 +61,13 @@ Agentes **MUST NOT** iniciar dev servers, watchers ou crons da raiz.
 | Qualquer trabalho de tese | `hub/iconocracy-corpus/` | Tem `CLAUDE.md` autoritativo — leia-o primeiro |
 | Editar capítulos | `hub/iconocracy-corpus/tese/manuscrito/` | Lar canônico de chapters desde 2026-06-04 |
 | Compilar tese | `hub/iconocracy-corpus/vault/tese/` | `make docx`/`make pdf` — Makefile permanece aqui (migração pendente) |
-| Corpus / dados | `hub/iconocracy-corpus/corpus/corpus-data.json` | Hook protege contra binários crus em `data/raw/` |
+| Corpus / dados | `hub/iconocracy-corpus/corpus/corpus-data.json` | Hook protege contra binários crus em `hub/iconocracy-corpus/data/raw/` |
 | Notebooks análise | `hub/iconocracy-corpus/notebooks/` | conda env `iconocracy` (Python 3.11 — rebuild 3.12→3.11 em 2026-06-22) |
 | Workflows W1–W6 / S1–S5 | `hub/iconocracy-corpus/Specs/WORKFLOW-*.md` (**TODO drift 2026-07-29**: diretório `Specs/` ausente no repo; verificar se foi movido ou nunca criado) | Docs autoritativos de pipeline (referência quebrada) |
 | Agentes / integrações cowork | `cowork/agents/` · `cowork/integrations/` | 85 agentes The Agency; tracked nesta raiz |
 | Plano de prioridade | `.opencode/plans/iconocracy-priority-plan.md` | Horizontes + desbloqueios |
 | Hooks / automação inventário | `.claude/AUTOMATION.md` | Índice único; atualize ao adicionar |
-| Descobrir skill | Invocar skill `find-skill` | NÃO enumerar skills manualmente |
+| Descobrir skill | Invocar skill `find-skills` | NÃO enumerar skills manualmente |
 
 ## Convenções herdadas
 
@@ -75,12 +90,12 @@ Agentes **MUST NOT** iniciar dev servers, watchers ou crons da raiz.
 
 ## Descoberta de skills (regra)
 
-- **Nunca** enumerar skills manualmente. Usar `find-skill`:
-  - `find-skill <intent>` para busca semântica
-  - Se `find-skill` não achar, usar `hermes skills list <category>` com filtro
+- **Nunca** enumerar skills manualmente. Usar `find-skills`:
+  - `find-skills <intent>` para busca semântica
+  - Se `find-skills` não achar, usar `hermes skills list <category>` com filtro
   - Só como último recurso: `skills_list` e busca visual
 - 594 skills instaladas (Jul/2026). A maioria é ruído para o workflow ICONOCRACY.
-  Confiar no `find-skill`, não na memória.
+  Confiar no `find-skills`, não na memória.
 
 ## Drift protocol (anti-classe-de-bug)
 
@@ -151,11 +166,12 @@ Cloud clona **só a raiz do meta-workspace** (`anavvanzin/research`). Os sub-rep
 citados em `README.md`/`CLAUDE.md` — `hub/iconocracy-corpus/`, `apps/`,
 `pipelines/`, `vaults/`, `shared/`, `deep-memory/`, `hermes-workspace/` — **NÃO
 existem aqui** (têm `.git` próprio, vivem fora). <!-- drift-pin: 2026-09-22
-real=em macOS também só existem hub/, apps/, vaults/, shared/,
-hermes-workspace/; `pipelines/` e `deep-memory/` ausentes na raiz. --> Logo,
-tese/corpus/notebooks/
-`make -C vault/tese/` não rodam neste VM; não tente. O único código executável
-versionado aqui é `scripts/git_physics_guard.py` e o pacote Node `cowork/`.
+(341b6d2, origem main) real=no macOS a raiz também só traz hub/, apps/, vaults/,
+shared/ e hermes-workspace/; `pipelines/` e `deep-memory/` ausentes lá. --> Logo,
+tese/corpus/notebooks/ e `make -C vault/tese/` não rodam neste VM; não tente. O Python
+versionado nesta raiz é `scripts/git_physics_guard.py`,
+`.claude/self-improving-agent/scripts/self_improve.py` e a suíte em `tests/` — mais o
+pacote Node `cowork/`.
 
 ### Runtimes (Linux VM, não macOS)
 
@@ -179,7 +195,12 @@ versionado aqui é `scripts/git_physics_guard.py` e o pacote Node `cowork/`.
 - `scripts/install-hooks.sh uninstall` só remove o hook se for symlink, mas o
   instalador grava um arquivo regular (heredoc) → uninstall **não** remove.
   Remova manual: `rm .git/hooks/pre-commit`.
-- Os workflows em `.github/workflows/` (jekyll/nextjs/python-conda) são samples
-  boilerplate do GitHub que referenciam arquivos de raiz inexistentes
-  (`environment.yml`, `package.json` raiz, config Jekyll). Não constroem nada
-  localmente; não os trate como "a aplicação" deste repo.
+- `.github/workflows/` tem **um** workflow, e ele é deliberado:
+  `python-package-conda.yml` roda `flake8` + `pytest` a cada push, com ambiente vindo
+  de `environment.yml` — que **existe** e é versionado. Não constrói aplicação alguma
+  (não há nenhuma nesta raiz), mas é a verificação real do meta-repo: não o trate como
+  boilerplate. Os samples `jekyll-gh-pages.yml` e `nextjs.yml`, que de fato eram
+  boilerplate sem site nem app, foram removidos em 2026-08-30 — ver
+  [`.claude/AUTOMATION.md`](.claude/AUTOMATION.md).
+  <!-- drift-pin: 2026-09-19 o texto anterior listava três workflows e dizia que
+       environment.yml não existia; ambos falsos. -->
