@@ -1,0 +1,61 @@
+{
+  "data": "2026-09-22",
+  "quarentena": "/Users/ana/Research/archive/.lixo-2026-09-22",
+  "acoes": [
+    {
+      "item": "United-by-Marriage 2",
+      "acao": "manter",
+      "motivo": "original 'United-by-Marriage' inexistente — não é duplicata confirmada"
+    },
+    {
+      "item": "iconocracia_junho2026 2",
+      "acao": "manter",
+      "motivo": "original 'iconocracia_junho2026' inexistente — não é duplicata confirmada"
+    },
+    {
+      "item": "research-report-assembly 2",
+      "acao": "manter",
+      "motivo": "original 'research-report-assembly' inexistente — não é duplicata confirmada"
+    },
+    {
+      "item": "_apagar",
+      "acao": "quarentena",
+      "motivo": "pasta explicitamente nomeada _apagar"
+    },
+    {
+      "item": "abnt-6023.zip",
+      "acao": "manter",
+      "motivo": "conteúdo do zip difere da pasta extraída",
+      "zip_arquivos": 4,
+      "dir_arquivos": 7
+    },
+    {
+      "item": "artifacts.zip",
+      "acao": "manter",
+      "motivo": "conteúdo do zip difere da pasta extraída",
+      "zip_arquivos": 10,
+      "dir_arquivos": 60
+    },
+    {
+      "item": "notion-export.zip",
+      "acao": "manter",
+      "motivo": "conteúdo do zip difere da pasta extraída",
+      "zip_arquivos": 5,
+      "dir_arquivos": 5
+    },
+    {
+      "item": "pacote-tese-iconocracia.zip",
+      "acao": "manter",
+      "motivo": "conteúdo do zip difere da pasta extraída",
+      "zip_arquivos": 8,
+      "dir_arquivos": 21
+    },
+    {
+      "item": "reEnquadramento-tese-1822-1922-2026-09-22.zip",
+      "acao": "manter",
+      "motivo": "conteúdo do zip difere da pasta extraída",
+      "zip_arquivos": 17,
+      "dir_arquivos": 17
+    }
+  ]
+}

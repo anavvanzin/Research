@@ -1,0 +1,83 @@
+{
+  "template_kind": "documentation_only_sampling_block",
+  "sampling": {
+    "status": "blocked_pending_frame",
+    "frame_file": null,
+    "target_size": 30,
+    "actual_size": null,
+    "sampling_seed": "cv-pilot-0.1",
+    "frame_sort": [
+      "canonical_item_id:unicode_scalar_asc"
+    ],
+    "randomization": {
+      "algorithm": "SHA-256",
+      "encoding": "UTF-8",
+      "separator": "\u001f",
+      "component_order": [
+        "sampling_seed",
+        "stratum",
+        "canonical_item_id"
+      ],
+      "digest": "lowercase_hex_64",
+      "bom": false,
+      "trailing_newline": false
+    },
+    "hash_sort": [
+      "sha256_hex:asc",
+      "canonical_item_id:unicode_scalar_asc"
+    ],
+    "without_replacement": true,
+    "allocation_method": null,
+    "allocation_exception": null,
+    "allocation_rules": {
+      "balanced_6x5": "exactly 6 includable strata, each N_h >= 5",
+      "minimum": 3,
+      "maximum": 6,
+      "candidate_totals": [
+        30,
+        29,
+        31,
+        28,
+        27,
+        26,
+        25,
+        24
+      ],
+      "deficit_comparison": "exact_rational",
+      "tie_break": "stratum:unicode_scalar_asc"
+    },
+    "frame_specification": {
+      "input_snapshot": null,
+      "identity_crosswalk": null,
+      "eligibility_policy": null,
+      "frozen_frame": null,
+      "support_harmonization": {
+        "repository": "anavvanzin/iconocracy-corpus",
+        "commit": "443018ecbafdd7b97e4ef03d60e80c0ea7c3ae28",
+        "path": "config/support_harmonization.yaml",
+        "version": "1.0.0",
+        "sha256": "6634e571ecba4d8b308426ccd7214b2da25505c0db5f9880851d976f6a19a4ee"
+      },
+      "reference_contract": "Each artifact reference requires repository, full commit, path and SHA-256 of exact bytes; null blocks execution."
+    },
+    "strata": [],
+    "required_frame_fields": [
+      "source_row_id",
+      "ID do corpus",
+      "canonical_item_id",
+      "eligibility_status",
+      "stratum",
+      "support_raw",
+      "support_source",
+      "sampling_frame_order",
+      "sampling_seed",
+      "stratum_size",
+      "allocated_size",
+      "selection_probability",
+      "selected",
+      "reserve_rank",
+      "exclusion_code"
+    ],
+    "protocol": "docs/airtable/qa-protocol.md#amostragem-pré-registrada-do-piloto-de-visão-computacional"
+  }
+}

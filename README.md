@@ -28,6 +28,13 @@ Caminhos a partir de `hub/iconocracy-corpus/`:
 | Schemas JSON | `tools/schemas/` (7 schemas) |
 | Método | `docs/methodology.md` |
 
+### Protocolo de consultas do microcorpus
+
+A seleção das 12 consultas para comparação HOG/CLIP é regida pela decisão de
+[seleção reprodutível das consultas do microcorpus](docs/decisions/2026-09-09-selecao-consultas-microcorpus.md).
+Ela exige sorteio estratificado com uma segunda seed fixa, validações estáticas
+e registro da SHA-256 de `data/queries.csv` antes da geração dos rankings.
+
 ## Projetos irmãos
 
 - `deep-memory/` — agente de memória persistente (`.git` próprio)

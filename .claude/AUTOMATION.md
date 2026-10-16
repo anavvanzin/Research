@@ -45,7 +45,7 @@ Academic panel: `academic-{anthropologist,geographer,historian,narratologist,pee
 
 Thesis-relevant defaults: `iconocracia-agent`, `corpus-scout`, `corpus-scout-workspace`, `corpus-stats`, `iconocode-analyze`, `iconocode-batch`, `validate-corpus`, `compilar-tese`, `dir410346`, `abnt-format`, `citation-management`, `citation-audit`, `claude-md`, `AutoResearchClaw` (live-symlinked from `~/Documents/GitHub/AutoResearchClaw`).
 
-**Project (`.claude/skills/`)** — 5 entries:
+**Project (`.claude/skills/`)** — 6 entries:
 
 | Skill | Purpose |
 |---|---|
@@ -54,6 +54,7 @@ Thesis-relevant defaults: `iconocracia-agent`, `corpus-scout`, `corpus-scout-wor
 | `AutoResearchClaw` | Autonomous 23-stage research pipeline (live-symlink to `~/Documents/GitHub/AutoResearchClaw`). |
 | `hegelian-dialectic` | Dialectic argument scaffolder. |
 | `playwright` | Playwright browser automation helpers for research capture. |
+| `mnemosyne-research-atelier` | Pesquisa/interpretação de materiais visuais e arquivísticos (ficha de objeto, painel de atlas, auditoria); entre `corpus-scout` (achar) e `iconocode-*` (codificar). |
 
 ---
 

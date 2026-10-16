@@ -1,0 +1,1421 @@
+{
+  "generated": "2026-09-22",
+  "root": "/Users/ana/Research",
+  "count": 202,
+  "entries": [
+    {
+      "name": ".agents",
+      "type": "dir",
+      "size_kb": 40456,
+      "mtime": "2026-07-02",
+      "git_tracked": false
+    },
+    {
+      "name": ".claude",
+      "type": "dir",
+      "size_kb": 311752,
+      "mtime": "2026-09-19",
+      "git_tracked": true
+    },
+    {
+      "name": ".claude-science",
+      "type": "dir",
+      "size_kb": 404676,
+      "mtime": "2026-09-21",
+      "git_tracked": false
+    },
+    {
+      "name": ".codemate",
+      "type": "dir",
+      "size_kb": 1150520,
+      "mtime": "2026-06-02",
+      "git_tracked": false
+    },
+    {
+      "name": ".codex",
+      "type": "dir",
+      "size_kb": 32,
+      "mtime": "2026-09-09",
+      "git_tracked": false
+    },
+    {
+      "name": ".cursor",
+      "type": "dir",
+      "size_kb": 0,
+      "mtime": "2026-08-11",
+      "git_tracked": false
+    },
+    {
+      "name": ".devcontainer",
+      "type": "dir",
+      "size_kb": 4,
+      "mtime": "2026-04-15",
+      "git_tracked": true
+    },
+    {
+      "name": ".DS_Store",
+      "type": "file",
+      "size_kb": 134,
+      "mtime": "2026-09-22",
+      "git_tracked": false
+    },
+    {
+      "name": ".git",
+      "type": "dir",
+      "size_kb": 1642940,
+      "mtime": "2026-09-22",
+      "git_tracked": false
+    },
+    {
+      "name": ".gitattributes",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-04-20",
+      "git_tracked": true
+    },
+    {
+      "name": ".github",
+      "type": "dir",
+      "size_kb": 24,
+      "mtime": "2026-09-09",
+      "git_tracked": true
+    },
+    {
+      "name": ".gitignore",
+      "type": "file",
+      "size_kb": 7,
+      "mtime": "2026-06-30",
+      "git_tracked": true
+    },
+    {
+      "name": ".hermes",
+      "type": "dir",
+      "size_kb": 8,
+      "mtime": "2026-08-11",
+      "git_tracked": false
+    },
+    {
+      "name": ".obsidian",
+      "type": "dir",
+      "size_kb": 20,
+      "mtime": "2026-09-21",
+      "git_tracked": false
+    },
+    {
+      "name": ".opencode",
+      "type": "dir",
+      "size_kb": 62764,
+      "mtime": "2026-09-19",
+      "git_tracked": true
+    },
+    {
+      "name": ".planning",
+      "type": "dir",
+      "size_kb": 128,
+      "mtime": "2026-09-06",
+      "git_tracked": true
+    },
+    {
+      "name": ".remember",
+      "type": "dir",
+      "size_kb": 304,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": ".superpowers",
+      "type": "dir",
+      "size_kb": 120,
+      "mtime": "2026-09-04",
+      "git_tracked": false
+    },
+    {
+      "name": ".tmp",
+      "type": "dir",
+      "size_kb": 44,
+      "mtime": "2026-09-08",
+      "git_tracked": false
+    },
+    {
+      "name": ".worktree-salvage-20260530",
+      "type": "dir",
+      "size_kb": 388,
+      "mtime": "2026-06-27",
+      "git_tracked": false
+    },
+    {
+      "name": ".worktrees",
+      "type": "dir",
+      "size_kb": 5236,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": ".wrangler",
+      "type": "dir",
+      "size_kb": 8,
+      "mtime": "2026-09-09",
+      "git_tracked": false
+    },
+    {
+      "name": ".zenflow",
+      "type": "dir",
+      "size_kb": 12,
+      "mtime": "2026-08-24",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-07-16",
+      "type": "dir",
+      "size_kb": 24,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-07-17",
+      "type": "dir",
+      "size_kb": 60,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-07-18",
+      "type": "dir",
+      "size_kb": 8,
+      "mtime": "2026-08-09",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-07-20",
+      "type": "dir",
+      "size_kb": 36,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-07-21",
+      "type": "dir",
+      "size_kb": 36,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-07-23",
+      "type": "dir",
+      "size_kb": 249548,
+      "mtime": "2026-09-06",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-07-24",
+      "type": "dir",
+      "size_kb": 16,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-07-26",
+      "type": "dir",
+      "size_kb": 16280,
+      "mtime": "2026-08-12",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-07-27",
+      "type": "dir",
+      "size_kb": 16,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-07-31",
+      "type": "dir",
+      "size_kb": 16,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-08-07",
+      "type": "dir",
+      "size_kb": 16,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-08-08",
+      "type": "dir",
+      "size_kb": 1256,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-05",
+      "type": "dir",
+      "size_kb": 24,
+      "mtime": "2026-09-05",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-06",
+      "type": "dir",
+      "size_kb": 16,
+      "mtime": "2026-09-09",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-09",
+      "type": "dir",
+      "size_kb": 34444,
+      "mtime": "2026-09-10",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-10",
+      "type": "dir",
+      "size_kb": 20,
+      "mtime": "2026-09-15",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-12",
+      "type": "dir",
+      "size_kb": 620088,
+      "mtime": "2026-09-18",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-15",
+      "type": "dir",
+      "size_kb": 2264,
+      "mtime": "2026-09-16",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-16",
+      "type": "dir",
+      "size_kb": 0,
+      "mtime": "2026-09-16",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-17",
+      "type": "dir",
+      "size_kb": 17396,
+      "mtime": "2026-09-18",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-18",
+      "type": "dir",
+      "size_kb": 0,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-19",
+      "type": "dir",
+      "size_kb": 8,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-19-martyn",
+      "type": "dir",
+      "size_kb": 9972,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-09-21",
+      "type": "dir",
+      "size_kb": 88,
+      "mtime": "2026-09-22",
+      "git_tracked": false
+    },
+    {
+      "name": "2026-materiais",
+      "type": "dir",
+      "size_kb": 454040,
+      "mtime": "2026-09-08",
+      "git_tracked": false
+    },
+    {
+      "name": "5ac5851e-7a4c-4c43-b00a-f0633a0a9754_ExportBlock-aa39c7f6-1bb2-47fe-9784-8c27a542a193.zip",
+      "type": "file",
+      "size_kb": 565,
+      "mtime": "2026-09-06",
+      "git_tracked": false
+    },
+    {
+      "name": "8d5154b8-1058-42c4-ab55-4e6a9bee902d.webm",
+      "type": "file",
+      "size_kb": 315,
+      "mtime": "2026-09-15",
+      "git_tracked": false
+    },
+    {
+      "name": "__pycache__",
+      "type": "dir",
+      "size_kb": 32,
+      "mtime": "2026-09-11",
+      "git_tracked": false
+    },
+    {
+      "name": "_apagar",
+      "type": "dir",
+      "size_kb": 1612,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "abnt-6023",
+      "type": "dir",
+      "size_kb": 76,
+      "mtime": "2026-09-06",
+      "git_tracked": false
+    },
+    {
+      "name": "abnt-6023.zip",
+      "type": "file",
+      "size_kb": 10,
+      "mtime": "2026-08-09",
+      "git_tracked": false
+    },
+    {
+      "name": "acc.db",
+      "type": "file",
+      "size_kb": 628,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "acc.db-shm",
+      "type": "file",
+      "size_kb": 32,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "acc.db-wal",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "agent-thesis",
+      "type": "dir",
+      "size_kb": 416,
+      "mtime": "2026-07-09",
+      "git_tracked": false
+    },
+    {
+      "name": "agent_cost_spike_report.md",
+      "type": "file",
+      "size_kb": 13,
+      "mtime": "2026-09-02",
+      "git_tracked": false
+    },
+    {
+      "name": "AGENTS.md",
+      "type": "file",
+      "size_kb": 9,
+      "mtime": "2026-09-19",
+      "git_tracked": true
+    },
+    {
+      "name": "agenttrace-overview-recheck.md",
+      "type": "file",
+      "size_kb": 10,
+      "mtime": "2026-09-16",
+      "git_tracked": false
+    },
+    {
+      "name": "agenttrace-overview.md",
+      "type": "file",
+      "size_kb": 8,
+      "mtime": "2026-09-02",
+      "git_tracked": false
+    },
+    {
+      "name": "agenttrace-session-recovery-report.md",
+      "type": "file",
+      "size_kb": 12,
+      "mtime": "2026-09-02",
+      "git_tracked": false
+    },
+    {
+      "name": "ana 2026 main",
+      "type": "dir",
+      "size_kb": 154632,
+      "mtime": "2026-06-04",
+      "git_tracked": false
+    },
+    {
+      "name": "apps",
+      "type": "dir",
+      "size_kb": 309324,
+      "mtime": "2026-09-09",
+      "git_tracked": false
+    },
+    {
+      "name": "archive",
+      "type": "dir",
+      "size_kb": 204876,
+      "mtime": "2026-09-06",
+      "git_tracked": false
+    },
+    {
+      "name": "ARNO AGOSTO 10 DE AGOSTO",
+      "type": "dir",
+      "size_kb": 260,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "artifacts",
+      "type": "dir",
+      "size_kb": 23616,
+      "mtime": "2026-09-12",
+      "git_tracked": false
+    },
+    {
+      "name": "artifacts.zip",
+      "type": "file",
+      "size_kb": 571,
+      "mtime": "2026-08-29",
+      "git_tracked": false
+    },
+    {
+      "name": "artigos ",
+      "type": "dir",
+      "size_kb": 16,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "ARTIGOS EM DESENVOLVIMENTO",
+      "type": "dir",
+      "size_kb": 24,
+      "mtime": "2026-07-28",
+      "git_tracked": false
+    },
+    {
+      "name": "atlas-iconocratico-toolkit.bak-20260425-153251",
+      "type": "dir",
+      "size_kb": 4724,
+      "mtime": "2026-04-25",
+      "git_tracked": false
+    },
+    {
+      "name": "binaries",
+      "type": "dir",
+      "size_kb": 146856,
+      "mtime": "2026-08-24",
+      "git_tracked": false
+    },
+    {
+      "name": "Bolsas de Doutorado 110926.pdf",
+      "type": "file",
+      "size_kb": 115,
+      "mtime": "2026-09-11",
+      "git_tracked": false
+    },
+    {
+      "name": "BOOT-EXTERNO-CHECKPOINT-2026-09-10.md",
+      "type": "file",
+      "size_kb": 3,
+      "mtime": "2026-09-11",
+      "git_tracked": false
+    },
+    {
+      "name": "browser-harness",
+      "type": "dir",
+      "size_kb": 2560,
+      "mtime": "2026-09-11",
+      "git_tracked": false
+    },
+    {
+      "name": "Caderno antigo de Historia da Cultura Juridica mestrado.pdf",
+      "type": "file",
+      "size_kb": 5744,
+      "mtime": "2026-09-10",
+      "git_tracked": false
+    },
+    {
+      "name": "cf0fae6e92501f9d83bd748e98640d17c497995f.pdf",
+      "type": "file",
+      "size_kb": 176499,
+      "mtime": "2026-09-18",
+      "git_tracked": false
+    },
+    {
+      "name": "chrome-devtools-mcp",
+      "type": "dir",
+      "size_kb": 27636,
+      "mtime": "2026-07-14",
+      "git_tracked": false
+    },
+    {
+      "name": "Claude outputs",
+      "type": "dir",
+      "size_kb": 296,
+      "mtime": "2026-09-16",
+      "git_tracked": false
+    },
+    {
+      "name": "claude-devfleet",
+      "type": "dir",
+      "size_kb": 2324,
+      "mtime": "2026-07-02",
+      "git_tracked": false
+    },
+    {
+      "name": "CLAUDE.md",
+      "type": "file",
+      "size_kb": 8,
+      "mtime": "2026-09-19",
+      "git_tracked": true
+    },
+    {
+      "name": "Claude.mobileconfig",
+      "type": "file",
+      "size_kb": 1,
+      "mtime": "2026-09-06",
+      "git_tracked": false
+    },
+    {
+      "name": "cloudfare",
+      "type": "dir",
+      "size_kb": 219112,
+      "mtime": "2026-08-11",
+      "git_tracked": false
+    },
+    {
+      "name": "Codex Image Sep 20, 2026, 08_29_41 AM.png",
+      "type": "file",
+      "size_kb": 3061,
+      "mtime": "2026-09-20",
+      "git_tracked": false
+    },
+    {
+      "name": "compass_artifact_wf-eceea0ae-da82-477a-9384-a78c2af92227_text_markdown.md",
+      "type": "file",
+      "size_kb": 28,
+      "mtime": "2026-08-29",
+      "git_tracked": false
+    },
+    {
+      "name": "copilot-worktrees",
+      "type": "dir",
+      "size_kb": 350720,
+      "mtime": "2026-09-09",
+      "git_tracked": false
+    },
+    {
+      "name": "corpus",
+      "type": "dir",
+      "size_kb": 667800,
+      "mtime": "2026-09-11",
+      "git_tracked": false
+    },
+    {
+      "name": "cowork",
+      "type": "dir",
+      "size_kb": 160132,
+      "mtime": "2026-09-19",
+      "git_tracked": true
+    },
+    {
+      "name": "curso-visao-computacional-moodle.pdf",
+      "type": "file",
+      "size_kb": 16551,
+      "mtime": "2026-08-12",
+      "git_tracked": false
+    },
+    {
+      "name": "data",
+      "type": "dir",
+      "size_kb": 12,
+      "mtime": "2026-07-01",
+      "git_tracked": true
+    },
+    {
+      "name": "DECISAO-METODOLOGICA-aparato-minimo 2.md",
+      "type": "file",
+      "size_kb": 24,
+      "mtime": "2026-07-31",
+      "git_tracked": false
+    },
+    {
+      "name": "DECISAO-METODOLOGICA-aparato-minimo.md",
+      "type": "file",
+      "size_kb": 24,
+      "mtime": "2026-07-31",
+      "git_tracked": false
+    },
+    {
+      "name": "design-explorations",
+      "type": "dir",
+      "size_kb": 20,
+      "mtime": "2026-08-13",
+      "git_tracked": false
+    },
+    {
+      "name": "desktop-ref-antigravity.png",
+      "type": "file",
+      "size_kb": 3368,
+      "mtime": "2026-08-29",
+      "git_tracked": false
+    },
+    {
+      "name": "Destinos de submissão — biblioteca de artigos.docx",
+      "type": "file",
+      "size_kb": 13,
+      "mtime": "2026-08-29",
+      "git_tracked": false
+    },
+    {
+      "name": "docs",
+      "type": "dir",
+      "size_kb": 1032,
+      "mtime": "2026-09-22",
+      "git_tracked": true
+    },
+    {
+      "name": "document_instructions_to_agent.md",
+      "type": "file",
+      "size_kb": 70,
+      "mtime": "2026-09-08",
+      "git_tracked": false
+    },
+    {
+      "name": "Documents",
+      "type": "dir",
+      "size_kb": 4402624,
+      "mtime": "2026-09-09",
+      "git_tracked": false
+    },
+    {
+      "name": "Downloads",
+      "type": "dir",
+      "size_kb": 76116,
+      "mtime": "2026-09-09",
+      "git_tracked": false
+    },
+    {
+      "name": "DSH",
+      "type": "dir",
+      "size_kb": 124,
+      "mtime": "2026-09-22",
+      "git_tracked": false
+    },
+    {
+      "name": "edit_halperin.py",
+      "type": "file",
+      "size_kb": 3,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "Education",
+      "type": "dir",
+      "size_kb": 1536,
+      "mtime": "2026-08-24",
+      "git_tracked": false
+    },
+    {
+      "name": "Elicit - ICONOCRACIA — Autoridade visual, circulação e prát - Report.pdf",
+      "type": "file",
+      "size_kb": 282,
+      "mtime": "2026-09-08",
+      "git_tracked": false
+    },
+    {
+      "name": "Elicit - The Coin and the Witch — Standalone Justitia article prospectus.md",
+      "type": "file",
+      "size_kb": 9,
+      "mtime": "2026-09-08",
+      "git_tracked": false
+    },
+    {
+      "name": "environment.yml",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-07-19",
+      "git_tracked": true
+    },
+    {
+      "name": "fundamentacao-metodologica-patria-como-mae.md",
+      "type": "file",
+      "size_kb": 31,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "fundamentacao_teorica_weigel.pdf",
+      "type": "file",
+      "size_kb": 350,
+      "mtime": "2262-04-11",
+      "git_tracked": false
+    },
+    {
+      "name": "GitHub",
+      "type": "dir",
+      "size_kb": 5978160,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "github-app.yml",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-07-03",
+      "git_tracked": false
+    },
+    {
+      "name": "hegelian-dialectic-skill",
+      "type": "dir",
+      "size_kb": 584,
+      "mtime": "2026-04-23",
+      "git_tracked": false
+    },
+    {
+      "name": "hermes-agent",
+      "type": "dir",
+      "size_kb": 449440,
+      "mtime": "2026-09-11",
+      "git_tracked": false
+    },
+    {
+      "name": "hermes-workspace",
+      "type": "dir",
+      "size_kb": 134764,
+      "mtime": "2026-07-14",
+      "git_tracked": false
+    },
+    {
+      "name": "hub",
+      "type": "dir",
+      "size_kb": 8725540,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "huggingface",
+      "type": "dir",
+      "size_kb": 36,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "Iconocracia  arquitetura metodológica.pptx",
+      "type": "file",
+      "size_kb": 193,
+      "mtime": "2026-08-29",
+      "git_tracked": false
+    },
+    {
+      "name": "Iconocracia research report",
+      "type": "dir",
+      "size_kb": 11908,
+      "mtime": "2026-09-04",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracia-arquitetura-metodologica.pptx",
+      "type": "file",
+      "size_kb": 193,
+      "mtime": "2026-09-02",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracia-companion",
+      "type": "symlink",
+      "size_kb": 0,
+      "mtime": "2026-04-25",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracia-cv",
+      "type": "dir",
+      "size_kb": 4176,
+      "mtime": "2026-09-04",
+      "git_tracked": false
+    },
+    {
+      "name": "Iconocracia-Mapa-Historiografico.md",
+      "type": "file",
+      "size_kb": 24,
+      "mtime": "2026-08-29",
+      "git_tracked": false
+    },
+    {
+      "name": "ICONOCRACIA-memorando-estrategico.md",
+      "type": "file",
+      "size_kb": 52,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracia_cv_env.py",
+      "type": "file",
+      "size_kb": 5,
+      "mtime": "2026-08-29",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracia_docs (1).zip",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-06-23",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracia_docs.zip",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-06-23",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracia_junho2026 2",
+      "type": "dir",
+      "size_kb": 32,
+      "mtime": "2026-06-23",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracia_sessao_2026-07-24",
+      "type": "dir",
+      "size_kb": 15884,
+      "mtime": "2026-09-03",
+      "git_tracked": false
+    },
+    {
+      "name": "Iconocracy Training",
+      "type": "dir",
+      "size_kb": 3596,
+      "mtime": "2026-08-24",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracy-corpus-1",
+      "type": "dir",
+      "size_kb": 880644,
+      "mtime": "2026-09-11",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracy-editorial-wt",
+      "type": "dir",
+      "size_kb": 351596,
+      "mtime": "2026-09-11",
+      "git_tracked": false
+    },
+    {
+      "name": "iconocracy-object-researcher.toml",
+      "type": "file",
+      "size_kb": 5,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "IDEAS 18",
+      "type": "dir",
+      "size_kb": 17368,
+      "mtime": "2026-09-22",
+      "git_tracked": false
+    },
+    {
+      "name": "imagens",
+      "type": "dir",
+      "size_kb": 18204,
+      "mtime": "2026-09-15",
+      "git_tracked": false
+    },
+    {
+      "name": "INDEX",
+      "type": "dir",
+      "size_kb": 10472,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "kimi",
+      "type": "dir",
+      "size_kb": 350972,
+      "mtime": "2026-09-06",
+      "git_tracked": false
+    },
+    {
+      "name": "labs",
+      "type": "dir",
+      "size_kb": 67992,
+      "mtime": "2026-09-15",
+      "git_tracked": false
+    },
+    {
+      "name": "local",
+      "type": "dir",
+      "size_kb": 2232,
+      "mtime": "2026-09-18",
+      "git_tracked": false
+    },
+    {
+      "name": "Logos SBHCJ.dc.html",
+      "type": "file",
+      "size_kb": 14,
+      "mtime": "2026-09-09",
+      "git_tracked": false
+    },
+    {
+      "name": "Metodologia em História do Direito — Especificação Técnica.html",
+      "type": "file",
+      "size_kb": 36,
+      "mtime": "2026-08-31",
+      "git_tracked": false
+    },
+    {
+      "name": "Metodologia em História do Direito — Especificação Técnica_files",
+      "type": "dir",
+      "size_kb": 20,
+      "mtime": "2026-08-31",
+      "git_tracked": false
+    },
+    {
+      "name": "ml-intern",
+      "type": "dir",
+      "size_kb": 8,
+      "mtime": "2026-08-18",
+      "git_tracked": false
+    },
+    {
+      "name": "notion-export",
+      "type": "dir",
+      "size_kb": 36,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "notion-export.zip",
+      "type": "file",
+      "size_kb": 13,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "o-grande-jogo-das-alegorias",
+      "type": "dir",
+      "size_kb": 406864,
+      "mtime": "2026-09-22",
+      "git_tracked": false
+    },
+    {
+      "name": "Other",
+      "type": "dir",
+      "size_kb": 1468,
+      "mtime": "2026-08-24",
+      "git_tracked": false
+    },
+    {
+      "name": "output",
+      "type": "dir",
+      "size_kb": 1996,
+      "mtime": "2026-09-11",
+      "git_tracked": false
+    },
+    {
+      "name": "pacote-tese-iconocracia",
+      "type": "dir",
+      "size_kb": 928,
+      "mtime": "2026-09-08",
+      "git_tracked": false
+    },
+    {
+      "name": "pacote-tese-iconocracia.zip",
+      "type": "file",
+      "size_kb": 80,
+      "mtime": "2026-09-08",
+      "git_tracked": false
+    },
+    {
+      "name": "pandoc",
+      "type": "dir",
+      "size_kb": 104304,
+      "mtime": "2026-04-01",
+      "git_tracked": false
+    },
+    {
+      "name": "panofsky-heatmap-309entries (1).xlsx",
+      "type": "file",
+      "size_kb": 61,
+      "mtime": "2262-04-11",
+      "git_tracked": false
+    },
+    {
+      "name": "panofsky-heatmap-309entries.xlsx",
+      "type": "file",
+      "size_kb": 61,
+      "mtime": "2262-04-11",
+      "git_tracked": false
+    },
+    {
+      "name": "Particular e Compartilhado",
+      "type": "dir",
+      "size_kb": 628,
+      "mtime": "2026-09-10",
+      "git_tracked": false
+    },
+    {
+      "name": "payload.json",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-09-08",
+      "git_tracked": false
+    },
+    {
+      "name": "perplexity-agent-api.md",
+      "type": "file",
+      "size_kb": 4,
+      "mtime": "2026-09-11",
+      "git_tracked": false
+    },
+    {
+      "name": "personality-safo.md",
+      "type": "file",
+      "size_kb": 2,
+      "mtime": "2026-08-19",
+      "git_tracked": false
+    },
+    {
+      "name": "pesquisa-padrao-metodologico-iconografia-juridica 2.md",
+      "type": "file",
+      "size_kb": 48,
+      "mtime": "2026-07-31",
+      "git_tracked": false
+    },
+    {
+      "name": "pesquisa-padrao-metodologico-iconografia-juridica.md",
+      "type": "file",
+      "size_kb": 48,
+      "mtime": "2026-07-31",
+      "git_tracked": false
+    },
+    {
+      "name": "Peticao_Inicial_JEF_TCG_Cards.txt",
+      "type": "file",
+      "size_kb": 20,
+      "mtime": "2026-09-02",
+      "git_tracked": false
+    },
+    {
+      "name": "pi-law-firm-portfolio",
+      "type": "dir",
+      "size_kb": 523684,
+      "mtime": "2026-09-18",
+      "git_tracked": false
+    },
+    {
+      "name": "Plano_piloto_visao_computacional_ICONOCRACIA copy.docx",
+      "type": "file",
+      "size_kb": 9,
+      "mtime": "2026-09-09",
+      "git_tracked": false
+    },
+    {
+      "name": "Plano_piloto_visao_computacional_ICONOCRACIA.docx",
+      "type": "file",
+      "size_kb": 43,
+      "mtime": "2026-09-09",
+      "git_tracked": false
+    },
+    {
+      "name": "plans",
+      "type": "dir",
+      "size_kb": 104,
+      "mtime": "2026-08-11",
+      "git_tracked": true
+    },
+    {
+      "name": "Projects",
+      "type": "dir",
+      "size_kb": 11420,
+      "mtime": "2026-09-14",
+      "git_tracked": false
+    },
+    {
+      "name": "projetos",
+      "type": "dir",
+      "size_kb": 2346100,
+      "mtime": "2026-06-02",
+      "git_tracked": false
+    },
+    {
+      "name": "README.md",
+      "type": "file",
+      "size_kb": 2,
+      "mtime": "2026-09-19",
+      "git_tracked": true
+    },
+    {
+      "name": "reEnquadramento-tese-1822-1922-2026-09-22",
+      "type": "dir",
+      "size_kb": 348,
+      "mtime": "2026-09-22",
+      "git_tracked": false
+    },
+    {
+      "name": "reEnquadramento-tese-1822-1922-2026-09-22.zip",
+      "type": "file",
+      "size_kb": 127,
+      "mtime": "2026-09-22",
+      "git_tracked": false
+    },
+    {
+      "name": "relatoriokantvisaocomputacional.md",
+      "type": "file",
+      "size_kb": 70,
+      "mtime": "2026-09-04",
+      "git_tracked": false
+    },
+    {
+      "name": "Requerimento_Restituicao_II_eCAC.txt",
+      "type": "file",
+      "size_kb": 9,
+      "mtime": "2026-09-02",
+      "git_tracked": false
+    },
+    {
+      "name": "research-report-assembly 2",
+      "type": "dir",
+      "size_kb": 1032,
+      "mtime": "2026-09-06",
+      "git_tracked": false
+    },
+    {
+      "name": "rewrite-home-repo.sh",
+      "type": "file",
+      "size_kb": 3,
+      "mtime": "2026-09-02",
+      "git_tracked": false
+    },
+    {
+      "name": "Roteiro_Pratico_TCG_Cards.md",
+      "type": "file",
+      "size_kb": 4,
+      "mtime": "2026-09-02",
+      "git_tracked": false
+    },
+    {
+      "name": "sbhcj-press-kit",
+      "type": "dir",
+      "size_kb": 23312,
+      "mtime": "2026-09-10",
+      "git_tracked": false
+    },
+    {
+      "name": "Scheduled",
+      "type": "dir",
+      "size_kb": 4,
+      "mtime": "2026-09-12",
+      "git_tracked": false
+    },
+    {
+      "name": "scholar_halperin.csv",
+      "type": "file",
+      "size_kb": 4,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "scholar_params.json",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "scholar_params_en.json",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "scholar_params_halperin.json",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "scholar_presentismo.csv",
+      "type": "file",
+      "size_kb": 5,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "scholar_presentismo_en.csv",
+      "type": "file",
+      "size_kb": 4,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "scitex-python",
+      "type": "dir",
+      "size_kb": 1037160,
+      "mtime": "2026-08-20",
+      "git_tracked": false
+    },
+    {
+      "name": "scripts",
+      "type": "dir",
+      "size_kb": 1048,
+      "mtime": "2026-09-22",
+      "git_tracked": true
+    },
+    {
+      "name": "self-improving-agent-summary.md",
+      "type": "file",
+      "size_kb": 3,
+      "mtime": "2026-06-22",
+      "git_tracked": false
+    },
+    {
+      "name": "setembro",
+      "type": "dir",
+      "size_kb": 52,
+      "mtime": "2026-09-15",
+      "git_tracked": false
+    },
+    {
+      "name": "setembro de 2026_datasets_G8Slas7hLaPPz7IPwvDjiQY_2026-09-12T21_53_44.633Z.csv",
+      "type": "file",
+      "size_kb": 46,
+      "mtime": "2026-09-12",
+      "git_tracked": false
+    },
+    {
+      "name": "shared",
+      "type": "dir",
+      "size_kb": 263872,
+      "mtime": "2026-04-19",
+      "git_tracked": false
+    },
+    {
+      "name": "site-anavvanzin",
+      "type": "dir",
+      "size_kb": 362812,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "size_kb": 7,
+      "mtime": "2026-09-17",
+      "git_tracked": false
+    },
+    {
+      "name": "Symlink - com~apple~CloudDocs",
+      "type": "symlink",
+      "size_kb": 0,
+      "mtime": "2026-09-08",
+      "git_tracked": false
+    },
+    {
+      "name": "Symlink - Documents",
+      "type": "symlink",
+      "size_kb": 0,
+      "mtime": "2026-09-04",
+      "git_tracked": false
+    },
+    {
+      "name": "tests",
+      "type": "dir",
+      "size_kb": 216,
+      "mtime": "2026-09-14",
+      "git_tracked": true
+    },
+    {
+      "name": "THE COIN AND THE WITCH",
+      "type": "dir",
+      "size_kb": 8780,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "tmp_colonial.py",
+      "type": "file",
+      "size_kb": 2,
+      "mtime": "2026-09-02",
+      "git_tracked": false
+    },
+    {
+      "name": "tmp_inspect_corpus.py",
+      "type": "file",
+      "size_kb": 0,
+      "mtime": "2026-08-29",
+      "git_tracked": false
+    },
+    {
+      "name": "tmp_stats_cap6.py",
+      "type": "file",
+      "size_kb": 2,
+      "mtime": "2026-08-31",
+      "git_tracked": false
+    },
+    {
+      "name": "Tools",
+      "type": "dir",
+      "size_kb": 8,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "traducoes",
+      "type": "dir",
+      "size_kb": 32212,
+      "mtime": "2026-09-15",
+      "git_tracked": false
+    },
+    {
+      "name": "United-by-Marriage 2",
+      "type": "dir",
+      "size_kb": 335808,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "vaults",
+      "type": "dir",
+      "size_kb": 57452,
+      "mtime": "2026-08-17",
+      "git_tracked": false
+    },
+    {
+      "name": "worktrees",
+      "type": "dir",
+      "size_kb": 757668,
+      "mtime": "2026-09-19",
+      "git_tracked": false
+    },
+    {
+      "name": "YEY",
+      "type": "dir",
+      "size_kb": 6260,
+      "mtime": "2026-09-22",
+      "git_tracked": false
+    },
+    {
+      "name": "ZenflowProjects",
+      "type": "dir",
+      "size_kb": 716,
+      "mtime": "2026-04-25",
+      "git_tracked": false
+    }
+  ]
+}

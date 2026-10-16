@@ -1,0 +1,206 @@
+{
+  "data": "2026-09-22",
+  "moves": [
+    {
+      "item": "iconocracy-corpus-1",
+      "acao": "arquivar",
+      "destino": "archive/repos/iconocracy-corpus-1"
+    },
+    {
+      "item": "agent-thesis",
+      "acao": "arquivar",
+      "destino": "archive/repos/agent-thesis"
+    },
+    {
+      "item": "pandoc",
+      "acao": "arquivar",
+      "destino": "archive/repos/pandoc"
+    },
+    {
+      "item": "chrome-devtools-mcp",
+      "acao": "arquivar",
+      "destino": "archive/repos/chrome-devtools-mcp"
+    },
+    {
+      "item": "browser-harness",
+      "acao": "arquivar",
+      "destino": "archive/repos/browser-harness"
+    },
+    {
+      "item": "claude-devfleet",
+      "acao": "arquivar",
+      "destino": "archive/repos/claude-devfleet"
+    },
+    {
+      "item": "scitex-python",
+      "acao": "arquivar",
+      "destino": "archive/repos/scitex-python"
+    },
+    {
+      "item": "hermes-agent",
+      "acao": "arquivar",
+      "destino": "archive/repos/hermes-agent"
+    },
+    {
+      "item": "hegelian-dialectic-skill",
+      "acao": "arquivar",
+      "destino": "archive/repos/hegelian-dialectic-skill"
+    },
+    {
+      "item": "atlas-iconocratico-toolkit.bak-20260425-153251",
+      "acao": "arquivar",
+      "destino": "archive/repos/atlas-iconocratico-toolkit.bak-20260425-153251"
+    },
+    {
+      "item": "ml-intern",
+      "acao": "arquivar",
+      "destino": "archive/ml-intern"
+    },
+    {
+      "item": "Iconocracia research report",
+      "acao": "arquivar",
+      "destino": "archive/Iconocracia-research-report"
+    },
+    {
+      "item": "iconocracia_sessao_2026-07-24",
+      "acao": "arquivar",
+      "destino": "archive/sessoes/2026-07/iconocracia_sessao_2026-07-24"
+    },
+    {
+      "item": "abnt-6023",
+      "acao": "arquivar",
+      "destino": "archive/skills/abnt-6023"
+    },
+    {
+      "item": "THE COIN AND THE WITCH",
+      "acao": "mover",
+      "destino": "iconocracia/THE-COIN-AND-THE-WITCH"
+    },
+    {
+      "item": "IDEAS 18",
+      "acao": "mover",
+      "destino": "iconocracia/IDEAS-18"
+    },
+    {
+      "item": "pacote-tese-iconocracia",
+      "acao": "mover",
+      "destino": "iconocracia/pacote-tese-iconocracia"
+    },
+    {
+      "item": "reEnquadramento-tese-1822-1922-2026-09-22",
+      "acao": "mover",
+      "destino": "iconocracia/reEnquadramento-tese-1822-1922-2026-09-22"
+    },
+    {
+      "item": "iconocracia_junho2026 2",
+      "acao": "mover",
+      "destino": "iconocracia/iconocracia_junho2026-2"
+    },
+    {
+      "item": "Iconocracy Training",
+      "acao": "mover",
+      "destino": "datasets/iconocracy-training"
+    },
+    {
+      "item": "__pycache__",
+      "acao": "quarentena",
+      "destino": "archive/.lixo-2026-09-22/__pycache__"
+    },
+    {
+      "item": "cloudfare",
+      "acao": "quarentena",
+      "destino": "archive/.lixo-2026-09-22/cloudfare"
+    },
+    {
+      "item": "output",
+      "acao": "quarentena",
+      "destino": "archive/.lixo-2026-09-22/output"
+    },
+    {
+      "item": "artigos ",
+      "acao": "quarentena",
+      "destino": "archive/.lixo-2026-09-22/artigos"
+    },
+    {
+      "item": "Tools",
+      "acao": "quarentena",
+      "destino": "archive/.lixo-2026-09-22/Tools"
+    },
+    {
+      "item": "abnt-6023.zip",
+      "acao": "arquivar",
+      "destino": "archive/zips/abnt-6023.zip"
+    },
+    {
+      "item": "artifacts.zip",
+      "acao": "arquivar",
+      "destino": "archive/zips/artifacts.zip"
+    },
+    {
+      "item": "notion-export.zip",
+      "acao": "arquivar",
+      "destino": "archive/zips/notion-export.zip"
+    },
+    {
+      "item": "pacote-tese-iconocracia.zip",
+      "acao": "arquivar",
+      "destino": "archive/zips/pacote-tese-iconocracia.zip"
+    },
+    {
+      "item": "reEnquadramento-tese-1822-1922-2026-09-22.zip",
+      "acao": "arquivar",
+      "destino": "archive/zips/reEnquadramento-tese-1822-1922-2026-09-22.zip"
+    },
+    {
+      "item": "ARTIGOS EM DESENVOLVIMENTO",
+      "acao": "mover",
+      "destino": "iconocracia/ARTIGOS-EM-DESENVOLVIMENTO"
+    },
+    {
+      "item": "Logos SBHCJ.dc.html",
+      "acao": "mover",
+      "destino": "midia/Logos SBHCJ.dc.html"
+    }
+  ],
+  "manter_report": [
+    "iconocracy-editorial-wt",
+    "iconocracia-cv",
+    "imagens",
+    "iconocracia-companion",
+    "pi-law-firm-portfolio",
+    "notion-export",
+    "Documents",
+    "Downloads",
+    "GitHub",
+    "Projects",
+    "Education",
+    "Other",
+    "projetos",
+    "ana 2026 main",
+    "2026-materiais",
+    "INDEX",
+    "kimi",
+    "YEY",
+    "sbhcj-press-kit",
+    "o-grande-jogo-das-alegorias",
+    "United-by-Marriage 2",
+    "traducoes",
+    "binaries",
+    "local",
+    "huggingface",
+    "Scheduled",
+    "DSH",
+    "Particular e Compartilhado",
+    "ARNO AGOSTO 10 DE AGOSTO",
+    "setembro",
+    "design-explorations",
+    "Claude outputs",
+    "2026-09-22",
+    "artifacts",
+    "site-anavvanzin",
+    "ZenflowProjects",
+    "research-report-assembly 2",
+    "United-by-Marriage 2"
+  ],
+  "nao_encontrados": []
+}

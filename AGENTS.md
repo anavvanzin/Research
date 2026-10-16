@@ -13,8 +13,10 @@ orienta agentes de IA; humano: [`README.md`](README.md); Claude Code:
 ## Constraints de acesso (read-only / proibições)
 
 - Agentes **MUST NOT** rodar `git add` fora de `cowork/` ou `docs/`. Sub-repos
-  (`hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`,
-  `hermes-workspace/`) têm `.git` próprio — operar dentro deles.
+  (`hub/`, `apps/`, `vaults/`, `shared/`, `labs/`, `hermes-workspace/`) têm
+  `.git` próprio — operar dentro deles. <!-- drift-pin: 2026-09-22
+  real=`pipelines/` e `deep-memory/` ausentes na raiz (verificados com ls);
+  CLAUDE.md ainda os descreve como existentes. -->
 - Agentes **MUST NOT** executar `build`, `test`, `lint`, `typecheck` na raiz:
   não há `package.json`/`pyproject.toml` aqui. Desça ao sub-repo.
 - Agentes **MUST NOT** modificar `.claude/AUTOMATION.md` sem ler integralmente
@@ -148,7 +150,10 @@ Notas para agentes rodando no Cloud (o update script já instalou dependências)
 Cloud clona **só a raiz do meta-workspace** (`anavvanzin/research`). Os sub-repos
 citados em `README.md`/`CLAUDE.md` — `hub/iconocracy-corpus/`, `apps/`,
 `pipelines/`, `vaults/`, `shared/`, `deep-memory/`, `hermes-workspace/` — **NÃO
-existem aqui** (têm `.git` próprio, vivem fora). Logo, tese/corpus/notebooks/
+existem aqui** (têm `.git` próprio, vivem fora). <!-- drift-pin: 2026-09-22
+real=em macOS também só existem hub/, apps/, vaults/, shared/,
+hermes-workspace/; `pipelines/` e `deep-memory/` ausentes na raiz. --> Logo,
+tese/corpus/notebooks/
 `make -C vault/tese/` não rodam neste VM; não tente. O único código executável
 versionado aqui é `scripts/git_physics_guard.py` e o pacote Node `cowork/`.
 

@@ -1,0 +1,257 @@
+{
+  "data": "2026-09-22",
+  "moves": [
+    {
+      "item": "DECISAO-METODOLOGICA-aparato-minimo.md",
+      "destino": "iconocracia/DECISAO-METODOLOGICA-aparato-minimo.md"
+    },
+    {
+      "item": "pesquisa-padrao-metodologico-iconografia-juridica.md",
+      "destino": "iconocracia/pesquisa-padrao-metodologico-iconografia-juridica.md"
+    },
+    {
+      "item": "ICONOCRACIA-memorando-estrategico.md",
+      "destino": "iconocracia/ICONOCRACIA-memorando-estrategico.md"
+    },
+    {
+      "item": "Iconocracia-Mapa-Historiografico.md",
+      "destino": "iconocracia/Iconocracia-Mapa-Historiografico.md"
+    },
+    {
+      "item": "fundamentacao-metodologica-patria-como-mae.md",
+      "destino": "iconocracia/fundamentacao-metodologica-patria-como-mae.md"
+    },
+    {
+      "item": "fundamentacao_teorica_weigel.pdf",
+      "destino": "iconocracia/fundamentacao_teorica_weigel.pdf"
+    },
+    {
+      "item": "relatoriokantvisaocomputacional.md",
+      "destino": "iconocracia/relatoriokantvisaocomputacional.md"
+    },
+    {
+      "item": "Elicit - The Coin and the Witch — Standalone Justitia article prospectus.md",
+      "destino": "iconocracia/Elicit - The Coin and the Witch — Standalone Justitia article prospectus.md"
+    },
+    {
+      "item": "Plano_piloto_visao_computacional_ICONOCRACIA.docx",
+      "destino": "iconocracia/Plano_piloto_visao_computacional_ICONOCRACIA.docx"
+    },
+    {
+      "item": "Plano_piloto_visao_computacional_ICONOCRACIA copy.docx",
+      "destino": "iconocracia/Plano_piloto_visao_computacional_ICONOCRACIA copy.docx"
+    },
+    {
+      "item": "panofsky-heatmap-309entries.xlsx",
+      "destino": "iconocracia/panofsky-heatmap-309entries.xlsx"
+    },
+    {
+      "item": "iconocracia-arquitetura-metodologica.pptx",
+      "destino": "iconocracia/iconocracia-arquitetura-metodologica.pptx"
+    },
+    {
+      "item": "iconocracia_docs.zip",
+      "destino": "iconocracia/iconocracia_docs.zip"
+    },
+    {
+      "item": "cf0fae6e92501f9d83bd748e98640d17c497995f.pdf",
+      "destino": "iconocracia/cf0fae6e92501f9d83bd748e98640d17c497995f.pdf"
+    },
+    {
+      "item": "curso-visao-computacional-moodle.pdf",
+      "destino": "iconocracia/curso-visao-computacional-moodle.pdf"
+    },
+    {
+      "item": "Caderno antigo de Historia da Cultura Juridica mestrado.pdf",
+      "destino": "iconocracia/Caderno antigo de Historia da Cultura Juridica mestrado.pdf"
+    },
+    {
+      "item": "compass_artifact_wf-eceea0ae-da82-477a-9384-a78c2af92227_text_markdown.md",
+      "destino": "iconocracia/compass_artifact_wf-eceea0ae-da82-477a-9384-a78c2af92227_text_markdown.md"
+    },
+    {
+      "item": "Metodologia em História do Direito — Especificação Técnica.html",
+      "destino": "iconocracia/Metodologia em História do Direito — Especificação Técnica.html"
+    },
+    {
+      "item": "Metodologia em História do Direito — Especificação Técnica_files",
+      "destino": "iconocracia/Metodologia em História do Direito — Especificação Técnica_files"
+    },
+    {
+      "item": "Roteiro_Pratico_TCG_Cards.md",
+      "destino": "iconocracia/Roteiro_Pratico_TCG_Cards.md"
+    },
+    {
+      "item": "Destinos de submissão — biblioteca de artigos.docx",
+      "destino": "iconocracia/Destinos de submissão — biblioteca de artigos.docx"
+    },
+    {
+      "item": "5ac5851e-7a4c-4c43-b00a-f0633a0a9754_ExportBlock-aa39c7f6-1bb2-47fe-9784-8c27a542a193.zip",
+      "destino": "iconocracia/5ac5851e-7a4c-4c43-b00a-f0633a0a9754_ExportBlock-aa39c7f6-1bb2-47fe-9784-8c27a542a193.zip"
+    },
+    {
+      "item": "Bolsas de Doutorado 110926.pdf",
+      "destino": "admin/Bolsas de Doutorado 110926.pdf"
+    },
+    {
+      "item": "Peticao_Inicial_JEF_TCG_Cards.txt",
+      "destino": "admin/Peticao_Inicial_JEF_TCG_Cards.txt"
+    },
+    {
+      "item": "Requerimento_Restituicao_II_eCAC.txt",
+      "destino": "admin/Requerimento_Restituicao_II_eCAC.txt"
+    },
+    {
+      "item": "Claude.mobileconfig",
+      "destino": "admin/Claude.mobileconfig"
+    },
+    {
+      "item": "github-app.yml",
+      "destino": "admin/github-app.yml"
+    },
+    {
+      "item": "scholar_halperin.csv",
+      "destino": "datasets/scholar_halperin.csv"
+    },
+    {
+      "item": "scholar_presentismo.csv",
+      "destino": "datasets/scholar_presentismo.csv"
+    },
+    {
+      "item": "scholar_presentismo_en.csv",
+      "destino": "datasets/scholar_presentismo_en.csv"
+    },
+    {
+      "item": "scholar_params.json",
+      "destino": "datasets/scholar_params.json"
+    },
+    {
+      "item": "scholar_params_en.json",
+      "destino": "datasets/scholar_params_en.json"
+    },
+    {
+      "item": "scholar_params_halperin.json",
+      "destino": "datasets/scholar_params_halperin.json"
+    },
+    {
+      "item": "setembro de 2026_datasets_G8Slas7hLaPPz7IPwvDjiQY_2026-09-12T21_53_44.633Z.csv",
+      "destino": "datasets/setembro de 2026_datasets_G8Slas7hLaPPz7IPwvDjiQY_2026-09-12T21_53_44.633Z.csv"
+    },
+    {
+      "item": "agenttrace-overview.md",
+      "destino": "relatorios/agenttrace-overview.md"
+    },
+    {
+      "item": "agenttrace-overview-recheck.md",
+      "destino": "relatorios/agenttrace-overview-recheck.md"
+    },
+    {
+      "item": "agenttrace-session-recovery-report.md",
+      "destino": "relatorios/agenttrace-session-recovery-report.md"
+    },
+    {
+      "item": "agent_cost_spike_report.md",
+      "destino": "relatorios/agent_cost_spike_report.md"
+    },
+    {
+      "item": "self-improving-agent-summary.md",
+      "destino": "relatorios/self-improving-agent-summary.md"
+    },
+    {
+      "item": "BOOT-EXTERNO-CHECKPOINT-2026-09-10.md",
+      "destino": "relatorios/BOOT-EXTERNO-CHECKPOINT-2026-09-10.md"
+    },
+    {
+      "item": "perplexity-agent-api.md",
+      "destino": "relatorios/perplexity-agent-api.md"
+    },
+    {
+      "item": "edit_halperin.py",
+      "destino": "scripts/edit_halperin.py"
+    },
+    {
+      "item": "iconocracia_cv_env.py",
+      "destino": "scripts/iconocracia_cv_env.py"
+    },
+    {
+      "item": "tmp_colonial.py",
+      "destino": "scripts/tmp_colonial.py"
+    },
+    {
+      "item": "tmp_inspect_corpus.py",
+      "destino": "scripts/tmp_inspect_corpus.py"
+    },
+    {
+      "item": "tmp_stats_cap6.py",
+      "destino": "scripts/tmp_stats_cap6.py"
+    },
+    {
+      "item": "rewrite-home-repo.sh",
+      "destino": "scripts/rewrite-home-repo.sh"
+    },
+    {
+      "item": "Codex Image Sep 20, 2026, 08_29_41 AM.png",
+      "destino": "midia/Codex Image Sep 20, 2026, 08_29_41 AM.png"
+    },
+    {
+      "item": "desktop-ref-antigravity.png",
+      "destino": "midia/desktop-ref-antigravity.png"
+    },
+    {
+      "item": "8d5154b8-1058-42c4-ab55-4e6a9bee902d.webm",
+      "destino": "midia/8d5154b8-1058-42c4-ab55-4e6a9bee902d.webm"
+    },
+    {
+      "item": "SKILL.md",
+      "destino": ".agents/skills/ana-writing-voice/SKILL.md"
+    },
+    {
+      "item": "personality-safo.md",
+      "destino": ".agents/skills/ana-writing-voice/personality-safo.md"
+    },
+    {
+      "item": "DECISAO-METODOLOGICA-aparato-minimo 2.md",
+      "destino": "archive/.lixo-2026-09-22/DECISAO-METODOLOGICA-aparato-minimo 2.md",
+      "motivo": "duplicata exata (sha256)"
+    },
+    {
+      "item": "pesquisa-padrao-metodologico-iconografia-juridica 2.md",
+      "destino": "archive/.lixo-2026-09-22/pesquisa-padrao-metodologico-iconografia-juridica 2.md",
+      "motivo": "duplicata exata (sha256)"
+    },
+    {
+      "item": "panofsky-heatmap-309entries (1).xlsx",
+      "destino": "archive/.lixo-2026-09-22/panofsky-heatmap-309entries (1).xlsx",
+      "motivo": "duplicata exata (sha256)"
+    },
+    {
+      "item": "iconocracia_docs (1).zip",
+      "destino": "archive/.lixo-2026-09-22/iconocracia_docs (1).zip",
+      "motivo": "duplicata exata (sha256)"
+    },
+    {
+      "item": "Iconocracia  arquitetura metodológica.pptx",
+      "destino": "archive/.lixo-2026-09-22/Iconocracia  arquitetura metodológica.pptx",
+      "motivo": "duplicata exata (sha256)"
+    },
+    {
+      "item": "payload.json",
+      "destino": "archive/.lixo-2026-09-22/payload.json",
+      "motivo": "artefato de sessão/teste"
+    },
+    {
+      "item": "document_instructions_to_agent.md",
+      "destino": "archive/.lixo-2026-09-22/document_instructions_to_agent.md",
+      "motivo": "artefato de sessão/teste"
+    },
+    {
+      "item": "Elicit - ICONOCRACIA — Autoridade visual, circulação e prát - Report.pdf",
+      "destino": "iconocracia/Elicit - ICONOCRACIA — Autoridade visual, circulação e prát - Report.pdf"
+    },
+    {
+      "item": "iconocracy-object-researcher.toml",
+      "destino": "iconocracia/iconocracy-object-researcher.toml"
+    }
+  ],
+  "nao_encontrados": []
+}

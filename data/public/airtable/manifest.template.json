@@ -5,6 +5,37 @@
   "repository": "anavvanzin/Research",
   "source_system": "Airtable — Iconocracia — Corpus e Tese",
   "layer": "catalogo | ledger_validado | codificacao_visual | extrato_analitico | casos_argumentativos",
+  "identity_crosswalk": {
+    "file": "id-crosswalk.csv",
+    "input_artifacts": [
+      "data/processed/id_crosswalk.jsonl"
+    ],
+    "required_columns": [
+      "canonical_item_id",
+      "registry_id",
+      "editorial_id",
+      "hf_row_id",
+      "bucket_object_key",
+      "source_record_url",
+      "link_method",
+      "link_evidence",
+      "review_status",
+      "sample_eligible",
+      "exclusion_reason"
+    ],
+    "allowed_link_methods": [
+      "existing_crosswalk",
+      "exact_id",
+      "canonical_url",
+      "manual_review"
+    ],
+    "identity_policy": "Exigir correspondencia explicita ou revisao humana; titulo, mesmo aproximado, nunca estabelece identidade.",
+    "blocking_rules": [
+      "id_collision",
+      "unresolved_multiple_primary_images",
+      "approximate_title_only"
+    ]
+  },
   "tables": [
     {
       "name": "Itens do Corpus",
@@ -21,37 +52,6 @@
     "qa_log_file": "qa-log.csv",
     "unresolved_issues": 0,
     "known_limitations": []
-  },
-  "sampling": {
-    "frame_file": "sampling-frame.csv",
-    "target_size": 30,
-    "actual_size": 0,
-    "sampling_seed": "cv-pilot-0.1",
-    "frame_sort": ["canonical_item_id:asc"],
-    "randomization": "SHA-256 UTF-8 of <sampling_seed>\\u001f<stratum>\\u001f<canonical_item_id>; canonical_item_id ascending breaks hash ties",
-    "without_replacement": true,
-    "allocation_method": "balanced_6x5 | bounded_proportional",
-    "allocation_exception": null,
-    "strata": [
-      {
-        "stratum": "<normalized-support-stratum>",
-        "stratum_size": 0,
-        "allocated_size": 0,
-        "selection_probability": 0
-      }
-    ],
-    "required_frame_fields": [
-      "canonical_item_id",
-      "stratum",
-      "sampling_frame_order",
-      "sampling_seed",
-      "stratum_size",
-      "selection_probability",
-      "selected",
-      "reserve_rank",
-      "exclusion_code"
-    ],
-    "protocol": "docs/airtable/qa-protocol.md#amostragem-pre-registrada-do-piloto-de-visao-computacional"
   },
   "provenance": {
     "source_commit": "<commit-sha>",
