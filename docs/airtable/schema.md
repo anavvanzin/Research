@@ -37,6 +37,41 @@ Este documento especifica a estrutura de dados da base **“Iconocracia — Corp
 | `Estado do registro` | seleção única | Fluxo de curadoria e validação. |
 | `Observações / QA` | texto longo | Notas de inconsistência, incerteza ou decisão de normalização. |
 
+### Campos do manifesto de amostragem do piloto CV
+
+O frame publicado para o piloto de visão computacional deve conter **uma linha por
+item avaliado pelo funil**, inclusive os excluídos. Os nomes abaixo são nomes de
+máquina e não devem ser traduzidos na exportação:
+
+| Campo | Tipo sugerido | Uso |
+|---|---|---|
+| `canonical_item_id` | texto ou vazio | Cópia exata de `ID do corpus`, comprovada pelo crosswalk; sem transformação. Vazio somente em linha bloqueada de auditoria. |
+| `ID do corpus` | texto ou vazio | Chave pública original, idêntica a `canonical_item_id`; valores de outros sistemas ficam no crosswalk. |
+| `source_row_id` | texto | Chave estável e única da linha de entrada no snapshot, inclusive sem ID canônico; não derivar da ordem física. |
+| `eligibility_status` | enum | `eligible`, `excluded` ou `pending`; pendência bloqueia congelamento. |
+| `stratum` | texto | Estrato atribuído depois da normalização de suportes. Vazio quando não atribuído; nunca inferir de título ou de família. |
+| `sampling_frame_order` | inteiro positivo ou vazio | Posição do item elegível no frame global ordenado por `canonical_item_id`; vazio para exclusões do funil e pendências. Estratos pequenos mantêm posição. |
+| `sampling_seed` | texto | Seed textual previamente registrada; no piloto, `cv-pilot-0.1`. Deve aparecer em todas as linhas, inclusive excluídas. |
+| `stratum_size` | inteiro não negativo ou vazio | Número real de elegíveis no estrato (`N_h`), inclusive 1 e 2; vazio se não há estrato atribuído ou frame ainda pendente. Zero apenas para categoria atribuída com nenhum elegível. |
+| `allocated_size` | inteiro não negativo ou vazio | `n_h` do estrato; zero para estrato não participante, vazio enquanto a execução está bloqueada. |
+| `selection_probability` | decimal entre 0 e 1 | Probabilidade de inclusão da linha (`n_h / N_h`) sob a alocação efetivamente usada; `0` para exclusões finais e estratos não incluídos; vazio enquanto a execução está bloqueada. |
+| `selected` | booleano ou vazio | `true` apenas para a amostra principal; reservas permanecem `false`. |
+| `reserve_rank` | inteiro positivo ou vazio | Ordem dos elegíveis não selecionados de estratos participantes; `1` é o primeiro suplente. Vazio para selecionados, excluídos, pendentes e estratos com menos de três elegíveis. |
+| `exclusion_code` | texto controlado ou vazio | Motivo da inelegibilidade ou da não inclusão do estrato; vazio para itens que participaram do sorteio, selecionados ou reservas. |
+
+Nas linhas `eligible`, `exclusion_code` vazio indica participação no sorteio;
+`STRATUM_LT_3` indica apenas estrato não participante, com tamanho real preservado,
+alocação e probabilidade zero, `selected = false` e sem reserva. As linhas
+`excluded` recebem código final da política versionada; linhas `pending` exigem
+motivo de pendência e bloqueiam a execução. Em ambos os casos não há reserva.
+No CSV, vazio representa null e `true`/`false` representam booleanos; em uma
+execução bloqueada, resultados de seleção ficam vazios, sem simular negativos.
+
+`stratum_size` e `selection_probability` são repetidos por linha para que o
+snapshot permaneça auditável sem depender de uma tabela externa. Códigos de
+exclusão devem vir de vocabulário controlado versionado; texto livre explicativo
+fica em `Observações / QA` e nunca substitui o código.
+
 ### Valores controlados: `Estado do registro`
 
 1. `bruto / importado`

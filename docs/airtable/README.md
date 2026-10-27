@@ -62,7 +62,10 @@ Tabela de proveniência para instituições, catálogos, arquivos, coleções, h
 
 Os metadados, URLs, reproduções identificadas por fonte, notas de QA, indicadores e textos interpretativos desta camada podem ser públicos. A publicação deve preservar atribuição, URL de origem e referência bibliográfica sempre que disponíveis.
 
-Snapshots públicos devem ser incluídos em `data/public/airtable/` com um arquivo `manifest.json` contendo:
+Snapshots públicos pertencem ao repositório canônico `anavvanzin/iconocracy-corpus`;
+a localização efetiva deve ser declarada pelo release desse repositório. O legado
+`data/public/airtable/` desta raiz não deve receber alterações por esta PR.
+Cada snapshot deve ser acompanhado de um arquivo `manifest.json` contendo:
 
 - versão e data de exportação;
 - nome da tabela de origem;
@@ -71,6 +74,19 @@ Snapshots públicos devem ser incluídos em `data/public/airtable/` com um arqui
 - critérios de inclusão/exclusão;
 - referência do commit;
 - observações metodológicas relevantes.
+
+Quando o snapshot contiver a seleção do piloto de visão computacional, o
+manifesto deve incluir também o bloco `sampling` e um arquivo de frame com uma
+linha por item avaliado. Esse arquivo publica a posição no frame, seed, tamanho
+do estrato, probabilidade de seleção, indicador de seleção, ordem de reserva e
+código de exclusão. O algoritmo e a regra única de redistribuição estão
+descritos, com execução bloqueada até aprovação e congelamento do frame, no [protocolo de QA](qa-protocol.md#amostragem-pré-registrada-do-piloto-de-visão-computacional).
+
+O [template documental de amostragem](sampling-manifest.template.json) descreve
+somente o bloco `sampling`, a incorporar ao manifesto no repositório canônico
+após aprovação. Não substituir o manifesto completo nem omitir o crosswalk de
+identidade já obrigatório. Testes e limitações estão no protocolo e no
+[registro de validação da PR #35](pr35-validation.md).
 
 ## Sincronização recomendada
 
