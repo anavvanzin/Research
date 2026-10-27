@@ -10,9 +10,10 @@ This file is for Claude Code sessions; the human-readable counterpart is
 
 ## Workspace shape
 
-This is a **meta-workspace, not a monorepo.** Only versions meta files
-(`cowork/`, `docs/`, `.claude/AUTOMATION.md`, `.gitignore`). Sub-repos are
-siblings with their own `.git`.
+This is a **meta-workspace, not a monorepo.** It versions only meta files; the canonical
+list is in **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)** under *Versioned surfaces*
+and is deliberately not repeated here. Sub-repos are siblings with their own `.git`. The
+tree below shows the workspace's shape, not the set of tracked paths.
 
 ```
 /Users/ana/Research/      ← THIS REPO (git: anavvanzin/Research)
@@ -41,10 +42,16 @@ alvo histórico (não reflete o disco):
 └── deep-memory/           ← own .git                          [ausente]
 ```
 
-## Primary surface: the thesis
+## Primary surface: the thesis — 🖥️ host-only
 
 **`hub/iconocracy-corpus/`** is the canonical thesis monorepo.
 Navigate: `cd hub/iconocracy-corpus`
+
+Os caminhos desta seção são **relativos ao sub-repo**, que tem `.git` próprio e não
+existe em sessões remotas/web — daí o marcador no cabeçalho. É o mesmo arranjo da
+seção *Acesso rápido à tese* do [`README.md`](README.md): sem ele, a guarda de drift
+lê `data/processed/` como raiz **desta** raiz, e qualificar o caminho para agradá-la
+duplicava o prefixo no texto que o leitor copia.
 
 Quick paths (from `hub/iconocracy-corpus/`):
 
@@ -53,7 +60,7 @@ Quick paths (from `hub/iconocracy-corpus/`):
 | Capítulos da tese | `tese/manuscrito/` (lar canônico; era `vault/tese/`) |
 | Manuscrito + revisões | `tese/{manuscrito,revisoes}/` |
 | Entrega mais recente | `tese/Entrega_Orientador_Mar2026_FINAL/` |
-| Corpus canônico | `corpus/corpus-data.json` (264 itens; `records.jsonl` = 265, drift 1 item — ver *Known Data Issues* em `hub/iconocracy-corpus/CLAUDE.md`) |
+| Corpus canônico | `corpus/corpus-data.json` (336 itens; `data/processed/records.jsonl` = 336 linhas — o drift de 1 item que esta linha descrevia não existe mais; conferido 2026-09-19) |
 | Notebooks | `notebooks/` (01–08) |
 | Compilação | `make -C vault/tese/` (Makefile permanece em `vault/tese/`; migração de chapters → `tese/manuscrito/` em 2026-06-04 não moveu o pipeline) |
 
@@ -66,9 +73,32 @@ Quick paths (from `hub/iconocracy-corpus/`):
 - `vaults/` — Obsidian vaults (see `vaults/CLAUDE.md`)
 - `shared/` — shared datasets and reference libraries
 
+## Remote / web sessions
+
+This repo is cloned into remote and web Claude Code sessions (claude.ai/code, GitHub
+integrations). Such a session gets **only the tracked meta-repo** — a Linux container at
+`/home/user/Research`, not `/Users/ana/Research`. Absent by design:
+
+| Not present remotely | Why |
+| --- | --- |
+| `hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`, `hermes-workspace/` | Sibling sub-repos with their own `.git`; never tracked here |
+| `~/.claude/agents/` (14 agents), `~/.claude/scheduled-tasks/` (13 tasks) | Live in the macOS home dir |
+| `.claude/skills/{academic-research-skills,AutoResearchClaw,hegelian-dialectic,playwright}` | Exist on the Mac but were never committed. Canonical list: `.claude/AUTOMATION.md` |
+| `.claude/worktrees/`, `Tools/`, `~/.hermes/` | 🖥️ host-only |
+| **Plugins** (e.g. `claude-scientific-writer`) | Plugins do not sync to remote containers |
+
+A `/plugin-name:command` that works on the Mac returns **Unknown command** here. That is
+the plugin being absent, not a broken skill. When a capability must work everywhere, ship
+it as a versioned skill under `.claude/skills/` — see `scientific-writer`.
+
+Surfaces are marked 🖥️ **host-only** in [`.claude/AUTOMATION.md`](.claude/AUTOMATION.md).
+Do not try to "restore" one in a remote session, and do not treat its absence as drift.
+
 ## Automation
 
 Single index: → **[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md)**
+
+Governance docs are drift-checked in CI by `tests/test_docs_drift.py`.
 
 Wiring ativo (`.claude/settings.json`): hooks do *self-improving-agent* em
 PreToolUse Bash, PostToolUse Bash e SessionEnd, gravando em
@@ -79,16 +109,26 @@ por padrão** — só passam a valer se forem explicitamente ligados no
 
 ## Root-level commands (a raiz TEM verificação)
 
-A raiz não é um codebase, mas — ao contrário do que `AGENTS.md` afirma — ela tem
-CI própria e um par de comandos que valem para o meta-workspace em si:
+A raiz não é um codebase, mas tem CI própria e um par de comandos que valem para o
+meta-workspace em si. O `AGENTS.md` diz o mesmo desde 2026-09-19 — os dois documentos
+concordam.
+<!-- drift-pin: 2026-09-19 dizia "ao contrário do que AGENTS.md afirma"; a ressalva
+     virou obsoleta quando o AGENTS.md passou a liberar test/lint com escopo. -->
 
 | Tarefa | Comando |
 | --- | --- |
-| Testes do repo | `pytest` — `tests/test_repo_sanity.py` compila (`py_compile`) todo `.py` versionado |
-| Lint | `flake8 . --select=E9,F63,F7,F82` (erros de sintaxe / nomes indefinidos) |
+| Testes do repo | `pytest tests/` — `test_repo_sanity.py` compila (`py_compile`) todo `.py` versionado; `test_docs_drift.py` é a guarda de drift |
+| Lint | `flake8 $(git ls-files '*.py') --select=E9,F63,F7,F82` (erros de sintaxe / nomes indefinidos) |
 | Ambiente do CI | `conda env update --file environment.yml` — env `research`, **Python 3.10** |
 | Guard de ownership (pre-commit) | `bash scripts/install-hooks.sh` (modo `info`; `enforce` bloqueia) · `python3 scripts/git_physics_guard.py` avulso |
 | Statusline | `bash scripts/install-statusline.sh` |
+
+**Derive do índice, não de diretórios:** no Mac a raiz também contém os sub-repos
+irmãos, e `flake8 .` desce por eles. Passar `.claude/` também erra — lá vivem as skills
+host-only nunca commitadas e as worktrees gitignored. `git ls-files '*.py'` devolve
+exatamente o Python versionado. No container remoto o mesmo comando passa porque os
+irmãos não estão lá; é comando que só quebra no Mac. O CI pode usar `.` justamente
+porque lá só existe o meta-repo.
 
 `.github/workflows/python-package-conda.yml` roda lint + `pytest` a cada push.
 O smoke test existe justamente porque `pytest` sem teste coletável sai com
@@ -105,8 +145,11 @@ harness ativo (`--harness`, padrão `$HARNESS_ACTIVE` ou `codex-app`; `--mode en
 2 = erro do próprio script. Ele materializa a regra de contenção de sub-repos —
 ao vê-lo bloquear um commit, o caminho provavelmente pertence a outro repo.
 
-Os workflows `jekyll-gh-pages.yml` e `nextjs.yml` são *samples* do GitHub que
-nunca foram adaptados: não há site Jekyll nem app Next.js nesta raiz.
+Os workflows `jekyll-gh-pages.yml` e `nextjs.yml` **eram** *samples* do GitHub que
+nunca foram adaptados — não há site Jekyll nem app Next.js nesta raiz — e por isso
+foram removidos em 2026-08-30; ver a nota em
+[`.claude/AUTOMATION.md`](.claude/AUTOMATION.md). Resta apenas
+`python-package-conda.yml`, que é deliberado.
 
 ## Sibling research repos (fora da árvore local)
 
@@ -142,8 +185,13 @@ Quando forem localizados/recriados, atualizar esta tabela; até lá, considerar 
 
 ## Conventions (workspace-specific)
 
-- **Sub-repo containment.** Only `cowork/` and `docs/` are tracked here.
-  Do NOT run `git add` on anything else from this repo.
+- **Sub-repo containment.** Do NOT run `git add` on a **sub-repo** path
+  (`hub/`, `apps/`, `pipelines/`, `vaults/`, `shared/`, `labs/`, `deep-memory/`,
+  `hermes-workspace/`) — each has its own `.git`. The meta surfaces listed under
+  *Versioned surfaces* in [`.claude/AUTOMATION.md`](.claude/AUTOMATION.md) are tracked
+  here and may be edited normally.
+  <!-- drift-pin: 2026-09-09 dizia "only cowork/ and docs/", já falso: tests/,
+       scripts/, .github/ e .claude/ eram rastreados antes disso. -->
 - **conda env:** `iconocracy` (Python 3.11 — env rebuilt 3.12→3.11 em 2026-06-22; use path version-agnostic `/opt/homebrew/Caskroom/miniforge/base/envs/iconocracy/bin/python`). Never system Python.
 - **ABNT NBR 6023:2025** for Portuguese drafts; Chicago for English.
 - **Caveman mode** active by default (`~/.caveman-active`); `stop caveman` per session.
@@ -159,4 +207,4 @@ Quando forem localizados/recriados, atualizar esta tabela; até lá, considerar 
 
 - User profile, plan tier → `~/.claude/CLAUDE.md`
 - Thesis pipeline internals → `hub/iconocracy-corpus/CLAUDE.md`
-- Skill catalog → `find-skill` skill
+- Skill catalog → `find-skills` skill

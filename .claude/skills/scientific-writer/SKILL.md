@@ -1,0 +1,159 @@
+---
+name: scientific-writer
+description: Plan, draft, review and prepare standalone scientific and academic texts for submission — artigos, papers, grant proposals, abstracts, resumos expandidos, book chapters, conference submissions, peer-review responses. Use when the user asks to escrever/redigir/estruturar um artigo, montar um paper, preparar submissão, write a paper, draft a grant, build an outline for a manuscript, or respond to reviewers. Enforces ABNT NBR 6023:2025 for Portuguese and Chicago for English, and the rule that every informative claim is traceable to an identifiable source. For ICONOCRACIA thesis chapters use `iconocracia-pipeline-router` instead.
+---
+
+# Scientific Writer
+
+Entry point for **standalone** academic writing in Ana Vanzin's workspace: articles,
+grant proposals, abstracts, conference papers, book chapters, reviewer responses.
+
+This skill **routes and enforces**; it does not reimplement pipelines that already exist.
+
+## Scope boundary — read first
+
+| Object | Owner |
+|---|---|
+| ICONOCRACIA thesis chapter, corpus, hypothesis matrix, thesis compile | **`iconocracia-pipeline-router`** — stop here and invoke it |
+| Standalone artigo, paper, grant, abstract, chapter for an edited volume, reviewer response | **this skill** |
+
+The two never run together on the same object. If the request names a thesis chapter or
+the corpus, hand off to the router and say so in one line. If it names a paper drawn
+*from* thesis material, this skill owns it — the paper is the principal object, the thesis
+is a source.
+
+## `init` — starting a new writing project
+
+Reproduces what an external scientific-writing plugin would set up. Establish and echo
+back, in five lines, before writing anything:
+
+1. **Object** — what is being written (artigo / grant / abstract / chapter / response).
+2. **Target** — journal, funder, event, or volume, with its length and format limits.
+3. **Language + citation standard** — Portuguese → ABNT NBR 6023:2025; English → Chicago.
+   French → follow the target venue.
+4. **Working paths** — where the draft and its bibliography live. Confirm the target path
+   before creating any file (workspace rule).
+5. **Sources on hand** — what already exists vs. what must be found.
+
+Anything unknown after this is a question for the user, not an assumption.
+
+## Operating rule
+
+Start every round with a compact state summary: request · principal object · selected
+gate · what blocks progress.
+
+**One principal object per round** — one paper, one proposal, one review response. Large
+materials enter by summary plus local path, never by pasting full text. If the task needs
+several objects, split it into rounds.
+
+## Route triage
+
+Classify before invoking anything.
+
+| Request | Route |
+|---|---|
+| "encontre fontes sobre X", literature landscape, state of the art | `academic-pipeline` (research stage) — or the Consensus / Scite / Elicit MCP tools when available |
+| "escreva o artigo", "monte o paper", full research→write→review cycle | `academic-pipeline` (all 9 stages) |
+| "revise este parágrafo", "está OK?", claim anchoring, argument flow | `academic-writing-reviewer` |
+| ABNT formatting, PT/FR review, legal-history and iconology rigor | `iconocracy-reviewer` |
+| Outline iteration, hooks, section-by-section feedback | `content-research-writer` |
+| Deliverable is `.docx` / `.pdf` / `.pptx` | `docx` / `pdf` / `pptx` |
+| A thesis-internal object — chapter, corpus, hypothesis matrix, thesis compile | `iconocracia-pipeline-router` |
+
+Pick the **smallest** route that answers the request. A one-paragraph review does not
+need the nine-stage pipeline.
+
+Note the carve-out from the scope boundary above: a **standalone paper drawn from**
+thesis material stays with this skill — the paper is the principal object and the thesis
+is a source. Only thesis-internal objects go to the router.
+
+### Se a rota não existe nesta sessão
+
+As rotas acima, fora do `iconocracia-pipeline-router`, **não são versionadas neste
+repo**: chegam pela conta. Numa sessão remota cuja conta não as tenha sincronizadas,
+invocá-las devolve *Unknown command* — exatamente a falha que originou esta skill. Então
+antes de delegar, confirme que a rota existe, na cadeia que o `AGENTS.md` define:
+`find-skills <intent>`, depois `hermes skills list <categoria>`, e só por último
+`skills_list`. **`find-skills` também chega pela conta**, então se ele próprio não
+responder, não insista na cadeia nem trate isso como erro: vá direto ao fallback local
+abaixo, que é o que a tabela existe para dar. E se existir:
+
+> O router é versionado e portanto **carrega** em qualquer sessão, mas os pipelines que
+> *ele* invoca também chegam pela conta ou pelo Mac — ele tem a sua própria seção de rota
+> ausente. Entregar um objeto de tese ao router não é garantia de execução; é garantia de
+> que alguém com o fallback certo assume.
+
+
+| Rota ausente | O que fazer no lugar |
+|---|---|
+| `academic-pipeline` | Conduza os gates G1→G6 aqui mesmo, um por vez, com `references/protocol.md` aberto. A ordem dos gates é o pipeline; a skill é só a implementação dela. |
+| `academic-writing-reviewer` · `iconocracy-reviewer` | Faça G5 nesta sessão, adversarialmente e contra a checklist de G5 do protocolo. Registre que a revisão foi feita sem revisor dedicado — é uma revisão mais fraca, e o usuário precisa saber. |
+| `content-research-writer` | Itere o outline direto no formato da tabela de G2. |
+| `docx` / `pdf` / `pptx` | Entregue Markdown e diga qual conversão ficou pendente; não simule o binário. |
+
+O que **não** se faz é abortar o pedido por falta de rota, nem delegar às cegas e
+reportar o *Unknown command* como se fosse resposta. Os gates e as Non-negotiables valem
+igual nos dois caminhos — a rota ausente muda quem executa, não o padrão.
+
+## Gates — só para o ciclo completo
+
+Estes gates governam **um ciclo completo de escrita** (G1→G6): quando o objeto é um
+texto a ser produzido do zero ou revisado por inteiro. Rodam em ordem, e cada um tem
+uma saída que bloqueia o próximo.
+
+**Uma rota direta da triagem não passa por eles.** Revisar um parágrafo, padronizar
+uma referência, iterar um outline — isso vai à rota escolhida e responde ali mesmo;
+exigir bibliografia completa e draft antes de revisar três linhas contradiz o "escolha
+a menor rota" acima. O que permanece em qualquer rota são as **Non-negotiables** abaixo:
+nada de citação fabricada, afirmação informativa sem fonte identificável, ou citação
+direta sem o texto em mãos.
+
+| Gate | Produces | Blocks on |
+|---|---|---|
+| **G1 · Sources** | Working bibliography, each entry with a resolvable identifier (DOI, ISBN, permalink, archive shelfmark) **e** a marca de verificado / não verificado — identificador que resolve não é texto conferido | Any entry that cannot be resolved. Uma entrada não verificada não bloqueia G1, mas **nenhuma claim pode se ancorar nela** até o texto ser aberto |
+| **G2 · Structure** | Section outline with the claim each section must carry | A section with no claim; ou uma claim sem entrada G1 **e** sem **marca autoral** (ver *Non-negotiables*) |
+| **G3 · Draft** | Prose, one section per round | — |
+| **G4 · Integrity** | Cada afirmação informativa com entrada G1 **verificada** **ou** com **marca autoral** | Uma claim sem nenhum dos dois, ou ancorada numa entrada G1 ainda não verificada (ver *Non-negotiables*) — o que G2 admitiu não volta a bloquear aqui |
+| **G5 · Review** | Adversarial pass via `academic-writing-reviewer` (+ `iconocracy-reviewer` for PT/FR) | Unresolved finding |
+| **G6 · Format** | Reference list in the venue's standard, length and format limits met | Any reference failing the standard |
+
+G4 is not optional and is not merged into G5. Integrity is a separate pass over the
+finished draft, checked against G1 — not a reviewer's impression.
+
+## Non-negotiables
+
+- **Never fabricate a citation.** No invented DOI, page range, publisher, year, or
+  quotation. An unverified source is reported as unverified, never smoothed into the text.
+- **Every informative claim is traceable** to an identifiable source — com uma única
+  exceção, a **marca autoral**: a claim que é argumento da própria autora é marcada como
+  tal e avança sem entrada G1, porque a tese central de um trabalho original é autoral
+  por definição. O que continua exigindo fonte são suas premissas e evidências, e
+  argumento marcado nunca é vestido de fato estabelecido.
+  **Esta é a única formulação da regra.** Os gates abaixo e o `references/protocol.md`
+  apontam para cá em vez de repeti-la: enunciada em quatro lugares, ela já divergiu
+  duas vezes — G2 admitia o que G4 bloqueava.
+- **Preserve the author's voice.** Improve clarity and structure; do not flatten prose
+  into generic academic register, and do not rewrite an argument into a different one.
+- **Quotations are exact**, and **uma fonte não lida não é parafraseada.** Sem o texto
+  em mãos, a afirmação é marcada como não verificada ou a fonte é pedida ao usuário —
+  parafrasear de memória inventa atribuição mesmo sem inventar os metadados. É o que
+  `references/protocol.md` já diz: fonte que não se conseguiu abrir não é fonte citável.
+- **Portuguese is the response language** (workspace profile); code identifiers stay in
+  the original.
+- Confirm the target path before creating any file.
+
+## Citation standards
+
+| Language | Standard |
+|---|---|
+| Portuguese | ABNT NBR 6023:2025 |
+| English | Chicago |
+| French | Venue's standard; ABNT if the venue is Brazilian |
+
+For ABNT mechanics and worked examples, invoke `iconocracy-reviewer` — it owns the
+formatter. Do not re-derive ABNT rules here.
+
+## Deeper protocol
+
+Read `references/protocol.md` only when the user asks for gate checklists, a reusable
+submission template, or a formal artifact. Routine drafting does not need it.

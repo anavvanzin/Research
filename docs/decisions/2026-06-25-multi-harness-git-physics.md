@@ -78,6 +78,11 @@ Sub-produtores com path canônico próprio (também donos):
 | drift-detector      | `cowork/engineering/drift-detector/` + `.hermes/skills/` |
 | iconocracy-companion | `iconocracia-companion/` (symlink → sub-repo) |
 
+> **Nota 2026-09-09** — as linhas `jekyll-gh-pages` e `Next.js deploy` acima
+> descrevem o estado em 2026-06-25. Os dois workflows foram removidos desta raiz
+> em 2026-08-30; ver [`2026-09-09-aposentar-workflows-sample.md`](./2026-09-09-aposentar-workflows-sample.md)
+> e as seções aposentadas em [`AGENT-OWNERSHIP.md`](./AGENT-OWNERSHIP.md).
+
 ## 4. Path contracts (regras por path)
 
 - `cowork/`: shared, qualquer harness com code review do owner.

@@ -8,6 +8,8 @@ accepted_date: 2026-06-25
 supersedes: implicit "versionar apenas cowork/, docs/, .claude/AUTOMATION.md"
 related:
   - ./2026-06-25-multi-harness-git-physics.md
+  - ./2026-09-09-aposentar-workflows-sample.md
+  - ./2026-09-19-guarda-drift-agent-ownership.md
 ---
 
 # AGENT-OWNERSHIP — Matriz canônica de paths por harness
@@ -30,7 +32,7 @@ related:
 |-------------------------------|--------------------------------------------------|------|
 | `.agents/`                    | `.hermes/`, `.antigravity/`, `.copilot/`         | tudo |
 | `.codex/` (config canônica)   | `.claude/skills/`-write, `.learnings/`-write     | tudo |
-| `cowork/codex/`               | `docs/decisions/`-write exclusivo                | tudo |
+| `cowork/codex/`               | `docs/decisions/`-write exclusivo                | tudo <!-- drift-pin: 2026-09-19 grant de namespace, não inventário: a coluna Owns diz onde o harness PODE commitar, e este diretório ainda não foi criado. Ver 2026-09-19-guarda-drift-agent-ownership.md --> |
 
 Runtime ignorado: `.codex/cache/`, `.codex/sessions/`.
 
@@ -94,16 +96,28 @@ Runtime ignorado: `.learnings/runtime/`.
 
 ### jekyll-gh-pages (`HARNESS_ACTIVE=jekyll-gh-pages`)
 
+> **APOSENTADO em 2026-08-30.** `.github/workflows/jekyll-gh-pages.yml` foi <!-- drift-pin: 2026-09-19 referência histórica: o arquivo foi removido de propósito em 2026-08-30, como o próprio parágrafo diz. -->
+> removido desta raiz — era sample não adaptado do GitHub, sem site Jekyll aqui.
+> A seção fica para que um `HARNESS_ACTIVE` legado não quebre o guard, mas este
+> harness não versiona mais nada nesta raiz. Ver
+> [`2026-09-09-aposentar-workflows-sample.md`](./2026-09-09-aposentar-workflows-sample.md).
+
 | Owns                          | Notes                                            |
 |-------------------------------|--------------------------------------------------|
-| `.github/workflows/jekyll-*.yml` | Sub-repo em `~/Projects/anavvanzin.github.io/` |
-|                               | apontado por path absoluto.                     |
+| *(nenhum nesta raiz)*         | Antes: `.github/workflows/jekyll-*.yml`. O site  |
+|                               | vive no sub-repo `~/Projects/anavvanzin.github.io/`. |
 
 ### Next.js deploy (`HARNESS_ACTIVE=nextjs-deploy`)
 
+> **APOSENTADO em 2026-08-30.** `.github/workflows/nextjs.yml` foi removido desta <!-- drift-pin: 2026-09-19 referência histórica: o arquivo foi removido de propósito em 2026-08-30, como o próprio parágrafo diz. -->
+> raiz — sample não adaptado, sem app Next.js aqui. Seção mantida pelo mesmo
+> motivo acima. Ver
+> [`2026-09-09-aposentar-workflows-sample.md`](./2026-09-09-aposentar-workflows-sample.md).
+
 | Owns                          | Notes                                            |
 |-------------------------------|--------------------------------------------------|
-| `.github/workflows/nextjs.yml` | CI-only; app vive em sub-repo separado.        |
+| *(nenhum nesta raiz)*         | Antes: `.github/workflows/nextjs.yml`. O app <!-- drift-pin: 2026-09-19 referência histórica: o arquivo foi removido de propósito em 2026-08-30, como o próprio parágrafo diz. --> |
+|                               | vive em sub-repo separado.                       |
 
 ### self-improving-agent (`HARNESS_ACTIVE=self-improving-agent`)
 
@@ -116,7 +130,7 @@ Runtime ignorado: `.learnings/runtime/`.
 
 | Owns                          | Notes                                            |
 |-------------------------------|--------------------------------------------------|
-| `cowork/engineering/drift-detector/` | Skill instalada em `.hermes/skills/`       |
+| `cowork/engineering/drift-detector/` | Skill instalada em `.hermes/skills/` <!-- drift-pin: 2026-09-19 mesmo caso da linha de `cowork/codex/`: grant de namespace ainda não materializado — a skill vive hoje fora desta raiz, como a coluna Notes já diz. --> |
 |                               | e `~/.codex/skills/`.                            |
 
 ### iconocracia-companion (`HARNESS_ACTIVE=iconocracia-companion`)

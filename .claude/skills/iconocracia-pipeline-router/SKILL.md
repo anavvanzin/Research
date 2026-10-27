@@ -35,6 +35,32 @@ Load at most one principal object per round:
 Large materials enter by summary plus local path, not by copying full text.
 If the task needs multiple objects, split the work into rounds.
 
+## Rota ausente nesta sessão
+
+Esta skill é versionada, então **carrega** em qualquer sessão — mas os pipelines que ela
+invoca não são versionados aqui: `deep-research`, `lit-review`, `academic-paper`,
+`academic-paper-reviewer`, `abnt-format`, `compilar-tese` e os scripts de `hub/` chegam
+pela conta ou pelo Mac. Numa sessão remota que não os tenha, delegar às cegas devolve
+*Unknown command* e o pedido morre ali.
+
+Então: **confirme a rota antes de delegar**, na cadeia que o `AGENTS.md` define:
+`find-skills <intent>`, depois `hermes skills list <categoria>`, e só por último
+`skills_list`. **`find-skills` também chega pela conta**: se ele próprio não responder,
+não insista na cadeia nem trate o *Unknown command* dele como resposta — vá direto à
+tabela abaixo, que existe justamente para isso. E se a rota não existir, não aborte —
+
+| Rota ausente | O que fazer no lugar |
+|---|---|
+| `deep-research`, `lit-review`, `fact-check`, `systematic-review` | Conduza a etapa `research` aqui, com as MCP tools de literatura (Consensus, Scite, Elicit, Scholar Gateway) quando conectadas. Sem elas, entregue o que pôde ser verificado e diga o que ficou aberto. |
+| `academic-paper`, `content-research-writer` | Para artigo standalone, entregue a `scientific-writer`, que é versionada. Para capítulo, produza o plano aqui no formato de `references/protocol.md` e pare no plano. |
+| `hypothesis-generation` | Derive as hipóteses aqui, a partir da claim do capítulo e dos quatro blocos ICONOCRACIA do *Hypothesis Gate*, marcando cada uma como falsificável ou interpretativa. Não invente evidência de corpus para sustentá-las: o corpus vive em `hub/` e pode não estar nesta sessão. |
+| `academic-paper-reviewer`, `scientific-critical-thinking` | Faça a revisão adversarial nesta sessão contra a checklist de `review`, cobrindo também o que a segunda cobriria — circularidade, viés, validade de inferência —, **declarando** que foi sem revisor dedicado. |
+| `abnt-format`, citation/Zotero checks | Aplique ABNT NBR 6023:2025 à mão e marque cada entrada que não deu para verificar. |
+| `compilar-tese`, `make -C vault/tese/`, scripts de `hub/` | Não simule: o pipeline de compilação e o corpus vivem em `hub/iconocracy-corpus/`, ausente numa sessão remota. Diga que a etapa exige o Mac (ou o clone do sub-repo) e pare. |
+
+Os gates e os blocks abaixo valem igual nos dois caminhos — a rota ausente muda quem
+executa, não o padrão. O que **não** se faz é reportar o *Unknown command* como resposta.
+
 ## Route Triage
 
 Classify the user request before invoking any pipeline.
